@@ -1,0 +1,263 @@
+{% extends 'partials/body.hmtl' %}
+
+{% block contenido %}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0 text-black"><tr>USUARIOS</tr></h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Inicio </a></li>
+                    <li class="breadcrumb-item-active"><a href="#">/ Usuarios</a></li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Google Font: Source Sans Pro -->
+<link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+<!-- Font Awesome -->
+<link rel="stylesheet" href="/static/AdminLTE/fontawesome-free/css/all.min.css">
+<!-- fullCalendar -->
+<link rel="stylesheet" href="/static/AdminLTE/fullcalendar/main.css">
+<!-- Theme style -->
+<link rel="stylesheet" href="/static/AdminLTE/css/adminlte.min.css">
+
+<button type="button" class="brand-text" style="background-color: green;">
+    <a class="text-decoration-none text-white" href="#" aria-label="Crear
+        Proveedor">Crear Usuario</a>
+</button>
+<button type="button" class="brand-text" style="background-color: green;">
+    <a class="text-decoration-none text-white" href="#" aria-label="Modificar
+        Proveedor">Modificar Usuario</a>
+</button>
+<button type="button" class="brand-text" style="background-color: green;">
+    <a class="text-decoration-none text-white" href="#" aria-label="Buscar
+        Proveedor">Buscar Usuarios</a>
+</button>
+<button type="button" class="brand-text" style="background-color: green;">
+    <a class="text-decoration-none text-white" href="#" aria-label="Listar
+        proveedores">Listar Usuarios</a>
+</button>
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Registrar usuario</title>
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+            crossorigin="anonymous">
+    </head>
+    <body>
+
+        <form class="row g-2 needs-validation" novalidate>
+
+            <div class="col-md-5">
+                <label for="validationCustom01" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="validationCustom01"
+                    placeholder="Nombre" required>
+                <div class="invalid-feedback">
+                    Olvidaste escribir tu nombre.
+                </div>
+            </div>
+            <div class="col-md-5">
+                <label for="validationCustom02" class="form-label">Apellido</label>
+                <input type="text" class="form-control" id="validationCustom02"
+                    placeholder="Apellido" required>
+                <div class="invalid-feedback">
+                    Olvidaste escribir tu apellido.
+                </div>
+            </div>
+            <div class="col-md-4">
+                <label for="inputState" class="form-label">Tipo de documento</label>
+                <select id="inputState" class="form-select">
+                    <option selected>Elige</option>
+                    <option>Cédula de Ciudadanía</option>
+                    <option>Cédula de Extranjería</option>
+                </select>
+                <div class="invalid-feedback">
+                    Selecciona un tipo de documento válido.
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label for="validationCustom03" class="form-label">N° de
+                    documento</label>
+                <input type="number" class="form-control"
+                    id="validationCustom03" required>
+                <div class="invalid-feedback">
+                    Olvidaste digitar tu número de documento.
+                </div>
+            </div>
+            <div class="col-md-4">
+                <label for="validationCustom04" class="form-label">Teléfono</label>
+                <input type="number" class="form-control"
+                    id="validationCustom04" required>
+                <div class="invalid-feedback">
+                    Proporciona un número de teléfono válido.
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label for="validationCustom05" class="form-label">Dirección</label>
+                <input type="text" class="form-control" id="validationCustom05"
+                    required>
+                <div class="invalid-feedback">
+                    Proporciona una dirección válida.
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label for="validationCustom06" class="form-label">Correo
+                    electrónico</label>
+                <input type="email" class="form-control" id="validationCustom06"
+                    placeholder="name@example.com" required>
+                <div class="invalid-feedback">
+                    Olvidaste digitar tu correo electrónico.
+                    <div class="input-group">
+                    </div>
+                    <div class="col-md-5">
+                        <label for="validationCustom07" class="form-label">Contraseña</label>
+                        <input type="password" class="form-control"
+                            id="validationCustom07" required>
+                    </div>
+                    <div class="col-md-5">
+                        <label for="validationCustom08" class="form-label">Confirmar
+                            contraseña</label>
+                        <input type="password" class="form-control"
+                            id="validationCustom08" required>
+                        <div class="invalid-feedback">
+                            La contraseña no coincide con la anterior.
+                            <div class="input-group">
+                            </div>
+                            <div class="col-12">
+                                <div class="form-check">
+                                    <input class="form-check-input"
+                                        type="checkbox" id="gridCheck">
+                                    <label class="form-check-label"
+                                        for="gridCheck">
+                                        Verifícame
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary">Registrarse</button>
+                            </div>
+                        </form>
+
+                        <script
+                            src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+                            integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+                            crossorigin="anonymous"></script>
+                    </body>
+                </html>
+
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">DataTable with default features</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table id="example1" class="table table-bordered
+                            table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Rendering engine</th>
+                                    <th>Browser</th>
+                                    <th>Platform(s)</th>
+                                    <th>Engine version</th>
+                                    <th>CSS grade</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Trident</td>
+                                    <td>Internet
+                                        Explorer 4.0
+                                    </td>
+                                    <td>Win 95+</td>
+                                    <td> 4</td>
+                                    <td>X</td>
+                                </tr>
+                                <tr>
+                                    <td>Trident</td>
+                                    <td>Internet
+                                        Explorer 5.0
+                                    </td>
+                                    <td>Win 95+</td>
+                                    <td>5</td>
+                                    <td>C</td>
+                                </tr>
+                                <tr>
+                                    <td>Trident</td>
+                                    <td>Internet
+                                        Explorer 5.5
+                                    </td>
+                                    <td>Win 95+</td>
+                                    <td>5.5</td>
+                                    <td>A</td>
+                                </tr>
+                                <tr>
+                                    <td>Trident</td>
+                                    <td>Internet
+                                        Explorer 6
+                                    </td>
+                                    <td>Win 98+</td>
+                                    <td>6</td>
+                                    <td>A</td>
+                                </tr>
+                                <tr>
+                                    <td>Trident</td>
+                                    <td>Internet Explorer 7</td>
+                                    <td>Win XP SP2+</td>
+                                    <td>7</td>
+                                    <td>A</td>
+                                </tr>
+                                <tr>
+                                    <td>Trident</td>
+                                    <td>AOL browser (AOL desktop)</td>
+                                    <td>Win XP</td>
+                                    <td>6</td>
+                                    <td>A</td>
+                                </tr>
+                                <tr>
+                                    <td>Gecko</td>
+                                    <td>Firefox 1.0</td>
+                                    <td>Win 98+ / OSX.2+</td>
+                                    <td>1.7</td>
+                                    <td>A</td>
+                                </tr>
+                                <tr>
+                                    <td>Gecko</td>
+                                    <td>Firefox 1.5</td>
+                                    <td>Win 98+ / OSX.2+</td>
+                                    <td>1.8</td>
+                                    <td>A</td>
+                                </tr>
+                                <tr>
+                                    <td>Gecko</td>
+                                    <td>Firefox 2.0</td>
+                                    <td>Win 98+ / OSX.2+</td>
+                                    <td>1.8</td>
+                                    <td>A</td>
+                                </tr>
+                                <tr>
+                                    <td>Gecko</td>
+                                    <td>Firefox 3.0</td>
+                                    <td>Win 2k+ / OSX.3+</td>
+                                    <td>1.9</td>
+                                    <td>A</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                    {% endblock contenido %}
