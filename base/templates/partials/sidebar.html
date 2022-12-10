@@ -1,0 +1,119 @@
+{% load static %}
+<!-- Main Sidebar Container -->
+<aside class="main-sidebar sidebar-dark-success elevation-4 bg-gray-dark" name="sibebar">
+    <!-- Brand Logo -->
+    <a href="index.html" class="brand-link text-decoration-none">
+        <img src="{% static '/img/logoMallas.ico' %}" alt="Mundial Mallas y Estructuras Logo"
+            class="brand-image img-circle elevation-3 "
+            style="opacity: .8">
+        <span class="brand-text font-weight-light "><tr></tr>SCI MME</tr></span>
+    </a>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <!-- Sidebar user panel (optional) -->
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+            <div class="image">
+                <img src="{% static 'img/perfil.jpg' %}"
+                    class="img-circle
+                    elevation-2" alt="User Image">
+            </div>
+            <div class="info">
+                <a href="perfil.html" class="d-block">Lizeth Ojeda</a>
+            </div>
+        </div>
+        <!-- SidebarSearch Form -->
+        <div class="form-inline">
+            <div class="input-group" data-widget="sidebar-search">
+                <input class="form-control form-control-sidebar"
+                    type="search"
+                    placeholder="Buscar" aria-label="Search">
+                <div class="input-group-append">
+                    <button class="btn btn-sidebar">
+                        <i class="fas fa-search fa-fw"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <hr>
+    <!-- Sidebar Menu -->
+    <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column"
+            data-widget="treeview" role="menu"
+            data-accordion="false">
+            <!-- Add icons to the links using the .nav-icon class
+            with font-awesome or any other icon font library -->
+            <!-- Modulo Clientes-->
+            <li class="nav-item menu-open">
+                <a href="#" class="nav-link active">
+                    <p>
+                        Gestionar Clientes
+                    </p>
+                </a>
+            </li>
+            <!-- Modulo Compras-->
+            <li class="nav-item menu-open">
+                <a href="#" class="nav-link active">
+                    <p>
+                        Gestionar Compras
+                    </p>
+                </a>
+            </li>
+            <!-- Modulo Productos-->
+            <li class="nav-item menu-open">
+                <a href="#" class="nav-link active">
+                    <p>
+                        Gestionar Productos
+                    </p>
+                </a>
+            </li>
+            <!-- Modulo Proveedores-->
+            <li class="nav-item menu-open">
+                <a href="#" class="nav-link active">
+                    <p>
+                        Gestionar Proveedores
+                    </p>
+                </a>
+            </li>
+            <!-- Modulo Servicios-->
+            <li class="nav-item menu-open">
+                <a href="#" class="nav-link active">
+                    <p>
+                        Gestionar Servicios
+                    </p>
+                </a>
+            </li>
+            <!-- Modulo Usuarios-->
+            <li class="nav-item menu-open">
+                <a href="#" class="nav-link active">
+                    <p>
+                        Gestionar Usuarios
+                    </p>
+                </a>
+            </li>
+            <!-- Modulo Ventas-->
+            <li class="nav-item menu-open">
+                <a href="#" class="nav-link active">
+                    <p>
+                        Gestionar Ventas
+                    </p>
+                </a>
+            </li>
+            <hr>
+            <li class="nav-item bg-gray">
+                <a href="/base/templates/index.html" class="nav-link">
+                    <p>
+                        Cerrar Sesión
+                    </p>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+</aside>
+<!-- Control Sidebar -->
+<aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+</aside>
+<!-- /.control-sidebar -->
