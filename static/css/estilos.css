@@ -1,0 +1,58 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    font-family:'Times New Roman', Times, serif;
+    color: #fff;
+}
+.d-flex.flex-wrap.py-3.mb-5.border-bottom.bg-success{
+    margin-bottom:0px;
+}
+.logoEmpresa{
+    width: 50%;
+    height: 150px;
+    display: block;
+    object-fit: fill;
+    padding-left: -2rem;
+    padding-right: 3rem;
+    float:right;
+}
+.mr-2{
+    margin-right: 2rem !important;
+}
+.container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl{
+    padding-left:0px;
+    padding-right: 0px;
+}
+#titulo{
+    padding-right: 70px;
+    letter-spacing: 2px;
+}
+
+.menu{
+    padding-top: 50px;
+}
+
+#borderBottom{
+    border-color: rgb(14, 84, 14);
+}
+
+.bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+@media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+    font-size: 3.5rem;
+    }
+}
+
+#formulario{
+    background-image: url('../img/malla.jpg');
+    background-repeat: no-repeat;
+    background-size:cover;
+}
+
