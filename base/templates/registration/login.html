@@ -1,0 +1,80 @@
+{% extends 'partials/body-login.html' %}
+{% load static %}
+
+{% block cuerpo %}
+<body class="login-page" style="min-height: 466px;">
+    <div class="login-box">
+
+        <div class="card card-outline card-primary">
+            <div class="card-header text-center">
+                <a href="../../index2.html" class="h1"><b>Siste</b>SENA</a>
+            </div>
+            <div class="card-body">
+                <p class="login-box-msg">Bienvenido al Sistema de inventario SENA</p>
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="input-group mb-3">
+                        {{form.username}}
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-envelope"></span>
+                            </div>
+                        </div>
+                        <div data-lastpass-icon-root="true"
+                            style="position: relative !important; height: 0px !important; width: 0px !important; float: left !important;">
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        {{form.password}}
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
+                        <div data-lastpass-icon-root="true"
+                            style="position: relative !important; height: 0px !important; width: 0px !important; float: left !important;">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-8">
+                            <div class="icheck-primary">
+                                <input type="checkbox" id="remember">
+                                <label for="remember">
+                                    Recordarme
+                                </label>
+                            </div>
+                        </div>
+
+                        <input type="submit" class="btn btn-primary btn-block" value="Ingresar">
+
+                    </div>
+                </form>
+
+
+                <p class="mb-1">
+                    <a href="{% url 'pass_reset' %}">Olvidé mi contraseña</a>
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script src="../../plugins/jquery/jquery.min.js"></script>
+
+    <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <script src="../../dist/js/adminlte.min.js?v=3.2.0"></script>
+
+
+    <div style="position: static !important;">
+        <div data-lastpass-infield="true"
+            style="position: absolute !important; top: 0px !important; left: 0px !important;"></div>
+    </div>
+    {% include 'partials/js.html' %}
+</body>
+{% endblock cuerpo %}
+    
+

@@ -19,6 +19,9 @@ from django.urls import path, include
 from base.views import inicio, login
 from ventas.views import ventas
 
+
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/',login,name='login'),
@@ -30,4 +33,6 @@ urlpatterns = [
     path('productos/',include('productos.urls')),
     path('compras/',include('compras.urls')),
     path('clientes/',include('clientes.urls')),
+
+
 ]
