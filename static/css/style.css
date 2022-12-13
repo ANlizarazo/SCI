@@ -1,0 +1,19 @@
+#titulo{
+    font-family: 'Times New Roman', Times, serif;
+    letter-spacing: 2px;
+    font-size: 37px;
+}
+
+#backhome{
+    font-family:'Times New Roman', Times, serif;
+    font-size: 20px;
+    letter-spacing:2px;
+}
+
+#pagnotfound{
+    font-family:'Courier New', Courier, monospace;
+}
+
+#deleted{
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}  
