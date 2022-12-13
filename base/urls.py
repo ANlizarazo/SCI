@@ -17,6 +17,8 @@ from django.contrib import admin
 from django.urls import path, include
 
 from base.views import inicio, login
+from ventas.views import ventas
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/',login,name='login'),

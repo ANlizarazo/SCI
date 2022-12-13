@@ -5,4 +5,4 @@ def ventas(request):
     context={
 
     }
-    return render(request,'ventas/ventas.html',context)
+    return render(request,'base/templates/ventas/ventas.html',context)
