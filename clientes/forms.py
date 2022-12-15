@@ -1,4 +1,4 @@
-from clientes.models import Clientes
+from clientes.models import Cliente
 
 class ClientesForm(forms.ModelForm):
     """Form definition for Clientes."""
@@ -6,5 +6,5 @@ class ClientesForm(forms.ModelForm):
     class Meta:
         """Meta definition for Clientesform."""
 
-        model = Clientes
+        model = Cliente
         fields = ('__all__',)
