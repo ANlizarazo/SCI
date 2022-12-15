@@ -1,123 +1,37 @@
-{% extends 'partials/body.hmtl' %}
+{% load static %}
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% bootstrap_messages %}
 
-{% block contenido %}
-
-<!-- Google Font: Source Sans Pro -->
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-<!-- Font Awesome -->
-<link rel="stylesheet" href="/static/AdminLTE/fontawesome-free/css/all.min.css">
-<!-- fullCalendar -->
-<link rel="stylesheet" href="/static/AdminLTE/fullcalendar/main.css">
-<!-- Theme style -->
-<link rel="stylesheet" href="/static/AdminLTE/css/adminlte.min.css">
-
-<div class="content-header">
-  <div class="container-fluid">
-      <div class="row mb-2">
-          <div class="col-sm-6">
-              <h1 class="m-0 text-black"><tr>PRODUCTOS</tr></h1>
-          </div>
-          <div class="col-sm-6">
-              <ol class="breadcrumb float-sm-right">
-                  <li class="breadcrumb-item"><a href="#">Inicio </a></li>
-                  <li class="breadcrumb-item-active"><a href="#">/ Productos</a></li>
-              </ol>
-          </div>
-      </div>
-  </div>
-</div>
-
-<div class="card">
-    <div class="card-header">
-      <h3 class="card-title">Listado de Clientes</h3>
-    </div>
-    <!-- /.card-header -->
-    <div class="card-body">
-      <table id="example1" class="table table-bordered table-striped">
-        <thead class="bg-success">
-        <tr>
-          <th>Nombre Empresa</th>
-          <th>NIT</th>
-          <th>Teléfono</th>
-          <th>Dirección</th>
-          <th>Email</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <td>APORTES SAN ISIDRO</td>
-          <td>802.020.308-8</td>
-          <td>605 3689493</td>
-          <td>CR 58 72 26</td>
-          <td>aportes@sanisidro.com</td>
-        </tr>
-        <tr>
-          <td>DISTRIBUCIONES LA CLAVE</td>
-          <td>802.014.192-6</td>
-          <td>605 3446665</td>
-          <td>CR 44 8 134</td>
-          <td>distribuciones@laclave.com</td>
-        </tr>
-        <tr>
-          <td>LUIS FERNANDO DEL RISCO VIGNIA</td>
-          <td>72.150.882-4</td>
-          <td>605 3519479</td>
-          <td>CL 17 35 147</td>
-          <td>fernandorisco@gmail.com</td>
-        </tr>
-        <tr>
-          <td>DIVERSIONES DEL OCCIDENTE SAS</td>
-          <td>901.126.143</td>
-          <td>302889311</td>
-          <td>CL 51 38 16</td>
-          <td>A</td>
-        </tr>
-        <tr>
-          <td>FERRETERIA MANOLO SAS</td>
-          <td>901.441.147-4</td>
-          <td>311659564</td>
-          <td>CR 1 5 30 CORR JULIO ZAWADY</td>
-          <td>A</td>
-        </tr>
-        <tr>
-          <td>RUDEN INGENERIA LTDA</td>
-          <td>800.248.617-1</td>
-          <td>037 3838396</td>
-          <td>CR 22 10 33</td>
-          <td>A</td>
-        </tr>
-        <tr>
-          <td>Gecko</td>
-          <td>Firefox 1.0</td>
-          <td>Win 98+ / OSX.2+</td>
-          <td>1.7</td>
-          <td>A</td>
-        </tr>
-        <tr>
-          <td>RUQUIM SAS</td>
-          <td>802.020.308-8</td>
-          <td>605 3282146</td>
-          <td>BG 8 LC 1 GRANABASTOS</td>
-          <td>A</td>
-        </tr>
-        <tr>
-          <td>PARQUE Y GRAMA CONSTRUCCIONES SAS</td>
-          <td>901.495.979-7</td>
-          <td>035 3396767</td>
-          <td>CR 67 76 102</td>
-          <td>A</td>
-        </tr>
-        <tr>
-          <td>CONSTRUCTORA ERAZO CABALLERO</td>
-          <td>901.200891-2</td>
-          <td>605 3701764</td>
-          <td>CL 65B 41 65</td>
-          <td>A</td>
-        </tr>
-      </table>
-    </div>
-    <!-- /.card-body -->
-  </div>
-  <!-- /.card -->
-{% endblock contenido %}
-    
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+        <!-- Ionicons -->
+        <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+        <!-- Google Font: Source Sans Pro -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="{% static 'AdminLTE/fontawesome-free/css/all.min.css' %}">
+        <!-- flag-icon-css -->
+        <link rel="stylesheet" href="{% static 'AdminLTE/flag-icon-css/css/flag-icon.min.css' %}">
+        <!-- Theme style -->
+        <link rel="stylesheet" href="{% static 'AdminLTE/css/adminlte.min.css' %}">
+        <!-- overlayScrollbars -->
+        <link rel="stylesheet" href="{% static 'AdminLTE\overlayScrollbars\css\OverlayScrollbars.min.css' %}">
+        
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="/static/img/logoMallas.ico" type="image/x-icon">
+        <title>CLIENTES</title>
+    </head>
+    <body class="hold-transition sidebar-mini layout-fixed">
+        <div class="wrapper">
+            {% include 'partials/navbar.html' %}
+            {% include 'partials/sidebar.html' %}
+            {% include 'clientes/clientes2.html' %}
+        </div>
+    </body>
+</html>
