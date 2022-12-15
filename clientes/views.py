@@ -1,8 +1,12 @@
-from django.shortcuts import render
+from multiprocessing import context
+from django.shortcuts import redirect, render
+from clientes.forms import ClientesForm
 
 from clientes.models import Cliente
 
 # Create your views here.
+
+
 def clientes(request):
     
     clientes= Cliente.objects.all()
