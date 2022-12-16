@@ -1,32 +1,60 @@
+{% load static %}
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% bootstrap_messages %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+    <!-- Ionicons -->
+    <link rel="stylesheet"
+        href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{% static 'AdminLTE/fontawesome-free/css/all.min.css' %}">
+    <!-- flag-icon-css -->
+    <link rel="stylesheet" href="{% static 'AdminLTE/flag-icon-css/css/flag-icon.min.css' %}">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{% static 'AdminLTE/css/adminlte.min.css' %}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"crossorigin="anonymous">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css\style.css">
-    <link rel="shortcut icon" href="img\logoMallas.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/static/img/logoMallas.ico" type="image/x-icon">
     <title>500 | Error </title>
 </head>
 <body>
-    <header>
-    <nav class="bg-success pt-5 pb-5">
-    <div class="container">
-        <h3 class="text-white text-uppercase" id="titulo">Mundial de Mallas y Estructuras Ingenieria S.A.S</h3>
-    </div>
+    <nav class="bg-gray-dark pt-5 pb-5">
+        <div class="container">
+            <h3 class="text-white text-uppercase" id="titulo">Mundial de
+                Mallas y Estructuras Ingenieria S.A.S</h3>
+        </div>
     </nav>
     <div class="bg-light text-center pt-5" style="height: 100vh;">
-    <div class="container">
-        <h1 class="display-1 pt-2 font-weight-bold">ERROR 500 :(</h1>
-        <h1 class="display-4 pt-1 pb-3" id="pagnotfound">Error Servidor interno</h1>
-        <h3 class="font-weight-light text-secondary" id="deleted">El servidor encontró un error interno o una mala configuración
-            y no pudo completar su solicitud.<br>Verifica tu enlace de búsqueda, puede estar roto.</h3>
-        <a href="index.html" class="btn btn-success mt-3 pt-3 pb-3 pr-4 pl-4" id="backhome">Volver al Inicio</a>
+        <div class="container">
+            <h1 class="display-1 pt-2 font-weight-bold text-gray-dark">¡ ERROR 500 !</h1>
+            <h1 class="display-4 pt-1 pb-3 text-gray-dark"
+                id="pagnotfound">Error de Servidor Interno</h1>
+            <h3 class="font-weight-light text-secondary" id="deleted">El servidor encontró un error interno o una mala configuración
+                y no pudo completar su solicitud.<br>Verifica tu enlace de búsqueda, puede estar roto.</h3>
+            <a href="http://127.0.0.1:8000/inicio/" class="btn
+                btn-success mt-3 pt-3 pb-3 pr-4 pl-4 text-uppercase"
+                id="backhome"><tr>Volver al Inicio</tr></a>
+        </div>
     </div>
-    </div>
-    </header>
 </body>
-<footer class="d-flex flex-wrap py-5 border-bottom btn-success"></footer>
+<footer class="bg-gray-dark text-center text-lg-start">
+    <!-- Copyright -->
+    <div class="text-center p-5">
+        © 2022 Copyright:
+        <a class="text-white text-reset fw-bold text-decoration-none"
+            href="https://www.mundialdemallasygaviones.com/">MUNDIAL DE
+            MALLAS Y
+            ESTRUCTURAS INGENIERIA S.A.S</a>
+    </div>
+    <!-- Copyright -->
+</footer>
 </html>
