@@ -23,3 +23,9 @@ def error500(request):
 
     }
     return render(request,'error500.html',context)   
+
+def perfil(request):
+    context={
+
+    }
+    return render(request,'perfil.html',context)   
