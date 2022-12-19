@@ -1,6 +1,6 @@
 from multiprocessing import context
 from django.shortcuts import redirect, render
-from clientes.forms import ClientesForm
+from clientes.forms import ClienteForm
 
 from clientes.models import Cliente
 
@@ -19,7 +19,7 @@ def clientes(request):
 def clientes_crear(request):
 
     if request.method=="POST":
-        form= ClientesForm(request.POST)
+        form= ClienteForm(request.POST)
         if form.is_valid():
             form.save()
             print("El cliente se guardó correctamente")
@@ -27,7 +27,7 @@ def clientes_crear(request):
         else:
             print("El cliente NO se guardó")
     else:
-        form= ClientesForm()
+        form= ClienteForm()
     context={
         "form":form
     }

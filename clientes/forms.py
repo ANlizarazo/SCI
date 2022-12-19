@@ -1,10 +1,10 @@
 from clientes.models import Cliente
 
-class ClientesForm(forms.ModelForm):
+class ClienteForm(forms.ModelForm):
     """Form definition for Clientes."""
 
     class Meta:
         """Meta definition for Clientesform."""
 
         model = Cliente
-        fields = ('__all__',)
+        fields = '__all__'
