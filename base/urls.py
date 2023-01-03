@@ -13,6 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from operator import index
 from django.contrib import admin
 from django.urls import path, include
 
@@ -36,6 +37,11 @@ urlpatterns = [
     path('productos/',include('productos.urls')),
     path('compras/',include('compras.urls')),
     path('clientes/',include('clientes.urls')),
+<<<<<<< HEAD
 
 
 ]
+=======
+    path('index/', index, name='Iniciar Sesión')
+]
+>>>>>>> main
