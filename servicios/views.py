@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from multiprocessing import context 
+from django.shortcuts import redirect, render
 from servicios.forms import ServicioForm
 
 from servicios.models import Servicio
@@ -9,7 +10,7 @@ def servicios(request):
     servicios= Servicio.objects.all()
 
     context={
-
+        "servicios": servicios
     }
     return render(request,'servicios/servicios.html',context)
 
@@ -19,10 +20,10 @@ def servicios_crear(request):
         form= ServicioForm(request.POST)
         if form.is_valid():
             form.save()
-            print("El proveedor se guardó correctamente")
+            print("El servicio se guardó correctamente")
             return redirect('clientes')
         else:
-            print("El proveedor NO se guardó")
+            print("El servicio NO se guardó")
     else:
         form= ServicioForm()
     context={

@@ -1,4 +1,4 @@
-from servicios.models import Servicios
+from servicios.models import Servicio
 
 
 class ServicioForm(Forms.ModelForm):
@@ -7,5 +7,5 @@ class ServicioForm(Forms.ModelForm):
     class Meta:
         """Meta definition for Clientesform."""
 
-        model = Servicios
+        model = Servicio
         fields = '__all__'
