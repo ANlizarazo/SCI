@@ -1,0 +1,208 @@
+{% load static %}
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% bootstrap_messages %}
+
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+        <!-- Ionicons -->
+        <link rel="stylesheet"
+            href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+        <!-- Google Font: Source Sans Pro -->
+        <link rel="stylesheet"
+            href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="{% static 'AdminLTE/fontawesome-free/css/all.min.css' %}">
+        <!-- flag-icon-css -->
+        <link rel="stylesheet" href="{% static 'AdminLTE/flag-icon-css/css/flag-icon.min.css' %}">
+        <!-- Theme style -->
+        <link rel="stylesheet" href="{% static 'AdminLTE/css/adminlte.min.css' %}">
+        <!-- overlayScrollbars -->
+        <link rel="stylesheet" href="{% static 'AdminLTE\overlayScrollbars\css\OverlayScrollbars.min.css' %}">
+
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="/static/img/logoMallas.ico" type="image/x-icon">
+        <title>MI PERFIL</title>
+    </head>
+    <body class="hold-transition sidebar-mini layout-fixed bg-gray-light">       
+        {% include 'partials/navbar.html' %}
+        {% include 'partials/sidebar.html' %}
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper bg-gray-light">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0 text-black"><tr>MI PERFIL</tr></h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a
+                                        href="http://127.0.0.1:8000/inicio/"
+                                        class="text-success">Inicio </a></li>
+                                <li class="breadcrumb-item-active"><a
+                                        href="http://127.0.0.1:8000/clientes/"
+                                        class="text-success">/ Perfil</a></li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.container-fluid -->
+            </section>
+            <!-- Main content -->
+            <section>
+            <div class="row bg-gray-light">
+                <div class="col-md-6 border-right">
+                    <div class="d-flex flex-column
+                        align-items-center
+                        text-center p-3 py-5"><img
+                            class="rounded-circle
+                            mt-5" width="150px"
+                            src="/static/img/perfil.jpg">
+                        <span class="font-weight-bold
+                            text-black">LizethO</span><span
+                            class="text-black">lizethojeda@gmail.com</span><span>
+                        </span></div>
+                </div>
+                <div class="col-md-5 border-right bg-success">
+                    <div class="p-3 py-5">
+                        <div class="d-flex
+                            justify-content-between
+                            align-items-center mb-3">
+                            <h4 class="text-right text-white">PERFIL DEL USUARIO</h4>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-6"><label class="labels text-black">Nombres</label><select
+                                type="text" class="form-control text-black" placeholder="Nombres" 
+                                value="" disabled><option>Lizeth Paola</option></select></div>
+                            <div class="col-md-6"><label
+                                    class="labels
+                                    text-black">Apellidos</label><select
+                                    type="text"
+                                    class="form-control
+                                    text-black"
+                                    placeholder="Apellidos"
+                                    value="" disabled><option>Julio
+                                        Ojeda</option></select></div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-12"><label
+                                    class="labels
+                                    text-black">Teléfono</label><select
+                                    type="text"
+                                    class="form-control
+                                    text-black"
+                                    placeholder="Teléfono"
+                                    value="" disabled><option>+57
+                                        3156487941</option></select></div><hr>
+                            <div class="col-md-12"><label
+                                    class="labels
+                                    text-black">Tipo de
+                                    Documento</label><select
+                                    type="text"
+                                    class="form-control
+                                    text-black"
+                                    placeholder="Tipo de
+                                    Documento" value=""
+                                    disabled><option>Cédula
+                                        de Ciudadanía</option></select></div><hr>
+                            <div class="col-md-12"><label
+                                    class="labels
+                                    text-black">Número de
+                                    Documento</label><select
+                                    type="text"
+                                    class="form-control
+                                    text-black"
+                                    placeholder="Número de
+                                    Documento" value=""
+                                    disabled><option>1098456354</option></select></div><hr>
+                            <div class="col-md-12"><label
+                                    class="labels
+                                    text-black">Email</label><select
+                                    type="text"
+                                    class="form-control
+                                    text-black"
+                                    placeholder="Email"
+                                    value="" disabled><option>lizethojeda@gmail.com</option></select></div><hr>
+                            <div class="col-md-12"><label
+                                    class="labels
+                                    text-black">Dirección</label><select
+                                    type="text"
+                                    class="form-control
+                                    text-black"
+                                    placeholder="Dirección"
+                                    value="" disabled><option>Calle
+                                        104f
+                                        #9a-89</option></select></div><hr>
+                            <div class="col-md-12"><label
+                                    class="labels
+                                    text-black">Género</label><select
+                                    type="text"
+                                    class="form-control
+                                    text-black"
+                                    placeholder="Género"
+                                    value="" disabled><option>Femenino</option></select></div><hr>
+                            <div class="col-md-12"><label
+                                    class="labels
+                                    text-black">Rol</label><select
+                                    type="text"
+                                    class="form-control
+                                    text-black"
+                                    placeholder="Rol"
+                                    value="" disabled><option>Administrador</option></select></div><hr>
+                            <div class="col-md-12"><label
+                                    class="labels
+                                    text-black">Estado</label><select
+                                    type="text"
+                                    class="form-control
+                                    text-black"
+                                    placeholder="Estado"
+                                    value="" disabled><option>Activo</option></select></div><hr>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-6"><label
+                                    class="labels
+                                    text-black">País</label><select
+                                    type="text"
+                                    class="form-control
+                                    text-black"
+                                    placeholder="País"
+                                    value="" disabled><option>Colombia</option></select></div><hr>
+                            <div class="col-md-6"><label
+                                    class="labels
+                                    text-black">Ciudad/Departamento</label><select
+                                    type="text"
+                                    class="form-control
+                                    text-black" value=""
+                                    placeholder="Ciudad/Departamento"
+                                    disabled><option>Barranquilla / Atlantico</option></select></div><hr>
+                        </div>
+                        <div class="mt-5 text-center">
+                            <button class="btn profile-button text-white" style="background-color:#333437;"
+                            type="button">Editar Perfil</button>
+                        </div>
+            </section>
+            <div>
+                {% include 'partials/footer.html' %}
+            </div>
+            <!-- /.content-wrapper -->
+    </body>
+</html>
+
+    <!-- jQuery -->
+    <script src="/static/AdminLTE/jquery/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="/static/AdminLTE/js-copy/bootstrap.bundle.min.js"></script>
+    <!-- jQuery UI -->
+    <script src="/static/AdminLTE/jquery-ui/jquery-ui.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="/static/AdminLTE/js/adminlte.min.js"></script>
+    <!-- fullCalendar 2.2.5 -->
+    <script src="/static/AdminLTE/moment/moment.min.js"></script>
+    <script src="/static/AdminLTE/fullcalendar/main.js"></script>

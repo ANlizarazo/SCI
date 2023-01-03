@@ -11,3 +11,21 @@ def inicio(request):
 
     }
     return render(request,'index2.html',context)    
+
+def error404(request):
+    context={
+
+    }
+    return render(request,'error404.html',context)    
+
+def error500(request):
+    context={
+
+    }
+    return render(request,'error500.html',context)   
+
+def perfil(request):
+    context={
+
+    }
+    return render(request,'perfil.html',context)   

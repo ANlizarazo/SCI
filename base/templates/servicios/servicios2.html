@@ -1,0 +1,95 @@
+{% block contenido %}
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-black"><tr>SERVICIOS</tr></h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="http://127.0.0.1:8000/inicio/" class="text-success">Inicio </a></li>
+                        <li class="breadcrumb-item-active"><a href="#" class="text-success">/ Servicios</a></li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid ">
+            <div class="row">
+        <!-- Card -->
+        <div class="card ">
+            <div class="card-header">
+                <h3 class="card-title text-success"><tr>Reporte de Servicios</tr></h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body ">
+                <table id="example1" class="table table-bordered table-striped border-dark">
+                    <thead class="bg-success">
+                        <tr>
+                            <th class="border-dark">Nombre del servicio</th>
+                            <th class="border-dark">Cliente</th>
+                            <th class="border-dark">Fecha</th>
+                            <th class="border-dark">Tecnico Encargado</th>
+                            <th class="border-dark">Observaciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="border-dark">Trident</td>
+                            <td class="border-dark">Internet</td>
+                            <td class="border-dark">Win 95+</td>
+                            <td class="border-dark"> 4</td>
+                            <td class="border-dark">X</td>
+                        </tr>
+                        <tr>
+                            <td class="text-black border-dark">Trident</td>
+                            <td class="text-black border-dark">Internet</td>
+                            <td class="text-black border-dark">Win 95+</td>
+                            <td class="text-black border-dark">5</td>
+                            <td class="text-black border-dark">C</td>
+                        </tr>
+                        <tr>
+                            <td class="border-dark">Gecko</td>
+                            <td class="border-dark">Firefox 2.0</td>
+                            <td class="border-dark">Win 98+ / OSX.2+</td>
+                            <td class="border-dark">1.8</td>
+                            <td class="border-dark">A</td>
+                        </tr>
+                        <tr>
+                            <td class="text-black border-dark">Gecko</td>
+                            <td class="text-black border-dark">Firefox 3.0</td>
+                            <td class="text-black border-dark">Win 2k+ / OSX.3+</td>
+                            <td class="text-black border-dark">1.9</td>
+                            <td class="text-black border-dark">A</td>
+                        </tr>
+                    </table>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </section>
+        <!-- /.content -->
+    </div>
+    <footer>{% include 'partials/footer.html' %}</footer>
+    <!-- /.content-wrapper -->
+
+    <!-- jQuery -->
+    <script src="/static/AdminLTE/jquery/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="/static/AdminLTE/js-copy/bootstrap.bundle.min.js"></script>
+    <!-- jQuery UI -->
+    <script src="/static/AdminLTE/jquery-ui/jquery-ui.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="/static/AdminLTE/js/adminlte.min.js"></script>
+    <!-- fullCalendar 2.2.5 -->
+    <script src="/static/AdminLTE/moment/moment.min.js"></script>
+    <script src="/static/AdminLTE/fullcalendar/main.js"></script>
+
+    {% endblock contenido %}

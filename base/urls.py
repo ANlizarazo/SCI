@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from base.views import inicio, login
+from base.views import inicio, login, error404, error500, perfil
 from ventas.views import ventas
 
 
@@ -26,6 +26,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/',login,name='login'),
     path('inicio/',inicio,name='inicio'),
+    path('error404/',error404,name='error404'),    
+    path('error500/',error500,name='error500'),
+    path('perfil/',perfil,name='perfil'),
     path('usuarios/',include('usuarios.urls')),
     path('ventas/',include('ventas.urls')),
     path('servicios/',include('servicios.urls')),
