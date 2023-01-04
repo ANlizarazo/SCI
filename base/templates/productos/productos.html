@@ -1,144 +1,37 @@
-{% extends 'partials/body.hmtl' %}
+{% load static %}
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% bootstrap_messages %}
 
-{% block contenido %}
-
-<!-- Google Font: Source Sans Pro -->
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-<!-- Font Awesome -->
-<link rel="stylesheet" href="/static/AdminLTE/fontawesome-free/css/all.min.css">
-<!-- fullCalendar -->
-<link rel="stylesheet" href="/static/AdminLTE/fullcalendar/main.css">
-<!-- Theme style -->
-<link rel="stylesheet" href="/static/AdminLTE/css/adminlte.min.css">
-
-
-<div class="content-header">
-  <div class="container-fluid">
-      <div class="row mb-2">
-          <div class="col-sm-6">
-              <h1 class="m-0 text-black"><tr>PRODUCTOS</tr></h1>
-          </div>
-          <div class="col-sm-6">
-              <ol class="breadcrumb float-sm-right">
-                  <li class="breadcrumb-item"><a href="#">Inicio </a></li>
-                  <li class="breadcrumb-item-active"><a href="#">/ Productos</a></li>
-              </ol>
-          </div>
-      </div>
-  </div>
-</div>
-<button type="button" class="brand-text" style="background-color: green;">
-    <a class="text-decoration-none text-white" href="#" aria-label="Crear Proveedor" >Crear Producto</a>
-</button>
-<button type="button" class="brand-text" style="background-color: green;">
-    <a class="text-decoration-none text-white" href="#" aria-label="Modificar Proveedor" >Modificar Products</a>
-</button>
-<button type="button" class="brand-text" style="background-color: green;">
-    <a class="text-decoration-none text-white" href="#" aria-label="Buscar Proveedor" >Buscar Productos</a>
-</button>
-<button type="button" class="brand-text" style="background-color: green;">
-    <a class="text-decoration-none text-white" href="#" aria-label="Listar proveedores" >Listar Productos</a>
-</button>
-
-<div class="card">
-    <div class="card-header">
-      <h3 class="card-title">DataTable with default features</h3>
-    </div>
-    <!-- /.card-header -->
-    <div class="card-body">
-      <table id="example1" class="table table-bordered table-striped">
-        <thead class="bg-success">
-        <tr>
-          <th>Rendering engine</th>
-          <th>Browser</th>
-          <th>Platform(s)</th>
-          <th>Engine version</th>
-          <th>CSS grade</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <td>Trident</td>
-          <td>Internet
-            Explorer 4.0
-          </td>
-          <td>Win 95+</td>
-          <td> 4</td>
-          <td>X</td>
-        </tr>
-        <tr>
-          <td>Trident</td>
-          <td>Internet
-            Explorer 5.0
-          </td>
-          <td>Win 95+</td>
-          <td>5</td>
-          <td>C</td>
-        </tr>
-        <tr>
-          <td>Trident</td>
-          <td>Internet
-            Explorer 5.5
-          </td>
-          <td>Win 95+</td>
-          <td>5.5</td>
-          <td>A</td>
-        </tr>
-        <tr>
-          <td>Trident</td>
-          <td>Internet
-            Explorer 6
-          </td>
-          <td>Win 98+</td>
-          <td>6</td>
-          <td>A</td>
-        </tr>
-        <tr>
-          <td>Trident</td>
-          <td>Internet Explorer 7</td>
-          <td>Win XP SP2+</td>
-          <td>7</td>
-          <td>A</td>
-        </tr>
-        <tr>
-          <td>Trident</td>
-          <td>AOL browser (AOL desktop)</td>
-          <td>Win XP</td>
-          <td>6</td>
-          <td>A</td>
-        </tr>
-        <tr>
-          <td>Gecko</td>
-          <td>Firefox 1.0</td>
-          <td>Win 98+ / OSX.2+</td>
-          <td>1.7</td>
-          <td>A</td>
-        </tr>
-        <tr>
-          <td>Gecko</td>
-          <td>Firefox 1.5</td>
-          <td>Win 98+ / OSX.2+</td>
-          <td>1.8</td>
-          <td>A</td>
-        </tr>
-        <tr>
-          <td>Gecko</td>
-          <td>Firefox 2.0</td>
-          <td>Win 98+ / OSX.2+</td>
-          <td>1.8</td>
-          <td>A</td>
-        </tr>
-        <tr>
-          <td>Gecko</td>
-          <td>Firefox 3.0</td>
-          <td>Win 2k+ / OSX.3+</td>
-          <td>1.9</td>
-          <td>A</td>
-        </tr>
-      </table>
-    </div>
-    <!-- /.card-body -->
-  </div>
-  <!-- /.card -->
-{% endblock contenido %}
-    
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+        <!-- Ionicons -->
+        <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+        <!-- Google Font: Source Sans Pro -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="{% static 'AdminLTE/fontawesome-free/css/all.min.css' %}">
+        <!-- flag-icon-css -->
+        <link rel="stylesheet" href="{% static 'AdminLTE/flag-icon-css/css/flag-icon.min.css' %}">
+        <!-- Theme style -->
+        <link rel="stylesheet" href="{% static 'AdminLTE/css/adminlte.min.css' %}">
+        <!-- overlayScrollbars -->
+        <link rel="stylesheet" href="{% static 'AdminLTE\overlayScrollbars\css\OverlayScrollbars.min.css' %}">
+        
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="/static/img/logoMallas.ico" type="image/x-icon">
+        <title>PRODUCTOS</title>
+    </head>
+    <body class="hold-transition sidebar-mini layout-fixed">
+        <div class="wrapper">
+            {% include 'partials/navbar.html' %}
+            {% include 'partials/sidebar.html' %}
+            {% include 'productos/productos2.html' %}
+        </div>
+    </body>
+</html>
