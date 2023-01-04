@@ -6,3 +6,6 @@ def ventas(request):
 
     }
     return render(request,'ventas/ventas.html',context)
+
+def ventas_crear(request):
+    
