@@ -2,7 +2,7 @@
 from proveedores.models import Proveedor
 
 class ProveedorForm(forms.ModelForm):
-    """Form definition for Proveedore."""
+    """Form definition for Proveedor."""
 
     class Meta:
         """Meta definition for Proveedoreform."""
