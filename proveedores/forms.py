@@ -2,10 +2,10 @@
 from proveedores.models import Proveedor
 
 class ProveedorForm(forms.ModelForm):
-    """Form definition for Clientes."""
+    """Form definition for Proveedore."""
 
     class Meta:
-        """Meta definition for Clientesform."""
+        """Meta definition for Proveedoreform."""
 
         model = Proveedor
         fields = '__all__'
