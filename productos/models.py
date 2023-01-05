@@ -12,5 +12,5 @@ class Productos(models.Model):
         INACTIVO='0', _('Inactivo')
     estado=models.CharField(max_length=1, choices=Estado.choices, default=Estado.ACTIVO, verbose_name="Estado")
     stock = models.BigIntegerField(validadores = [ MinValueValidator ( 0 )], verbose_name="Cantidad") 
-    porcentajeIva= models.BigInt(max_length=10, verbose_name="porcentaje Iva")
+    porcentajeIva= models.BigInt(max_length=10, verbose_name="Porcentaje IVA")
     categoria = models.CharField(max_lenght=50, verbose_name="Categoría")
