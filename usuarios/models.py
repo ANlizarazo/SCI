@@ -23,3 +23,4 @@ class Usuario(models.Model):
     numDocumento=models.CharField(max_length=50, verbose_name="Número de Documento")
     email=models.CharField(max_length=100, verbose_name="Correo Electrónico")
     direccion=models.CharField(max_length=70, verbose_name="Dirección")
+    
