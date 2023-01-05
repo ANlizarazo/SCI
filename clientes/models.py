@@ -5,6 +5,7 @@ from django.db import models
 class Clientes(models.Model):
     nombre= models.CharField(max_lenght=50, verbose_name="Nombre")
     apellido= models.CharField(max_lenght=50, verbose_name="Apellido")
+    rut= models.CharField(unique=True, max_lenght=10, verbose_name="Codigo RUT")
     class TipoDocumento(models.Model):
         CC='CC', _('Cédula de Ciudadanía')
         CE='CE', _('Cédula de Extranjería')
