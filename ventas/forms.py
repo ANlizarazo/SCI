@@ -1,3 +1,4 @@
+from django import forms
 from ventas.models import Venta
 
 class VentaForm(forms.ModelForm):

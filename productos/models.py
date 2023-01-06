@@ -14,3 +14,4 @@ class Productos(models.Model):
     stock = models.BigIntegerField(validadores = [ MinValueValidator ( 0 )], verbose_name="Cantidad") 
     porcentajeIva= models.BigInt(max_length=10, verbose_name="Porcentaje IVA")
     categoria = models.CharField(max_lenght=50, verbose_name="Categoría")
+
