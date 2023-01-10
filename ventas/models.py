@@ -4,7 +4,7 @@ from django.utils.translation import gettext_lazy as _
 
 # Create your models here.
 
-class Ventas(models.Model):
+class Venta(models.Model):
     id= models.AutoField(unique= True, primary_key=True , verbose_name="ID Venta")
     subTotalVenta= models.BigIntegerField(max_length=200, verbose_name="Sub Total Venta")
     fecha= models.DateField(auto_now=10, verbose_name="Fecha")
@@ -12,7 +12,7 @@ class Ventas(models.Model):
     totalVenta= models.BigIntegerField(max_length=200, verbose_name="Total Venta")
     DetalleVenta= models.CharField(max_length=200, verbose_name="Detalle Venta")
    
-class Clientes(models.Model):
+class Cliente(models.Model):
     id = models.AutoField (primary_key = True , unique = True, verbose_name = "ID Cliente")
     nombre= models.CharField(max_length=50, verbose_name="Nombre")
     apellido= models.CharField(max_length=50, verbose_name="Apellido")

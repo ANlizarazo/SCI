@@ -4,7 +4,7 @@ from django.core.validators import MinValueValidator
 
 # Create your models here.
 
-class Productos(models.Model):
+class Producto(models.Model):
     id = models.AutoField (primary_key = True , unique = True, verbose_name = "ID producto")
     nombre = models.CharField(max_length=50, verbose_name="Nombre") 
     precio = models.BigIntegerField(validators = [ MinValueValidator ( 1 )], verbose_name="Precio")   

@@ -3,7 +3,7 @@ from django.core.validators import MinValueValidator
 
 # Create your models here.
 
-class Compras(models.Model):
+class Compra(models.Model):
     id= models.AutoField(unique= True, primary_key=True, verbose_name="ID Compra")
     fecha= models.DateField(max_length=25, verbose_name="Fecha")
 

@@ -1,8 +1,7 @@
-from multiprocessing import context
 from django.shortcuts import redirect, render
-from clientes.forms import ProveedorForm
+from proveedores.forms import ProveedorForm
 
-from clientes.models import Proveedor
+from proveedores.models import Proveedor
 
 # Create your views here.
 
