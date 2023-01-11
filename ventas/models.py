@@ -8,7 +8,7 @@ class Ventas(models.Model):
     porcentajeIva= models.BigInt(max_length=10, verbose_name="Porcentaje IVA")
     totalVenta= models.BigIntegerField(max_length=200, verbose_name="Total Venta")
     DetalleVenta= models.CharField(max_length=200, verbose_name="Detalle Venta")
-   
+
 class Clientes(models.Model):
     nombre= models.CharField(max_lenght=50, verbose_name="Nombre")
     apellido= models.CharField(max_lenght=50, verbose_name="Apellido")
