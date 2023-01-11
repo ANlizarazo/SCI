@@ -1,23 +1,22 @@
-from multiprocessing import context
 from django.shortcuts import redirect, render
-from clientes.forms import VentaForm
+from ventas.forms import VentaForm
 
-from clientes.models import Venta
+from ventas.models import Venta
 
 # Create your views here.
 def ventas(request):
-    
-    ventas= Venta.objects.all()
+
+    usuariosventas= Venta.objects.all()
 
     context={
-        "ventas":ventas
+        "ventas": ventas
     }
     return render(request,'ventas/ventas.html',context)
 
-def productos_crear(request):
-    
+def ventas_crear(request):
+
     if request.method == "POST":
-        form= VentaForm(request.POST)
+        form=VentaForm(request.POST)
         if form.is_valid():
             form.save()
             print("La venta se guardó correctamente")
@@ -25,8 +24,8 @@ def productos_crear(request):
         else:
             print("La venta NO se guardó")
     else:
-        form= VentaForm()
+        form=VentaForm()
     context={
-        "form":form
+            "form":form
     }
     return render(request,'ventas/ventas-crear.html',context)
