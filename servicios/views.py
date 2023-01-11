@@ -1,4 +1,5 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import redirect, render
+from servicios.forms import ServicioForm
 
 from servicios.models import Servicio
 
@@ -11,3 +12,20 @@ def servicios(request):
         "servicios": servicios
     }
     return render(request,'servicios/servicios.html',context)
+
+def servicios_crear(request):
+
+    if request.method=="POST":
+        form= ServicioForm(request.POST)
+        if form.is_valid():
+            form.save()
+            print("El servicio se guardó correctamente")
+            return redirect('clientes')
+        else:
+            print("El servicio NO se guardó")
+    else:
+        form= ServicioForm()
+    context={
+        "form":form
+    }
+    return render(request,'servicios/servicios-crear.html',context)

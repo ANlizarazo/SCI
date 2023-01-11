@@ -1,12 +1,12 @@
 from django.shortcuts import render, redirect
 from ventas.forms import VentaForm
-
 from ventas.models import Venta
+
 
 # Create your views here.
 def ventas(request):
 
-    usuariosventas= Venta.objects.all()
+    ventas= Venta.objects.all()
 
     context={
         "ventas": ventas
@@ -15,7 +15,7 @@ def ventas(request):
 
 def ventas_crear(request):
 
-    if request.method == "POST":
+    if request.method == 'POST':
         form=VentaForm(request.POST)
         if form.is_valid():
             form.save()
@@ -26,6 +26,6 @@ def ventas_crear(request):
     else:
         form=VentaForm()
     context={
-            "form":form
+        "form":form
     }
     return render(request,'ventas/ventas-crear.html',context)
