@@ -1,7 +1,7 @@
+from django import forms
 from servicios.models import Servicio
 
-
-class ServicioForm(Forms.ModelForm):
+class ServicioForm(forms.ModelForm):
     """Form definition for Servicio."""
 
     class Meta:
