@@ -10,9 +10,10 @@ class Proveedores(models.Model):
         EF='EF', _('Efectivo')
         CE='CE', _('Cédula de Extranjería')
         PP='PP', _('Pasaporte')    
-        class Estado(models.Model):
-        ACTIVO='', _('Activo')
-        INACTIVO='Empl', _('Inactivo')
+    class Estado(models.TextChoices):
+        ACTIVO='1', _('Activo')
+        INACTIVO='0', _('Inactivo')
+    estado=models.CharField(max_length=1, choices=Estado.choices, default=Estado.ACTIVO, verbose_name="Estado")
     
     modoPago=models.CharField(max_length=3, choices=ModoPago.EF, verbose_name="Modo de Pago") 
     rol=models.CharField(max_length=2, choices=Rol.AD, verbose_name="Rol")   
