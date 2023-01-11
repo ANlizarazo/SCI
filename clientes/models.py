@@ -7,7 +7,6 @@ from django.utils.translation import gettext_lazy as _
 
 
 class Cliente(models.Model):
-    id = models.AutoField (primary_key = True , unique = True, verbose_name = "ID Cliente")
     nombre= models.CharField(max_length=100, verbose_name="Nombre")
     apellido= models.CharField(max_length=100, verbose_name="Apellido")
     nit= models.CharField(unique=True, max_length=20, verbose_name="NIT")
