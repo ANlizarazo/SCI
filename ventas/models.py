@@ -2,14 +2,14 @@ from django.db import models
 
 # Create your models here.
 
-class Ventas(models.Model):
+class Venta(models.Model):
     subTotalVenta= models.BigIntegerField(max_length=200, verbose_name="Sub Total Venta")
     fecha= models.DateField(max_lenght=10, verbose_name="Fecha")
     porcentajeIva= models.BigInt(max_length=10, verbose_name="Porcentaje IVA")
     totalVenta= models.BigIntegerField(max_length=200, verbose_name="Total Venta")
     DetalleVenta= models.CharField(max_length=200, verbose_name="Detalle Venta")
    
-class Clientes(models.Model):
+class Cliente(models.Model):
     nombre= models.CharField(max_lenght=50, verbose_name="Nombre")
     apellido= models.CharField(max_lenght=50, verbose_name="Apellido")
     rut= models.CharField(unique=True, max_lenght=20, verbose_name="RUT")
