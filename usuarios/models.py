@@ -19,6 +19,9 @@ class Usuario(models.Model):
     class Rol(models.Model):
         AD='Admin', _('Administrador')
         EM='Empl', _('Empleado')
+    class Rol(models.Model):
+    ACTIVO='Admin', _('Administrador')
+    INACTIVO='Empl', _('Empleado')
     tipoDocumento=models.CharField(max_length=3, choices=TipoDocumento.CC, verbose_name="Tipo de Documento")
     genero=models.CharField(max_length=3, choices=Genero.FE, verbose_name="Género")
     rol=models.CharField(max_length=2, choices=Rol.AD, verbose_name="Rol")
