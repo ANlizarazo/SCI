@@ -1,4 +1,4 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import render, redirect
 from usuarios.forms import UsuarioForm
 
 from usuarios.models import Usuario
