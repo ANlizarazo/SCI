@@ -3,7 +3,6 @@ from django.db import models
 # Create your models here.
 
 class Productos(models.Model):
-    id = models.Autofield (primary_key = True , unique = True, verbose_name = "ID producto")
     nombre = models.CharField(max_lenght=50, verbose_name="Nombre") 
     precio = models.BigIntegerField(validadores = [ MinValueValidator ( 0 )], verbose_name="Precio")   
     especificaciones = models.CharField(max_lenght=200, verbose_name="Especificaciones")
