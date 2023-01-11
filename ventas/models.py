@@ -3,7 +3,6 @@ from django.db import models
 # Create your models here.
 
 class Ventas(models.Model):
-    id= models.AutoField(unique= True, primary_key=True , verbose_name="ID Venta")
     subTotalVenta= models.BigIntegerField(max_length=200, verbose_name="Sub Total Venta")
     fecha= models.DateField(max_lenght=10, verbose_name="Fecha")
     porcentajeIva= models.BigInt(max_length=10, verbose_name="Porcentaje IVA")
@@ -11,7 +10,6 @@ class Ventas(models.Model):
     DetalleVenta= models.CharField(max_length=200, verbose_name="Detalle Venta")
    
 class Clientes(models.Model):
-    id = models.Autofield (primary_key = True , unique = True, verbose_name = "ID Cliente"
     nombre= models.CharField(max_lenght=50, verbose_name="Nombre")
     apellido= models.CharField(max_lenght=50, verbose_name="Apellido")
     rut= models.CharField(unique=True, max_lenght=20, verbose_name="RUT")
