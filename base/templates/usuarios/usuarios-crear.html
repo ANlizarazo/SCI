@@ -1,7 +1,8 @@
-{% extends 'templates/index2.html' %}
+{% extends 'partials/body.html' %}
 
 
 {% block contenido %}
+<h1>Usuarios - Crear</h1>
 {% csrf_token %}
     {{form}}
 {% endblock contenido %}

@@ -12,4 +12,3 @@ class DetalleCompra(models.Model):
     cantidadMaterial = models.BigIntegerField(validators = [ MinValueValidator ( 0 )], verbose_name="Cantidad Material") 
     valorTotalMaterial = models.BigIntegerField(validators = [ MinValueValidator ( 0 )], verbose_name="Valor Total Material")
     proveedor = models.CharField(max_length=100, verbose_name="Proveedor")
-           
