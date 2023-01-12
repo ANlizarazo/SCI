@@ -7,6 +7,6 @@ class Servicio(models.Model):
     fechadeInicio= models.DateField(max_length=9, verbose_name="Fecha de Inicio")
     fechadeEntrega= models.DateField(max_length=9, verbose_name="Fecha de Entrega")    
     precio= models.BigIntegerField(max_length=100, verbose_name="Precio")
-    observacionFinal= models.TextField(max_length=250, verbose_name="Orservación Final")
+    observacionFinal= models.TextField(max_length=250, verbose_name="Observación Final")
     tipodeservicio=models.CharField(max_length=50, verbose_name="tipo de servicio")
     tecnico=models.CharField(max_length=50, verbose_name="Técnico")
