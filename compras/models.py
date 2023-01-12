@@ -1,11 +1,13 @@
 from django.db import models
-
+from django.core.validators import MinValueValidator
+from django.utils.formats import get_format
 # Create your models here.
 
-class Compras(models.Model):
-    fecha= models.DateField(max_lenght=25, verbose_name="Fecha")
+
+class Compra(models.Model):
+    fecha= models.DateTimeField('%Y-%m-%d %H:%M:%S')
 
 class DetalleCompra(models.Model):
-    cantidadMaterial = models.BigIntegerField(validadores = [ MinValueValidator ( 0 )], verbose_name="Cantidad Material") 
-    valorTotalMaterial = models.BigIntegerField(validadores = [ MinValueValidator ( 0 )], verbose_name="Valor Total Material")
+    cantidadMaterial = models.BigIntegerField(validators = [ MinValueValidator ( 0 )], verbose_name="Cantidad Material") 
+    valorTotalMaterial = models.BigIntegerField(validators = [ MinValueValidator ( 0 )], verbose_name="Valor Total Material")
     proveedor = models.CharField(max_length=100, verbose_name="Proveedor")

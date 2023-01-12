@@ -19,7 +19,7 @@ class Usuario(models.Model):
     class Rol(models.Model):
         AD='Admin', _('Administrador')
         EM='Empl', _('Empleado')
-    class Estado(models.Model):
+    class Estado(models.TextChoices):
         ACTIVO='1', _('Activo')
         INACTIVO='0', _('Inactivo')
     estado=models.CharField(max_length=1, choices=Estado.ACTIVO, default=Estado.ACTIVO, verbose_name="Estado")
