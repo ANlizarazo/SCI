@@ -1,20 +1,25 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.core.validators import MinValueValidator
-from clientes.models import Ciudad
+
 
 # Create your models here.
+class Ciudad(models.Model):
+    nombre= models.CharField(max_length=60, verbose_name="Ciudad")
+
 class Departamento(models.Model):
     nombre= models.CharField(max_length=60, verbose_name="Nombre")
     ciudad = models.ForeignKey(Ciudad, on_delete=models.CASCADE, verbose_name="Ciudad")
+
 class Material(models.Model):
     nombre= models.CharField(max_length=100, verbose_name="Nombre")
+
 class Proveedor(models.Model):
     nombreEmpresa= models.CharField(max_length=100, verbose_name="Nombre Empresa")
     email= models.CharField(max_length=100, verbose_name="Correo electrónico")
     telefono= models.CharField(max_length=20, verbose_name="Teléfono")
     direccion= models.CharField(max_length=70, verbose_name="Dirección")
-    class ModoPago(models.Model):
+    class ModoPago(models.TextChoices):
         EF='EF', _('Efectivo')
         PV='PV', _('Pago Virtual')
         PT='PT', _('Pago con Tarjeta')    

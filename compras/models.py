@@ -6,7 +6,7 @@ from proveedores.models import Proveedor
 
 
 class Compra(models.Model):
-    fecha= models.DateTimeField('%Y-%m-%d %H:%M:%S', verbose_name="Fecha de Compra")
+    fecha= models.DateTimeField('%Y-%m-%d %H:%M:%S')
 
 class DetalleCompra(models.Model):
     cantidadMaterial = models.BigIntegerField(validators = [ MinValueValidator ( 0 )], verbose_name="Cantidad Material") 
