@@ -1,4 +1,4 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import render, redirect
 from ventas.forms import VentaForm
 from ventas.models import Venta
 
