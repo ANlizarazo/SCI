@@ -30,7 +30,3 @@ class Proveedor(models.Model):
     transporteIncluido= models.CharField( max_length=2, choices=TransporteIncluido.choices, verbose_name="Transporte Incluido")
     departamento= models.ForeignKey(Departamento, on_delete=models.CASCADE, verbose_name="Departamento")
     material= models.ForeignKey(Material, on_delete=models.CASCADE, verbose_name="Material")
-    
-    """class Devolucion(models.Model):
-    fechaDevolucion=models.DateField(auto_now=True,verbose_name="Fecha Devolución") 
-    observacion=models.TextField(max_length=200, verbose_name="Observaciones")"""

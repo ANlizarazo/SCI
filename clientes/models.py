@@ -4,9 +4,9 @@ from compras.models import Compra
 
 # Create your models here.
 
-
 class Ciudad(models.Model):
     nombre= models.CharField(max_length=60, verbose_name="Ciudad")
+    
 class Cliente(models.Model):
     nombres= models.CharField(max_length=50, verbose_name="Nombres")
     apellidos= models.CharField(max_length=50, verbose_name="Apellidos")
