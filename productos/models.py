@@ -5,10 +5,9 @@ from django.core.validators import MinValueValidator
 # Create your models here.
 
 class Producto(models.Model):
-    id = models.AutoField (primary_key = True , unique = True, verbose_name = "ID producto")
-    nombre = models.CharField(max_length=50, verbose_name="Nombre") 
+    nombre = models.CharField(max_length=50, verbose_name="Nombre Producto") 
     precio = models.BigIntegerField(validators = [ MinValueValidator ( 1 )], verbose_name="Precio")   
-    especificaciones = models.CharField(max_length=200, verbose_name="Especificaciones")
+    especificaciones = models.CharField(max_length=300, verbose_name="Especificaciones")
     class Estado(models.TextChoices):
         ACTIVO='1', _('Activo')
         INACTIVO='0', _('Inactivo')
