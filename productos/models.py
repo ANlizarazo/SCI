@@ -5,11 +5,12 @@ from django.core.validators import MinValueValidator
 # Create your models here.
 class Categoria(models.Model):
     nombre = models.CharField(max_length=60, verbose_name="Nombre Categoría", blank=True) 
+    descripcion = models.TextField(max_length=300, verbose_name="Descripción")
 
 class Producto(models.Model):
     nombre = models.CharField(max_length=50, verbose_name="Nombre Producto") 
-    precio = models.BigIntegerField(validators = [ MinValueValidator ( 1 )], verbose_name="Precio")   
-    especificaciones = models.CharField(max_length=300, verbose_name="Especificaciones")
+    precio = models.PositiveBigIntegerField(validators = [ MinValueValidator ( 1 )], verbose_name="Precio")   
+    especificaciones = models.TextField(max_length=300, verbose_name="Especificaciones")
     class Estado(models.TextChoices):
         ACTIVO='1', _('Activo')
         INACTIVO='0', _('Inactivo')

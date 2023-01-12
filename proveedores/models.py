@@ -5,7 +5,7 @@ from django.core.validators import MinValueValidator
 
 # Create your models here.
 class Ciudad(models.Model):
-    nombre= models.CharField(max_length=60, verbose_name="Ciudad")
+    nombre= models.CharField(max_length=60, verbose_name="Nombre")
 
 class Departamento(models.Model):
     nombre= models.CharField(max_length=60, verbose_name="Nombre")
