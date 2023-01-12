@@ -12,16 +12,16 @@ class Usuario(models.Model):
     telefono=models.BigIntegerField(validators=[MinValueValidator(1)], verbose_name="Teléfono")
     email=models.CharField(max_length=100, verbose_name="Correo Electrónico")
     direccion=models.CharField(max_length=70, verbose_name="Dirección")
-    class TipoDocumento(models.Model):
+    class TipoDocumento(models.TextChoices):
         CC='CC', _('Cédula de Ciudadanía')
         CE='CE', _('Cédula de Extranjería')
         PP='PP', _('Pasaporte')
         OT='OT', _('Otro') 
-    class Genero(models.Model):
+    class Genero(models.TextChoices):
         FE='F', _('Femenino')
         MA='M', _('Masculino')
         OT='O', _('Otro')
-    class Rol(models.Model):
+    class Rol(models.TextChoices):
         AD='Admin', _('Administrador')
         EM='Empl', _('Empleado')
     class Estado(models.TextChoices):
@@ -30,7 +30,7 @@ class Usuario(models.Model):
     estado=models.CharField(max_length=1, choices=Estado.choices, default=Estado.ACTIVO, verbose_name="Estado")
     tipoDocumento=models.CharField(max_length=4, choices=TipoDocumento.choices, verbose_name="Tipo de Documento")
     genero=models.CharField(max_length=3, choices=Genero.choices, verbose_name="Género")
-    rol=models.CharField(max_length=2, choices=Rol.AD, verbose_name="Rol")
+    rol=models.CharField(max_length=2, choices=Rol.choices, verbose_name="Rol")
     numDocumento=models.PositiveBigIntegerField(validators=[MinValueValidator(1)], verbose_name="Número de Documento")
     servicio= models.ForeignKey(Servicio, on_delete=models.CASCADE, verbose_name="Servicio")
     venta= models.ForeignKey(Venta, on_delete=models.CASCADE, verbose_name="Venta")
