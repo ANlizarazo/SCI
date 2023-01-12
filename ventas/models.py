@@ -23,16 +23,17 @@ class Cliente(models.Model):
     numDocumento= models.CharField(unique=True, max_length=20, verbose_name="Número de Documento")
     ciudad = models.ForeignKey(Ciudad, on_delete=models.CASCADE, verbose_name="Ciudad")
     compra = models.ForeignKey(Compra, on_delete=models.CASCADE, verbose_name="Compra")
+
 class DetalleVenta(models.Model):
-    cantidadProducto = models.BigIntegerField(validators = [ MinValueValidator ( 0 )], verbose_name="Cantidad Material") 
-    valorTotalProducto = models.BigIntegerField(validators = [ MinValueValidator ( 0 )], verbose_name="Valor Total Material")
+    cantidadProducto = models.BigIntegerField(validators = [ MinValueValidator ( 0 )], verbose_name="Cantidad Producto") 
+    valorTotalProducto = models.BigIntegerField(validators = [ MinValueValidator ( 0 )], verbose_name="Valor Total Producto")
     producto = models.ForeignKey(Producto, on_delete=models.CASCADE, verbose_name="Producto")
 
 class Venta(models.Model):
-    subTotalVenta= models.BigIntegerField(max_length=200, verbose_name="Sub Total Venta")
-    fecha= models.DateField(auto_now=True, verbose_name="Fecha")
+    subTotalVenta= models.PositiveBigIntegerField(validators = [ MinValueValidator ( 1 )], verbose_name="Subtotal Venta")
+    fecha= models.DateTimeField('%Y-%m-%d %H:%M:%S')
     porcentajeIva=models.DecimalField(validators=[MinValueValidator(0.0)],decimal_places=1,max_digits=2, verbose_name="Porcentaje IVA")
-    totalVenta= models.BigIntegerField(max_length=200, verbose_name="Total Venta")
+    totalVenta= models.PositiveBigIntegerField(validators = [ MinValueValidator ( 1 )], verbose_name="Total Venta")
     detalleVenta= models.ForeignKey(DetalleVenta, on_delete=models.CASCADE, verbose_name="Detalle Venta")
     cliente=models.ForeignKey(Cliente, on_delete=models.CASCADE, verbose_name="Cliente")
     
