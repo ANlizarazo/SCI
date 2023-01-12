@@ -25,6 +25,7 @@ class Tecnico(models.Model):
     genero=models.CharField(max_length=3, choices=Genero.choices, verbose_name="Género")    
     estado=models.CharField(max_length=1, choices=Estado.choices, default=Estado.ACTIVO, verbose_name="Estado")
     ciudad = models.ForeignKey(Ciudad, on_delete=models.CASCADE, verbose_name="Ciudad")
+    
 class Servicio(models.Model):
     observacion= models.CharField(max_length=200, verbose_name="Observaciones")
     fechaInicio= models.DateTimeField('%Y-%m-%d %H:%M:%S', verbose_name="Fecha de Inicio")
