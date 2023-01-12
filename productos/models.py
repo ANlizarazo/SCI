@@ -3,6 +3,8 @@ from django.utils.translation import gettext_lazy as _
 from django.core.validators import MinValueValidator
 
 # Create your models here.
+class Categoria(models.Model):
+    nombre = models.CharField(max_length=60, verbose_name="Nombre Categoría", blank=True) 
 
 class Producto(models.Model):
     nombre = models.CharField(max_length=50, verbose_name="Nombre Producto") 
@@ -12,7 +14,8 @@ class Producto(models.Model):
         ACTIVO='1', _('Activo')
         INACTIVO='0', _('Inactivo')
     estado=models.CharField(max_length=1, choices=Estado.choices, default=Estado.ACTIVO, verbose_name="Estado")
-    stock = models.BigIntegerField(validators = [ MinValueValidator ( 0 )], verbose_name="Cantidad") 
-    porcentajeIva= models.BigIntegerField(max_length=10, verbose_name="Porcentaje IVA")
-    categoria = models.CharField(max_length=50, verbose_name="Categoría")
+    stock = models.BigIntegerField(validators = [ MinValueValidator ( 0 )], verbose_name="Cantidad")
+    stockMinimo = models.SmallIntegerField(validators = [ MinValueValidator ( 5 )], verbose_name="Cantidad Mínima") 
+    porcentajeIva=models.DecimalField(validators=[MinValueValidator(0.0)],decimal_places=1,max_digits=2, verbose_name="Porcentaje IVA")
+    categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE, verbose_name="Categoría")
 
