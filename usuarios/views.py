@@ -14,7 +14,7 @@ def usuarios(request):
     return render(request,'usuarios/usuarios.html',context)
 
 def usuarios_crear(request):
-
+    titulo="Usuarios - Crear"
     if request.method == "POST":
         form=UsuarioForm(request.POST)
         if form.is_valid():

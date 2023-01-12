@@ -34,5 +34,4 @@ urlpatterns = [
     path('productos/',include('productos.urls')),
     path('compras/',include('compras.urls')),
     path('clientes/',include('clientes.urls')),
-    path('index/', index, name='Iniciar Sesión')
 ]
