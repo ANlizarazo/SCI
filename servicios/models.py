@@ -28,8 +28,8 @@ class Tecnico(models.Model):
     
 class Servicio(models.Model):
     observacion= models.CharField(max_length=200, verbose_name="Observaciones")
-    fechaInicio= models.DateTimeField('%Y-%m-%d %H:%M:%S', verbose_name="Fecha de Inicio")
-    fechaEntrega= models.DateTimeField('%Y-%m-%d %H:%M:%S', verbose_name="Fecha de Entrega")   
+    fechaInicio= models.DateTimeField('%Y-%m-%d %H:%M:%S')
+    fechaEntrega= models.DateTimeField('%Y-%m-%d %H:%M:%S')   
     precio= models.PositiveBigIntegerField(validators=[MinValueValidator(1)], verbose_name="Precio")
     observacionFinal= models.CharField(max_length=250, verbose_name="Orservación Final")
     tipodeservicio=models.CharField(max_length=50, verbose_name="Tipo de servicio")
