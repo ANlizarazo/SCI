@@ -9,3 +9,4 @@ class ClienteForm(forms.ModelForm):
 
         model = Cliente
         fields = '__all__'
+
