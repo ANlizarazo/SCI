@@ -1,5 +1,5 @@
 from django.shortcuts import redirect, render
-from clientes.forms import CompraForm
+from compras.forms import CompraForm
 from compras.models import Compra
 
 # Create your views here.
