@@ -15,6 +15,7 @@ def ventas(request):
 
 def ventas_crear(request):
 
+    titulo="Ventas - Crear"
     if request.method == 'POST':
         form=VentaForm(request.POST)
         if form.is_valid():
@@ -26,6 +27,7 @@ def ventas_crear(request):
     else:
         form=VentaForm()
     context={
+        'titulo':titulo,
         "form":form
     }
     return render(request,'ventas/ventas-crear.html',context)

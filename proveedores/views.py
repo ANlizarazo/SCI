@@ -17,6 +17,7 @@ def proveedores(request):
 
 def proveedores_crear(request):
 
+    titulo="Proveedores - Crear"
     if request.method=="POST":
         form= ProveedorForm(request.POST)
         if form.is_valid():
@@ -28,6 +29,7 @@ def proveedores_crear(request):
     else:
         form= ProveedorForm()
     context={
+        'titulo':titulo,
         "form":form
     }
     return render(request,'proveedores/proveedores-crear.html',context)
