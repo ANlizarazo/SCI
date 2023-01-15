@@ -1,8 +1,6 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.core.validators import MinValueValidator
-from servicios.models import Servicio 
-from ventas.models import Venta
 
 # Create your models here.
 
@@ -32,7 +30,4 @@ class Usuario(models.Model):
     genero=models.CharField(max_length=3, choices=Genero.choices, verbose_name="Género")
     rol=models.CharField(max_length=5, choices=Rol.choices, verbose_name="Rol")
     numDocumento=models.CharField(max_length=20, verbose_name="Número de Documento")
-    servicio= models.ForeignKey(Servicio, on_delete=models.CASCADE, verbose_name="Servicio")
-    venta= models.ForeignKey(Venta, on_delete=models.CASCADE, verbose_name="Venta")
 
-    
