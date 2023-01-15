@@ -42,9 +42,13 @@
                             <th class="border-dark">Tipo de documento</th>
                             <th class="border-dark">Genero</th>
                             <th class="border-dark">Rol</th>
-                            <th class="border-dark">Número de documento</th>                        </tr>
+                            <th class="border-dark">Número de documento</th>  
+                            <th class="border-dark">Foto</th>
+                        </tr>
                     </thead>
                     <tbody>
+                        
+                        {% for usuario in usuarios %}
                         <tr>
                             <td class="border-dark">{{usuario.nombres}}</td>
                             <td class="border-dark">{{usuario.apellidos}}</td>
@@ -55,7 +59,11 @@
                             <th class="border-dark">{{usuario.genero}}</th>
                             <th class="border-dark">{{usuario.rol}}</th>
                             <th class="border-dark">{{usuario.numDocumento}}</th>
+                            <th class="border-dark">{{usuario.foto}}</th>
                         </tr>
+                        {% endfor %}
+                            
+            
                         <tr>
                             <td class="text-black border-dark">Trident</td>
                             <td class="text-black border-dark">Internet</td>
