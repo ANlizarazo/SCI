@@ -2,6 +2,7 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.core.validators import MinValueValidator
 
+
 # Create your models here.
 
 class Usuario(models.Model):
@@ -30,4 +31,6 @@ class Usuario(models.Model):
     genero=models.CharField(max_length=3, choices=Genero.choices, verbose_name="Género")
     rol=models.CharField(max_length=5, choices=Rol.choices, verbose_name="Rol")
     numDocumento=models.CharField(max_length=20, verbose_name="Número de Documento")
-
+    foto=models.ImageField(upload_to='images/usuarios',blank=True, default='images/usuarios/default.png')
+   
+    
