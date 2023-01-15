@@ -3,9 +3,10 @@
 
 {% block contenido %}
 <h1>Usuarios - Crear</h1>
-{% csrf_token %}
-
-{{form}}
-<input name="Registrar" class="btn btn-primary" type="submit" value="Registrar">
+<form action="" method="POST">
+    {{form}}
+    {% csrf_token %}
+    <input class="btn btn-success" type="submit" value="Registrar">
+</form>
 {% endblock contenido %}
     
