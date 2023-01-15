@@ -1,9 +1,10 @@
 {% extends 'partials/body.html' %}
-
+{% load crispy_forms_tags %}
 
 {% block contenido %}
 <h1>Usuarios - Crear</h1>
 {% csrf_token %}
+
 {{form}}
 <input name="Registrar" class="btn btn-primary" type="submit" value="Registrar">
 {% endblock contenido %}

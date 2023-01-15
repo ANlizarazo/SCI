@@ -31,3 +31,7 @@ def usuarios_crear(request):
             "form":form
     }
     return render(request,'usuarios/usuarios-crear.html',context)
+
+## def usuarios_modificar(request):
+
+    ##titulo="Usuarios - Modificar"
