@@ -30,24 +30,31 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body ">
-                <a name= "Crear" class="btn btn-primary" href="{% url 'usuarios-crear' %}"> Crear</a>
+                <a class="btn btn-primary" href="{% url 'usuarios-crear' %}"> Crear</a>
                 <table id="example1" class="table table-bordered table-striped border-dark">
                     <thead class="bg-success">
                         <tr>
                             <th class="border-dark">Nombres</th>
                             <th class="border-dark">Apellidos</th>
                             <th class="border-dark">Teléfono</th>
+                            <th class="border-dark">Correo Electrónico</th>
+                            <th class="border-dark">Dirección</th>
                             <th class="border-dark">Tipo de documento</th>
-                            <th class="border-dark">Email</th>
-                        </tr>
+                            <th class="border-dark">Genero</th>
+                            <th class="border-dark">Rol</th>
+                            <th class="border-dark">Número de documento</th>                        </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="border-dark">Trident</td>
-                            <td class="border-dark">Internet</td>
-                            <td class="border-dark">Win 95+</td>
-                            <td class="border-dark"> 4</td>
-                            <td class="border-dark">X</td>
+                            <td class="border-dark">{{usuario.nombres}}</td>
+                            <td class="border-dark">{{usuario.apellidos}}</td>
+                            <td class="border-dark">{{usuario.telefono}}</td>
+                            <td class="border-dark">{{usuario.email}}</td>
+                            <td class="border-dark">{{usuario.direccion}}</td>
+                            <th class="border-dark">{{usuario.tipoDocumento}}</th>
+                            <th class="border-dark">{{usuario.genero}}</th>
+                            <th class="border-dark">{{usuario.rol}}</th>
+                            <th class="border-dark">{{usuario.numDocumento}}</th>
                         </tr>
                         <tr>
                             <td class="text-black border-dark">Trident</td>
