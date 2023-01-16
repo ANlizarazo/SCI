@@ -7,6 +7,13 @@ def login(request):
     }
     return render(request,'index.html',context)    
 
+# def recuperar(request):
+    titulo="Recuperar Contraseña"
+    context={
+        'titulo':titulo
+    }
+    return render(request,'formrecuperacion.html',context)  #
+
 def inicio(request):
     titulo="Página Principal"
     context={
