@@ -6,12 +6,16 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-black"><tr>CLIENTES</tr></h1>
+                    <h1 class="m-0 text-black"><tr><b class="text-black">CLIENTES</b></tr></h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="http://127.0.0.1:8000/inicio/" class="text-success">Inicio </a></li>
-                        <li class="breadcrumb-item-active"><a href="http://127.0.0.1:8000/clientes/" class="text-success">/ Clientes</a></li>
+                        <li class="breadcrumb-item"><a
+                                href="http://127.0.0.1:8000/inicio/">
+                                <b class="text-success">Inicio </b></a></li>
+                        <li class="breadcrumb-item-active"><a
+                                href="http://127.0.0.1:8000/clientes/"
+                                class="text-success">/ Clientes</a></li>
                     </ol>
                 </div>
             </div>
@@ -23,73 +27,78 @@
     <section class="content">
         <div class="container-fluid ">
             <div class="row">
-        <!-- Card -->
-        <div class="card ">
-            <div class="card-header">
-                <h3 class="card-title text-success"><tr>Reporte de Clientes</tr></h3>
+                <!-- Card -->
+                <div class="card ">
+                    <div class="card-header">
+                        <h3 class="card-title text-success"><tr><b
+                                    class="text-success">Reporte de
+                                    Clientes</b></tr></h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body ">
+                        <table id="example1" class="table table-bordered
+                            table-striped border-dark">
+                            <thead class="bg-success">
+                                <tr>
+                                    <th class="border-dark">Empresa</th>
+                                    <th class="border-dark">NIT</th>
+                                    <th class="border-dark">Teléfono</th>
+                                    <th class="border-dark">Dirección</th>
+                                    <th class="border-dark">Email</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="border-dark">Trident</td>
+                                    <td class="border-dark">Internet</td>
+                                    <td class="border-dark">Win 95+</td>
+                                    <td class="border-dark"> 4</td>
+                                    <td class="border-dark">X</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-black border-dark">Trident</td>
+                                    <td class="text-black border-dark">Internet</td>
+                                    <td class="text-black border-dark">Win 95+</td>
+                                    <td class="text-black border-dark">5</td>
+                                    <td class="text-black border-dark">C</td>
+                                </tr>
+                                <tr>
+                                    <td class="border-dark">Gecko</td>
+                                    <td class="border-dark">Firefox 2.0</td>
+                                    <td class="border-dark">Win 98+ / OSX.2+</td>
+                                    <td class="border-dark">1.8</td>
+                                    <td class="border-dark">A</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-black border-dark">Gecko</td>
+                                    <td class="text-black border-dark">Firefox
+                                        3.0</td>
+                                    <td class="text-black border-dark">Win 2k+ /
+                                        OSX.3+</td>
+                                    <td class="text-black border-dark">1.9</td>
+                                    <td class="text-black border-dark">A</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </section>
+                <!-- /.content -->
             </div>
-            <!-- /.card-header -->
-            <div class="card-body ">
-                <table id="example1" class="table table-bordered table-striped border-dark">
-                    <thead class="bg-success">
-                        <tr>
-                            <th class="border-dark">Empresa</th>
-                            <th class="border-dark">NIT</th>
-                            <th class="border-dark">Teléfono</th>
-                            <th class="border-dark">Dirección</th>
-                            <th class="border-dark">Email</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="border-dark">Trident</td>
-                            <td class="border-dark">Internet</td>
-                            <td class="border-dark">Win 95+</td>
-                            <td class="border-dark"> 4</td>
-                            <td class="border-dark">X</td>
-                        </tr>
-                        <tr>
-                            <td class="text-black border-dark">Trident</td>
-                            <td class="text-black border-dark">Internet</td>
-                            <td class="text-black border-dark">Win 95+</td>
-                            <td class="text-black border-dark">5</td>
-                            <td class="text-black border-dark">C</td>
-                        </tr>
-                        <tr>
-                            <td class="border-dark">Gecko</td>
-                            <td class="border-dark">Firefox 2.0</td>
-                            <td class="border-dark">Win 98+ / OSX.2+</td>
-                            <td class="border-dark">1.8</td>
-                            <td class="border-dark">A</td>
-                        </tr>
-                        <tr>
-                            <td class="text-black border-dark">Gecko</td>
-                            <td class="text-black border-dark">Firefox 3.0</td>
-                            <td class="text-black border-dark">Win 2k+ / OSX.3+</td>
-                            <td class="text-black border-dark">1.9</td>
-                            <td class="text-black border-dark">A</td>
-                        </tr>
-                    </table>
-                </div>
-                <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-        </section>
-        <!-- /.content -->
-</div>
-<footer>{% include 'partials/footer.html' %}</footer>
-<!-- /.content-wrapper -->
+            <footer>{% include 'partials/footer.html' %}</footer>
+            <!-- /.content-wrapper -->
 
-    <!-- jQuery -->
-    <script src="/static/AdminLTE/jquery/jquery.min.js"></script>
-    <!-- Bootstrap -->
-    <script src="/static/AdminLTE/js-copy/bootstrap.bundle.min.js"></script>
-    <!-- jQuery UI -->
-    <script src="/static/AdminLTE/jquery-ui/jquery-ui.min.js"></script>
-    <!-- AdminLTE App -->
-    <script src="/static/AdminLTE/js/adminlte.min.js"></script>
-    <!-- fullCalendar 2.2.5 -->
-    <script src="/static/AdminLTE/moment/moment.min.js"></script>
-    <script src="/static/AdminLTE/fullcalendar/main.js"></script>
+            <!-- jQuery -->
+            <script src="/static/AdminLTE/jquery/jquery.min.js"></script>
+            <!-- Bootstrap -->
+            <script src="/static/AdminLTE/js-copy/bootstrap.bundle.min.js"></script>
+            <!-- jQuery UI -->
+            <script src="/static/AdminLTE/jquery-ui/jquery-ui.min.js"></script>
+            <!-- AdminLTE App -->
+            <script src="/static/AdminLTE/js/adminlte.min.js"></script>
+            <!-- fullCalendar 2.2.5 -->
+            <script src="/static/AdminLTE/moment/moment.min.js"></script>
+            <script src="/static/AdminLTE/fullcalendar/main.js"></script>
 
-{% endblock contenido %}
+            {% endblock contenido %}
