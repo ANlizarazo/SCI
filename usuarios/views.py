@@ -23,7 +23,7 @@ def usuarios_crear(request):
             print("El usuario se guardó correctamente")
             return redirect('usuarios')
         else:
-            print("El usuario NO se guardó")
+            print("El usuario NO se guardó correctamente")
     else:
         form=UsuarioForm()
     context={
@@ -31,7 +31,7 @@ def usuarios_crear(request):
             "form":form
     }
     return render(request,'usuarios/usuarios-crear.html',context)
-
+    
 ## def usuarios_modificar(request):
 
     ##titulo="Usuarios - Modificar"
