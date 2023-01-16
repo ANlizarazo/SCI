@@ -17,13 +17,14 @@ from operator import index
 from django.contrib import admin
 from django.urls import path, include
 
-from base.views import inicio, login, error404, error500, perfil
+from base.views import inicio, login, error404, error500, perfil, recuperar
 from ventas.views import ventas
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',login,name='login'),
     path('inicio/',inicio,name='inicio'),
+    path('recuperar/',recuperar,name='recuperar'),
     path('error404/',error404,name='error404'),    
     path('error500/',error500,name='error500'),
     path('perfil/',perfil,name='perfil'),
