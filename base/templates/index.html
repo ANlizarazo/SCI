@@ -42,57 +42,7 @@
                             a Nuestros Empleados</a>
                     </button>
                 </div>
-                <div>
-                    <!-- espacio para el formulario -->
-                    <div id="Inicio de Sesion">
-                        <div class="d-flex flex-column min-vh-100
-                            justify-content-center align-items-center">
-                            <div class="card p-4 text-light bg-success mb-5">
-                                <div class="card-header">
-                                    <h3>Iniciar sesión</h3>
-                                </div>
-                                <div class="card-body w-100">
-                                    <form name="login" action="" method="post">
-                                        <div class="input-group form-group
-                                            mt-3">
-                                            <div class="bg-dark rounded-start">
-                                                <span class="m-3"><i class="fas
-                                                        fa-user mt-2"></i></span>
-                                            </div>
-                                            <input type="text"
-                                                class="form-control"
-                                                placeholder="Nombre de usuario"
-                                                name="username">
-                                        </div>
-                                        <div class="input-group form-group
-                                            mt-3">
-                                            <div class="bg-dark rounded-start">
-                                                <span class="m-3"><i class="fas
-                                                        fa-key mt-2"></i></span>
-                                            </div>
-                                            <input type="password"
-                                                class="form-control"
-                                                placeholder="Contraseña"
-                                                name="password">
-                                        </div>
-                                        <div class="btn-success card-footer">
-                                            <div class="d-flex
-                                                justify-content-center
-                                            text-white"><a class=" text-decoration-underline text-white" href="base\templates\registro\formrecuperacion.html">
-                                                ¿Olvidaste tu contraseña?</a></div>
-                                        </div>
-
-                                        <div class="form-group mt-3 mb-3">
-                                            <button id="login-btn" class="btn
-                                                btn-dark" type="button">
-                                                <a class="text-decoration-none text-white" href="http://127.0.0.1:8000/inicio/">
-                                                    Ingresar</a>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                <div>{% include 'registro/login.html' %}</div>
                     </main>
                     <!-- Footer -->
                     <footer class="text-center text-lg-start bg-success text-muted">
