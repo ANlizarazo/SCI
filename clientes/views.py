@@ -17,6 +17,7 @@ def clientes(request):
 
 def clientes_crear(request):
 
+    titulo="Clientes - Crear"
     if request.method=="POST":
         form= ClienteForm(request.POST)
         if form.is_valid():
@@ -28,6 +29,7 @@ def clientes_crear(request):
     else:
         form= ClienteForm()
     context={
+        'titulo':titulo,
         "form":form
     }
     return render(request,'clientes/clientes-crear.html',context)

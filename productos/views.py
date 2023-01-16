@@ -1,7 +1,7 @@
 from django.shortcuts import redirect, render
-from clientes.forms import ProductoForm
+from productos.forms import ProductoForm
 
-from clientes.models import Producto
+from productos.models import Producto
 
 # Create your views here.
 def productos(request):
@@ -15,6 +15,7 @@ def productos(request):
 
 def productos_crear(request):
     
+    titulo="Productos - Crear"
     if request.method == "POST":
         form= ProductoForm(request.POST)
         if form.is_valid():
@@ -26,6 +27,7 @@ def productos_crear(request):
     else:
         form= ProductoForm()
     context={
+        'titulo':titulo,
         "form":form
     }
     return render(request,'productos/productos-crear.html',context)

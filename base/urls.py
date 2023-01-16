@@ -25,7 +25,7 @@ from ventas.views import ventas
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('login/',login,name='login'),
+    path('',login,name='login'),
     path('inicio/',inicio,name='inicio'),
     path('error404/',error404,name='error404'),    
     path('error500/',error500,name='error500'),
@@ -37,5 +37,4 @@ urlpatterns = [
     path('productos/',include('productos.urls')),
     path('compras/',include('compras.urls')),
     path('clientes/',include('clientes.urls')),
-    path('index/', index, name='Iniciar Sesión')
 ]

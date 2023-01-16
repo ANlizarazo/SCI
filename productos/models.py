@@ -3,17 +3,20 @@ from django.utils.translation import gettext_lazy as _
 from django.core.validators import MinValueValidator
 
 # Create your models here.
+class Categoria(models.Model):
+    nombre = models.CharField(max_length=60, verbose_name="Nombre Categoría", blank=True) 
+    descripcion = models.TextField(max_length=300, verbose_name="Descripción")
 
 class Producto(models.Model):
-    id = models.AutoField (primary_key = True , unique = True, verbose_name = "ID producto")
-    nombre = models.CharField(max_length=50, verbose_name="Nombre") 
-    precio = models.BigIntegerField(validators = [ MinValueValidator ( 1 )], verbose_name="Precio")   
-    especificaciones = models.CharField(max_length=200, verbose_name="Especificaciones")
+    nombre = models.CharField(max_length=50, verbose_name="Nombre Producto") 
+    precio = models.PositiveBigIntegerField(validators = [ MinValueValidator ( 1 )], verbose_name="Precio")   
+    especificaciones = models.TextField(max_length=300, verbose_name="Especificaciones")
     class Estado(models.TextChoices):
         ACTIVO='1', _('Activo')
         INACTIVO='0', _('Inactivo')
     estado=models.CharField(max_length=1, choices=Estado.choices, default=Estado.ACTIVO, verbose_name="Estado")
-    stock = models.BigIntegerField(validators = [ MinValueValidator ( 0 )], verbose_name="Cantidad") 
-    porcentajeIva= models.BigIntegerField(max_length=10, verbose_name="Porcentaje IVA")
-    categoria = models.CharField(max_length=50, verbose_name="Categoría")
+    stock = models.BigIntegerField(validators = [ MinValueValidator ( 0 )], verbose_name="Cantidad")
+    stockMinimo = models.SmallIntegerField(validators = [ MinValueValidator ( 5 )], verbose_name="Cantidad Mínima") 
+    porcentajeIva=models.DecimalField(validators=[MinValueValidator(0.0)],decimal_places=1,max_digits=2, verbose_name="Porcentaje IVA")
+    categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE, verbose_name="Categoría")
 
