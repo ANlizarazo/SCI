@@ -59,3 +59,4 @@ def perfil(request):
         'titulo':titulo
     }
     return render(request,'perfil.html',context)   
+
