@@ -18,5 +18,5 @@ class Servicio(models.Model):
     fechaEntrega= models.DateTimeField('%Y-%m-%d')   
     precio= models.PositiveBigIntegerField(validators=[MinValueValidator(1)], verbose_name="Precio")
     observacionFinal= models.CharField(max_length=250, verbose_name="Orservación Final")
-    tipoServicio= models.ForeignKey(TipoServicio, on_delete=models.CASCADE, verbose_name="Tipo de Servicio")
-    tecnico= models.ForeignKey(Tecnico, on_delete=models.CASCADE, verbose_name="Técnico")
+    tipoServicio= models.ForeignKey(TipoServicio, on_delete=models.CASCADE, verbose_name="Tipo de Servicio",null=True)
+    tecnico= models.ForeignKey(Tecnico, on_delete=models.CASCADE, verbose_name="Técnico",null=True)
