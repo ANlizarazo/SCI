@@ -1,4 +1,6 @@
 {% block contenido %}
+{% load crispy_forms_tags %}
+
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -14,7 +16,7 @@
                                 href="http://127.0.0.1:8000/inicio/">
                                 <b class="text-success">Inicio </b></a></li>
                         <li class="breadcrumb-item-active"><a
-                                href="http://127.0.0.1:8000/clientes/"
+                                href="http://127.0.0.1:8000/usuarios/"
                                 class="text-success"> / Usuarios</a></li>
                     </ol>
                 </div>
@@ -36,8 +38,12 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                            <a class="btn btn-success float-right mr-0 mb-3" href="{%
-                                url 'usuarios-crear'%}"> Crear Usuario</a>
+                        <!-- Este botón llama a el modal -->
+                        <a class="btn btn-success float-right mr-0 mb-3"
+                        data-bs-toggle="modal" data-bs-target="#staticBackdrop"> Crear Usuario</a>
+                        <!-- Modal de crear usuario-->
+                        <div>{% include 'usuarios/Usuarios-crear.html' %}</div>
+                        <!-- Datatable de usuarios -->
                         <table id="example1" class="table table-bordered
                             table-striped border-dark">
                             <thead class="bg-success">
@@ -52,8 +58,7 @@
                                     <th class="border-dark">Rol</th>
                                     <th class="border-dark">Número de documento</th>
                                     <th class="border-dark">Foto</th>
-
-                                    <th scope="col">Acciones</th>
+                                    <th class="border-dark">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -69,13 +74,7 @@
                                     <th class="border-dark">{{usuario.rol}}</th>
                                     <th class="border-dark">{{usuario.numDocumento}}</th>
                                     <th class="border-dark">{{usuario.foto}}</th>
-                                    <td><a class="btn btn-success" href="{% url
-                                            'usuarios-editar' usuario.id %}"><i
-                                                class="fas fa-edit"></i></a>
-                                        <a class="btn btn-danger" href="{% url
-                                            'usuarios-eliminar' usuario.id
-                                            %}"><i class="fas fa-trash-alt"></i></a>
-                                    </td>
+                                    <th class="border-dark">{{usuario.acciones}}</th>
                                 </tr>
                                 {% endfor %}
                                 <tr>
@@ -89,34 +88,75 @@
                                     <td class="text-black border-dark">Win 95+</td>
                                     <td class="text-black border-dark">5</td>
                                     <td class="text-black border-dark">C</td>
+                                    <td class="border-dark">
+                                        <a class="btn btn-success" href="{%
+                                            url
+                                            'usuarios-eliminar' usuario.id
+                                            %}"><i class="fas fa-eye"></i></a>
+                                        <a class="btn btn-primary" href="{%
+                                            url
+                                            'usuarios-editar' usuario.id
+                                            %}"><i
+                                                class="fas fa-edit"></i></a>
+                                        <a class="btn btn-danger" href="{%
+                                            url
+                                            'usuarios-eliminar' usuario.id
+                                            %}"><i class="fas fa-trash-alt"></i></a>
+                                    </td>
                                 </tr>
                                 <tr>
-                                    <td class="text-black border-dark">Gecko</td>
-                                    <td class="text-black border-dark">Firefox
-                                        3.0</td>
-                                    <td class="text-black border-dark">Win 2k+ /
-                                        OSX.3+</td>
-                                    <td class="text-black border-dark">1.9</td>
-                                    <td class="text-black border-dark">A</td>
                                     <td class="text-black border-dark">Trident</td>
                                     <td class="text-black border-dark">Internet</td>
                                     <td class="text-black border-dark">Win 95+</td>
                                     <td class="text-black border-dark">5</td>
                                     <td class="text-black border-dark">C</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-black border-dark">Gecko</td>
-                                    <td class="text-black border-dark">Firefox
-                                        3.0</td>
-                                    <td class="text-black border-dark">Win 2k+ /
-                                        OSX.3+</td>
-                                    <td class="text-black border-dark">1.9</td>
-                                    <td class="text-black border-dark">A</td>
                                     <td class="text-black border-dark">Trident</td>
                                     <td class="text-black border-dark">Internet</td>
                                     <td class="text-black border-dark">Win 95+</td>
                                     <td class="text-black border-dark">5</td>
                                     <td class="text-black border-dark">C</td>
+                                    <td class="border-dark">
+                                        <a class="btn btn-success" href="{%
+                                            url
+                                            'usuarios-eliminar' usuario.id
+                                            %}"><i class="fas fa-eye"></i></a>
+                                        <a class="btn btn-primary" href="{%
+                                            url
+                                            'usuarios-editar' usuario.id
+                                            %}"><i
+                                                class="fas fa-edit"></i></a>
+                                        <a class="btn btn-danger" href="{%
+                                            url
+                                            'usuarios-eliminar' usuario.id
+                                            %}"><i class="fas fa-trash-alt"></i></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-black border-dark">Trident</td>
+                                    <td class="text-black border-dark">Internet</td>
+                                    <td class="text-black border-dark">Win 95+</td>
+                                    <td class="text-black border-dark">5</td>
+                                    <td class="text-black border-dark">C</td>
+                                    <td class="text-black border-dark">Trident</td>
+                                    <td class="text-black border-dark">Internet</td>
+                                    <td class="text-black border-dark">Win 95+</td>
+                                    <td class="text-black border-dark">5</td>
+                                    <td class="text-black border-dark">C</td>
+                                    <td class="border-dark">
+                                        <a class="btn btn-success" href="{%
+                                            url
+                                            'usuarios-eliminar' usuario.id
+                                            %}"><i class="fas fa-eye"></i></a>
+                                        <a class="btn btn-primary" href="{%
+                                            url
+                                            'usuarios-editar' usuario.id
+                                            %}"><i
+                                                class="fas fa-edit"></i></a>
+                                        <a class="btn btn-danger" href="{%
+                                            url
+                                            'usuarios-eliminar' usuario.id
+                                            %}"><i class="fas fa-trash-alt"></i></a>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>

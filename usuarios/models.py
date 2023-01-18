@@ -33,4 +33,3 @@ class Usuario(models.Model):
     numDocumento=models.CharField(max_length=20, verbose_name="Número de Documento")
     foto=models.ImageField(upload_to='images/usuarios',blank=True, default='images/usuarios/default.png')
 
-    
