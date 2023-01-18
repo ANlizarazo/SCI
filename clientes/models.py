@@ -1,6 +1,5 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-from compras.models import Compra
 
 # Create your models here.
 
@@ -14,7 +13,6 @@ class Cliente(models.Model):
     direccion=models.CharField(max_length=70, verbose_name="Dirección")
     email=models.CharField(max_length=100, verbose_name="Correo Electrónico")
     ciudad = models.ForeignKey(Ciudad, on_delete=models.CASCADE, verbose_name="Ciudad")
-    compra = models.ForeignKey(Compra, on_delete=models.CASCADE, verbose_name="Compra")
     
 
     
