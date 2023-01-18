@@ -12,7 +12,7 @@ class Cliente(models.Model):
     telefono=models.CharField(max_length=20, verbose_name="Teléfono")
     direccion=models.CharField(max_length=70, verbose_name="Dirección")
     email=models.CharField(max_length=100, verbose_name="Correo Electrónico")
-    ciudad = models.ForeignKey(Ciudad, on_delete=models.CASCADE, verbose_name="Ciudad")
+    ciudad = models.ForeignKey(Ciudad, on_delete=models.CASCADE, verbose_name="Ciudad",null=True)
     
 
     

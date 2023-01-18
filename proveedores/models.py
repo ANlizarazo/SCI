@@ -9,7 +9,7 @@ class Ciudad(models.Model):
 
 class Departamento(models.Model):
     nombre= models.CharField(max_length=60, verbose_name="Nombre")
-    ciudad = models.ForeignKey(Ciudad, on_delete=models.CASCADE, verbose_name="Ciudad")
+    ciudad = models.ForeignKey(Ciudad, on_delete=models.CASCADE, verbose_name="Ciudad",null=True)
 
 class Material(models.Model):
     nombre= models.CharField(max_length=100, verbose_name="Nombre")
@@ -33,6 +33,6 @@ class Proveedor(models.Model):
     tiempoEntrega= models.SmallIntegerField(validators=[MinValueValidator(1)], verbose_name="Tiempo Entrega") 
     transporteIncluido= models.CharField( max_length=2, choices=TransporteIncluido.choices, verbose_name="Transporte Incluido")
     estado=models.CharField(max_length=1, choices=Estado.choices, default=Estado.ACTIVO, verbose_name="Estado")
-    material= models.ForeignKey(Material, on_delete=models.CASCADE, verbose_name="Material") 
-    departamento= models.ForeignKey(Departamento, on_delete=models.CASCADE, verbose_name="Departamento")
+    material= models.ForeignKey(Material, on_delete=models.CASCADE, verbose_name="Material",null=True) 
+    departamento= models.ForeignKey(Departamento, on_delete=models.CASCADE, verbose_name="Departamento",null=True)
 
