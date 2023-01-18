@@ -14,7 +14,7 @@
                                 href="http://127.0.0.1:8000/inicio/">
                                 <b class="text-success">Inicio </b></a></li>
                         <li class="breadcrumb-item-active"><a
-                                href="http://127.0.0.1:8000/clientes/"
+                                href="http://127.0.0.1:8000/proveedores"
                                 class="text-success">/ Proveedores</a></li>
                     </ol>
                 </div>
@@ -42,11 +42,17 @@
                             table-striped border-dark">
                             <thead class="bg-success">
                                 <tr>
-                                    <th class="border-dark">Empresa</th>
-                                    <th class="border-dark">NIT</th>
+                                    <th class="border-dark">Nombre Empresa</th>
+                                    <th class="border-dark">Email</th>
                                     <th class="border-dark">Teléfono</th>
                                     <th class="border-dark">Dirección</th>
-                                    <th class="border-dark">Email</th>
+                                    <th class="border-dark">Modo de Pago</th>
+                                    <th class="border-dark">Tiempo de Entrega</th>
+                                    <th class="border-dark">Transporte Incluido</th>
+                                    <th class="border-dark">Estado</th>
+                                    <th class="border-dark">Material</th>
+                                    <th class="border-dark">Departamento</th>
+                                    <th class="border-dark">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -56,6 +62,26 @@
                                     <td class="border-dark">Win 95+</td>
                                     <td class="border-dark"> 4</td>
                                     <td class="border-dark">X</td>
+                                    <td class="text-black border-dark">Trident</td>
+                                    <td class="text-black border-dark">Internet</td>
+                                    <td class="text-black border-dark">Win 95+</td>
+                                    <td class="text-black border-dark">5</td>
+                                    <td class="text-black border-dark">C</td>
+                                    <td class="border-dark">
+                                        <a class="btn btn-success" href="{%
+                                            url
+                                            'usuarios-eliminar' usuario.id
+                                            %}"><i class="fas fa-eye"></i></a>
+                                        <a class="btn btn-primary" href="{%
+                                            url
+                                            'usuarios-editar' usuario.id
+                                            %}"><i
+                                                class="fas fa-edit"></i></a>
+                                        <a class="btn btn-danger" href="{%
+                                            url
+                                            'usuarios-eliminar' usuario.id
+                                            %}"><i class="fas fa-trash-alt"></i></a>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td class="text-black border-dark">Trident</td>
@@ -63,6 +89,26 @@
                                     <td class="text-black border-dark">Win 95+</td>
                                     <td class="text-black border-dark">5</td>
                                     <td class="text-black border-dark">C</td>
+                                    <td class="text-black border-dark">Trident</td>
+                                    <td class="text-black border-dark">Internet</td>
+                                    <td class="text-black border-dark">Win 95+</td>
+                                    <td class="text-black border-dark">5</td>
+                                    <td class="text-black border-dark">C</td>
+                                    <td class="border-dark">
+                                        <a class="btn btn-success" href="{%
+                                            url
+                                            'usuarios-eliminar' usuario.id
+                                            %}"><i class="fas fa-eye"></i></a>
+                                        <a class="btn btn-primary" href="{%
+                                            url
+                                            'usuarios-editar' usuario.id
+                                            %}"><i
+                                                class="fas fa-edit"></i></a>
+                                        <a class="btn btn-danger" href="{%
+                                            url
+                                            'usuarios-eliminar' usuario.id
+                                            %}"><i class="fas fa-trash-alt"></i></a>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td class="border-dark">Gecko</td>
@@ -70,15 +116,26 @@
                                     <td class="border-dark">Win 98+ / OSX.2+</td>
                                     <td class="border-dark">1.8</td>
                                     <td class="border-dark">A</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-black border-dark">Gecko</td>
-                                    <td class="text-black border-dark">Firefox
-                                        3.0</td>
-                                    <td class="text-black border-dark">Win 2k+ /
-                                        OSX.3+</td>
-                                    <td class="text-black border-dark">1.9</td>
-                                    <td class="text-black border-dark">A</td>
+                                    <td class="text-black border-dark">Trident</td>
+                                    <td class="text-black border-dark">Internet</td>
+                                    <td class="text-black border-dark">Win 95+</td>
+                                    <td class="text-black border-dark">5</td>
+                                    <td class="text-black border-dark">C</td>
+                                    <td class="border-dark">
+                                        <a class="btn btn-success" href="{%
+                                            url
+                                            'usuarios-eliminar' usuario.id
+                                            %}"><i class="fas fa-eye"></i></a>
+                                        <a class="btn btn-primary" href="{%
+                                            url
+                                            'usuarios-editar' usuario.id
+                                            %}"><i
+                                                class="fas fa-edit"></i></a>
+                                        <a class="btn btn-danger" href="{%
+                                            url
+                                            'usuarios-eliminar' usuario.id
+                                            %}"><i class="fas fa-trash-alt"></i></a>
+                                    </td>
                                 </tr>
                             </table>
                         </div>

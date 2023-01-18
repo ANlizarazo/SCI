@@ -6,7 +6,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-black"><tr><b class="text-black">USUARIOS</b></tr></h1>
+                    <h1 class="m-0 text-black"><tr><b class="text-black">TÉCNICOS</b></tr></h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -14,8 +14,8 @@
                                 href="http://127.0.0.1:8000/inicio/">
                                 <b class="text-success">Inicio </b></a></li>
                         <li class="breadcrumb-item-active"><a
-                                href="http://127.0.0.1:8000/usuarios/"
-                                class="text-success"> / Usuarios</a></li>
+                                href="http://127.0.0.1:8000/tecnicos/"
+                                class="text-success"> / Técnicos</a></li>
                     </ol>
                 </div>
             </div>
@@ -32,13 +32,13 @@
                     <div class="card-header">
                         <h3 class="card-title"><tr><b
                                     class="text-success">Reporte
-                                    de Usuarios</b></tr></h3>
+                                    de Técnicos</b></tr></h3>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
                         <a class="btn btn-success float-right mr-0 mb-3"
                             href="{%
-                            url 'usuarios-crear'%}"> Crear Usuario</a>
+                            url 'usuarios-crear'%}"> Crear Técnico</a>
                         <table id="example1" class="table table-bordered
                             table-striped border-dark">
                             <thead class="bg-success">
@@ -46,32 +46,15 @@
                                     <th class="border-dark">Nombres</th>
                                     <th class="border-dark">Apellidos</th>
                                     <th class="border-dark">Teléfono</th>
-                                    <th class="border-dark">Correo Electrónico</th>
-                                    <th class="border-dark">Dirección</th>
-                                    <th class="border-dark">Tipo de documento</th>
-                                    <th class="border-dark">Genero</th>
-                                    <th class="border-dark">Rol</th>
+                                    <th class="border-dark">Genero</th>          
+                                    <th class="border-dark">Tipo de documento</th>            
                                     <th class="border-dark">Número de documento</th>
-                                    <th class="border-dark">Foto</th>
+                                    <th class="border-dark">Estado</th>
+                                    <th class="border-dark">Ciudad</th>
                                     <th class="border-dark">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {% for usuario in usuarios %}
-                                <tr>
-                                    <td class="border-dark">{{usuario.nombres}}</td>
-                                    <td class="border-dark">{{usuario.apellidos}}</td>
-                                    <td class="border-dark">{{usuario.telefono}}</td>
-                                    <td class="border-dark">{{usuario.email}}</td>
-                                    <td class="border-dark">{{usuario.direccion}}</td>
-                                    <th class="border-dark">{{usuario.tipoDocumento}}</th>
-                                    <th class="border-dark">{{usuario.genero}}</th>
-                                    <th class="border-dark">{{usuario.rol}}</th>
-                                    <th class="border-dark">{{usuario.numDocumento}}</th>
-                                    <th class="border-dark">{{usuario.foto}}</th>
-                                    <th class="border-dark">{{usuario.acciones}}</th>
-                                </tr>
-                                {% endfor %}
                                 <tr>
                                     <td class="text-black border-dark">Trident</td>
                                     <td class="text-black border-dark">Internet</td>
@@ -81,8 +64,6 @@
                                     <td class="text-black border-dark">Trident</td>
                                     <td class="text-black border-dark">Internet</td>
                                     <td class="text-black border-dark">Win 95+</td>
-                                    <td class="text-black border-dark">5</td>
-                                    <td class="text-black border-dark">C</td>
                                     <td class="border-dark">
                                         <a class="btn btn-success" href="{%
                                             url
@@ -108,8 +89,6 @@
                                     <td class="text-black border-dark">Trident</td>
                                     <td class="text-black border-dark">Internet</td>
                                     <td class="text-black border-dark">Win 95+</td>
-                                    <td class="text-black border-dark">5</td>
-                                    <td class="text-black border-dark">C</td>
                                     <td class="border-dark">
                                         <a class="btn btn-success" href="{%
                                             url
@@ -135,8 +114,6 @@
                                     <td class="text-black border-dark">Trident</td>
                                     <td class="text-black border-dark">Internet</td>
                                     <td class="text-black border-dark">Win 95+</td>
-                                    <td class="text-black border-dark">5</td>
-                                    <td class="text-black border-dark">C</td>
                                     <td class="border-dark">
                                         <a class="btn btn-success" href="{%
                                             url
