@@ -9,3 +9,8 @@ class VentaForm(forms.ModelForm):
 
         model = Venta
         fields = '__all__'
+
+class VentaUpdateForm(forms.ModelForm):
+    class Meta:
+        model= Venta
+        exclude=['cliente']
