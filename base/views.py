@@ -7,12 +7,33 @@ def login(request):
     }
     return render(request,'index.html',context)  
 
-# def recuperar(request):
-    titulo="Recuperar Contraseña"
+def formRecuperacion(request):
+    titulo="Recupera tu Contraseña"
     context={
         'titulo':titulo
     }
-    return render(request,'formrecuperacion.html',context)  #
+    return render(request,'registro/formrecuperacion.html',context)
+
+def correoEnviado(request):
+    titulo="Correo de Recuperación Enviado"
+    context={
+        'titulo':titulo
+    }
+    return render(request,'registro/correoenviado.html',context)
+
+def nuevaContraseña(request):
+    titulo="Crea tu Nueva Contraseña"
+    context={
+        'titulo':titulo
+    }
+    return render(request,'registro/nuevacontraseña.html',context)
+
+def cambioExitoso(request):
+    titulo="Contraseña Cambiada Correctamente"
+    context={
+        'titulo':titulo
+    }
+    return render(request,'registro/cambioexitoso.html',context)
 
 def inicio(request):
     titulo="Página Principal"
