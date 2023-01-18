@@ -15,6 +15,7 @@ def servicios(request):
 
 def servicios_crear(request):
 
+    titulo="Servicios - Crear"
     if request.method=="POST":
         form= ServicioForm(request.POST)
         if form.is_valid():
@@ -26,6 +27,7 @@ def servicios_crear(request):
     else:
         form= ServicioForm()
     context={
+        'titulo':titulo,
         "form":form
     }
     return render(request,'servicios/servicios-crear.html',context)

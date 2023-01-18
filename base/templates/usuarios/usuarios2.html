@@ -6,12 +6,16 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-black"><tr>USUARIOS</tr></h1>
+                    <h1 class="m-0 text-black"><tr><b class="text-black">USUARIOS</b></tr></h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="http://127.0.0.1:8000/inicio/" class="text-success">Inicio </a></li>
-                        <li class="breadcrumb-item-active"><a href="http://127.0.0.1:8000/clientes/" class="text-success">/ Usuarios</a></li>
+                        <li class="breadcrumb-item"><a
+                                href="http://127.0.0.1:8000/inicio/">
+                                <b class="text-success">Inicio </b></a></li>
+                        <li class="breadcrumb-item-active"><a
+                                href="http://127.0.0.1:8000/clientes/"
+                                class="text-success"> / Usuarios</a></li>
                     </ol>
                 </div>
             </div>
@@ -23,74 +27,119 @@
     <section class="content">
         <div class="container-fluid ">
             <div class="row">
-        <!-- Card -->
-        <div class="card ">
-            <div class="card-header">
-                <h3 class="card-title text-success"><tr>Reporte de Usuarios</tr></h3>
-            </div>
-            <!-- /.card-header -->
-            <div class="card-body ">
-                <a class="btn btn-primary" href="{% url 'usuarios-crear' %}"> Crear</a>
-                <table id="example1" class="table table-bordered table-striped border-dark">
-                    <thead class="bg-success">
-                        <tr>
-                            <th class="border-dark">Nombres</th>
-                            <th class="border-dark">Apellidos</th>
-                            <th class="border-dark">Teléfono</th>
-                            <th class="border-dark">Tipo de documento</th>
-                            <th class="border-dark">Email</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="border-dark">Trident</td>
-                            <td class="border-dark">Internet</td>
-                            <td class="border-dark">Win 95+</td>
-                            <td class="border-dark"> 4</td>
-                            <td class="border-dark">X</td>
-                        </tr>
-                        <tr>
-                            <td class="text-black border-dark">Trident</td>
-                            <td class="text-black border-dark">Internet</td>
-                            <td class="text-black border-dark">Win 95+</td>
-                            <td class="text-black border-dark">5</td>
-                            <td class="text-black border-dark">C</td>
-                        </tr>
-                        <tr>
-                            <td class="border-dark">Gecko</td>
-                            <td class="border-dark">Firefox 2.0</td>
-                            <td class="border-dark">Win 98+ / OSX.2+</td>
-                            <td class="border-dark">1.8</td>
-                            <td class="border-dark">A</td>
-                        </tr>
-                        <tr>
-                            <td class="text-black border-dark">Gecko</td>
-                            <td class="text-black border-dark">Firefox 3.0</td>
-                            <td class="text-black border-dark">Win 2k+ / OSX.3+</td>
-                            <td class="text-black border-dark">1.9</td>
-                            <td class="text-black border-dark">A</td>
-                        </tr>
-                    </table>
+                <!-- Card -->
+                <div class="card ">
+                    <div class="card-header">
+                        <h3 class="card-title"><tr><b
+                                    class="text-success">Reporte
+                                    de Usuarios</b></tr></h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                            <a class="btn btn-success float-right mr-0 mb-3" href="{%
+                                url 'usuarios-crear'%}"> Crear Usuario</a>
+                        <table id="example1" class="table table-bordered
+                            table-striped border-dark">
+                            <thead class="bg-success">
+                                <tr>
+                                    <th class="border-dark">Nombres</th>
+                                    <th class="border-dark">Apellidos</th>
+                                    <th class="border-dark">Teléfono</th>
+                                    <th class="border-dark">Correo Electrónico</th>
+                                    <th class="border-dark">Dirección</th>
+                                    <th class="border-dark">Tipo de documento</th>
+                                    <th class="border-dark">Genero</th>
+                                    <th class="border-dark">Rol</th>
+                                    <th class="border-dark">Número de documento</th>
+                                    <th class="border-dark">Foto</th>
+
+                                    <th scope="col">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for usuario in usuarios %}
+                                <tr>
+                                    <td class="border-dark">{{usuario.nombres}}</td>
+                                    <td class="border-dark">{{usuario.apellidos}}</td>
+                                    <td class="border-dark">{{usuario.telefono}}</td>
+                                    <td class="border-dark">{{usuario.email}}</td>
+                                    <td class="border-dark">{{usuario.direccion}}</td>
+                                    <th class="border-dark">{{usuario.tipoDocumento}}</th>
+                                    <th class="border-dark">{{usuario.genero}}</th>
+                                    <th class="border-dark">{{usuario.rol}}</th>
+                                    <th class="border-dark">{{usuario.numDocumento}}</th>
+                                    <th class="border-dark">{{usuario.foto}}</th>
+                                    <td><a class="btn btn-success" href="{% url
+                                            'usuarios-editar' usuario.id %}"><i
+                                                class="fas fa-edit"></i></a>
+                                        <a class="btn btn-danger" href="{% url
+                                            'usuarios-eliminar' usuario.id
+                                            %}"><i class="fas fa-trash-alt"></i></a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                                <tr>
+                                    <td class="text-black border-dark">Trident</td>
+                                    <td class="text-black border-dark">Internet</td>
+                                    <td class="text-black border-dark">Win 95+</td>
+                                    <td class="text-black border-dark">5</td>
+                                    <td class="text-black border-dark">C</td>
+                                    <td class="text-black border-dark">Trident</td>
+                                    <td class="text-black border-dark">Internet</td>
+                                    <td class="text-black border-dark">Win 95+</td>
+                                    <td class="text-black border-dark">5</td>
+                                    <td class="text-black border-dark">C</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-black border-dark">Gecko</td>
+                                    <td class="text-black border-dark">Firefox
+                                        3.0</td>
+                                    <td class="text-black border-dark">Win 2k+ /
+                                        OSX.3+</td>
+                                    <td class="text-black border-dark">1.9</td>
+                                    <td class="text-black border-dark">A</td>
+                                    <td class="text-black border-dark">Trident</td>
+                                    <td class="text-black border-dark">Internet</td>
+                                    <td class="text-black border-dark">Win 95+</td>
+                                    <td class="text-black border-dark">5</td>
+                                    <td class="text-black border-dark">C</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-black border-dark">Gecko</td>
+                                    <td class="text-black border-dark">Firefox
+                                        3.0</td>
+                                    <td class="text-black border-dark">Win 2k+ /
+                                        OSX.3+</td>
+                                    <td class="text-black border-dark">1.9</td>
+                                    <td class="text-black border-dark">A</td>
+                                    <td class="text-black border-dark">Trident</td>
+                                    <td class="text-black border-dark">Internet</td>
+                                    <td class="text-black border-dark">Win 95+</td>
+                                    <td class="text-black border-dark">5</td>
+                                    <td class="text-black border-dark">C</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
                 </div>
-                <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-        </section>
-        <!-- /.content -->
-</div>
-<footer>{% include 'partials/footer.html' %}</footer>
-<!-- /.content-wrapper -->
+                <!-- /.card -->
+            </section>
+            <!-- /.content -->
+        </div>
+        <footer>{% include 'partials/footer.html' %}</footer>
+        <!-- /.content-wrapper -->
 
-    <!-- jQuery -->
-    <script src="/static/AdminLTE/jquery/jquery.min.js"></script>
-    <!-- Bootstrap -->
-    <script src="/static/AdminLTE/js-copy/bootstrap.bundle.min.js"></script>
-    <!-- jQuery UI -->
-    <script src="/static/AdminLTE/jquery-ui/jquery-ui.min.js"></script>
-    <!-- AdminLTE App -->
-    <script src="/static/AdminLTE/js/adminlte.min.js"></script>
-    <!-- fullCalendar 2.2.5 -->
-    <script src="/static/AdminLTE/moment/moment.min.js"></script>
-    <script src="/static/AdminLTE/fullcalendar/main.js"></script>
+        <!-- jQuery -->
+        <script src="/static/AdminLTE/jquery/jquery.min.js"></script>
+        <!-- Bootstrap -->
+        <script src="/static/AdminLTE/js-copy/bootstrap.bundle.min.js"></script>
+        <!-- jQuery UI -->
+        <script src="/static/AdminLTE/jquery-ui/jquery-ui.min.js"></script>
+        <!-- AdminLTE App -->
+        <script src="/static/AdminLTE/js/adminlte.min.js"></script>
+        <!-- fullCalendar 2.2.5 -->
+        <script src="/static/AdminLTE/moment/moment.min.js"></script>
+        <script src="/static/AdminLTE/fullcalendar/main.js"></script>
 
-{% endblock contenido %}
+        {% endblock contenido %}

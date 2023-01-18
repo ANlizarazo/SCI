@@ -1,5 +1,5 @@
 from django.shortcuts import redirect, render
-from clientes.forms import CompraForm
+from compras.forms import CompraForm
 from compras.models import Compra
 
 # Create your views here.
@@ -14,6 +14,7 @@ def compras(request):
 
 def compras_crear(request):
 
+    titulo="Compras - Crear"
     if request.method == 'POST':    
         form= CompraForm(request.POST)
         if form.is_valid():
@@ -25,6 +26,7 @@ def compras_crear(request):
         form= CompraForm()
 
     context={
+        'titulo':titulo,
         "form":form
     }
     return render(request,'compras/compras_crear.html',context)

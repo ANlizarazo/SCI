@@ -17,12 +17,11 @@ from operator import index
 from django.contrib import admin
 from django.urls import path, include
 
-from base.views import inicio, login, error404, error500, perfil
-from ventas.views import ventas
+from base.views import cambioExitoso, correoEnviado, formRecuperacion, inicio, login, error404, error500, nuevaContraseña, perfil
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('login/',login,name='login'),
+    path('',login,name='login'),
     path('inicio/',inicio,name='inicio'),
     path('error404/',error404,name='error404'),    
     path('error500/',error500,name='error500'),
@@ -34,4 +33,8 @@ urlpatterns = [
     path('productos/',include('productos.urls')),
     path('compras/',include('compras.urls')),
     path('clientes/',include('clientes.urls')),
+    path('recuperacion/',formRecuperacion,name='recuperacion'),
+    path('correoenviado/',correoEnviado,name='correoenviado'),
+    path('nuevacontraseña/',nuevaContraseña,name='nuevacontraseña'),
+    path('cambioexitoso/',cambioExitoso,name='cambioexitoso')
 ]

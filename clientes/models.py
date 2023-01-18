@@ -8,7 +8,7 @@ class Ciudad(models.Model):
     nombre= models.CharField(max_length=60, verbose_name="Ciudad")
     
 class Cliente(models.Model):
-    nombre= models.CharField(max_length=100, verbose_name="Nombre")
+    nombreEmpresa= models.CharField(max_length=100, verbose_name="Nombre Empresa")
     nit= models.CharField(unique=True, max_length=20, verbose_name="NIT")
     telefono=models.CharField(max_length=20, verbose_name="Teléfono")
     direccion=models.CharField(max_length=70, verbose_name="Dirección")
