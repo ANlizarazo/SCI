@@ -31,4 +31,12 @@ class Usuario(models.Model):
     genero=models.CharField(max_length=3, choices=Genero.choices, verbose_name="Género")
     rol=models.CharField(max_length=5, choices=Rol.choices, verbose_name="Rol")
     estado=models.CharField(max_length=1, choices=Estado.choices, default=Estado.ACTIVO, verbose_name="Estado")
-    foto=models.ImageField(upload_to='images/usuarios',blank=True, default='\static\img\perfil.jpg')
+    foto=models.ImageField(upload_to='images/usuarios', blank=True, default='\static\img\perfil.jpg')
+
+    def __str__(self)->str:
+        return "%s %s" %(self.nombres, self.apellidos, self.numDocumento)  
+    
+    class Meta:
+        ordering = ['nombres']
+        verbose_name = 'Usuario'
+        verbose_name_plural = 'Usuarios'

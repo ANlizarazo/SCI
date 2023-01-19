@@ -1,7 +1,7 @@
-from django import forms
+from django.forms import ModelForm
 from compras.models import Compra
 
-class CompraForm(forms.ModelForm):
+class CompraForm(ModelForm):
     """Form definition for Compra."""
 
     class Meta:
