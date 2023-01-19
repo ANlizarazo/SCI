@@ -13,7 +13,3 @@ class Cliente(models.Model):
     direccion=models.CharField(max_length=70, verbose_name="Dirección")
     email=models.CharField(max_length=100, verbose_name="Correo Electrónico")
     ciudad = models.ForeignKey(Ciudad, on_delete=models.CASCADE, verbose_name="Ciudad",null=True)
-    
-
-    
-    
