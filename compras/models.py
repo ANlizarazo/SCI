@@ -10,7 +10,24 @@ class DetalleCompra(models.Model):
     valorTotalMaterial = models.BigIntegerField(validators = [ MinValueValidator ( 0 )], verbose_name="Valor Total Material")
     proveedor = models.ForeignKey(Proveedor, on_delete=models.CASCADE, verbose_name="Proveedor",null=True)
 
+    def __str__(self)->str:
+        return "%s %s" %(self.cantidadMaterial, self.valorTotalMaterial)  
+        
+    class Meta:
+        ordering = ['cantidadMaterial']
+        verbose_name = 'Detalle Compra'
+        verbose_name_plural = 'Detalle de Compras'
+
+
 class Compra(models.Model):
     fecha= models.DateTimeField('%Y-%m-%d %H:%M:%s')
     detalleCompra = models.ForeignKey(DetalleCompra, on_delete=models.CASCADE, verbose_name="Detalle Compra",null=True)
     usuario=models.ForeignKey(Usuario, on_delete=models.CASCADE, verbose_name="Usuario",null=True)
+
+    def __str__(self)->str:
+        return "%s %s" %(self.fecha)  
+
+    class Meta:
+        ordering = ['fecha']
+        verbose_name = 'Compra'
+        verbose_name_plural = 'Compras'
