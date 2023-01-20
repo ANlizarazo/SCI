@@ -1,7 +1,7 @@
-from django import forms
-from servicios.models import Servicio
+from django.forms import ModelForm
+from servicios.models import Servicio,TipoServicio
 
-class ServicioForm(forms.ModelForm):
+class ServicioForm(ModelForm):
     """Form definition for Servicio."""
 
     class Meta:
@@ -9,3 +9,12 @@ class ServicioForm(forms.ModelForm):
 
         model = Servicio
         fields = '__all__'
+
+class TipoServicioForm(ModelForm):
+    """Form definition for Servicio."""
+
+    class Meta:
+        """Meta definition for Servicioform."""
+
+        model = TipoServicio
+        exclude=['estado']

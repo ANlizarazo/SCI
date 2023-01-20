@@ -1,8 +1,8 @@
 from django.forms import ModelForm
-from tecnico.models import Tecnico
+from tecnicos.models import Tecnico
 
 class TecnicoForm(ModelForm):
-    """Form definition for Tecnicos."""
+    """Form definition for Tecnico."""
 
     class Meta:
         """Meta definition for Tecnicoform."""

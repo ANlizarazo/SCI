@@ -7,12 +7,36 @@ from django.core.validators import MinValueValidator
 class Ciudad(models.Model):
     nombre= models.CharField(max_length=60, verbose_name="Nombre")
 
+    def __str__(self)->str:
+        return "%s %s" %(self.nombre)  
+    
+    class Meta:
+        ordering = ['nombre']
+        verbose_name = 'Ciudad'
+        verbose_name_plural = 'Ciudades'
+
 class Departamento(models.Model):
     nombre= models.CharField(max_length=60, verbose_name="Nombre")
     ciudad = models.ForeignKey(Ciudad, on_delete=models.CASCADE, verbose_name="Ciudad",null=True)
 
+    def __str__(self)->str:
+        return "%s %s" %(self.nombre)  
+    
+    class Meta:
+        ordering = ['nombre']
+        verbose_name = 'Departamento'
+        verbose_name_plural = 'Departamentos'
+
 class Material(models.Model):
     nombre= models.CharField(max_length=100, verbose_name="Nombre")
+
+    def __str__(self)->str:
+        return "%s %s" %(self.nombre)  
+    
+    class Meta:
+        ordering = ['nombre']
+        verbose_name = 'Material'
+        verbose_name_plural = 'Materiales'
 
 class Proveedor(models.Model):
     nombreEmpresa= models.CharField(max_length=100, verbose_name="Nombre Empresa")
@@ -36,3 +60,10 @@ class Proveedor(models.Model):
     material= models.ForeignKey(Material, on_delete=models.CASCADE, verbose_name="Material",null=True) 
     departamento= models.ForeignKey(Departamento, on_delete=models.CASCADE, verbose_name="Departamento",null=True)
 
+    def __str__(self)->str:
+        return "%s %s" %(self.nombreEmpresa)  
+    
+    class Meta:
+        ordering = ['nombreEmpresa']
+        verbose_name = 'Proveedor'
+        verbose_name_plural = 'Proveedores'

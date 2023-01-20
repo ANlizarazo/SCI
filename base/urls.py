@@ -36,7 +36,7 @@ urlpatterns = [
     path('productos/',include('productos.urls')),
     path('compras/',include('compras.urls')),
     path('clientes/',include('clientes.urls')),
-    path('tecnicos/',include('tecnico.urls')),
+    path('tecnicos/',include('tecnicos.urls')),
     path('recuperacion/',formRecuperacion,name='recuperacion'),
     path('correoenviado/',correoEnviado,name='correoenviado'),
     path('nuevacontraseña/',nuevaContraseña,name='nuevacontraseña'),

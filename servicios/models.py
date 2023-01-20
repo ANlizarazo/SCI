@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.core.validators import MinValueValidator
-from tecnico.models import Tecnico
+from tecnicos.models import Tecnico
 
 # Create your models here.
 class TipoServicio(models.Model):
@@ -12,6 +12,14 @@ class TipoServicio(models.Model):
         INACTIVO='0', _('Inactivo')   
     estado=models.CharField(max_length=1, choices=Estado.choices, default=Estado.ACTIVO, verbose_name="Estado")
 
+    def __str__(self)->str:
+        return "%s %s" %(self.nombreServicio)  
+    
+    class Meta:
+        ordering = ['nombreServicio']
+        verbose_name = 'Tipo de Servicio'
+        verbose_name_plural = 'Tipos de Servicios'
+
 class Servicio(models.Model):
     observacion= models.CharField(max_length=200, verbose_name="Observaciones")
     fechaInicio= models.DateTimeField('%Y-%m-%d')
@@ -20,3 +28,11 @@ class Servicio(models.Model):
     observacionFinal= models.CharField(max_length=250, verbose_name="Orservación Final")
     tipoServicio= models.ForeignKey(TipoServicio, on_delete=models.CASCADE, verbose_name="Tipo de Servicio",null=True)
     tecnico= models.ForeignKey(Tecnico, on_delete=models.CASCADE, verbose_name="Técnico",null=True)
+
+    def __str__(self)->str:
+        return "%s %s" %(self.fechaInicio)  
+    
+    class Meta:
+        ordering = ['fechaInicio']
+        verbose_name = 'Servicio'
+        verbose_name_plural = 'Servicios'

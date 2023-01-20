@@ -48,7 +48,7 @@ INSTALLED_APPS = [
     'ventas',
     'compras',
     'servicios',
-    'tecnico',
+    'tecnicos',
 ]
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"

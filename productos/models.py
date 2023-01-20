@@ -7,6 +7,14 @@ class Categoria(models.Model):
     nombre = models.CharField(max_length=60, verbose_name="Nombre Categoría", blank=True) 
     descripcion = models.TextField(max_length=300, verbose_name="Descripción")
 
+    def __str__(self)->str:
+        return "%s %s" %(self.nombre)  
+    
+    class Meta:
+        ordering = ['nombre']
+        verbose_name = 'Categoria'
+        verbose_name_plural = 'Categorias'
+
 class Producto(models.Model):
     nombre = models.CharField(max_length=50, verbose_name="Nombre Producto") 
     precio = models.PositiveBigIntegerField(validators = [ MinValueValidator ( 1 )], verbose_name="Precio")   
@@ -20,3 +28,10 @@ class Producto(models.Model):
     porcentajeIva=models.DecimalField(validators=[MinValueValidator(0.0)],decimal_places=1,max_digits=2, verbose_name="Porcentaje IVA")
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE, verbose_name="Categoría",null=True)
 
+    def __str__(self)->str:
+        return "%s %s" %(self.nombre, self.categoria)  
+    
+    class Meta:
+        ordering = ['nombre']
+        verbose_name = 'Producto'
+        verbose_name_plural = 'Productos'
