@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from tecnicos.models import Tecnico
+from tecnico.models import Tecnico
 
 class TecnicoForm(ModelForm):
     """Form definition for Tecnico."""

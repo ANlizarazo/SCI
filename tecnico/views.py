@@ -1,7 +1,7 @@
 from django.shortcuts import redirect, render
-from tecnicos.forms import TecnicoForm
+from tecnico.forms import TecnicoForm
 
-from tecnicos.models import Tecnico
+from tecnico.models import Tecnico
 
 # Create your views here.
 
@@ -13,7 +13,7 @@ def tecnicos(request):
     context={
         "tecnicos":tecnicos
     }
-    return render(request,'tecnicos/tecnicos.html',context)
+    return render(request,'tecnico/tecnico.html',context)
 
 def tecnicos_crear(request):
 
@@ -32,4 +32,4 @@ def tecnicos_crear(request):
             'titulo':titulo,
             "form":form
     }
-    return render(request,'tecnicos/tecnicos-crear.html',context)
+    return render(request,'tecnico/tecnicos-crear.html',context)

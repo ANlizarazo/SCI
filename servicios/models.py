@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.core.validators import MinValueValidator
-from tecnicos.models import Tecnico
+from tecnico.models import Tecnico
 
 # Create your models here.
 class TipoServicio(models.Model):
