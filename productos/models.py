@@ -24,7 +24,7 @@ class Producto(models.Model):
         INACTIVO='0', _('Inactivo')
     estado=models.CharField(max_length=1, choices=Estado.choices, default=Estado.ACTIVO, verbose_name="Estado")
     stock = models.BigIntegerField(validators = [ MinValueValidator ( 0 )], verbose_name="Cantidad")
-    stockMinimo = models.SmallIntegerField(validators = [ MinValueValidator ( 5 )], verbose_name="Cantidad Mínima") 
+    stockMinimo = models.PositiveSmallIntegerField(validators = [ MinValueValidator ( 5 )], verbose_name="Cantidad Mínima") 
     porcentajeIva=models.DecimalField(validators=[MinValueValidator(0.0)],decimal_places=1,max_digits=2, verbose_name="Porcentaje IVA")
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE, verbose_name="Categoría",null=True)
 
