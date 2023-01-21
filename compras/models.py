@@ -16,7 +16,7 @@ class DetalleCompra(models.Model):
 
 
 class Compra(models.Model):
-    fecha= models.DateTimeField('%Y-%m-%d %H:%M:%s')
+    fecha= models.DateTimeField(verbose_name="Fecha Compra")
     detalleCompra = models.ForeignKey(DetalleCompra, on_delete=models.CASCADE, verbose_name="Detalle Compra",null=True)
     usuario=models.ForeignKey(Usuario, on_delete=models.CASCADE, verbose_name="Usuario",null=True)
 
