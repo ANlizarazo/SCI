@@ -1,7 +1,7 @@
-from django import forms
+from django.forms import ModelForm
 from ventas.models import Venta
 
-class VentaForm(forms.ModelForm):
+class VentaForm(ModelForm):
     """Form definition for Venta."""
 
     class Meta:
@@ -9,3 +9,8 @@ class VentaForm(forms.ModelForm):
 
         model = Venta
         fields = '__all__'
+
+class VentaUpdateForm(ModelForm):
+    class Meta:
+        model= Venta
+        exclude=['cliente']

@@ -38,11 +38,11 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <!-- Este botón llama a el modal -->
+                        <!-- Este botón llama el modal -->
                         <a class="btn btn-success float-right mr-0 mb-3"
                         data-bs-toggle="modal" data-bs-target="#staticBackdrop"> Crear Usuario</a>
                         <!-- Modal de crear usuario-->
-                        <div>{% include 'usuarios/Usuarios-crear.html' %}</div>
+                        <div>{% include 'usuarios/usuarios-crear.html' %}</div>
                         <!-- Datatable de usuarios -->
                         <table id="example1" class="table table-bordered
                             table-striped border-dark">
@@ -64,6 +64,7 @@
                             <tbody>
                                 {% for usuario in usuarios %}
                                 <tr>
+                                    <td class="align middle text-center"><img class="rounded-circle" src="{{ MEDIA_URL }}{{usuario.foto.url}}" alt="" width="50" height="50"></td>
                                     <td class="border-dark">{{usuario.nombres}}</td>
                                     <td class="border-dark">{{usuario.apellidos}}</td>
                                     <td class="border-dark">{{usuario.telefono}}</td>

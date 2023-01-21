@@ -41,17 +41,29 @@
                             table-striped border-dark">
                             <thead class="bg-success">
                                 <tr>
-                                    <th class="border-dark">Tipo de Servicio</th>
-                                    <th class="border-dark">Técnico</th>
                                     <th class="border-dark">Observación</th>
                                     <th class="border-dark">Fecha de Inicio</th>
-                                    <th class="border-dark">Precio</th>
                                     <th class="border-dark">Fecha de Entrega</th>
+                                    <th class="border-dark">Precio</th>
                                     <th class="border-dark">Observación Final</th>
+                                    <th class="border-dark">Tipo de Servicio</th>
+                                    <th class="border-dark">Técnico</th>
                                     <th class="border-dark">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                {% for servicio in servicios %}
+                                <tr>
+                                    <td class="border-dark">{{servicio.observacion}}</td>
+                                    <td class="border-dark">{{servicio.fechaInicio}}</td>
+                                    <td class="border-dark">{{servicio.fechaEntrega}}</td>
+                                    <td class="border-dark">{{servicio.precio}}</td>
+                                    <td class="border-dark">{{servicio.observacionFinal}}</td>
+                                    <td class="border-dark">{{servicio.tipoServicio}}</td>
+                                    <td class="border-dark">{{servicio.tecnico}}</td>
+                                    <th class="border-dark">{{servicio.acciones}}</th>
+                                </tr>
+                                {% endfor %}
                                 <tr>
                                     <td class="border-dark">Trident</td>
                                     <td class="border-dark">Internet</td>

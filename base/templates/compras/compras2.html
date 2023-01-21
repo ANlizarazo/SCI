@@ -42,15 +42,25 @@
                             table-striped border-dark">
                             <thead class="bg-success">
                                 <tr>
-                                    <th class="border-dark">Detalle Compra</th>
                                     <th class="border-dark">Fecha</th>
+                                    <th class="border-dark">Detalle Compra</th>
+                                    <th class="border-dark">Usuario</th>
                                     <th class="border-dark">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                {% for compra in compras %}
+                                <tr>
+                                    <td class="border-dark">{{compra.fecha}}</td>
+                                    <td class="border-dark">{{compra.detalleCompra}}</td>
+                                    <td class="border-dark">{{Compra.usuario}</td>
+                                    <th class="border-dark">{{compra.acciones}}</th>
+                                </tr>
+                                {% endfor %}
                                 <tr>
                                     <td class="border-dark">Trident</td>
                                     <td class="border-dark">Internet</td>
+                                    <td class="text-black border-dark">Win 95+</td>
                                     <td class="border-dark">
                                         <a class="btn btn-success" href="{%
                                             url
@@ -70,6 +80,7 @@
                                 <tr>
                                     <td class="text-black border-dark">Trident</td>
                                     <td class="text-black border-dark">Internet</td>
+                                    <td class="text-black border-dark">Win 95+</td>
                                     <td class="border-dark">
                                         <a class="btn btn-success" href="{%
                                             url
@@ -89,6 +100,7 @@
                                 <tr>
                                     <td class="border-dark">Gecko</td>
                                     <td class="border-dark">Firefox 2.0</td>
+                                    <td class="text-black border-dark">Win 95+</td>
                                     <td class="border-dark">
                                         <a class="btn btn-success" href="{%
                                             url

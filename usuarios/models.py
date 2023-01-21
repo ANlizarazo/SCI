@@ -8,7 +8,7 @@ from django.core.validators import MinValueValidator
 class Usuario(models.Model):
     nombres=models.CharField(max_length=50, verbose_name="Nombres")
     apellidos=models.CharField(max_length=50, verbose_name="Apellidos")
-    telefono=models.CharField(max_length=20, verbose_name="Teléfono")
+    telefono=models.BigIntegerField(validators=[MinValueValidator(0)], verbose_name="Teléfono")
     email=models.CharField(max_length=100, verbose_name="Correo Electrónico")
     direccion=models.CharField(max_length=70, verbose_name="Dirección")
     class TipoDocumento(models.TextChoices):
@@ -26,10 +26,17 @@ class Usuario(models.Model):
     class Estado(models.TextChoices):
         ACTIVO='1', _('Activo')
         INACTIVO='0', _('Inactivo')
-    estado=models.CharField(max_length=1, choices=Estado.choices, default=Estado.ACTIVO, verbose_name="Estado")
     tipoDocumento=models.CharField(max_length=4, choices=TipoDocumento.choices, verbose_name="Tipo de Documento")
+    numDocumento=models.CharField(max_length=20, verbose_name="Número de Documento")
     genero=models.CharField(max_length=3, choices=Genero.choices, verbose_name="Género")
     rol=models.CharField(max_length=5, choices=Rol.choices, verbose_name="Rol")
-    numDocumento=models.CharField(max_length=20, verbose_name="Número de Documento")
-    foto=models.ImageField(upload_to='images/usuarios',blank=True, default='images/usuarios/default.png')
+    estado=models.CharField(max_length=1, choices=Estado.choices, default=Estado.ACTIVO, verbose_name="Estado")
+    foto=models.ImageField(upload_to='images/usuarios', blank=True, default='\static\img\perfil.jpg')
 
+    def __str__(self)->str:
+        return "%s %s" %(self.nombres, self.apellidos, self.numDocumento)  
+    
+    class Meta:
+        ordering = ['nombres']
+        verbose_name = 'Usuario'
+        verbose_name_plural = 'Usuarios'

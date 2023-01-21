@@ -29,4 +29,4 @@ def compras_crear(request):
         'titulo':titulo,
         "form":form
     }
-    return render(request,'compras/compras_crear.html',context)
+    return render(request,'compras/compras-crear.html',context)
