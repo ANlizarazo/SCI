@@ -55,6 +55,19 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                {% for tecnico in tecnico %}
+                                <tr>
+                                    <td class="border-dark">{{tecnico.nombres}}</td>
+                                    <td class="border-dark">{{tecnico.apellidos}}</td>
+                                    <td class="border-dark">{{tecnico.telefono}}</td>
+                                    <td class="border-dark">{{tecnico.genero}}</td>
+                                    <td class="border-dark">{{tecnico.tipoDocumento}}</td>
+                                    <td class="border-dark">{{tecnico.numeroDocumento}}</td>
+                                    <td class="border-dark">{{tecnico.estado}}</td>
+                                    <td class="border-dark">{{tecnico.ciudad}}</td>
+                                    <th class="border-dark">{{tecnico.acciones}}</th>
+                                </tr>
+                                {% endfor %}
                                 <tr>
                                     <td class="text-black border-dark">Trident</td>
                                     <td class="text-black border-dark">Internet</td>

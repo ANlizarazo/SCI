@@ -27,6 +27,7 @@ class Producto(models.Model):
     stockMinimo = models.PositiveSmallIntegerField(validators = [ MinValueValidator ( 5 )], verbose_name="Cantidad Mínima") 
     porcentajeIva=models.DecimalField(validators=[MinValueValidator(0.0)],decimal_places=1,max_digits=2, verbose_name="Porcentaje IVA")
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE, verbose_name="Categoría",null=True)
+    foto=models.ImageField(upload_to='images/productos', blank=True)
 
     def __str__(self)->str:
         return "%s %s" %(self.nombre, self.categoria)  

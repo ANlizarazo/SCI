@@ -52,6 +52,18 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                {% for servicio in servicios %}
+                                <tr>
+                                    <td class="border-dark">{{servicio.observacion}}</td>
+                                    <td class="border-dark">{{servicio.fechaInicio}}</td>
+                                    <td class="border-dark">{{servicio.fechaEntrega}}</td>
+                                    <td class="border-dark">{{servicio.precio}}</td>
+                                    <td class="border-dark">{{servicio.observacionFinal}}</td>
+                                    <td class="border-dark">{{servicio.tipoServicio}}</td>
+                                    <td class="border-dark">{{servicio.tecnico}}</td>
+                                    <th class="border-dark">{{servicio.acciones}}</th>
+                                </tr>
+                                {% endfor %}
                                 <tr>
                                     <td class="border-dark">Trident</td>
                                     <td class="border-dark">Internet</td>
