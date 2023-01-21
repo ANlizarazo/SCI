@@ -34,7 +34,7 @@ class Usuario(models.Model):
     foto=models.ImageField(upload_to='images/usuarios', blank=True, default='\static\img\perfil.jpg')
 
     def __str__(self)->str:
-        return "%s %s" %(self.nombres, self.apellidos, self.numDocumento)  
+        return "%s %s %s" %(self.nombres, self.apellidos, self.numDocumento)  
     
     class Meta:
         ordering = ['nombres']

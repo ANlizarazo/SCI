@@ -30,7 +30,7 @@ class Servicio(models.Model):
     tecnico= models.ForeignKey(Tecnico, on_delete=models.CASCADE, verbose_name="Técnico",null=True)
 
     def __str__(self)->str:
-        return "%s %s" %(self.fechaInicio)  
+        return "%s" %(self.fechaInicio)  
     
     class Meta:
         ordering = ['fechaInicio']
