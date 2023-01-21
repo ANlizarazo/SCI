@@ -4,6 +4,7 @@ from django.core.validators import MinValueValidator
 from clientes.models import Cliente
 from productos.models import Producto
 from usuarios.models import Usuario
+from servicios.models import Servicio
 
 # Create your models here.
 class DetalleVenta(models.Model):
@@ -24,6 +25,7 @@ class Venta(models.Model):
     detalleVenta= models.ForeignKey(DetalleVenta, on_delete=models.CASCADE, verbose_name="Detalle Venta",null=True)
     cliente=models.ForeignKey(Cliente, on_delete=models.CASCADE, verbose_name="Cliente",null=True)
     usuario=models.ForeignKey(Usuario, on_delete=models.CASCADE, verbose_name="Usuario",null=True)
+    servicio=models.ForeignKey(Servicio, on_delete=models.CASCADE, verbose_name="Servicio",null=True)
 
     def __str__(self)->str:
         return "%s %s" %(self.fecha)  
