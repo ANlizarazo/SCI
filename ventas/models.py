@@ -28,7 +28,7 @@ class Venta(models.Model):
     servicio=models.ForeignKey(Servicio, on_delete=models.CASCADE, verbose_name="Servicio",null=True)
 
     def __str__(self)->str:
-        return "%s %s" %(self.fecha)  
+        return "%s" %(self.fecha)  
     
     class Meta:
         ordering = ['fecha']

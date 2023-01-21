@@ -48,6 +48,7 @@
                             table-striped border-dark">
                             <thead class="bg-success">
                                 <tr>
+                                    <th class="border-dark">Foto</th>
                                     <th class="border-dark">Nombres</th>
                                     <th class="border-dark">Apellidos</th>
                                     <th class="border-dark">Teléfono</th>
@@ -57,7 +58,6 @@
                                     <th class="border-dark">Genero</th>
                                     <th class="border-dark">Rol</th>
                                     <th class="border-dark">Número de documento</th>
-                                    <th class="border-dark">Foto</th>
                                     <th class="border-dark">Acciones</th>
                                 </tr>
                             </thead>
@@ -65,6 +65,7 @@
                                 {% for usuario in usuarios %}
                                 <tr>
                                     <td class="align middle text-center"><img class="rounded-circle" src="{{ MEDIA_URL }}{{usuario.foto.url}}" alt="" width="50" height="50"></td>
+                                    <th class="border-dark">{{usuario.foto}}</th>
                                     <td class="border-dark">{{usuario.nombres}}</td>
                                     <td class="border-dark">{{usuario.apellidos}}</td>
                                     <td class="border-dark">{{usuario.telefono}}</td>
@@ -74,7 +75,6 @@
                                     <th class="border-dark">{{usuario.genero}}</th>
                                     <th class="border-dark">{{usuario.rol}}</th>
                                     <th class="border-dark">{{usuario.numDocumento}}</th>
-                                    <th class="border-dark">{{usuario.foto}}</th>
                                     <th class="border-dark">{{usuario.acciones}}</th>
                                     <th>
                                         <a class="btn btn-primary" href="{%
