@@ -30,6 +30,9 @@ class Producto(models.Model):
 
     def __str__(self)->str:
         return "%s %s" %(self.nombre, self.categoria)  
+            
+    def __str__(self):
+        return "%s | %s"%(self.stock,self.stockMinimo)
     
     class Meta:
         ordering = ['nombre']
