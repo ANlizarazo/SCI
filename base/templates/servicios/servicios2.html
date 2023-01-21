@@ -52,6 +52,20 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                {% for servicio in servicios %}
+                                <tr>
+                                    <td class="border-dark">{{proveedor.nombreEmpresa}}</td>
+                                    <td class="border-dark">{{proveedor.email}}</td>
+                                    <td class="border-dark">{{proveedor.telefono}}</td>
+                                    <td class="border-dark">{{proveedor.direccion}}</td>
+                                    <td class="border-dark">{{proveedor.modoPago}}</td>
+                                    <td class="border-dark">{{proveedor.tiempoEntrega}}</td>
+                                    <td class="border-dark">{{proveedor.transporteIncluido}}</td>
+                                    <td class="border-dark">{{proveedor.material}}</td>
+                                    <td class="border-dark">{{proveedor.departamento}}</td>
+                                    <th class="border-dark">{{proveedor.acciones}}</th>
+                                </tr>
+                                {% endfor %}
                                 <tr>
                                     <td class="border-dark">Trident</td>
                                     <td class="border-dark">Internet</td>
