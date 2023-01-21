@@ -42,7 +42,7 @@
                             table-striped border-dark">
                             <thead class="bg-success">
                                 <tr>
-                                    <th class="border-dark">Empresa</th>
+                                    <th class="border-dark">Nombre Empresa</th>
                                     <th class="border-dark">NIT</th>
                                     <th class="border-dark">Teléfono</th>
                                     <th class="border-dark">Dirección</th>
@@ -52,6 +52,17 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                {% for cliente in clientes %}
+                                <tr>
+                                    <td class="border-dark">{{cliente.nombreEmpresa}}</td>
+                                    <td class="border-dark">{{cliente.nit}}</td>
+                                    <td class="border-dark">{{cliente.telefono}}</td>
+                                    <td class="border-dark">{{cliente.direccion}</td>
+                                    <td class="border-dark">{{cliente.email}}</td>
+                                    <th class="border-dark">{{cliente.ciudad}}</th>
+                                    <th class="border-dark">{{cliente.acciones}}</th>
+                                </tr>
+                                {% endfor %}
                                 <tr>
                                     <td class="border-dark">Trident</td>
                                     <td class="border-dark">Internet</td>
