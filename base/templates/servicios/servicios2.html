@@ -54,16 +54,14 @@
                             <tbody>
                                 {% for servicio in servicios %}
                                 <tr>
-                                    <td class="border-dark">{{proveedor.nombreEmpresa}}</td>
-                                    <td class="border-dark">{{proveedor.email}}</td>
-                                    <td class="border-dark">{{proveedor.telefono}}</td>
-                                    <td class="border-dark">{{proveedor.direccion}}</td>
-                                    <td class="border-dark">{{proveedor.modoPago}}</td>
-                                    <td class="border-dark">{{proveedor.tiempoEntrega}}</td>
-                                    <td class="border-dark">{{proveedor.transporteIncluido}}</td>
-                                    <td class="border-dark">{{proveedor.material}}</td>
-                                    <td class="border-dark">{{proveedor.departamento}}</td>
-                                    <th class="border-dark">{{proveedor.acciones}}</th>
+                                    <td class="border-dark">{{servicio.observacion}}</td>
+                                    <td class="border-dark">{{servicio.fechaInicio}}</td>
+                                    <td class="border-dark">{{servicio.fechaEntrega}}</td>
+                                    <td class="border-dark">{{servicio.precio}}</td>
+                                    <td class="border-dark">{{servicio.observacionFinal}}</td>
+                                    <td class="border-dark">{{servicio.tipoServicio}}</td>
+                                    <td class="border-dark">{{servicio.tecnico}}</td>
+                                    <th class="border-dark">{{servicio.acciones}}</th>
                                 </tr>
                                 {% endfor %}
                                 <tr>
