@@ -19,6 +19,9 @@ from django.urls import path, include
 
 from base.views import cambioExitoso, correoEnviado, formRecuperacion, inicio, login, error404, error500, nuevaContraseña, perfil
 
+
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',login,name='login'),

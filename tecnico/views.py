@@ -14,3 +14,22 @@ def tecnicos(request):
         "tecnicos":tecnicos
     }
     return render(request,'tecnico/tecnico.html',context)
+
+def tecnicos_crear(request):
+
+    titulo="Tecnicos - Crear"
+    if request.method == "POST":
+        form=TecnicoForm(request.POST)
+        if form.is_valid():
+            form.save()
+            print("El técnico se guardó correctamente")
+            return redirect('tecnicos')
+        else:
+            print("El técnico NO se guardó correctamente")
+    else:
+        form=TecnicoForm()
+    context={
+            'titulo':titulo,
+            "form":form
+    }
+    return render(request,'tecnico/tecnicos-crear.html',context)

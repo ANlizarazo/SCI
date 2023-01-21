@@ -5,6 +5,15 @@ from django.core.validators import MinValueValidator
 # Create your models here.
 class Ciudad(models.Model):
     nombre= models.CharField(max_length=60, verbose_name="Nombre")
+
+    def __str__(self)->str:
+        return "%s %s" %(self.nombre)  
+    
+    class Meta:
+        ordering = ['nombre']
+        verbose_name = 'Ciudad'
+        verbose_name_plural = 'Ciudades'
+
 class Tecnico(models.Model):
     nombres= models.CharField(max_length=50, verbose_name="Nombres")
     apellidos= models.CharField(max_length=50, verbose_name="Apellidos")
@@ -27,3 +36,10 @@ class Tecnico(models.Model):
     estado=models.CharField(max_length=1, choices=Estado.choices, default=Estado.ACTIVO, verbose_name="Estado")
     ciudad = models.ForeignKey(Ciudad, on_delete=models.CASCADE, verbose_name="Ciudad",null=True)
     
+    def __str__(self)->str:
+        return "%s %s" %(self.nombres, self.apellidos, self.numDocumento)  
+    
+    class Meta:
+        ordering = ['nombres']
+        verbose_name = 'Técnico'
+        verbose_name_plural = 'Técnicos'

@@ -1,7 +1,7 @@
-from django import forms
+from django.forms import ModelForm
 from clientes.models import Cliente
 
-class ClienteForm(forms.ModelForm):
+class ClienteForm(ModelForm):
     """Form definition for Cliente."""
 
     class Meta:
