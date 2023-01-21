@@ -22,8 +22,8 @@ class TipoServicio(models.Model):
 
 class Servicio(models.Model):
     observacion= models.CharField(max_length=200, verbose_name="Observaciones")
-    fechaInicio= models.DateTimeField('%Y-%m-%d')
-    fechaEntrega= models.DateTimeField('%Y-%m-%d')   
+    fechaInicio= models.DateTimeField(verbose_name="Fecha de Inicio")
+    fechaEntrega= models.DateTimeField(verbose_name="Fecha de Entrega")
     precio= models.PositiveBigIntegerField(validators=[MinValueValidator(1)], verbose_name="Precio")
     observacionFinal= models.CharField(max_length=250, verbose_name="Orservación Final")
     tipoServicio= models.ForeignKey(TipoServicio, on_delete=models.CASCADE, verbose_name="Tipo de Servicio",null=True)
