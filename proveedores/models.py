@@ -8,7 +8,7 @@ class Ciudad(models.Model):
     nombre= models.CharField(max_length=60, verbose_name="Nombre")
 
     def __str__(self)->str:
-        return "%s %s" %(self.nombre)  
+        return "%s" %(self.nombre)  
     
     class Meta:
         ordering = ['nombre']
@@ -20,7 +20,7 @@ class Departamento(models.Model):
     ciudad = models.ForeignKey(Ciudad, on_delete=models.CASCADE, verbose_name="Ciudad",null=True)
 
     def __str__(self)->str:
-        return "%s %s" %(self.nombre)  
+        return "%s" %(self.nombre)  
     
     class Meta:
         ordering = ['nombre']
@@ -31,7 +31,7 @@ class Material(models.Model):
     nombre= models.CharField(max_length=100, verbose_name="Nombre")
 
     def __str__(self)->str:
-        return "%s %s" %(self.nombre)  
+        return "%s" %(self.nombre)  
     
     class Meta:
         ordering = ['nombre']
@@ -61,7 +61,7 @@ class Proveedor(models.Model):
     departamento= models.ForeignKey(Departamento, on_delete=models.CASCADE, verbose_name="Departamento",null=True)
 
     def __str__(self)->str:
-        return "%s %s" %(self.nombreEmpresa)  
+        return "%s" %(self.nombreEmpresa)  
     
     class Meta:
         ordering = ['nombreEmpresa']

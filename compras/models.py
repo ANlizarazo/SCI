@@ -21,7 +21,7 @@ class Compra(models.Model):
     usuario=models.ForeignKey(Usuario, on_delete=models.CASCADE, verbose_name="Usuario",null=True)
 
     def __str__(self)->str:
-        return "%s %s" %(self.fecha)  
+        return "%s" %(self.fecha)  
 
     class Meta:
         ordering = ['fecha']

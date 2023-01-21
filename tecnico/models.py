@@ -7,7 +7,7 @@ class Ciudad(models.Model):
     nombre= models.CharField(max_length=60, verbose_name="Nombre")
 
     def __str__(self)->str:
-        return "%s %s" %(self.nombre)  
+        return "%s" %(self.nombre)  
     
     class Meta:
         ordering = ['nombre']
@@ -37,7 +37,7 @@ class Tecnico(models.Model):
     ciudad = models.ForeignKey(Ciudad, on_delete=models.CASCADE, verbose_name="Ciudad",null=True)
     
     def __str__(self)->str:
-        return "%s %s" %(self.nombres, self.apellidos, self.numDocumento)  
+        return "%s %s %s" %(self.nombres, self.apellidos, self.numDocumento)  
     
     class Meta:
         ordering = ['nombres']
