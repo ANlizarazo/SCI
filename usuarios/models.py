@@ -8,7 +8,7 @@ from django.core.validators import MinValueValidator
 class Usuario(models.Model):
     nombres=models.CharField(max_length=50, verbose_name="Nombres")
     apellidos=models.CharField(max_length=50, verbose_name="Apellidos")
-    telefono=models.CharField(max_length=20, verbose_name="Teléfono")
+    telefono=models.BigIntegerField(validators=[MinValueValidator(0)], verbose_name="Teléfono")
     email=models.CharField(max_length=100, verbose_name="Correo Electrónico")
     direccion=models.CharField(max_length=70, verbose_name="Dirección")
     class TipoDocumento(models.TextChoices):

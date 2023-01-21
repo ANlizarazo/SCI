@@ -17,7 +17,7 @@ class Ciudad(models.Model):
 class Tecnico(models.Model):
     nombres= models.CharField(max_length=50, verbose_name="Nombres")
     apellidos= models.CharField(max_length=50, verbose_name="Apellidos")
-    telefono=models.CharField(max_length=20, verbose_name="Teléfono")  
+    telefono= models.BigIntegerField(validators=[MinValueValidator(0)], verbose_name="Teléfono")  
     class Genero(models.TextChoices):
         FE='F', _('Femenino')
         MA='M', _('Masculino')
