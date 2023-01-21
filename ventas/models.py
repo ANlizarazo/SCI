@@ -18,7 +18,7 @@ class DetalleVenta(models.Model):
 
 class Venta(models.Model):
     subTotalVenta= models.PositiveBigIntegerField(validators = [ MinValueValidator ( 0 )], verbose_name="Subtotal Venta")
-    fecha= models.DateTimeField('%Y-%m-%d %H:%M:%s')
+    fecha= models.DateTimeField(verbose_name="Fecha Venta")
     porcentajeIva=models.DecimalField(validators=[MinValueValidator(0.0)],decimal_places=1,max_digits=20, verbose_name="Porcentaje IVA")
     totalVenta= models.PositiveBigIntegerField(validators = [ MinValueValidator ( 0 )], verbose_name="Total Venta")
     detalleVenta= models.ForeignKey(DetalleVenta, on_delete=models.CASCADE, verbose_name="Detalle Venta",null=True)
