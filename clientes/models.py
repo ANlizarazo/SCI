@@ -7,7 +7,7 @@ class Ciudad(models.Model):
     nombre= models.CharField(max_length=60, verbose_name="Ciudad")
     
     def __str__(self)->str:
-        return "%s %s" %(self.nombre)  
+        return "%s" %(self.nombre)  
     
     class Meta:
         ordering = ['nombre']
