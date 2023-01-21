@@ -43,16 +43,32 @@
                             table-striped border-dark"> {% load humanize %}
                             <thead class="bg-success">
                                 <tr>
-                                    <th class="border-dark">Nombre Producto</th>
+                                    <th class="border-dark">Nombre</th>
                                     <th class="border-dark">Precio</th>
                                     <th class="border-dark">Especificaciones</th>
-                                    <th class="border-dark">Estado</th>
-                                    <th class="border-dark">Stock</th>
-                                    <th class="border-dark">Stock Mínimo</th>
+                                    <th class="border-dark">Cantidad</th>
+                                    <th class="border-dark">Cantidad Minimo</th>
                                     <th class="border-dark">Porcentaje IVA</th>
                                     <th class="border-dark">Categoría</th>
+                                    <th class="border-dark">Foto</th>
                                     <th class="border-dark">Acciones</th>
                                 </tr>
+                            </thead>
+                            <tbody>
+                                {% for producto in productos %}
+                                <tr>
+                                    <td class="align middle text-center"><img class="rounded-circle" src="{{ MEDIA_URL }}{{usuario.foto.url}}" alt="" width="50" height="50"></td>
+                                    <td class="border-dark">{{producto.nombre}}</td>
+                                    <td class="border-dark">{{producto.precio}}</td>
+                                    <td class="border-dark">{{producto.especificaciones}}</td>
+                                    <td class="border-dark">{{producto.stock}}</td>
+                                    <td class="border-dark">{{producto.stockMinimo}}</td>
+                                    <th class="border-dark">{{producto.porcentajeIva}}</th>
+                                    <th class="border-dark">{{producto.categoria}}</th>
+                                    <th class="border-dark">{{producto.foto}}</th>
+                                    <th class="border-dark">{{producto.acciones}}</th>
+                                </tr>
+                                {% endfor %}
                             </thead>
                             <tbody>
                                 <tr>
