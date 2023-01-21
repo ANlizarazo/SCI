@@ -10,7 +10,4 @@ class ClienteForm(ModelForm):
         model = Cliente
         fields = '__all__'
 
-class CiudadForm(ModelForm):
-    class Meta:
-        model = Ciudad
-        fields = '__all__'
+
