@@ -2,18 +2,10 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.core.validators import MinValueValidator
 
+from clientes.models import Ciudad
+
 
 # Create your models here.
-class Ciudad(models.Model):
-    nombre= models.CharField(max_length=60, verbose_name="Nombre")
-
-    def __str__(self)->str:
-        return "%s" %(self.nombre)  
-    
-    class Meta:
-        ordering = ['nombre']
-        verbose_name = 'Ciudad'
-        verbose_name_plural = 'Ciudades'
 
 class Departamento(models.Model):
     nombre= models.CharField(max_length=60, verbose_name="Nombre")

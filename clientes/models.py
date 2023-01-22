@@ -4,7 +4,7 @@ from django.utils.translation import gettext_lazy as _
 # Create your models here.
 
 class Ciudad(models.Model):
-    nombre= models.CharField(max_length=60, verbose_name="Ciudad")
+    nombre= models.CharField(max_length=60, unique=True, verbose_name="Ciudad")
     
     def __str__(self)->str:
         return "%s" %(self.nombre)  

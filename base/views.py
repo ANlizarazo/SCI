@@ -12,28 +12,28 @@ def formRecuperacion(request):
     context={
         'titulo':titulo
     }
-    return render(request,'registro/formrecuperacion.html',context)
+    return render(request,'registration/formrecuperacion.html',context)
 
 def correoEnviado(request):
     titulo="Correo de Recuperación Enviado"
     context={
         'titulo':titulo
     }
-    return render(request,'registro/correoenviado.html',context)
+    return render(request,'registration/correoenviado.html',context)
 
 def nuevaContraseña(request):
     titulo="Crea tu Nueva Contraseña"
     context={
         'titulo':titulo
     }
-    return render(request,'registro/nuevacontraseña.html',context)
+    return render(request,'registration/nuevacontraseña.html',context)
 
 def cambioExitoso(request):
     titulo="Contraseña Cambiada Correctamente"
     context={
         'titulo':titulo
     }
-    return render(request,'registro/cambioexitoso.html',context)
+    return render(request,'registration/cambioexitoso.html',context)
 
 def inicio(request):
     titulo="Página Principal"
