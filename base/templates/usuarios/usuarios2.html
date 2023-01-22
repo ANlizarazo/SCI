@@ -40,7 +40,7 @@
                     <div class="card-body">
                         <!-- Este botón llama el modal -->
                         <a class="btn btn-success float-right mr-0 mb-3"
-                        data-bs-toggle="modal" data-bs-target="#staticBackdrop"> Crear Usuario</a>
+                        data-bs-toggle="modal" data-bs-target="#crearUsuario"> Crear Usuario</a>
                         <!-- Modal de crear usuario-->
                         <div>{% include 'usuarios/usuarios-crear.html' %}</div>
                         <!-- Datatable de usuarios -->
@@ -76,6 +76,12 @@
                                     <th class="border-dark">{{usuario.rol}}</th>
                                     <th class="border-dark">{{usuario.numDocumento}}</th>
                                     <th class="border-dark">{{usuario.acciones}}</th>
+<<<<<<< HEAD
+                                    <th>
+                                        
+                                    </th>
+=======
+>>>>>>> main
                                 </tr>
                                 {% endfor %}
                                 <tr>
@@ -90,8 +96,15 @@
                                     <td class="text-black border-dark">5</td>
                                     <td class="text-black border-dark">C</td>
                                     <td class="border-dark">
+<<<<<<< HEAD
+                                        <a class="btn btn-success" data-bs-toggle="modal" data-bs-target="#verUsuario">
+                                        <i class="fas fa-eye"></i></a><c>{% include 'usuarios/usuarios-ver.html' %}</c>
+                                        <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modificarUsuario">
+                                        <i class="fas fa-edit"></i></a><c>{% include 'usuarios/usuarios-modificar.html' %}</c>
+=======
                                         <a class="btn btn-success"><i class="fas fa-eye"></i></a>
                                         <a class="btn btn-primary"><i class="fas fa-edit"></i></a>
+>>>>>>> main
                                         <a class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
                                     </td>
                                 </tr>

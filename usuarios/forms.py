@@ -2,7 +2,6 @@ from tkinter import Widget
 from django.forms import ModelForm, widgets
 from tecnico.models import Tecnico
 from usuarios.models import Usuario
-
 class UsuarioForm(ModelForm):
     """Form definition for Usuario."""
 
@@ -14,3 +13,11 @@ class UsuarioForm(ModelForm):
         widgets={
             'fecha_nacimiento': widgets.DateInput(attrs={'type':'date'})
     }        
+<<<<<<< HEAD
+
+class UsuarioUpdateForm(ModelForm):
+    class Meta:
+        model= Usuario
+        exclude=['usuario']
+=======
+>>>>>>> main
