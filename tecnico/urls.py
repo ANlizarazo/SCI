@@ -3,6 +3,6 @@ from tecnico.views import tecnicos,tecnicos_crear, tecnicos_modificar, tecnicos_
 urlpatterns = [
     path('',tecnicos,name="tecnicos"),
     path('tecnico-crear/',tecnicos_crear,name="tecnico-crear"),
-    path('tecnico-ver/<int:pk>/',tecnicos_ver,name="tecnico-ver"),
-    path('tecnico-modificar/<int:pk>/',tecnicos_modificar,name="tecnico-modificar"),
+    path('tecnico-ver/',tecnicos_ver,name="tecnico-ver"),
+    path('tecnico-modificar/',tecnicos_modificar,name="tecnico-modificar"),
 ]
