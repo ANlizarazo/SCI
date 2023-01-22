@@ -9,3 +9,8 @@ class TecnicoForm(ModelForm):
 
         model = Tecnico
         exclude=['estado']
+
+class TecnicoUpdateForm(ModelForm):
+    class Meta:
+        model= Tecnico
+        exclude=['numDocumento']
