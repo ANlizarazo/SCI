@@ -23,7 +23,7 @@ class Cliente(models.Model):
     ciudad = models.ForeignKey(Ciudad, on_delete=models.CASCADE, verbose_name="Ciudad",null=True)
     
     def __str__(self)->str:
-        return "%s %s" %(self.nombreEmpresa, self.nit)  
+        return "%s" %(self.nombreEmpresa)  
 
     class Meta:
         ordering = ['nombreEmpresa']

@@ -37,7 +37,7 @@ class Tecnico(models.Model):
     ciudad = models.ForeignKey(Ciudad, on_delete=models.CASCADE, verbose_name="Ciudad",null=True)
     
     def __str__(self)->str:
-        return "%s %s %s" %(self.nombres, self.apellidos, self.numDocumento)  
+        return "%s %s" %(self.nombres, self.apellidos)  
     
     class Meta:
         ordering = ['nombres']
