@@ -17,6 +17,8 @@ from operator import index
 from django.contrib import admin
 from django.urls import path, include
 
+from django.contrib.auth import views as auth_views
+
 from base.views import cambioExitoso, correoEnviado, formRecuperacion, inicio, login, error404, error500, nuevaContraseña, perfil
 
 
@@ -24,7 +26,13 @@ from base.views import cambioExitoso, correoEnviado, formRecuperacion, inicio, l
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',login,name='login'),
+    path('logout/',logout_user,name="logout"),
+    path('',auth_views.LoginView.as_view(), name='login'),
+    path('recuperacion/',formRecuperacion,name='recuperacion'),
+    path('correoenviado/',correoEnviado,name='correoenviado'),
+    path('nuevacontraseña/',nuevaContraseña,name='nuevacontraseña'),
+    path('cambioexitoso/',cambioExitoso,name='cambioexitoso'),
+
     path('inicio/',inicio,name='inicio'),
     path('error404/',error404,name='error404'),    
     path('error500/',error500,name='error500'),
@@ -36,9 +44,6 @@ urlpatterns = [
     path('productos/',include('productos.urls')),
     path('compras/',include('compras.urls')),
     path('clientes/',include('clientes.urls')),
-    path('tecnicos/',include('tecnico.urls')),
-    path('recuperacion/',formRecuperacion,name='recuperacion'),
-    path('correoenviado/',correoEnviado,name='correoenviado'),
-    path('nuevacontraseña/',nuevaContraseña,name='nuevacontraseña'),
-    path('cambioexitoso/',cambioExitoso,name='cambioexitoso')
+    path('tecnicos/',include('tecnico.urls'))
+    
 ]

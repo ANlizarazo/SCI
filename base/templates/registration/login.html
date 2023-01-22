@@ -1,0 +1,232 @@
+{% load static %}
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% bootstrap_messages %}
+
+
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/static/css/estilos.css">
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="/static/img/logoMallas.ico" type="image/x-icon">
+        <title>MUNDIAL MALLAS Y ESTRUCTURAS </title>
+    </head>
+    <body>
+        <main>
+            <div class="container-fluid">
+                <header class="d-flex flex-wrap py-3 border-bottom" style="background-color:#343a40;">
+                    <div class="d-flex justify-content-between w-100"
+                        id="logoEmpresa">
+                        <div class="w-50 mr-2">
+                            <img src="/static/img/logoMallas.ico"
+                                alt="LogoEmpresa" class="logoEmpresa">
+                        </div>
+                        <div class="container-fluid row justify-content-center
+                            align-items-center">
+                            <div id=titulo class="col-auto text-center fs-1
+                                fw-light">
+                                MUNDIAL DE MALLAS Y ESTRUCTURAS INGENIERIA S.A.S
+                            </div>
+                        </div>
+                    </div>
+                </header>
+            </div>
+            <div id="formulario" class="container">
+                <div>
+                    <button type="button" class="btn bg-success">
+                        <a class="acceso text-white text-decoration-none">Acceso
+                            a Nuestros Empleados</a>
+                    </button>
+                </div>
+                        <div>
+                            {% csrf_token %}
+                    <div>
+                        <!-- espacio para el formulario -->
+                        <div id="Inicio de Sesion">
+                            <div class="d-flex flex-column min-vh-100
+                                justify-content-center align-items-center">
+                                <div class="card p-4 text-light bg-success mb-5">
+                                    <div class="card-header">
+                                        <h3>Iniciar sesión</h3>
+                                    </div>
+                                    <div class="card-body w-100">
+                                        <form name="login" action="" method="post">
+                                            <div class="input-group form-group
+                                                mt-3">
+                                                <div class="bg-dark rounded-start">
+                                                    <span class="m-3"><i class="fas
+                                                            fa-user mt-2"></i></span>
+                                                </div>
+                                                <input type="text"
+                                                    class="form-control"
+                                                    placeholder="Nombre de usuario"
+                                                    name="username">
+                                            </div>
+                                            <div class="input-group form-group
+                                                mt-3">
+                                                <div class="bg-dark rounded-start">
+                                                    <span class="m-3"><i class="fas
+                                                            fa-key mt-2"></i></span>
+                                                </div>
+                                                <input type="password"
+                                                    class="form-control"
+                                                    placeholder="Contraseña"
+                                                    name="password">
+                                            </div>
+                                            <div class="btn-success card-footer">
+                                                <div class="d-flex
+                                                    justify-content-center
+                                                    text-white"><a class="text-decoration-underline
+                                                        text-white"
+                                                        href="http://127.0.0.1:8000/recuperacion/">
+                                                        ¿Olvidaste tu contraseña?</a></div>
+                                            </div>
+
+                                            <div class="form-group mt-3 mb-3">
+                                                <button id="login-btn" class="btn
+                                                    btn-dark" type="submit">
+                                                    <a class="text-decoration-none text-white"
+                                                        href="http://127.0.0.1:8000/inicio/">
+                                                        Ingresar</a>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </main> 
+                    <!-- Footer -->
+                    <footer class="text-center text-lg-start text-muted" style="background-color:#343a40;">
+                        <!-- Section: Social media -->
+                        <section class="d-flex justify-content-center
+                            justify-content-lg-between p-4 border-bottom">
+                            <!-- Left -->
+                            <div class="me-5 d-none d-lg-block">
+                                <span>Tambien nos puedes contactar mediante
+                                    nuestras redes sociales
+                                    como:</span>
+                            </div>
+                            <!-- Left -->
+
+                            <!-- Right -->
+                            <div>
+                                <a
+                                    href="https://www.facebook.com/mallasgaviones/"
+                                    class="me-4
+                                    text-reset">
+                                    <i class="fab fa-facebook-f">Facebook</i>
+                                </a>
+                                <a href="http://127.0.0.1:8000/error404/" class="me-4 text-reset">
+                                    <i class="fab fa-twitter">Twitter</i>
+                                </a>
+                                <a href="" class="me-4 text-reset">
+                                    <i class="fab fa-instagram">Instagram</i>
+                                </a>
+                                <a href="http://127.0.0.1:8000/error500/" class="me-4 text-reset">
+                                    <i class="fab fa-linkedin">Linkedin</i>
+                                </a>
+                            </div>
+                            <!-- Right -->
+                        </section>
+                        <!-- Section: Social media -->
+
+                        <!-- Section: Links  -->
+                        <section class="">
+                            <div class="container text-center text-md-start
+                                mt-5">
+                                <!-- Grid row -->
+                                <div class="row mt-3">
+                                    <!-- Grid column -->
+                                    <div class="col-md-3 col-lg-4 col-xl-3
+                                        mx-auto mb-4">
+                                        <!-- Content -->
+                                        <h6 class="text-uppercase fw-bold mb-4">
+                                            <i class="fas fa-gem me-3"></i>Mundial
+                                            de Mallas
+                                            y Estructuras S.A.S
+                                        </h6>
+                                        <p>
+                                            Empresa dedicada a la
+                                            construcción de obras civiles, arquitectónicas y
+                                            forestales; asesorías en gestión de
+                                            mantenimiento y proyectos de ingeniería.
+                                            Además la fabricación y comercialización de
+                                            productos metalmecánicos de seguridad
+                                            perimetral y estructuras metálicas.
+                                        </p>
+                                    </div>
+                                    <!-- Grid column -->
+
+                                    <!-- Grid column -->
+                                    <div class="col-md-2 col-lg-2 col-xl-2
+                                        mx-auto mb-4">
+                                        <!-- Links -->
+                                        <h6 class="text-uppercase fw-bold mb-4">
+                                            Productos
+                                        </h6>
+                                        <p>
+                                            <a class="text-reset
+                                                text-decoration-none">Mallas
+                                                Galvanizadas</a>
+                                        </p>
+                                        <p>
+                                            <a class="text-reset
+                                                text-decoration-none">Gaviones</a>
+                                        </p>
+                                        <p>
+                                            <a class="text-reset
+                                                text-decoration-none">Parques
+                                                Infantiles</a>
+                                        </p>
+                                        <p>
+                                            <a class="text-reset
+                                                text-decoration-none">Cerramiento
+                                                Canchas de
+                                                Futbol</a>
+                                        </p>
+                                    </div>
+                                    <!-- Grid column -->
+
+                                    <!-- Grid column -->
+                                    <div class="col-md-4 col-lg-3 col-xl-3
+                                        mx-auto mb-md-0
+                                        mb-4">
+                                        <!-- Links -->
+                                        <h6 class="text-uppercase fw-bold mb-4">Contactanos</h6>
+                                        <i class="fas fa-home me-3">Calle
+                                            33 #29-05,
+                                            Barranquilla Atlantico, Colombia</i>
+                                        <a href="comercial@mundialdemallasygaviones.com" class="fas fa-envelope me-3 text-reset text-decoration-none">
+                                            comercial@mundialdemallasygaviones.com</a>
+                                        <i class="fas fa-phone me-3">
+                                            +57 310 534 0345</i>
+                                        <i class="fas fa-print me-3">
+                                            +57 321 824 7226</i>
+                                    </div>
+                                    <!-- Grid column -->
+                                </div>
+                                <!-- Grid row -->
+                            </div>
+                            <!-- Copyright -->
+                            <div class="text-center p-4"
+                                style="background-color: rgba(0, 0, 0,
+                                0.05);">
+                                © 2022 Copyright:
+                                <a class="text-reset fw-bold
+                                    text-decoration-none"
+                                    href="https://www.mundialdemallasygaviones.com/">
+                                    MUNDIAL DE MALLAS Y ESTRUCTURAS INGENIERIA
+                                    S.A.S</a>
+                            </div>
+                            <!-- Copyright -->
+                        </section>
+                        <!-- Section links -->
+                    </footer>
+                    <!-- Footer -->
+
