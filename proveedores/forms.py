@@ -9,3 +9,8 @@ class ProveedorForm(ModelForm):
 
         model = Proveedor
         exclude=['estado']
+
+class ProveedorUpdateForm(ModelForm):
+    class Meta:
+        model= Proveedor
+        fields='__all__'
