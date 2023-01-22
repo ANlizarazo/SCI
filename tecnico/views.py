@@ -54,7 +54,7 @@ def tecnicos_crear(request):
 
 def tecnicos_modificar(request,pk, *callback_kwargs):
     titulo = "tecnicos - Modificar"
-    Venta = Venta.objects.get(id=pk)
+    Tecnico = tecnicos.objects.get(id=pk)
     if request.method == "POST" and 'form-modificar' in request.POST:
         form = TecnicoForm(request.POST, instance=Tecnico)
         modal_status = 'show'

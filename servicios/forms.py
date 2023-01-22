@@ -18,3 +18,8 @@ class TipoServicioForm(ModelForm):
 
         model = TipoServicio
         exclude=['estado']
+
+class ServicioUpdateForm(ModelForm):
+    class Meta:
+        model= Servicio
+        fields = '__all__'
