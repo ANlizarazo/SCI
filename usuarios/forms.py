@@ -13,11 +13,8 @@ class UsuarioForm(ModelForm):
         widgets={
             'fecha_nacimiento': widgets.DateInput(attrs={'type':'date'})
     }        
-<<<<<<< HEAD
-
 class UsuarioUpdateForm(ModelForm):
     class Meta:
         model= Usuario
         exclude=['usuario']
-=======
->>>>>>> main
+
