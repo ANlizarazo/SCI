@@ -9,3 +9,8 @@ class ProductoForm(ModelForm):
 
         model = Producto
         exclude=['estado']
+
+class ProductoUpdateForm(ModelForm):
+    class Meta:
+        model= Producto
+        fields = '__all__'
