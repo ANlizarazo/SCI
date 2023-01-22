@@ -19,7 +19,7 @@ class DetalleVenta(models.Model):
 
 class Venta(models.Model):
     subTotalVenta= models.PositiveBigIntegerField(validators = [ MinValueValidator ( 0 )], verbose_name="Subtotal Venta")
-    fecha= models.DateTimeField(verbose_name="Fecha Venta")
+    fecha= models.DateTimeField(verbose_name="Fecha Venta",help_text= "MM/DD/AAAA")
     porcentajeIva=models.DecimalField(validators=[MinValueValidator(0.0)],decimal_places=1,max_digits=20, verbose_name="Porcentaje IVA")
     totalVenta= models.PositiveBigIntegerField(validators = [ MinValueValidator ( 0 )], verbose_name="Total Venta")
     detalleVenta= models.ForeignKey(DetalleVenta, on_delete=models.CASCADE, verbose_name="Detalle Venta",null=True)
@@ -28,7 +28,7 @@ class Venta(models.Model):
     servicio=models.ForeignKey(Servicio, on_delete=models.CASCADE, verbose_name="Servicio",null=True)
 
     def __str__(self)->str:
-        return "%s" %(self.fecha)  
+        return "%s %s" %(self.fecha,self.cliente)  
     
     class Meta:
         ordering = ['fecha']
