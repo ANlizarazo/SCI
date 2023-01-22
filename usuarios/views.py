@@ -32,7 +32,7 @@ def usuarios_ver(request):
 def usuarios_crear(request):
 
     titulo="Usuarios - Crear"
-    if request.method == "POST":
+    if request.method == "POST" and 'form-usuario' in request.POST:
         form=UsuarioForm(request.POST)
         if form.is_valid():
             form.save()
@@ -50,7 +50,7 @@ def usuarios_crear(request):
 
 def usuarios_modificar(request,pk, *callback_kwargs):
     titulo = "Usuarios - Modificar"
-    Usuario = Usuario.objects.get(id=pk)
+    usuario = Usuario.objects.get(id=pk)
     if request.method == "POST" and 'form-modificar' in request.POST:
         form = UsuarioForm(request.POST, instance=Usuario)
         modal_status = 'show'
@@ -60,16 +60,16 @@ def usuarios_modificar(request,pk, *callback_kwargs):
         modal_submit = "Modificar"
         #######################
         tipo = "modificar"
-        form_update = UsuarioUpdateForm(instance=Venta)
+        form_update = UsuarioUpdateForm(instance=Usuario)
         
-        Venta = Venta.objects.get(id=pk_usuario)
+        usuarios = Usuario.objects.get(id=pk_usuario)
         if form.is_valid():
             form.save()
             return redirect('usuarios')
         else:
             print("Hubo un error al guardar los cambios")
     else:
-        form = UsuarioForm(instance=Venta)
+        form = UsuarioForm(instance=Usuario)
     context = {
         'titulo': titulo,
         'form': form,
