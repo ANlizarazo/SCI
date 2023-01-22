@@ -4,10 +4,10 @@ from django.utils.translation import gettext_lazy as _
 # Create your models here.
 
 class Ciudad(models.Model):
-    nombre= models.CharField(max_length=60, verbose_name="Ciudad")
+    nombre= models.CharField(max_length=60, unique=True, verbose_name="Ciudad")
     
     def __str__(self)->str:
-        return "%s %s" %(self.nombre)  
+        return "%s" %(self.nombre)  
     
     class Meta:
         ordering = ['nombre']
@@ -23,7 +23,7 @@ class Cliente(models.Model):
     ciudad = models.ForeignKey(Ciudad, on_delete=models.CASCADE, verbose_name="Ciudad",null=True)
     
     def __str__(self)->str:
-        return "%s %s" %(self.nombreEmpresa, self.nit)  
+        return "%s" %(self.nombreEmpresa)  
 
     class Meta:
         ordering = ['nombreEmpresa']

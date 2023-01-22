@@ -31,13 +31,16 @@
                 <div class="card ">
                     <div class="card-header">
                         <h3 class="card-title text-success"><tr><b
-                                    class="text-success">Reporte de
-                                    Clientes</b></tr></h3>
+                                    class="text-success">Reporte de Clientes</b></tr></h3>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <a class="btn btn-success float-right mr-0 mb-3" href="{%
-                            url ''%}"> Crear Cliente</a>
+                        <!-- Este botón llama el modal -->
+                        <a class="btn btn-success float-right mr-0 mb-3" data-bs-toggle="modal"
+                            data-bs-target="#crearCliente"> Crear Cliente</a>
+                        <!-- Modal de crear producto-->
+                        <c>{% include 'clientes/clientes-crear.html' %}</c>
+                        <!-- Datatable de productos -->
                         <table id="example1" class="table table-bordered
                             table-striped border-dark">
                             <thead class="bg-success">
@@ -57,79 +60,25 @@
                                     <td class="border-dark">{{cliente.nombreEmpresa}}</td>
                                     <td class="border-dark">{{cliente.nit}}</td>
                                     <td class="border-dark">{{cliente.telefono}}</td>
-                                    <td class="border-dark">{{cliente.direccion}</td>
+                                    <td class="border-dark">{{cliente.direccion}}</td>
                                     <td class="border-dark">{{cliente.email}}</td>
                                     <th class="border-dark">{{cliente.ciudad}}</th>
                                     <th class="border-dark">{{cliente.acciones}}</th>
                                 </tr>
                                 {% endfor %}
                                 <tr>
-                                    <td class="border-dark">Trident</td>
-                                    <td class="border-dark">Internet</td>
-                                    <td class="border-dark">Win 95+</td>
-                                    <td class="border-dark"> 4</td>
-                                    <td class="border-dark">X</td>
-                                    <td class="text-black border-dark">Trident</td>
-                                    <td class="border-dark">
-                                        <a class="btn btn-success" href="{%
-                                            url
-                                            'usuarios-eliminar' usuario.id
-                                            %}"><i class="fas fa-eye"></i></a>
-                                        <a class="btn btn-primary" href="{%
-                                            url
-                                            'usuarios-editar' usuario.id
-                                            %}"><i
-                                                class="fas fa-edit"></i></a>
-                                        <a class="btn btn-danger" href="{%
-                                            url
-                                            'usuarios-eliminar' usuario.id
-                                            %}"><i class="fas fa-trash-alt"></i></a>
-                                    </td>
-                                </tr>
-                                <tr>
                                     <td class="text-black border-dark">Trident</td>
                                     <td class="text-black border-dark">Internet</td>
                                     <td class="text-black border-dark">Win 95+</td>
-                                    <td class="text-black border-dark">5</td>
-                                    <td class="text-black border-dark">C</td>
+                                    <td class="text-black border-dark"> 4</td>
+                                    <td class="text-black border-dark">X</td>
                                     <td class="text-black border-dark">Trident</td>
                                     <td class="border-dark">
-                                        <a class="btn btn-success" href="{%
-                                            url
-                                            'usuarios-eliminar' usuario.id
-                                            %}"><i class="fas fa-eye"></i></a>
-                                        <a class="btn btn-primary" href="{%
-                                            url
-                                            'usuarios-editar' usuario.id
-                                            %}"><i
-                                                class="fas fa-edit"></i></a>
-                                        <a class="btn btn-danger" href="{%
-                                            url
-                                            'usuarios-eliminar' usuario.id
-                                            %}"><i class="fas fa-trash-alt"></i></a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="border-dark">Gecko</td>
-                                    <td class="border-dark">Firefox 2.0</td>
-                                    <td class="border-dark">Win 98+ / OSX.2+</td>
-                                    <td class="border-dark">1.8</td>
-                                    <td class="border-dark">A</td>
-                                    <td class="text-black border-dark">Trident</td>
-                                    <td class="border-dark">
-                                        <a class="btn btn-success" href="{%
-                                            url
-                                            'usuarios-eliminar' usuario.id
-                                            %}"><i class="fas fa-eye"></i></a>
-                                        <a class="btn btn-primary" href="{%
-                                            url
-                                            'usuarios-editar' usuario.id
-                                            %}"><i
-                                                class="fas fa-edit"></i></a>
-                                        <a class="btn btn-danger" href="{%
-                                            url
-                                            'usuarios-eliminar' usuario.id
-                                            %}"><i class="fas fa-trash-alt"></i></a>
+                                        <a class="btn btn-success" data-bs-toggle="modal" data-bs-target="#verCliente">
+                                            <i class="fas fa-eye"></i></a><c>{% include 'clientes/clientes-ver.html' %}</c>
+                                        <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modificarCliente">
+                                            <i class="fas fa-edit"></i></a><c>{% include 'clientes/clientes-modificar.html' %}</c>
+                                        <a class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
                                     </td>
                                 </tr>
                             </table>
@@ -155,4 +104,4 @@
             <script src="/static/AdminLTE/moment/moment.min.js"></script>
             <script src="/static/AdminLTE/fullcalendar/main.js"></script>
 
-            {% endblock contenido %}
+{% endblock contenido %}

@@ -9,3 +9,8 @@ class CompraForm(ModelForm):
 
         model = Compra
         fields = '__all__'
+
+class CompraUpdateForm(ModelForm):
+    class Meta:
+        model= Compra
+        exclude=['fecha']

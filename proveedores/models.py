@@ -2,25 +2,17 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.core.validators import MinValueValidator
 
+from clientes.models import Ciudad
+
 
 # Create your models here.
-class Ciudad(models.Model):
-    nombre= models.CharField(max_length=60, verbose_name="Nombre")
-
-    def __str__(self)->str:
-        return "%s %s" %(self.nombre)  
-    
-    class Meta:
-        ordering = ['nombre']
-        verbose_name = 'Ciudad'
-        verbose_name_plural = 'Ciudades'
 
 class Departamento(models.Model):
     nombre= models.CharField(max_length=60, verbose_name="Nombre")
     ciudad = models.ForeignKey(Ciudad, on_delete=models.CASCADE, verbose_name="Ciudad",null=True)
 
     def __str__(self)->str:
-        return "%s %s" %(self.nombre)  
+        return "%s" %(self.nombre)  
     
     class Meta:
         ordering = ['nombre']
@@ -31,7 +23,7 @@ class Material(models.Model):
     nombre= models.CharField(max_length=100, verbose_name="Nombre")
 
     def __str__(self)->str:
-        return "%s %s" %(self.nombre)  
+        return "%s" %(self.nombre)  
     
     class Meta:
         ordering = ['nombre']
@@ -61,7 +53,7 @@ class Proveedor(models.Model):
     departamento= models.ForeignKey(Departamento, on_delete=models.CASCADE, verbose_name="Departamento",null=True)
 
     def __str__(self)->str:
-        return "%s %s" %(self.nombreEmpresa)  
+        return "%s" %(self.nombreEmpresa)  
     
     class Meta:
         ordering = ['nombreEmpresa']

@@ -22,15 +22,15 @@ class TipoServicio(models.Model):
 
 class Servicio(models.Model):
     observacion= models.CharField(max_length=200, verbose_name="Observaciones")
-    fechaInicio= models.DateTimeField(verbose_name="Fecha de Inicio")
-    fechaEntrega= models.DateTimeField(verbose_name="Fecha de Entrega")
-    precio= models.PositiveBigIntegerField(validators=[MinValueValidator(1)], verbose_name="Precio")
+    fechaInicio= models.DateTimeField(verbose_name="Fecha de Inicio",help_text= "MM/DD/AAAA  HH:MM:SS")
+    fechaEntrega= models.DateTimeField(verbose_name="Fecha de Entrega",help_text= "MM/DD/AAAA  HH:MM:SS")
+    precio= models.PositiveBigIntegerField(validators=[MinValueValidator(0)], verbose_name="Precio")
     observacionFinal= models.CharField(max_length=250, verbose_name="Orservación Final")
     tipoServicio= models.ForeignKey(TipoServicio, on_delete=models.CASCADE, verbose_name="Tipo de Servicio",null=True)
     tecnico= models.ForeignKey(Tecnico, on_delete=models.CASCADE, verbose_name="Técnico",null=True)
 
     def __str__(self)->str:
-        return "%s %s" %(self.fechaInicio)  
+        return "%s %s" %(self.fechaInicio, self.tipoServicio)  
     
     class Meta:
         ordering = ['fechaInicio']
