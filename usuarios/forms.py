@@ -16,5 +16,5 @@ class UsuarioForm(ModelForm):
 class UsuarioUpdateForm(ModelForm):
     class Meta:
         model= Usuario
-        exclude=['usuario']
+        exclude=['numDocumento']
 

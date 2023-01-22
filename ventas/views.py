@@ -53,7 +53,7 @@ def ventas_crear(request):
 
 def ventas_modificar(request,pk, *callback_kwargs):
     titulo = "Ventas - Modificar"
-    Venta = Venta.objects.get(id=pk)
+    venta = Venta.objects.get(id=pk)
     if request.method == "POST" and 'form-modificar' in request.POST:
         form = VentaForm(request.POST, instance=Venta)
         modal_status = 'show'
@@ -65,7 +65,7 @@ def ventas_modificar(request,pk, *callback_kwargs):
         tipo = "modificar"
         form_update = VentaUpdateForm(instance=Venta)
         
-        Venta = Venta.objects.get(id=pk_venta)
+        venta = Venta.objects.get(id=pk_venta)
         if form.is_valid():
             form.save()
             return redirect('ventas')
