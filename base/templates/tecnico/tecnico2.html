@@ -36,9 +36,12 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
+                        <!-- Este botón llama el modal -->
                         <a class="btn btn-success float-right mr-0 mb-3"
-                            href="{%
-                            url 'usuarios-crear'%}"> Crear Técnico</a>
+                        data-bs-toggle="modal" data-bs-target="#crearTecnico"> Crear Técnico</a>
+                        <!-- Modal de crear venta-->
+                        <div>{% include 'tecnico/tecnico-crear.html' %}</div>
+                        <!-- Datatable de usuarios -->
                         <table id="example1" class="table table-bordered
                             table-striped border-dark">
                             <thead class="bg-success">
@@ -46,8 +49,8 @@
                                     <th class="border-dark">Nombres</th>
                                     <th class="border-dark">Apellidos</th>
                                     <th class="border-dark">Teléfono</th>
-                                    <th class="border-dark">Genero</th>          
-                                    <th class="border-dark">Tipo de documento</th>            
+                                    <th class="border-dark">Genero</th>
+                                    <th class="border-dark">Tipo de documento</th>
                                     <th class="border-dark">Número de documento</th>
                                     <th class="border-dark">Estado</th>
                                     <th class="border-dark">Ciudad</th>
@@ -78,69 +81,12 @@
                                     <td class="text-black border-dark">Internet</td>
                                     <td class="text-black border-dark">Win 95+</td>
                                     <td class="border-dark">
-                                        <a class="btn btn-success" href="{%
-                                            url
-                                            'usuarios-eliminar' usuario.id
-                                            %}"><i class="fas fa-eye"></i></a>
-                                        <a class="btn btn-primary" href="{%
-                                            url
-                                            'usuarios-editar' usuario.id
-                                            %}"><i
-                                                class="fas fa-edit"></i></a>
-                                        <a class="btn btn-danger" href="{%
-                                            url
-                                            'usuarios-eliminar' usuario.id
-                                            %}"><i class="fas fa-trash-alt"></i></a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="text-black border-dark">Trident</td>
-                                    <td class="text-black border-dark">Internet</td>
-                                    <td class="text-black border-dark">Win 95+</td>
-                                    <td class="text-black border-dark">5</td>
-                                    <td class="text-black border-dark">C</td>
-                                    <td class="text-black border-dark">Trident</td>
-                                    <td class="text-black border-dark">Internet</td>
-                                    <td class="text-black border-dark">Win 95+</td>
-                                    <td class="border-dark">
-                                        <a class="btn btn-success" href="{%
-                                            url
-                                            'usuarios-eliminar' usuario.id
-                                            %}"><i class="fas fa-eye"></i></a>
-                                        <a class="btn btn-primary" href="{%
-                                            url
-                                            'usuarios-editar' usuario.id
-                                            %}"><i
-                                                class="fas fa-edit"></i></a>
-                                        <a class="btn btn-danger" href="{%
-                                            url
-                                            'usuarios-eliminar' usuario.id
-                                            %}"><i class="fas fa-trash-alt"></i></a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="text-black border-dark">Trident</td>
-                                    <td class="text-black border-dark">Internet</td>
-                                    <td class="text-black border-dark">Win 95+</td>
-                                    <td class="text-black border-dark">5</td>
-                                    <td class="text-black border-dark">C</td>
-                                    <td class="text-black border-dark">Trident</td>
-                                    <td class="text-black border-dark">Internet</td>
-                                    <td class="text-black border-dark">Win 95+</td>
-                                    <td class="border-dark">
-                                        <a class="btn btn-success" href="{%
-                                            url
-                                            'usuarios-eliminar' usuario.id
-                                            %}"><i class="fas fa-eye"></i></a>
-                                        <a class="btn btn-primary" href="{%
-                                            url
-                                            'usuarios-editar' usuario.id
-                                            %}"><i
-                                                class="fas fa-edit"></i></a>
-                                        <a class="btn btn-danger" href="{%
-                                            url
-                                            'usuarios-eliminar' usuario.id
-                                            %}"><i class="fas fa-trash-alt"></i></a>
+                                        <a class="btn btn-success" data-bs-toggle="modal" data-bs-target="#verTecnico">
+                                            <i class="fas fa-eye"></i></a><c>{% include 'tecnico/tecnico-ver.html' %}</c>
+                                        <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modificarTecnico">
+                                            <i class="fas fa-edit"></i></a><c>{% include 'tecnico/tecnico-modificar.html' %}</c>
+                                        <a class="btn btn-danger"><i class="fas
+                                                fa-trash-alt"></i></a>
                                     </td>
                                 </tr>
                             </tbody>

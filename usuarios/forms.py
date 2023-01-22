@@ -1,5 +1,6 @@
 from tkinter import Widget
 from django.forms import ModelForm, widgets
+from tecnico.models import Tecnico
 from usuarios.models import Usuario
 
 class UsuarioForm(ModelForm):
