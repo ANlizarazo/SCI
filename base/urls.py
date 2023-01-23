@@ -26,7 +26,7 @@ from base.views import cambioExitoso, correoEnviado, formRecuperacion, inicio, l
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('logout/',logout_user,name="logout"),
+    
     path('',auth_views.LoginView.as_view(), name='login'),
     path('recuperacion/',formRecuperacion,name='recuperacion'),
     path('correoenviado/',correoEnviado,name='correoenviado'),
