@@ -1,6 +1,6 @@
 {% load crispy_forms_tags %}
 
-<!-- Modal de crear usuario -->
+<!-- Modal de modificar usuario -->
 
 <div class="modal fade" id="modificarUsuario" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -10,17 +10,14 @@
         </div>
         <div class="modal-body">
             <!-- Formulario -->
-            <form method="POST">
-
-                {{UsuarioForm}}
-                
+            <form action="" method="POST">
                 {% csrf_token %}
             </form>
         </div>
         <div class="modal-footer">
-        <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
         <input class="btn btn-success" type="submit" value="Modificar">
         </div>
     </div>
     </div>
-</div>       
+</div>     
