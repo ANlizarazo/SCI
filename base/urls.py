@@ -13,16 +13,14 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from operator import index
 from django.contrib import admin
 from django.urls import path, include
-
 from django.contrib.auth import views as auth_views
+from django.contrib.auth.views import LoginView as login
+from base.views import inicio, error404, error500, exit, perfil
 
-from base.views import cambioExitoso, correoEnviado, formRecuperacion, inicio, login, error404, error500, exit, nuevaContraseña, perfil
 
-
-
+handler404= error404
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -41,14 +39,9 @@ urlpatterns = [
 
     path('logout/',exit,name="exit"),
     path('',auth_views.LoginView.as_view(), name='login'),
-    path('reiniciar/',auth_views.PasswordResetView.as_view(),name='pass_reset'),
-    path('reiniciar/enviar',auth_views.PasswordResetDoneView.as_view(),name='pass_reset_done'),
-    path('reiniciar/<uid64>/<token>',auth_views.PasswordResetConfirmView.as_view(),name='pass_reset_confirm'),
-    path('reiniciar/completo',auth_views.PasswordResetCompleteView.as_view(),name='pass_reset_complete'),
-    path('recuperacion/',formRecuperacion,name='recuperacion'),
-    path('correoenviado/',correoEnviado,name='correoenviado'),
-    path('nuevacontraseña/',nuevaContraseña,name='nuevacontraseña'),
-    path('cambioexitoso/',cambioExitoso,name='cambioexitoso'),  
+    path('reset_password/',auth_views.PasswordResetView.as_view(),name='password_reset'),
+    path('reset_password_send/',auth_views.PasswordResetDoneView.as_view(),name='password_reset_done'),
+    path('reset/<uidb64>/<token>',auth_views.PasswordResetConfirmView.as_view(),name='password_reset_confirm'),
+    path('reset_password_complete/',auth_views.PasswordResetCompleteView.as_view(),name='password_reset_complete'),
     path('',include('django.contrib.auth.urls')),
-
 ]
