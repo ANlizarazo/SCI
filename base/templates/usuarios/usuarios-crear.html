@@ -116,10 +116,12 @@
                     <div class="d-inline-block w-100">
                         <label for="basic-url" class="form-label ps-2 text-black" style="font-size: 17;">Rol</label>
                         <div class="input-group mb-3 w-100">
-                            <input type="text" class="form-control" name="cargo"
-                                id="id_cargo"
-                                aria-describedby="basic-addon3" required minlength="1"
-                                maxlength="30">
+                            <select id="id_rol" class="form-select" name="rol"
+                                aria-label="tipo-activo">
+                                <option class="text-black" selected disabled>Seleccionar</option>
+                                <option class="text-black" value="Administrador">Administrador</option>
+                                <option class="text-black" value="Empleado">Empleado</option>
+                            </select>   
                         </div>
                     </div>
         <div class="modal-footer">
