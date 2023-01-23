@@ -71,7 +71,7 @@ def inicio(request):
     }
     return render(request,'index2.html',context)    
 """
-def error404(request):
+def error404(request, exception):
     titulo="ERROR 404"
     context={
         'titulo':titulo
