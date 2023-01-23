@@ -40,8 +40,8 @@ class Proveedor(models.Model):
         PV='PV', _('Pago Virtual')
         PT='PT', _('Pago con Tarjeta')    
     class TransporteIncluido(models.TextChoices):
-        SI='1', _('Sí')
-        NO='0', _('No')   
+        SI='sí', _('Sí')
+        NO='No', _('No')   
     class Estado(models.TextChoices):
         ACTIVO='1', _('Activo')
         INACTIVO='0', _('Inactivo')
