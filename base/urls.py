@@ -19,13 +19,14 @@ from django.urls import path, include
 
 from django.contrib.auth import views as auth_views
 
-from base.views import cambioExitoso, correoEnviado, formRecuperacion, inicio, login, error404, error500, nuevaContraseña, perfil
+from base.views import cambioExitoso, correoEnviado, formRecuperacion, inicio, login, error404, error500, exit, nuevaContraseña, perfil
 
 
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+<<<<<<< HEAD
     
     path('',auth_views.LoginView.as_view(), name='login'),
     path('recuperacion/',formRecuperacion,name='recuperacion'),
@@ -33,6 +34,8 @@ urlpatterns = [
     path('nuevacontraseña/',nuevaContraseña,name='nuevacontraseña'),
     path('cambioexitoso/',cambioExitoso,name='cambioexitoso'),
 
+=======
+>>>>>>> main
     path('inicio/',inicio,name='inicio'),
     path('error404/',error404,name='error404'),    
     path('error500/',error500,name='error500'),
@@ -44,6 +47,18 @@ urlpatterns = [
     path('productos/',include('productos.urls')),
     path('compras/',include('compras.urls')),
     path('clientes/',include('clientes.urls')),
-    path('tecnicos/',include('tecnico.urls'))
-    
+    path('tecnicos/',include('tecnico.urls')),
+
+    path('logout/',exit,name="exit"),
+    path('',auth_views.LoginView.as_view(), name='login'),
+    path('reiniciar/',auth_views.PasswordResetView.as_view(),name='recuperacion'),
+    path('reiniciar/enviar',auth_views.PasswordResetDoneView.as_view(),name='correoenviado'),
+    path('reiniciar/<uid64>/<token>',auth_views.PasswordResetConfirmView.as_view(),name='nuevacontraseña'),
+    path('reiniciar/completo',auth_views.PasswordResetCompleteView.as_view(),name='cambioexitoso'),
+    path('recuperacion/',formRecuperacion,name='recuperacion'),
+    path('correoenviado/',correoEnviado,name='correoenviado'),
+    path('nuevacontraseña/',nuevaContraseña,name='nuevacontraseña'),
+    path('cambioexitoso/',cambioExitoso,name='cambioexitoso'),  
+    path('',include('django.contrib.auth.urls')),
+
 ]
