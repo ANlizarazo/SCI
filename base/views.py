@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
+from django.views.defaults import page_not_found
 
 def login(request):
     titulo="Inicio de Sesión"
@@ -75,7 +76,7 @@ def error404(request):
     context={
         'titulo':titulo
     }
-    return render(request,'error404.html',context)    
+    return page_not_found(request,'error404.html',context)    
 
 def error500(request):
     titulo="ERROR 500"
