@@ -26,16 +26,6 @@ from base.views import cambioExitoso, correoEnviado, formRecuperacion, inicio, l
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-<<<<<<< HEAD
-    
-    path('',auth_views.LoginView.as_view(), name='login'),
-    path('recuperacion/',formRecuperacion,name='recuperacion'),
-    path('correoenviado/',correoEnviado,name='correoenviado'),
-    path('nuevacontraseña/',nuevaContraseña,name='nuevacontraseña'),
-    path('cambioexitoso/',cambioExitoso,name='cambioexitoso'),
-
-=======
->>>>>>> main
     path('inicio/',inicio,name='inicio'),
     path('error404/',error404,name='error404'),    
     path('error500/',error500,name='error500'),
