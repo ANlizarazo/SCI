@@ -19,6 +19,10 @@ from django.contrib.auth import views as auth_views
 from django.contrib.auth.views import LoginView as login
 from base.views import inicio, error404, error500, exit, perfil
 
+####### Importes para subir imágenes #######
+from django.conf import settings
+from django.conf.urls.static import static
+############################################
 
 handler404= error404
 
@@ -44,4 +48,6 @@ urlpatterns = [
     path('reset/<uidb64>/<token>',auth_views.PasswordResetConfirmView.as_view(),name='password_reset_confirm'),
     path('reset_password_complete/',auth_views.PasswordResetCompleteView.as_view(),name='password_reset_complete'),
     path('',include('django.contrib.auth.urls')),
-]
+
+]+ static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)
+
