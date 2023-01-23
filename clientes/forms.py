@@ -10,4 +10,9 @@ class ClienteForm(ModelForm):
         model = Cliente
         fields = '__all__'
 
+class ClienteUpdateForm(ModelForm):
+    class Meta:
+        model= Cliente
+        exclude=['numDocumento']
+
 
