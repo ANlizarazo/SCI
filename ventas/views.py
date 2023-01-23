@@ -34,7 +34,7 @@ def ventas_ver(request):
 def ventas_crear(request):
 
     titulo = "Ventas - Crear"
-    if request.method == 'POST' and 'form-crear' in request.POST:
+    if request.method == 'POST' and 'form-crear-venta' in request.POST:
         form = VentaForm(request.POST)
         if form.is_valid():
             form.save()
@@ -54,7 +54,7 @@ def ventas_crear(request):
 def ventas_modificar(request,pk, *callback_kwargs):
     titulo = "Ventas - Modificar"
     venta = Venta.objects.get(id=pk)
-    if request.method == "POST" and 'form-modificar' in request.POST:
+    if request.method == "POST" and 'form-modificar-venta' in request.POST:
         form = VentaForm(request.POST, instance=Venta)
         modal_status = 'show'
         pk_venta = request.POST['pk']
@@ -68,8 +68,14 @@ def ventas_modificar(request,pk, *callback_kwargs):
         venta = Venta.objects.get(id=pk_venta)
         if form.is_valid():
             form.save()
+            messages.success(
+            request,f"Se agregó la venta {request.POST['id']} exitosamente!"
+            )
             return redirect('ventas')
         else:
+            messages.error(
+                request,f"Error al agregar la venta {request.POST['id']}!"
+            )
             print("Hubo un error al guardar los cambios")
     else:
         form = VentaForm(instance=Venta)
