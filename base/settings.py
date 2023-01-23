@@ -151,8 +151,8 @@ EMAIL_HOST_USER = 'mklinger3@misena.edu.co'
 EMAIL_HOST_PASSWORD = 'fbtbdjdjrcppjhzy'
 EMAIL_USE_TLS = True
 
-
-
+LOGIN_URL= 'inicio'
+LOGIN_REDIRECT_URL= 'login'
 
 
 
