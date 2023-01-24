@@ -24,8 +24,6 @@ from django.conf import settings
 from django.conf.urls.static import static
 ############################################
 
-handler404= error404
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('inicio/',inicio,name='inicio'),
