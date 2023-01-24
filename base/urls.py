@@ -17,14 +17,12 @@ from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.views import LoginView as login
-from base.views import inicio, error404, error500, exit, perfil
+from base.views import inicio, error404, error500, logout_user, perfil
 
 ####### Importes para subir imágenes #######
 from django.conf import settings
 from django.conf.urls.static import static
 ############################################
-
-handler404= error404
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -41,7 +39,7 @@ urlpatterns = [
     path('clientes/',include('clientes.urls')),
     path('tecnicos/',include('tecnico.urls')),
 
-    path('logout/',exit,name="exit"),
+    path('logout/',logout_user,name="logout"),
     path('',auth_views.LoginView.as_view(), name='login'),
     path('reset_password/',auth_views.PasswordResetView.as_view(),name='password_reset'),
     path('reset_password_send/',auth_views.PasswordResetDoneView.as_view(),name='password_reset_done'),
