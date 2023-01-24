@@ -90,8 +90,11 @@ WSGI_APPLICATION = 'base.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': str(os.path.join(BASE_DIR, "db.sqlite3"))
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'bdmundialmallas',
+        'USER': 'root',
+        'PASSWORD': '',
+        'PORT': 3306,
     }
 }
 
@@ -145,13 +148,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.googlemail.com'
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'mklinger3@misena.edu.co'
-EMAIL_HOST_PASSWORD = 'fbtbdjdjrcppjhzy'
 EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'correoDjango2023@gmail.com'
+EMAIL_HOST_PASSWORD = 'zhceexpqwrnnhwdl'
 
 
-
+LOGIN_URL= 'inicio'
+LOGIN_REDIRECT_URL= 'login'
 
 
 

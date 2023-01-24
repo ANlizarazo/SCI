@@ -37,10 +37,10 @@
                     <!-- /.card-header -->
                     <div class="card-body ">                        
                         <!-- Este botón llama el modal -->
-                        <a class="btn btn-success float-right mr-0 mb-3"
+                        <a class="btn btn-success float-right mr-0 mb-3" name="form-crear-venta"
                         data-bs-toggle="modal" data-bs-target="#crearVenta"> Crear Venta</a>
                         <!-- Modal de crear venta-->
-                        <div>{% include 'ventas/ventas-crear.html' %}</div>
+                        <c>{% include 'ventas/ventas-crear.html' %}</c>
                         <!-- Datatable de usuarios -->
                         <table id="example1" class="table table-bordered
                             table-striped border-dark">
@@ -65,19 +65,9 @@
                                     <td class="border-dark">{{venta.porcentajeIva}}</td>
                                     <td class="border-dark">{{venta.totalVenta}}</td>
                                     <td class="border-dark">{{venta.detalleVenta}}</td>
-                                    <th class="border-dark">{{venta.cliente}}</th>
-                                    <th class="border-dark">{{venta.usuario}}</th>
-                                    <th class="border-dark">{{venta.acciones}}</th>
-                                </tr>
-                                {% endfor %}
-                                <tr>
-                                    <td class="border-dark">Trident</td>
-                                    <td class="border-dark">Internet</td>
-                                    <td class="border-dark">Win 95+</td>
-                                    <td class="border-dark"> 4</td>
-                                    <td class="border-dark">X</td>
-                                    <td class="text-black border-dark">Trident</td>
-                                    <td class="text-black border-dark">Internet</td>
+                                    <td class="border-dark">{{venta.cliente}}</td>
+                                    <td class="border-dark">{{venta.usuario}}</td>
+                                    <td class="border-dark">{{venta.acciones}}</td>
                                     <td class="border-dark">
                                         <a class="btn btn-success" data-bs-toggle="modal" data-bs-target="#verVenta"
                                         ><i class="fas fa-eye"></i></a><c>{% include 'ventas/ventas-ver.html' %}</c>
@@ -85,12 +75,10 @@
                                         <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modificarVenta">
                                             <i class="fas fa-edit"></i></a><a>{% include 'ventas/ventas-modificar.html' %}</a>
 
-                                        <a class="btn btn-danger" href="{%
-                                            url
-                                            'usuarios-eliminar' usuario.id
-                                            %}"><i class="fas fa-trash-alt"></i></a>
+                                        <a class="btn btn-danger" ><i class="fas fa-trash-alt"></i></a>
                                     </td>
                                 </tr>
+                                {% endfor %}
                             </tbody>
                             </table>
                         </div>
