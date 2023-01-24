@@ -24,6 +24,11 @@
     <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
         <div class="row">
+            {% if request.user.is_authenticated %}
+            <h4 class="text-black">
+                {{user.username | upper}}, Bienvenido al Sistema Control de Inventario MME.
+            </h4>        
+            {% endif %}
             <div class="col-lg-3 col-6">
                 <!-- small box -->
                 <div class="small-box bg-success">
