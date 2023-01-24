@@ -1,4 +1,7 @@
-from django.shortcuts import render, redirect as shortcuts
+from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
+from django.views.defaults import page_not_found
 
 def login(request):
     titulo="Inicio de Sesión"
@@ -35,6 +38,7 @@ def cambioExitoso(request):
     }
     return render(request,'registration/cambioexitoso.html',context)
 
+@login_required
 def inicio(request):
     titulo="Página Principal"
     context={
@@ -67,12 +71,12 @@ def inicio(request):
     }
     return render(request,'index2.html',context)    
 """
-def error404(request):
+def error404(request, exception):
     titulo="ERROR 404"
     context={
         'titulo':titulo
     }
-    return render(request,'error404.html',context)    
+    return page_not_found(request,'error404.html',context)    
 
 def error500(request):
     titulo="ERROR 500"
@@ -81,6 +85,7 @@ def error500(request):
     }
     return render(request,'error500.html',context)   
 
+@login_required
 def perfil(request):
     titulo="Mi Perfil"
     context={
@@ -88,3 +93,6 @@ def perfil(request):
     }
     return render(request,'perfil.html',context)   
 
+def logout_user(request):
+    logout(request)
+    return redirect('login')

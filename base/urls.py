@@ -13,26 +13,21 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from operator import index
 from django.contrib import admin
 from django.urls import path, include
-
 from django.contrib.auth import views as auth_views
+from django.contrib.auth.views import LoginView as login
+from base.views import inicio, error404, error500, logout_user, perfil
 
-from base.views import cambioExitoso, correoEnviado, formRecuperacion, inicio, login, error404, error500, nuevaContraseña, perfil
+####### Importes para subir imágenes #######
+from django.conf import settings
+from django.conf.urls.static import static
+############################################
 
-
-
+handler404= error404
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('logout/',logout_user,name="logout"),
-    path('',auth_views.LoginView.as_view(), name='login'),
-    path('recuperacion/',formRecuperacion,name='recuperacion'),
-    path('correoenviado/',correoEnviado,name='correoenviado'),
-    path('nuevacontraseña/',nuevaContraseña,name='nuevacontraseña'),
-    path('cambioexitoso/',cambioExitoso,name='cambioexitoso'),
-
     path('inicio/',inicio,name='inicio'),
     path('error404/',error404,name='error404'),    
     path('error500/',error500,name='error500'),
@@ -44,6 +39,15 @@ urlpatterns = [
     path('productos/',include('productos.urls')),
     path('compras/',include('compras.urls')),
     path('clientes/',include('clientes.urls')),
-    path('tecnicos/',include('tecnico.urls'))
-    
-]
+    path('tecnicos/',include('tecnico.urls')),
+
+    path('logout/',logout_user,name="logout"),
+    path('',auth_views.LoginView.as_view(), name='login'),
+    path('reset_password/',auth_views.PasswordResetView.as_view(),name='password_reset'),
+    path('reset_password_send/',auth_views.PasswordResetDoneView.as_view(),name='password_reset_done'),
+    path('reset/<uidb64>/<token>',auth_views.PasswordResetConfirmView.as_view(),name='password_reset_confirm'),
+    path('reset_password_complete/',auth_views.PasswordResetCompleteView.as_view(),name='password_reset_complete'),
+    path('',include('django.contrib.auth.urls')),
+
+]+ static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)
+
