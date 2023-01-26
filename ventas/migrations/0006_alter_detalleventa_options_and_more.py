@@ -18,16 +18,16 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='detalleventa',
             name='valorTotalProducto',
-            field=models.PositiveBigIntegerField(validators=[django.core.validators.MinValueValidator(0)], verbose_name='Valor Total Producto'),
+            field=models.PositiveIntegerField(validators=[django.core.validators.MinValueValidator(0)], verbose_name='Valor Total Producto'),
         ),
         migrations.AlterField(
             model_name='venta',
             name='subTotalVenta',
-            field=models.PositiveBigIntegerField(validators=[django.core.validators.MinValueValidator(0)], verbose_name='Subtotal Venta'),
+            field=models.PositiveIntegerField(validators=[django.core.validators.MinValueValidator(0)], verbose_name='Subtotal Venta'),
         ),
         migrations.AlterField(
             model_name='venta',
             name='totalVenta',
-            field=models.PositiveBigIntegerField(validators=[django.core.validators.MinValueValidator(0)], verbose_name='Total Venta'),
+            field=models.PositiveIntegerField(validators=[django.core.validators.MinValueValidator(0)], verbose_name='Total Venta'),
         ),
     ]
