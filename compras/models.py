@@ -7,7 +7,7 @@ from usuarios.models import Usuario
 
 class DetalleCompra(models.Model):
     cantidadMaterial = models.BigIntegerField(validators = [ MinValueValidator ( 0 )], verbose_name="Cantidad Material") 
-    valorTotalMaterial = models.PositiveBigIntegerField(validators = [ MinValueValidator ( 0 )], verbose_name="Valor Total Material")
+    valorTotalMaterial = models.BigIntegerField(validators = [ MinValueValidator ( 0 )], verbose_name="Valor Total Material")
     proveedor = models.ForeignKey(Proveedor, on_delete=models.CASCADE, verbose_name="Proveedor",null=True)
         
     class Meta:

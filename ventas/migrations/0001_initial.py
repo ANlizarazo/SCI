@@ -53,10 +53,10 @@ class Migration(migrations.Migration):
             name='Venta',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('subTotalVenta', models.PositiveBigIntegerField(validators=[django.core.validators.MinValueValidator(1)], verbose_name='Subtotal Venta')),
+                ('subTotalVenta', models.PositiveIntegerField(validators=[django.core.validators.MinValueValidator(1)], verbose_name='Subtotal Venta')),
                 ('fecha', models.DateTimeField(verbose_name='%Y-%m-%d %H:%M:%S')),
                 ('porcentajeIva', models.DecimalField(decimal_places=1, max_digits=2, validators=[django.core.validators.MinValueValidator(0.0)], verbose_name='Porcentaje IVA')),
-                ('totalVenta', models.PositiveBigIntegerField(validators=[django.core.validators.MinValueValidator(1)], verbose_name='Total Venta')),
+                ('totalVenta', models.PositiveIntegerField(validators=[django.core.validators.MinValueValidator(1)], verbose_name='Total Venta')),
                 ('cliente', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='ventas.cliente', verbose_name='Cliente')),
                 ('detalleVenta', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='ventas.detalleventa', verbose_name='Detalle Venta')),
             ],

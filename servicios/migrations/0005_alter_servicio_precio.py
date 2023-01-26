@@ -14,6 +14,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='servicio',
             name='precio',
-            field=models.PositiveBigIntegerField(validators=[django.core.validators.MinValueValidator(0)], verbose_name='Precio'),
+            field=models.PositiveIntegerField(validators=[django.core.validators.MinValueValidator(0)], verbose_name='Precio'),
         ),
     ]

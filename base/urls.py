@@ -16,9 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth import views as auth_views
-from django.contrib.auth.views import LoginView as login 
-from base.views import inicio, error404, error500, logout_user, perfil
+from django.contrib.auth.views import LoginView, LogoutView
 
+from base.views import inicio, error404, error500, perfil
+
+from base.views import logout_user
 ####### Importes para subir imágenes #######
 from django.conf import settings
 from django.conf.urls.static import static
@@ -38,14 +40,14 @@ urlpatterns = [
     path('compras/',include('compras.urls')),
     path('clientes/',include('clientes.urls')),
     path('tecnicos/',include('tecnico.urls')),
-
-    path('logout/',logout_user,name="logout"),
-    path('',auth_views.LoginView.as_view(), name='login2'),
+    # --------------------------------------LOGIN--------------------------------------------
+    path('logout/',LogoutView.as_view(),name="logout"),
+    path('',auth_views.LoginView.as_view(), name='login'),
     path('reset_password/',auth_views.PasswordResetView.as_view(),name='password_reset'),
     path('reset_password_send/',auth_views.PasswordResetDoneView.as_view(),name='password_reset_done'),
     path('reset/<uidb64>/<token>',auth_views.PasswordResetConfirmView.as_view(),name='password_reset_confirm'),
     path('reset_password_complete/',auth_views.PasswordResetCompleteView.as_view(),name='password_reset_complete'),
-    path('',include('django.contrib.auth.urls')),
+    path('accounts/',include('django.contrib.auth.urls')),
 
 ]+ static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)
 

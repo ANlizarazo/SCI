@@ -44,7 +44,7 @@ class Migration(migrations.Migration):
                 ('observacion', models.CharField(max_length=200, verbose_name='Observaciones')),
                 ('fechaInicio', models.DateTimeField(verbose_name='%Y-%m-%d')),
                 ('fechaEntrega', models.DateTimeField(verbose_name='%Y-%m-%d')),
-                ('precio', models.PositiveBigIntegerField(validators=[django.core.validators.MinValueValidator(1)], verbose_name='Precio')),
+                ('precio', models.PositiveIntegerField(validators=[django.core.validators.MinValueValidator(1)], verbose_name='Precio')),
                 ('observacionFinal', models.CharField(max_length=250, verbose_name='Orservación Final')),
                 ('tecnico', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='servicios.tecnico', verbose_name='Técnico')),
                 ('tipoServicio', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='servicios.tiposervicio', verbose_name='Tipo de Servicio')),
