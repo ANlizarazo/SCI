@@ -7,7 +7,15 @@ def login(request):
     context={
         'titulo':titulo
     }
-    return render(request,'index.html',context)  
+    return render(request,'registration/login.html',context)  
+
+@login_required
+def inicio(request):
+    titulo="Página Principal"
+    context={
+        'titulo':titulo
+    }
+    return render(request,'index2.html',context) 
 
 def formRecuperacion(request):
     titulo="Recupera tu Contraseña"
@@ -37,13 +45,7 @@ def cambioExitoso(request):
     }
     return render(request,'registration/cambioexitoso.html',context)
 
-@login_required
-def inicio(request):
-    titulo="Página Principal"
-    context={
-        'titulo':titulo
-    }
-    return render(request,'index2.html',context)    
+   
 """
 def inicio(request):
     titulo="Página Principal"
