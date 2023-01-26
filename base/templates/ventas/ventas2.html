@@ -38,9 +38,7 @@
                     <div class="card-body ">                        
                         <!-- Este botón llama el modal -->
                         <a class="btn btn-success float-right mr-0 mb-3" name="form-crear-venta"
-                        data-bs-toggle="modal" data-bs-target="#crearVenta"> Crear Venta</a>
-                        <!-- Modal de crear venta-->
-                        <c>{% include 'ventas/ventas-crear.html' %}</c>
+                        data-bs-toggle="modal" data-bs-target="#crear_Venta"> Crear Venta</a>
                         <!-- Datatable de usuarios -->
                         <table id="example1" class="table table-bordered
                             table-striped border-dark">
@@ -59,21 +57,19 @@
                             <tbody>
                                 {% for venta in ventas %}
                                 <tr>
-                                    <td class="align middle text-center"><img class="rounded-circle" src="{{ MEDIA_URL }}{{usuario.foto.url}}" alt="" width="50" height="50"></td>
-                                    <td class="border-dark">{{venta.subTotalVenta}}</td>
-                                    <td class="border-dark">{{venta.fecha}}</td>
-                                    <td class="border-dark">{{venta.porcentajeIva}}</td>
-                                    <td class="border-dark">{{venta.totalVenta}}</td>
-                                    <td class="border-dark">{{venta.detalleVenta}}</td>
-                                    <td class="border-dark">{{venta.cliente}}</td>
-                                    <td class="border-dark">{{venta.usuario}}</td>
-                                    <td class="border-dark">{{venta.acciones}}</td>
-                                    <td class="border-dark">
+                                    <td class="border-dark text-black">{{venta.subTotalVenta}}</td>
+                                    <td class="border-dark text-black">{{venta.fecha}}</td>
+                                    <td class="border-dark text-black">{{venta.porcentajeIva}}</td>
+                                    <td class="border-dark text-black">{{venta.totalVenta}}</td>
+                                    <td class="border-dark text-black">{{venta.detalleVenta}}</td>
+                                    <td class="border-dark text-black">{{venta.cliente}}</td>
+                                    <td class="border-dark text-black">{{venta.usuario}}</td>
+                                    <td class="border-dark text-black">
                                         <a class="btn btn-success" data-bs-toggle="modal" data-bs-target="#verVenta"
-                                        ><i class="fas fa-eye"></i></a><c>{% include 'ventas/ventas-ver.html' %}</c>
+                                        ><i class="fas fa-eye"></i></a>
 
                                         <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modificarVenta">
-                                            <i class="fas fa-edit"></i></a><a>{% include 'ventas/ventas-modificar.html' %}</a>
+                                            <i class="fas fa-edit"></i></a>
 
                                         <a class="btn btn-danger" ><i class="fas fa-trash-alt"></i></a>
                                     </td>

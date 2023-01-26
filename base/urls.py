@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth import views as auth_views
-from django.contrib.auth.views import LoginView as login
+from django.contrib.auth.views import LoginView as login 
 from base.views import inicio, error404, error500, logout_user, perfil
 
 ####### Importes para subir imágenes #######
@@ -40,7 +40,7 @@ urlpatterns = [
     path('tecnicos/',include('tecnico.urls')),
 
     path('logout/',logout_user,name="logout"),
-    path('',auth_views.LoginView.as_view(), name='login'),
+    path('',auth_views.LoginView.as_view(), name='login2'),
     path('reset_password/',auth_views.PasswordResetView.as_view(),name='password_reset'),
     path('reset_password_send/',auth_views.PasswordResetDoneView.as_view(),name='password_reset_done'),
     path('reset/<uidb64>/<token>',auth_views.PasswordResetConfirmView.as_view(),name='password_reset_confirm'),

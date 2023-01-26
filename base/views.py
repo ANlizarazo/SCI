@@ -2,12 +2,12 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 
-def login(request):
+def login2(request):
     titulo="Inicio de Sesión"
     context={
         'titulo':titulo
     }
-    return render(request,'index.html',context)  
+    return render(request,'registration/login.html',context)  
 
 def formRecuperacion(request):
     titulo="Recupera tu Contraseña"
@@ -94,4 +94,4 @@ def perfil(request):
 
 def logout_user(request):
     logout(request)
-    return redirect('login')
+    return redirect('login2')

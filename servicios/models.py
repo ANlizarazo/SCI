@@ -13,7 +13,7 @@ class TipoServicio(models.Model):
     estado=models.CharField(max_length=1, choices=Estado.choices, default=Estado.ACTIVO, verbose_name="Estado")
 
     def __str__(self)->str:
-        return "%s %s" %(self.nombreServicio)  
+        return "%s" %(self.nombreServicio)  
     
     class Meta:
         ordering = ['nombreServicio']
