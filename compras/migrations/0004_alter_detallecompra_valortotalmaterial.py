@@ -14,6 +14,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='detallecompra',
             name='valorTotalMaterial',
-            field=models.PositiveBigIntegerField(validators=[django.core.validators.MinValueValidator(0)], verbose_name='Valor Total Material'),
+            field=models.PositiveIntegerField(validators=[django.core.validators.MinValueValidator(0)], verbose_name='Valor Total Material'),
         ),
     ]
