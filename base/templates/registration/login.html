@@ -46,7 +46,23 @@
                     </button>
                 </div>
                 <div>
-                    <div>
+                    <div>                
+                    {% if messages %}
+                        {% for m in messages %}
+                            {% if m.tags == 'success' %} 
+                            <div class="modal-fade alert alert-dismissible alert-success">
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                                {{m}}
+                            </div>
+                            {% else %}
+                            <div class="modal-fade alert alert-dismissible alert-danger">
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                                {{m}}
+                            </div>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                        
                         <!-- espacio para el formulario -->
                         <div id="Inicio de Sesion">
                             <div class="d-flex flex-column min-vh-100
