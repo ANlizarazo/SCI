@@ -20,7 +20,6 @@ from django.contrib.auth.views import LoginView, LogoutView
 
 from base.views import inicio, error404, error500, perfil
 
-from base.views import logout_user
 ####### Importes para subir imágenes #######
 from django.conf import settings
 from django.conf.urls.static import static
