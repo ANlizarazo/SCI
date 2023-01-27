@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout, authenticate, login
 from django.contrib import messages
 
+
 def login_view(request):
     titulo="Inicio de Sesión"
     context={
