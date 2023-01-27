@@ -57,24 +57,13 @@
                             <tbody>
                                 {% for servicio in servicios %}
                                 <tr>
-                                    <td class="border-dark">{{servicio.observacion}}</td>
-                                    <td class="border-dark">{{servicio.fechaInicio}}</td>
-                                    <td class="border-dark">{{servicio.fechaEntrega}}</td>
-                                    <td class="border-dark">{{servicio.precio}}</td>
-                                    <td class="border-dark">{{servicio.observacionFinal}}</td>
-                                    <td class="border-dark">{{servicio.tipoServicio}}</td>
-                                    <td class="border-dark">{{servicio.tecnico}}</td>
-                                    <th class="border-dark">{{servicio.acciones}}</th>
-                                </tr>
-                                {% endfor %}
-                                <tr>
-                                    <td class="border-dark">Trident</td>
-                                    <td class="border-dark">Internet</td>
-                                    <td class="border-dark">Win 95+</td>
-                                    <td class="border-dark"> 4</td>
-                                    <td class="border-dark">X</td>
-                                    <td class="border-dark">Trident</td>
-                                    <td class="border-dark">Internet</td>
+                                    <td class="border-dark text-black">{{servicio.observacion}}</td>
+                                    <td class="border-dark text-black">{{servicio.fechaInicio}}</td>
+                                    <td class="border-dark text-black">{{servicio.fechaEntrega}}</td>
+                                    <td class="border-dark text-black">{{servicio.precio}}</td>
+                                    <td class="border-dark text-black">{{servicio.observacionFinal}}</td>
+                                    <td class="border-dark text-black">{{servicio.tipoServicio}}</td>
+                                    <td class="border-dark text-black">{{servicio.tecnico}}</td>
                                     <td class="border-dark">
                                         <a class="btn btn-success" data-bs-toggle="modal" data-bs-target="#verServicio">
                                             <i class="fas fa-eye"></i></a><c>{% include 'servicios/servicios-ver.html' %}</c>
@@ -83,6 +72,7 @@
                                         <a class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
                                     </td>
                                 </tr>
+                                {% endfor %}
                             </table>
                         </div>
                         <!-- /.card-body -->

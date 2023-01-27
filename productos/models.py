@@ -8,7 +8,7 @@ class Categoria(models.Model):
     descripcion = models.TextField(max_length=300, verbose_name="Descripción")
 
     def __str__(self)->str:
-        return "%s %s" %(self.nombre)  
+        return "%s" %(self.nombre)  
     
     class Meta:
         ordering = ['nombre']
@@ -17,7 +17,7 @@ class Categoria(models.Model):
 
 class Producto(models.Model):
     nombre = models.CharField(max_length=50, verbose_name="Nombre Producto") 
-    precio = models.PositiveBigIntegerField(validators = [ MinValueValidator ( 1 )], verbose_name="Precio")   
+    precio = models.PositiveIntegerField(validators = [MinValueValidator ( 1 )], verbose_name="Precio")   
     especificaciones = models.TextField(max_length=300, verbose_name="Especificaciones")
     class Estado(models.TextChoices):
         ACTIVO='1', _('Activo')

@@ -61,27 +61,14 @@
                             <tbody>
                                 {% for producto in productos %}
                                 <tr>
-                                    <td class="align middle text-center"><img class="rounded-circle" src="{{ MEDIA_URL }}{{usuario.foto.url}}" alt="" width="50" height="50"></td>
-                                    <td class="border-dark">{{producto.nombre}}</td>
-                                    <td class="border-dark">{{producto.precio}}</td>
-                                    <td class="border-dark">{{producto.especificaciones}}</td>
-                                    <td class="border-dark">{{producto.stock}}</td>
-                                    <td class="border-dark">{{producto.stockMinimo}}</td>
-                                    <th class="border-dark">{{producto.porcentajeIva}}</th>
-                                    <th class="border-dark">{{producto.categoria}}</th>
-                                    <th class="border-dark">{{producto.foto}}</th>
-                                    <th class="border-dark">{{producto.acciones}}</th>
-                                </tr>
-                                {% endfor %}
-                                <tr>
-                                    <td class="border-dark">Trident</td>
-                                    <td class="border-dark">Internet</td>
-                                    <td class="border-dark">Win 95+</td>
-                                    <td class="border-dark"> 4</td>
-                                    <td class="border-dark">X</td>
-                                    <td class="text-black border-dark">Trident</td>
-                                    <td class="text-black border-dark">Internet</td>
-                                    <td class="text-black border-dark">Win 95+</td>
+                                    <td class="border-dark align middle text-center"><img class="rounded-circle" src="{{ MEDIA_URL }}{{usuario.foto.url}}" alt="" width="50" height="50"></td>
+                                    <td class="border-dark text-black">{{producto.nombre}}</td>
+                                    <td class="border-dark text-black">{{producto.precio}}</td>
+                                    <td class="border-dark text-black">{{producto.especificaciones}}</td>
+                                    <td class="border-dark text-black">{{producto.stock}}</td>
+                                    <td class="border-dark text-black">{{producto.stockMinimo}}</td>
+                                    <td class="border-dark text-black">{{producto.porcentajeIva}}</td>
+                                    <td class="border-dark text-black">{{producto.categoria}}</td>
                                     <td class="border-dark">
                                         <a class="btn btn-success" data-bs-toggle="modal" data-bs-target="#verProducto">
                                             <i class="fas fa-eye"></i></a><c>{% include 'productos/productos-ver.html' %}</c>
@@ -90,6 +77,7 @@
                                         <a class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
                                     </td>
                                 </tr>
+                                {% endfor %}
                             </tbody>
                             </table>
                         </div>
