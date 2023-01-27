@@ -1,41 +1,26 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import logout
+from django.contrib.auth import logout, authenticate, login
+from django.contrib import messages
 
-def login2(request):
+def login_view(request):
     titulo="Inicio de Sesión"
     context={
         'titulo':titulo
-    }
+    }    
+    
+    if request.method == "POST":
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        usuario = authenticate(username=username, password=password)
+        if usuario:
+            login(request,usuario)
+            messages.success (request, f'Bienvenido', {usuario.username})
+            return redirect ('index2')
+        else:
+            messages.error(request, 'Datos invalidos')
     return render(request,'registration/login.html',context)  
-
-def formRecuperacion(request):
-    titulo="Recupera tu Contraseña"
-    context={
-        'titulo':titulo
-    }
-    return render(request,'registration/formrecuperacion.html',context)
-
-def correoEnviado(request):
-    titulo="Correo de Recuperación Enviado"
-    context={
-        'titulo':titulo
-    }
-    return render(request,'registration/correoenviado.html',context)
-
-def nuevaContraseña(request):
-    titulo="Crea tu Nueva Contraseña"
-    context={
-        'titulo':titulo
-    }
-    return render(request,'registration/nuevacontraseña.html',context)
-
-def cambioExitoso(request):
-    titulo="Contraseña Cambiada Correctamente"
-    context={
-        'titulo':titulo
-    }
-    return render(request,'registration/cambioexitoso.html',context)
 
 @login_required
 def inicio(request):
