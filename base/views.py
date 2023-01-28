@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import logout, authenticate, login
-from django.contrib import messages
+from django.contrib.auth import logout
 
 
 def login_view(request):
@@ -9,18 +8,6 @@ def login_view(request):
     context={
         'titulo':titulo
     }    
-    
-    if request.method == "POST":
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-
-        usuario = authenticate(username=username, password=password)
-        if usuario:
-            login(request,usuario)
-            messages.success (request, f'Bienvenido', {usuario.username})
-            return redirect ('index2')
-        else:
-            messages.error(request, 'Datos invalidos')
     return render(request,'registration/login.html',context)  
 
 @login_required
