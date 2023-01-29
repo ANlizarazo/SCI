@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 
+
 def login(request):
     titulo="Inicio de Sesión"
     context={
@@ -97,3 +98,5 @@ def perfil(request):
 def logout_user(request):
     logout(request)
     return redirect('login')
+
+ 
