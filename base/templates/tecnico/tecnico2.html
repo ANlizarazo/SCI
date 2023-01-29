@@ -1,3 +1,4 @@
+{% load static %}
 {% block contenido %}
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -35,11 +36,10 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
+                        <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4"></div>
                         <!-- Este botón llama el modal -->
                         <a class="btn btn-success float-right mr-0 mb-3"
-                        data-bs-toggle="modal" data-bs-target="#crearTecnico"> Crear Técnico</a>
-                        <!-- Modal de crear tecnico-->
-                        <div>{% include 'tecnico/tecnico-crear.html' %}</div>
+                        data-bs-toggle="modal" data-bs-target="#crear_Tecnico"> Crear Técnico</a>
                         <!-- Datatable de tecnicos -->
                         <table id="example1" class="table table-bordered
                             table-striped border-dark">
@@ -69,9 +69,9 @@
                                     <td class="border-dark text-black">{{tecnico.ciudad}}</td>
                                     <td class="border-dark">
                                         <a class="btn btn-success" data-bs-toggle="modal" data-bs-target="#verTecnico">
-                                            <i class="fas fa-eye"></i></a><c>{% include 'tecnico/tecnico-ver.html' %}</c>
+                                            <i class="fas fa-eye"></i></a>
                                         <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modificarTecnico">
-                                            <i class="fas fa-edit"></i></a><c>{% include 'tecnico/tecnico-modificar.html' %}</c>
+                                            <i class="fas fa-edit"></i></a>
                                         <a class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
                                     </td>
                                 </tr>
@@ -99,5 +99,5 @@
         <!-- fullCalendar 2.2.5 -->
         <script src="/static/AdminLTE/moment/moment.min.js"></script>
         <script src="/static/AdminLTE/fullcalendar/main.js"></script>
-
+    
         {% endblock contenido %}
