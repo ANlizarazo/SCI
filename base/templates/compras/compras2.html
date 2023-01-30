@@ -38,9 +38,8 @@
                     <div class="card-body">
                         <!-- Modal de crear compra-->
                         <a class="btn btn-success float-right mr-0 mb-3" data-bs-toggle="modal" data-bs-target="#crearCompra"> Crear Compra</a>
-                        <div>{% include 'compras/compras-crear.html' %}</div>
                         <!-- Datatable de compra -->
-                        <table id="example1" class="table table-bordered
+                        <table id="tabla-compras" class="table table-bordered
                             table-striped border-dark">
                             <thead class="bg-success">
                                 <tr>
@@ -101,22 +100,25 @@
             <script src="/static/AdminLTE/datatables-buttons/js/buttons.print.min.js"></script>
             <script src="/static/AdminLTE/datatables-buttons/js/buttons.colVis.min.js"></script>
             
-            <!-- Page specific script -->
+            <!--DataTable Compras-->
             <script>
                 $(function () {
-                    $("#example1").DataTable({
-                        "responsive": true, "lengthChange": false, "autoWidth": false,
-                        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-                    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-                    $('#example2').DataTable({
+                    $("#tabla-compras").DataTable({
+                        dom: 'Bfrtip',
+                        language:{
+                            url: "/static/AdminLTE/datatables/datatables.spanish.json"
+                        },
+                        //dataTable configurations
                         "paging": true,
                         "lengthChange": false,
-                        "searching": false,
+                        "searching": true,
                         "ordering": true,
                         "info": true,
                         "autoWidth": false,
                         "responsive": true,
-                    });
+                        "pageLength": 8,
+                        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+                    }).buttons().container().appendTo('#tabla-compras .col-md-6:eq(0)');
                 });
             </script>
             {% endblock javascript %}

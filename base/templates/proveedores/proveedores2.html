@@ -38,10 +38,8 @@
                     <div class="card-body">
                         <!-- Este botón llama el modal -->
                         <a class="btn btn-success float-right mr-0 mb-3" data-bs-toggle="modal" data-bs-target="#crearProveedor"> Crear Proveedor</a>
-                        <!-- Modal de crear compra-->
-                        <div>{% include 'proveedores/proveedores-crear.html' %}</div>
-                        <!-- Datatable de Proveedor -->
-                        <table id="example1" class="table table-bordered
+                        <!-- Datatable de Proveedores -->
+                        <table id="tabla-proveedores" class="table table-bordered
                             table-striped border-dark">
                             <thead class="bg-success">
                                 <tr>
@@ -70,11 +68,12 @@
                                     <td class="border-dark text-black">{{proveedor.material}}</td>
                                     <td class="border-dark text-black">{{proveedor.departamento}}</td>
                                     <td class="border-dark text-black">
-                                        <a class="btn btn-success" data-bs-toggle="modal" data-bs-target="#verProveedor">
-                                        <i class="fas fa-eye"></i></a><c>{% include 'proveedores/proveedores-ver.html' %}</c>
-                                        <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modificarProveedor">
-                                        <i class="fas fa-edit"></i></a><c>{% include 'proveedores/proveedores-modificar.html' %}</c>
-                                        <a class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
+                                        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#verProveedor">
+                                            <i class="fas fa-eye"></i></button><c>{% include 'proveedores/proveedores-ver.html' %}</c>      
+                                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modificarProveedor">
+                                            <i class="fas fa-edit"></i></button><c>{% include 'proveedores/proveedores-modificar.html' %}</c>
+                                        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#">
+                                            <i class="fas fa-trash-alt"></i></button>
                                     </td>
                                 </tr>
                                 {% endfor %}
@@ -91,45 +90,49 @@
             {% endblock contenido %}
 
             {% block javascript %}
-            <!-- jQuery -->
-            <script src="/static/AdminLTE/jquery/jquery.min.js"></script>
-            <!-- Bootstrap -->
-            <script src="/static/AdminLTE/js-copy/bootstrap.bundle.min.js"></script>
-            <!-- jQuery UI -->
-            <script src="/static/AdminLTE/jquery-ui/jquery-ui.min.js"></script>
-            <!-- AdminLTE App -->
-            <script src="/static/AdminLTE/js/adminlte.min.js"></script>
-            
-            <!-- DataTables  & Plugins -->
-            <script src="/static/AdminLTE/datatables/jquery.dataTables.min.js"></script>
-            <script src="/static/AdminLTE/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-            <script src="/static/AdminLTE/datatables-responsive/js/dataTables.responsive.min.js"></script>
-            <script src="/static/AdminLTE/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-            <script src="/static/AdminLTE/datatables-buttons/js/dataTables.buttons.min.js"></script>
-            <script src="/static/AdminLTE/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
-            <script src="/static/AdminLTE/jszip/jszip.min.js"></script>
-            <script src="/static/AdminLTE/pdfmake/pdfmake.min.js"></script>
-            <script src="/static/AdminLTE/pdfmake/vfs_fonts.js"></script>
-            <script src="/static/AdminLTE/datatables-buttons/js/buttons.html5.min.js"></script>
-            <script src="/static/AdminLTE/datatables-buttons/js/buttons.print.min.js"></script>
-            <script src="/static/AdminLTE/datatables-buttons/js/buttons.colVis.min.js"></script>
-            
-            <!-- Page specific script -->
-            <script>
+        <!-- toastr alert -->
+        <script type="application/json" src="/static/AdminLTE/toastr/toastr.js.map"></script>
+        <script type="text/javascript" src="/static/AdminLTE/toastr/toastr.min.js"></script>
+        <!-- jQuery -->
+        <script src="/static/AdminLTE/jquery/jquery.min.js"></script>
+        <!-- Bootstrap -->
+        <script src="/static/AdminLTE/js-copy/bootstrap.bundle.min.js"></script>
+        <!-- jQuery UI -->
+        <script src="/static/AdminLTE/jquery-ui/jquery-ui.min.js"></script>
+        <!-- AdminLTE App -->
+        <script src="/static/AdminLTE/js/adminlte.min.js"></script>
+        <!-- DataTables  & Plugins -->
+        <script src="/static/AdminLTE/datatables/jquery.dataTables.min.js"></script>
+        <script src="/static/AdminLTE/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+        <script src="/static/AdminLTE/datatables-responsive/js/dataTables.responsive.min.js"></script>
+        <script src="/static/AdminLTE/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+        <script src="/static/AdminLTE/datatables-buttons/js/dataTables.buttons.min.js"></script>
+        <script src="/static/AdminLTE/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+        <script src="/static/AdminLTE/jszip/jszip.min.js"></script>
+        <script src="/static/AdminLTE/pdfmake/pdfmake.min.js"></script>
+        <script src="/static/AdminLTE/pdfmake/vfs_fonts.js"></script>
+        <script src="/static/AdminLTE/datatables-buttons/js/buttons.html5.min.js"></script>
+        <script src="/static/AdminLTE/datatables-buttons/js/buttons.print.min.js"></script>
+        <script src="/static/AdminLTE/datatables-buttons/js/buttons.colVis.min.js"></script>
+
+        <!--DataTable Proveedores-->
+        <script>
                 $(function () {
-                    $("#example1").DataTable({
-                        "responsive": true, "lengthChange": false, "autoWidth": false,
-                        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-                    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-                    $('#example2').DataTable({
-                        "paging": true,
-                        "lengthChange": false,
-                        "searching": false,
-                        "ordering": true,
-                        "info": true,
-                        "autoWidth": false,
-                        "responsive": true,
-                    });
+                    $("#tabla-proveedores").DataTable({
+                        dom: 'Bfrtip',
+                        language:{
+                            url: "/static/AdminLTE/datatables/datatables.spanish.json"
+                        },
+                    //dataTable configurations
+                    "responsive": true, "paging": true, "lengthChange": false,
+                    "searching": true, "autoWidth": false, "ordering": true,
+                    "info": true, "pageLength": 8,
+                    "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+
+                    }
+                    
+                    ).buttons().container().appendTo('#tabla-proveedores_wrapper .col-md-6:eq(0)');
                 });
             </script>
-            {% endblock javascript %}
+        <script src="/static/AdminLTE/js/modal-status.js"></script>
+        {% endblock javascript %}

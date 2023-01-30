@@ -27,24 +27,23 @@
 
     <!-- Main content -->
     <section class="content">
-        <div class="container-fluid ">
+        <div class="container-fluid">
             <div class="row">
                 <!-- Card -->
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title"><tr><b
-                                    class="text-success">Reporte de Usuarios</b></tr></h3>
+                        <h3 class="card-title"><tr><b class="text-success">Reporte de Usuarios</b></tr></h3>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
                         <!-- Este botón llama el modal -->
-                        <button type="button" class="btn btn-success float-right
-                            mr-0 mb-3"
+                        <button type="button" class="btn btn-success float-right mr-0 mb-3"
+                            name="form-crear-usuario"
                             data-bs-toggle="modal"
                             data-bs-target="#crear_Usuario"> Crear Usuario</button>
                         <!-- Datatable de usuarios -->
-                        <table id="example1" class="table table-bordered
-                            table-striped border-dark">
+                        <table id="tabla-usuarios" class="table table-bordered
+                            table-striped border-dark" style="font-size: 14px;">
                             <thead class="bg-success">
                                 <tr>
                                     <th class="border-dark">Foto</th>
@@ -63,9 +62,7 @@
                             <tbody>
                                 {% for usuario in usuarios %}
                                 <tr>
-                                    <td class="border-dark align middle
-                                        text-center"><img class="rounded-circle"
-                                            src="{{ MEDIA_URL}}{{usuario.foto.url}}" alt="" width="50" height="50"></td>
+                                    <td class="border-dark align middle text-center"><img class="rounded-circle" src="{{ MEDIA_URL}}{{usuario.foto.url}}" alt="" width="50" height="50"></td>
                                     <td class="border-dark text-black">{{usuario.nombres}}</td>
                                     <td class="border-dark text-black">{{usuario.apellidos}}</td>
                                     <td class="border-dark text-black">{{usuario.telefono}}</td>
@@ -75,18 +72,12 @@
                                     <td class="border-dark text-black">{{usuario.numDocumento}}</td>
                                     <td class="border-dark text-black">{{usuario.genero}}</td>
                                     <td class="border-dark text-black">{{usuario.rol}}</td>
-                                    <td class="border-dark">
-                                        <button class="btn btn-success"
-                                            data-bs-toggle="modal"
-                                            data-bs-target="#ver_Usuario">
-                                            <i class="fas fa-eye"></i></button>
-                                        <button class="btn btn-primary"
-                                            data-bs-toggle="modal"
-                                            data-bs-target="#modificar_Usuario">
-                                            <i class="fas fa-edit"></i></button>
-                                        <button class="btn btn-danger"
-                                            data-bs-toggle="modal"
-                                            data-bs-target="#eliminar_Usuario">
+                                    <td class="border-dark text-black">
+                                        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#ver_Usuario">
+                                            <i class="fas fa-eye"></i></button><c>{% include 'usuarios/usuarios-ver.html' %}</c>      
+                                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modificar_Usuario">
+                                            <i class="fas fa-edit"></i></button><c>{% include 'usuarios/usuarios-modificar.html' %}</c>
+                                        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#">
                                             <i class="fas fa-trash-alt"></i></button>
                                     </td>
                                 </tr>
@@ -106,6 +97,9 @@
         {% endblock contenido %}
 
         {% block javascript %}
+        <!-- toastr alert -->
+        <script type="application/json" src="/static/AdminLTE/toastr/toastr.js.map"></script>
+        <script type="text/javascript" src="/static/AdminLTE/toastr/toastr.min.js"></script>
         <!-- jQuery -->
         <script src="/static/AdminLTE/jquery/jquery.min.js"></script>
         <!-- Bootstrap -->
@@ -114,7 +108,6 @@
         <script src="/static/AdminLTE/jquery-ui/jquery-ui.min.js"></script>
         <!-- AdminLTE App -->
         <script src="/static/AdminLTE/js/adminlte.min.js"></script>
-        
         <!-- DataTables  & Plugins -->
         <script src="/static/AdminLTE/datatables/jquery.dataTables.min.js"></script>
         <script src="/static/AdminLTE/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
@@ -128,23 +121,25 @@
         <script src="/static/AdminLTE/datatables-buttons/js/buttons.html5.min.js"></script>
         <script src="/static/AdminLTE/datatables-buttons/js/buttons.print.min.js"></script>
         <script src="/static/AdminLTE/datatables-buttons/js/buttons.colVis.min.js"></script>
-        
-        <!-- Page specific script -->
+
+        <!--DataTable Usuarios-->
         <script>
-            $(function () {
-                $("#example1").DataTable({
-                    "responsive": true, "lengthChange": false, "autoWidth": false,
+                $(function () {
+                    $("#tabla-usuarios").DataTable({
+                        dom: 'Bfrtip',
+                        language:{
+                            url: "/static/AdminLTE/datatables/datatables.spanish.json"
+                        },
+                    //dataTable configurations
+                    "responsive": true, "paging": true, "lengthChange": false,
+                    "searching": true, "autoWidth": false, "ordering": true,
+                    "info": true, "pageLength": 8,
                     "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-                }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-                $('#example2').DataTable({
-                    "paging": true,
-                    "lengthChange": false,
-                    "searching": false,
-                    "ordering": true,
-                    "info": true,
-                    "autoWidth": false,
-                    "responsive": true,
+
+                    }
+                    
+                    ).buttons().container().appendTo('#tabla-usuarios_wrapper .col-md-6:eq(0)');
                 });
-            });
-        </script>
+            </script>
+        <script src="/static/AdminLTE/js/modal-status.js"></script>
         {% endblock javascript %}
