@@ -20,7 +20,6 @@ from django.contrib.auth.views import LoginView, LogoutView
 
 from base.views import inicio, error404, error500, perfil
 
-from base.views import logout_user
 ####### Importes para subir imágenes #######
 from django.conf import settings
 from django.conf.urls.static import static
@@ -42,7 +41,7 @@ urlpatterns = [
     path('tecnicos/',include('tecnico.urls')),
     # --------------------------------------LOGIN--------------------------------------------
     path('logout/',LogoutView.as_view(),name="logout"),
-    path('',auth_views.LoginView.as_view(), name='login'),
+    path('',auth_views.LoginView.as_view(), name='login_view'),
     path('reset_password/',auth_views.PasswordResetView.as_view(),name='password_reset'),
     path('reset_password_send/',auth_views.PasswordResetDoneView.as_view(),name='password_reset_done'),
     path('reset/<uidb64>/<token>',auth_views.PasswordResetConfirmView.as_view(),name='password_reset_confirm'),

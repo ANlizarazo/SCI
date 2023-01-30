@@ -1,6 +1,5 @@
 {% load crispy_forms_tags %}
 
-
 <!-- Modal de crear usuario -->
 
 <div class="modal fade" id="crear_Usuario" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -11,7 +10,7 @@
         </div>
         <div class="modal-body">
             <!-- Formulario -->
-            <form id="f_usuario" action="" method="POST" enctype="multipart/form-data">
+            <form id="f_usuario" action="" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
                             
                 <div class="modal-body text-start" id="form-nuevo-usuario">
 
@@ -27,103 +26,158 @@
                     </div>
             
                     <div class="d-inline-block w-100">
-                        <label for="basic-url" class="form-label ps-2 text-black" style="font-size: 17;">Nombres</label>
+                        <label for="basic-url" for="validationCustom01" class="form-label ps-2 text-black" style="font-size: 17;">Nombres</label>
                         <div class="input-group mb-3 w-100">
                             <input type="text" class="form-control"
                                 name="Nombres" id="id_nombres"
                                 aria-describedby="basic-addon3" required minlength="1"
-                                maxlength="50">
+                                maxlength="50" id="validationCustom01" required>
+                                <div class="valid-feedback">
+                                    ¡Vamos bien!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Completa la información.
+                                </div>
                         </div>
                     </div>
             
                     <div class="d-inline-block w-100">
-                        <label for="basic-url" class="form-label ps-2 text-black" style="font-size: 17;">Apellidos</label>
+                        <label for="basic-url"  for="validationCustom02" class="form-label ps-2 text-black" style="font-size: 17;">Apellidos</label>
                         <div class="input-group mb-3 w-100">
                             <input type="text" class="form-control"
                                 name="apellidos" id="id_apellidos"
-                                aria-describedby="basic-addon3" required minlength="1"
-                                maxlength="50">
+                                aria-describedby="basic-addon3" id="validationCustom02" required minlength="1"
+                                maxlength="50" required>
+                                <div class="valid-feedback">
+                                    ¡Vamos bien!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Completa la información.
+                                </div>
                         </div>
                     </div>
             
                     <div class="d-inline-block w-100">
-                        <label for="basic-url" class="form-label ps-2 text-black" style="font-size: 17;">Número de Teléfono</label>
+                        <label for="basic-url" for="validationCustom03" class="form-label ps-2 text-black" style="font-size: 17;">Número de Teléfono</label>
                         <div class="input-group mb-3 w-100">
-                            <input type="text" class="form-control" name="numeroTelefono"
+                            <input type="number" class="form-control" name="numeroTelefono"
                                 id="id_numeroTelefono"
-                                aria-describedby="basic-addon3" required minlength="1"
-                                maxlength="20">
+                                aria-describedby="basic-addon3" id="validationCustom03" required minlength="1"
+                                maxlength="20" required>
+                                <div class="valid-feedback">
+                                    ¡Vamos bien!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Ingresa un número de teléfono valido.
+                                </div>
                         </div>
                     </div>
             
                     <div class="d-inline-block w-100">
-                        <label for="basic-url" class="form-label ps-2 text-black" style="font-size: 17;">Correo Electrónico</label>
+                        <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom04" style="font-size: 17;">Correo Electrónico</label>
                         <div class="input-group mb-3 w-100">
                             <input type="email" class="form-control" name="correoElectronico"
                                 id="id_correoElectronico"
-                                aria-describedby="basic-addon3" required minlength="1"
-                                maxlength="100">
+                                aria-describedby="basic-addon3" id="validationCustom04" required minlength="1"
+                                maxlength="100" required>
+                                <div class="valid-feedback">
+                                    ¡Vamos bien!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Ingresa un correo electrónico valido.
+                                </div>
                         </div>
                     </div>
             
                     <div class="d-inline-block w-100">
-                        <label for="basic-url" class="form-label ps-2 text-black" style="font-size: 17;">Dirección</label>
+                        <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom05" style="font-size: 17;">Dirección</label>
                         <div class="input-group mb-3 w-100">
                             <input type="text" class="form-control" name="direccionResidencia"
                                 id="id_direccionResidencia"
-                                aria-describedby="basic-addon3" required minlength="1"
-                                maxlength="100">
+                                aria-describedby="basic-addon3" id="validationCustom05" required minlength="1"
+                                maxlength="100" required>
+                                <div class="valid-feedback">
+                                    ¡Vamos bien!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Ingresa un dirección valida.
+                                </div>
                         </div>
                     </div>
             
                     <div class="d-inline-block w-100">
-                        <label for="basic-url" class="form-label ps-2 text-black" style="font-size: 17;">Tipo de Documento</label>
+                        <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom06" style="font-size: 17;">Tipo de Documento</label>
                         <div class="input-group mb-3 w-100">
                             <select id="id_tipoDocumento" class="form-select" name="tipoDocumento"
-                                aria-label="tipo-activo" required>
-                                <option class="text-black" selected disabled>Seleccionar</option>
+                                aria-label="tipo-activo" id="validationCustom06" required>
+                                <option class="text-black" selected disabled value>Seleccionar</option>
                                 <option class="text-black" value="CC">Cédula de Ciudadania</option>
                                 <option class="text-black" value="CE">Cédula de Extranjería</option>
                                 <option class="text-black" value="PP">Pasaporte</option>
                                 <option class="text-black" value="OT">Otro</option>
                             </select>
+                            <div class="valid-feedback">
+                                ¡Vamos bien!
+                            </div>
+                            <div class="invalid-feedback">
+                                Selecciona una opción valida.
+                            </div>
                         </div>
                     </div>
             
                     <div class="d-inline-block w-100">
-                        <label for="basic-url" class="form-label ps-2 text-black" style="font-size: 17;">Número de Documento</label>
+                        <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom07" style="font-size: 17;">Número de Documento</label>
                         <div class="input-group mb-3 w-100">
-                            <input type="text" class="form-control" name="numeroDocumento"
+                            <input type="number" class="form-control" name="numeroDocumento"
                                 id="id_numeroDocumento"
                                 aria-describedby="basic-addon3" required minlength="1"
-                                maxlength="50">
+                                maxlength="50" id="validationCustom07" required>
+                                <div class="valid-feedback">
+                                    ¡Vamos bien!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Ingresa un número de documento valido.
+                                </div>
                         </div>
                     </div>
             
                     <div class="d-inline-block w-100">
-                        <label for="basic-url" class="form-label ps-2 text-black" style="font-size: 17;">Género</label>
+                        <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom08" style="font-size: 17;">Género</label>
                         <div class="input-group mb-3 w-100">
                             <select id="id_genero" class="form-select" name="genero"
-                                aria-label="tipo-activo">
-                                <option class="text-black" selected disabled>Seleccionar</option>
+                                aria-label="tipo-activo" id="validationCustom08" required>
+                                <option class="text-black" selected disabled value>Seleccionar</option>
                                 <option class="text-black" value="Masculino">Masculino</option>
                                 <option class="text-black" value="Femenino">Femenino</option>
                                 <option class="text-black" value="Otro">Otro</option>
                             </select>
+                            <div class="valid-feedback">
+                                ¡Vamos bien!
+                            </div>
+                            <div class="invalid-feedback">
+                                Selecciona una opción valida.
+                            </div>
                         </div>
                     </div>
             
                     <div class="d-inline-block w-100">
-                        <label for="basic-url" class="form-label ps-2 text-black" style="font-size: 17;">Rol</label>
+                        <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom09" style="font-size: 17;">Rol</label>
                         <div class="input-group mb-3 w-100">
                             <select id="id_rol" class="form-select" name="rol"
-                                aria-label="tipo-activo">
-                                <option class="text-black" selected disabled>Seleccionar</option>
+                                aria-label="tipo-activo" id="validationCustom09" required>
+                                <option class="text-black" selected disabled value>Seleccionar</option>
                                 <option class="text-black" value="Administrador">Administrador</option>
                                 <option class="text-black" value="Empleado">Empleado</option>
                             </select>   
+                            <div class="valid-feedback">
+                                ¡Vamos bien!
+                            </div>
+                            <div class="invalid-feedback">
+                                Selecciona una opción valida.
+                            </div>
                         </div>
                     </div>
+        <script src="/static/js/funciones.js"></script>
         <div class="modal-footer">
         <!-- BOTÓN PARA GUARDAR LA INFORMACIÓN DIGITADA EN EL FORMULARIO DEL USUARIO -->
         <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>

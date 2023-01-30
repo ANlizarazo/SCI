@@ -3,123 +3,175 @@
 
 <!-- Modal de crear venta -->
 
-<div class="modal fade" id="crear_Venta" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="crear_Venta" data-bs-backdrop="static"
+    data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+    aria-hidden="true">
     <div class="modal-dialog">
-    <div class="modal-content">
-        <div class="modal-header">
-        <h1 class="modal-title fs-3" id="staticBackdropLabel"><b class="text-black" >CREAR NUEVA VENTA</b></h1>
-        </div>
-        <div class="modal-body">
-            <!-- Formulario -->
-            <form id="f_venta" action="" method="POST" enctype="multipart/form-data">
-                            
-                <div class="modal-body text-start" id="form-crear-venta">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-3" id="staticBackdropLabel"><b
+                        class="text-black">CREAR NUEVA VENTA</b></h1>
+            </div>
+            <div class="modal-body">
+                <!-- Formulario -->
+                <form id="f_venta" action="" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
 
-                    {% csrf_token %}
+                    <div class="modal-body text-start" id="form-crear-venta">
+                        {% csrf_token %}
 
-                    <div class="d-inline-block w-100">
-                        <label for="basic-url" class="form-label ps-2 text-black" style="font-size: 17;">Subtotal Venta</label>
-                        <div class="input-group mb-3 w-100">
-                            <input type="text" class="form-control" name="numeroTelefono"
-                                id="id_numeroTelefono"
-                                aria-describedby="basic-addon3" required minlength="1"
-                                maxlength="20">
+                        <div class="d-inline-block w-100">
+                            <label for="basic-url" for="validationCustom01"
+                                class="form-label ps-2 text-black"
+                                style="font-size: 17;">Subtotal Venta</label>
+                            <div class="input-group mb-3 w-100">
+                                <input type="number" class="form-control"
+                                    name="subtotalVenta"
+                                    id="id_subtotalVenta"
+                                    aria-describedby="basic-addon3"
+                                    id="validationCustom01" required
+                                    minlength="1"
+                                    maxlength="20" required>
+                                <div class="valid-feedback">
+                                    ¡Vamos bien!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Ingresa un número valido.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="d-inline-block w-100">
+                            <label for="basic-url" for="validationCustom02"
+                                class="form-label ps-2 text-black"
+                                style="font-size: 17;">Fecha Venta</label>
+                            <div class="input-group mb-3 w-100">
+                                <input type="datetime" class="form-control"
+                                    name="fechaVenta" id="id_fechaVenta"
+                                    aria-describedby="basic-addon3" required
+                                    minlength="1"
+                                    maxlength="50" id="validationCustom02"
+                                    required>
+                                <div class="valid-feedback">
+                                    ¡Vamos bien!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Ingresa una fecha valida.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="d-inline-block w-100">
+                            <label for="basic-url" for="validationCustom03"
+                                class="form-label ps-2 text-black"
+                                style="font-size: 17;">Porcentaje IVA</label>
+                            <div class="input-group mb-3 w-100">
+                                <input type="number" class="form-control"
+                                    name="porcentajeIva" id="id_porcentajeIva"
+                                    aria-describedby="basic-addon3"
+                                    id="validationCustom03" required
+                                    minlength="1"
+                                    maxlength="50" required>
+                                <div class="valid-feedback">
+                                    ¡Vamos bien!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Ingresa un número valido.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="d-inline-block w-100">
+                            <label for="basic-url" for="validationCustom04"
+                                class="form-label ps-2 text-black"
+                                style="font-size: 17;">Total Venta</label>
+                            <div class="input-group mb-3 w-100">
+                                <input type="number" class="form-control"
+                                    name="totalVenta"
+                                    id="id_totalVenta"
+                                    aria-describedby="basic-addon3"
+                                    id="validationCustom04" required
+                                    minlength="1"
+                                    maxlength="20" required>
+                                <div class="valid-feedback">
+                                    ¡Vamos bien!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Ingresa un número valido.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="d-inline-block w-100">
+                            <label for="basic-url" for="validationCustom05"
+                                class="form-label ps-2 text-black"
+                                style="font-size: 17;">Detalle Venta</label>
+                            <div class="input-group mb-3 w-100">
+                                <input type="number" class="form-control"
+                                    name="detalleVenta"
+                                    id="id_detalleVenta"
+                                    aria-describedby="basic-addon3"
+                                    id="validationCustom05" required
+                                    minlength="1"
+                                    maxlength="20" required>
+                                <div class="valid-feedback">
+                                    ¡Vamos bien!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Ingresa información valida.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="d-inline-block w-100">
+                            <label for="basic-url" class="form-label ps-2
+                                text-black" for="validationCustom06"
+                                style="font-size: 17;">Cliente</label>
+                            <div class="input-group mb-3 w-100">
+                                <input type="text" class="form-control"
+                                    name="cliente"
+                                    id="id_cliente"
+                                    aria-describedby="basic-addon3"
+                                    id="validationCustom06" required
+                                    minlength="1"
+                                    maxlength="100" required>
+                                <div class="valid-feedback">
+                                    ¡Vamos bien!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Ingresa información valida.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="d-inline-block w-100">
+                            <label for="basic-url" class="form-label ps-2
+                                text-black" for="validationCustom07"
+                                style="font-size: 17;">Usuario</label>
+                            <div class="input-group mb-3 w-100">
+                                <input type="text" class="form-control"
+                                    name="usuario"
+                                    id="id_usuario"
+                                    aria-describedby="basic-addon3"
+                                    id="validationCustom07" required
+                                    minlength="1"
+                                    maxlength="100" required>
+                                <div class="valid-feedback">
+                                    ¡Vamos bien!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Ingresa información valida.
+                                </div>
+                            </div>
+                        </div>
+
+                        <script src="/static/js/funciones.js"></script>
+                        <div class="modal-footer">
+                            <!-- BOTÓN PARA GUARDAR LA INFORMACIÓN DIGITADA EN EL FORMULARIO DEL USUARIO -->
+                            <button type="reset" class="btn btn-secondary"
+                                data-bs-dismiss="modal">Cancelar</button>
+                            <input class="btn btn-success" type="submit"
+                                name="form-nuevo-venta" value="Crear">
                         </div>
                     </div>
-            
-                    <div class="d-inline-block w-100">
-                        <label for="basic-url" class="form-label ps-2 text-black" style="font-size: 17;">Número de Teléfono</label>
-                        <div class="input-group mb-3 w-100">
-                            <input type="text" class="form-control" name="numeroTelefono"
-                                id="id_numeroTelefono"
-                                aria-describedby="basic-addon3" required minlength="1"
-                                maxlength="20">
-                        </div>
-                    </div>
-            
-                    <div class="d-inline-block w-100">
-                        <label for="basic-url" class="form-label ps-2 text-black" style="font-size: 17;">Número de Teléfono</label>
-                        <div class="input-group mb-3 w-100">
-                            <input type="text" class="form-control" name="numeroTelefono"
-                                id="id_numeroTelefono"
-                                aria-describedby="basic-addon3" required minlength="1"
-                                maxlength="20">
-                        </div>
-                    </div>
-            
-                    <div class="d-inline-block w-100">
-                        <label for="basic-url" class="form-label ps-2 text-black" style="font-size: 17;">Correo Electrónico</label>
-                        <div class="input-group mb-3 w-100">
-                            <input type="email" class="form-control" name="correoElectronico"
-                                id="id_correoElectronico"
-                                aria-describedby="basic-addon3" required minlength="1"
-                                maxlength="100">
-                        </div>
-                    </div>
-            
-                    <div class="d-inline-block w-100">
-                        <label for="basic-url" class="form-label ps-2 text-black" style="font-size: 17;">Dirección</label>
-                        <div class="input-group mb-3 w-100">
-                            <input type="text" class="form-control" name="direccionResidencia"
-                                id="id_direccionResidencia"
-                                aria-describedby="basic-addon3" required minlength="1"
-                                maxlength="100">
-                        </div>
-                    </div>
-            
-                    <div class="d-inline-block w-100">
-                        <label for="basic-url" class="form-label ps-2 text-black" style="font-size: 17;">Tipo de Documento</label>
-                        <div class="input-group mb-3 w-100">
-                            <select id="id_tipoDocumento" class="form-select" name="tipoDocumento"
-                                aria-label="tipo-activo" required>
-                                <option class="text-black" selected disabled>Seleccionar</option>
-                                <option class="text-black" value="CC">Cédula de Ciudadania</option>
-                                <option class="text-black" value="CE">Cédula de Extranjería</option>
-                                <option class="text-black" value="PP">Pasaporte</option>
-                                <option class="text-black" value="OT">Otro</option>
-                            </select>
-                        </div>
-                    </div>
-            
-                    <div class="d-inline-block w-100">
-                        <label for="basic-url" class="form-label ps-2 text-black" style="font-size: 17;">Número de Documento</label>
-                        <div class="input-group mb-3 w-100">
-                            <input type="text" class="form-control" name="numeroDocumento"
-                                id="id_numeroDocumento"
-                                aria-describedby="basic-addon3" required minlength="1"
-                                maxlength="50">
-                        </div>
-                    </div>
-            
-                    <div class="d-inline-block w-100">
-                        <label for="basic-url" class="form-label ps-2 text-black" style="font-size: 17;">Género</label>
-                        <div class="input-group mb-3 w-100">
-                            <select id="id_genero" class="form-select" name="genero"
-                                aria-label="tipo-activo">
-                                <option class="text-black" selected disabled>Seleccionar</option>
-                                <option class="text-black" value="Masculino">Masculino</option>
-                                <option class="text-black" value="Femenino">Femenino</option>
-                                <option class="text-black" value="Otro">Otro</option>
-                            </select>
-                        </div>
-                    </div>
-            
-                    <div class="d-inline-block w-100">
-                        <label for="basic-url" class="form-label ps-2 text-black" style="font-size: 17;">Rol</label>
-                        <div class="input-group mb-3 w-100">
-                            <select id="id_rol" class="form-select" name="rol"
-                                aria-label="tipo-activo">
-                                <option class="text-black" selected disabled>Seleccionar</option>
-                                <option class="text-black" value="Administrador">Administrador</option>
-                                <option class="text-black" value="Empleado">Empleado</option>
-                            </select>   
-                        </div>
-                    </div>
-        <div class="modal-footer">
-        <!-- BOTÓN PARA GUARDAR LA INFORMACIÓN DIGITADA EN EL FORMULARIO DEL USUARIO -->
-        <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <input class="btn btn-success" type="submit" name="form-nuevo-venta" value="Crear">
-        </div>
-    </div>
-    </div>
-</div>   
+                </div>
+            </div>
