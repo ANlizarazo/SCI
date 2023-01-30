@@ -60,16 +60,16 @@
                             <tbody>
                                 {% for proveedor in proveedores %}
                                 <tr>
-                                    <td class="border-dark">{{proveedor.nombreEmpresa}}</td>
-                                    <td class="border-dark">{{proveedor.email}}</td>
-                                    <td class="border-dark">{{proveedor.telefono}}</td>
-                                    <td class="border-dark">{{proveedor.direccion}}</td>
-                                    <td class="border-dark">{{proveedor.modoPago}}</td>
-                                    <td class="border-dark">{{proveedor.tiempoEntrega}}</td>
-                                    <td class="border-dark">{{proveedor.transporteIncluido}}</td>
-                                    <td class="border-dark">{{proveedor.material}}</td>
-                                    <td class="border-dark">{{proveedor.departamento}}</td>
-                                    <td class="border-dark">
+                                    <td class="border-dark text-black">{{proveedor.nombreEmpresa}}</td>
+                                    <td class="border-dark text-black">{{proveedor.email}}</td>
+                                    <td class="border-dark text-black">{{proveedor.telefono}}</td>
+                                    <td class="border-dark text-black">{{proveedor.direccion}}</td>
+                                    <td class="border-dark text-black">{{proveedor.modoPago}}</td>
+                                    <td class="border-dark text-black">{{proveedor.tiempoEntrega}}</td>
+                                    <td class="border-dark text-black">{{proveedor.transporteIncluido}}</td>
+                                    <td class="border-dark text-black">{{proveedor.material}}</td>
+                                    <td class="border-dark text-black">{{proveedor.departamento}}</td>
+                                    <td class="border-dark text-black">
                                         <a class="btn btn-success" data-bs-toggle="modal" data-bs-target="#verProveedor">
                                         <i class="fas fa-eye"></i></a><c>{% include 'proveedores/proveedores-ver.html' %}</c>
                                         <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modificarProveedor">

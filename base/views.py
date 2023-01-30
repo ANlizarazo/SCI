@@ -2,11 +2,12 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 
-def login(request):
+
+def login_view(request):
     titulo="Inicio de Sesión"
     context={
         'titulo':titulo
-    }
+    }    
     return render(request,'registration/login.html',context)  
 
 @login_required
@@ -15,37 +16,7 @@ def inicio(request):
     context={
         'titulo':titulo
     }
-    return render(request,'index2.html',context) 
-
-def formRecuperacion(request):
-    titulo="Recupera tu Contraseña"
-    context={
-        'titulo':titulo
-    }
-    return render(request,'registration/formrecuperacion.html',context)
-
-def correoEnviado(request):
-    titulo="Correo de Recuperación Enviado"
-    context={
-        'titulo':titulo
-    }
-    return render(request,'registration/correoenviado.html',context)
-
-def nuevaContraseña(request):
-    titulo="Crea tu Nueva Contraseña"
-    context={
-        'titulo':titulo
-    }
-    return render(request,'registration/nuevacontraseña.html',context)
-
-def cambioExitoso(request):
-    titulo="Contraseña Cambiada Correctamente"
-    context={
-        'titulo':titulo
-    }
-    return render(request,'registration/cambioexitoso.html',context)
-
-   
+    return render(request,'index2.html',context)    
 """
 def inicio(request):
     titulo="Página Principal"
@@ -96,4 +67,4 @@ def perfil(request):
 
 def logout_user(request):
     logout(request)
-    return redirect('login')
+    return redirect('login2')
