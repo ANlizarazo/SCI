@@ -40,11 +40,9 @@
                         <!-- Este botón llama el modal -->
                         <a class="btn btn-success float-right mr-0 mb-3" data-bs-toggle="modal"
                             data-bs-target="#crearProducto"> Crear Producto</a>
-                        <!-- Modal de crear producto-->
-                        <c>{% include 'productos/productos-crear.html' %}</c>
                         <!-- Datatable de productos -->
-                        <table id="example1" class="table table-bordered
-                            table-striped border-dark"> {% load humanize %}
+                        <table id="tabla-productos" class="table table-bordered
+                            table-striped border-dark">
                             <thead class="bg-success">
                                 <tr>
                                     <th class="border-dark">Nombre</th>
@@ -92,45 +90,49 @@
             {% endblock contenido %}
 
             {% block javascript %}
-            <!-- jQuery -->
-            <script src="/static/AdminLTE/jquery/jquery.min.js"></script>
-            <!-- Bootstrap -->
-            <script src="/static/AdminLTE/js-copy/bootstrap.bundle.min.js"></script>
-            <!-- jQuery UI -->
-            <script src="/static/AdminLTE/jquery-ui/jquery-ui.min.js"></script>
-            <!-- AdminLTE App -->
-            <script src="/static/AdminLTE/js/adminlte.min.js"></script>
-            
-            <!-- DataTables  & Plugins -->
-            <script src="/static/AdminLTE/datatables/jquery.dataTables.min.js"></script>
-            <script src="/static/AdminLTE/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-            <script src="/static/AdminLTE/datatables-responsive/js/dataTables.responsive.min.js"></script>
-            <script src="/static/AdminLTE/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-            <script src="/static/AdminLTE/datatables-buttons/js/dataTables.buttons.min.js"></script>
-            <script src="/static/AdminLTE/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
-            <script src="/static/AdminLTE/jszip/jszip.min.js"></script>
-            <script src="/static/AdminLTE/pdfmake/pdfmake.min.js"></script>
-            <script src="/static/AdminLTE/pdfmake/vfs_fonts.js"></script>
-            <script src="/static/AdminLTE/datatables-buttons/js/buttons.html5.min.js"></script>
-            <script src="/static/AdminLTE/datatables-buttons/js/buttons.print.min.js"></script>
-            <script src="/static/AdminLTE/datatables-buttons/js/buttons.colVis.min.js"></script>
-            
-            <!-- Page specific script -->
-            <script>
+        <!-- toastr alert -->
+        <script type="application/json" src="/static/AdminLTE/toastr/toastr.js.map"></script>
+        <script type="text/javascript" src="/static/AdminLTE/toastr/toastr.min.js"></script>
+        <!-- jQuery -->
+        <script src="/static/AdminLTE/jquery/jquery.min.js"></script>
+        <!-- Bootstrap -->
+        <script src="/static/AdminLTE/js-copy/bootstrap.bundle.min.js"></script>
+        <!-- jQuery UI -->
+        <script src="/static/AdminLTE/jquery-ui/jquery-ui.min.js"></script>
+        <!-- AdminLTE App -->
+        <script src="/static/AdminLTE/js/adminlte.min.js"></script>
+        <!-- DataTables  & Plugins -->
+        <script src="/static/AdminLTE/datatables/jquery.dataTables.min.js"></script>
+        <script src="/static/AdminLTE/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+        <script src="/static/AdminLTE/datatables-responsive/js/dataTables.responsive.min.js"></script>
+        <script src="/static/AdminLTE/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+        <script src="/static/AdminLTE/datatables-buttons/js/dataTables.buttons.min.js"></script>
+        <script src="/static/AdminLTE/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+        <script src="/static/AdminLTE/jszip/jszip.min.js"></script>
+        <script src="/static/AdminLTE/pdfmake/pdfmake.min.js"></script>
+        <script src="/static/AdminLTE/pdfmake/vfs_fonts.js"></script>
+        <script src="/static/AdminLTE/datatables-buttons/js/buttons.html5.min.js"></script>
+        <script src="/static/AdminLTE/datatables-buttons/js/buttons.print.min.js"></script>
+        <script src="/static/AdminLTE/datatables-buttons/js/buttons.colVis.min.js"></script>
+
+        <!--DataTable Productos-->
+        <script>
                 $(function () {
-                    $("#example1").DataTable({
-                        "responsive": true, "lengthChange": false, "autoWidth": false,
-                        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-                    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-                    $('#example2').DataTable({
-                        "paging": true,
-                        "lengthChange": false,
-                        "searching": false,
-                        "ordering": true,
-                        "info": true,
-                        "autoWidth": false,
-                        "responsive": true,
-                    });
+                    $("#tabla-productos").DataTable({
+                        dom: 'Bfrtip',
+                        language:{
+                            url: "/static/AdminLTE/datatables/datatables.spanish.json"
+                        },
+                    //dataTable configurations
+                    "responsive": true, "paging": true, "lengthChange": false,
+                    "searching": true, "autoWidth": false, "ordering": true,
+                    "info": true, "pageLength": 8,
+                    "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+
+                    }
+                    
+                    ).buttons().container().appendTo('#tabla-productos_wrapper .col-md-6:eq(0)');
                 });
             </script>
-            {% endblock javascript %}
+        <script src="/static/AdminLTE/js/modal-status.js"></script>
+        {% endblock javascript %}

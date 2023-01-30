@@ -38,10 +38,8 @@
                         <!-- Este botón llama el modal -->
                         <a class="btn btn-success float-right mr-0 mb-3" data-bs-toggle="modal"
                             data-bs-target="#crearCliente" title="Crear Cliente"> Crear Cliente</a>
-                        <!-- Modal de crear producto-->
-                        <c>{% include 'clientes/clientes-crear.html' %}</c>
-                        <!-- Datatable de productos -->
-                        <table id="example1" class="table table-bordered
+                        <!-- Datatable de clientes -->
+                        <table id="tabla-clientes" class="table table-bordered
                             table-striped border-dark">
                             <thead class="bg-success">
                                 <tr>
@@ -108,22 +106,25 @@
             <script src="/static/AdminLTE/datatables-buttons/js/buttons.print.min.js"></script>
             <script src="/static/AdminLTE/datatables-buttons/js/buttons.colVis.min.js"></script>
             
-            <!-- Page specific script -->
+            <!--DataTable clientes-->
             <script>
                 $(function () {
-                    $("#example1").DataTable({
-                        "responsive": true, "lengthChange": false, "autoWidth": false,
-                        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-                    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-                    $('#example2').DataTable({
+                    $("#tabla-clientes").DataTable({
+                        dom: 'Bfrtip',
+                        language:{
+                            url: "/static/AdminLTE/datatables/datatables.spanish.json"
+                        },
+                        //dataTable configurations
                         "paging": true,
                         "lengthChange": false,
-                        "searching": false,
+                        "searching": true,
                         "ordering": true,
                         "info": true,
                         "autoWidth": false,
                         "responsive": true,
-                    });
+                        "pageLength": 8,
+                        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+                    }).buttons().container().appendTo('#tabla-clientes .col-md-6:eq(0)');
                 });
             </script>
             {% endblock javascript %}
