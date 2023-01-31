@@ -13,4 +13,4 @@ class VentaForm(ModelForm):
 class VentaUpdateForm(ModelForm):
     class Meta:
         model= Venta
-        exclude=['cliente']
+        exclude=['cliente','usuario']
