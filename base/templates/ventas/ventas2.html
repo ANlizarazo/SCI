@@ -48,6 +48,7 @@
                             table-striped border-dark">
                             <thead class="bg-success">
                                 <tr>
+                                    <th class="border-dark">ID Venta</th>
                                     <th class="border-dark">Subtotal Venta</th>
                                     <th class="border-dark">Fecha Venta</th>
                                     <th class="border-dark">Porcentaje IVA</th>
@@ -61,7 +62,8 @@
                             <tbody>
                                 {% for venta in ventas %}
                                 <tr>
-                                    <td class="border-dark text-black">{{venta.subTotalVenta}}</td>
+                                    <td class="border-dark text-black">{{venta.id}}</td>
+                                    <td class="border-dark text-black">{{venta.subtotalVenta}}</td>
                                     <td class="border-dark text-black">{{venta.fecha}}</td>
                                     <td class="border-dark text-black">{{venta.porcentajeIva}}</td>
                                     <td class="border-dark text-black">{{venta.totalVenta}}</td>
@@ -73,10 +75,52 @@
                                             <i class="fas fa-eye"></i></button><c>{% include 'ventas/ventas-ver.html' %}</c>      
                                         <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modificar_Venta">
                                             <i class="fas fa-edit"></i></button><c>{% include 'ventas/ventas-modificar.html' %}</c>
-                                        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#">
+                                            <button class="btn btn-danger"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#deleteModal{{venta.pk}}">
                                             <i class="fas fa-trash-alt"></i></button>
                                     </td>
                                 </tr>
+                                <!-- Modal delete confirmation -->
+                                <div class="modal fade"
+                                    id="deleteModal{{venta.pk}}"
+                                    tabindex="-1"
+                                    aria-labelledby="deleteModalLabel"
+                                    aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header bg-danger">
+                                                <h5 class="modal-title "
+                                                    id="deleteModalLabel"><i
+                                                        class="fas fa-trash-alt"></i>&nbsp;&nbsp; ELIMINAR VENTA</h5>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="text-center
+                                                    text-danger"><i class="far
+                                                        fa-times-circle fa-5x
+                                                        mb-4 mt-2"></i></div>
+                                                <div class="text-center
+                                                    text-danger">
+                                                    <span class="">¿Estás seguro de que deseas eliminar esta Venta?</span>
+                                                    <div class="text-dark mt-3
+                                                        mb-2">Venta: <strong>{{venta.id}}</strong></div>
+                                                </div>
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                <form method="post" action="{% url 'delete_venta' venta.pk %}">
+                                                    {% csrf_token %}
+
+                                                    <input type="submit"
+                                                        class="btn btn-danger"
+                                                        value="Eliminar">
+                                                </form>
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Cancelar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 {% endfor %}
                             </tbody>
                         </table>
