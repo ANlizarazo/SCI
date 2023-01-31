@@ -44,6 +44,7 @@
                             table-striped border-dark">
                             <thead class="bg-success">
                                 <tr>
+                                    <th class="border-dark">ID Servicio</th>
                                     <th class="border-dark">Observación</th>
                                     <th class="border-dark">Fecha de Inicio</th>
                                     <th class="border-dark">Fecha de Entrega</th>
@@ -57,6 +58,7 @@
                             <tbody>
                                 {% for servicio in servicios %}
                                 <tr>
+                                    <td class="border-dark text-black">{{servicio.id}}</td>
                                     <td class="border-dark text-black">{{servicio.observacion}}</td>
                                     <td class="border-dark text-black">{{servicio.fechaInicio}}</td>
                                     <td class="border-dark text-black">{{servicio.fechaEntrega}}</td>

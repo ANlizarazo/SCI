@@ -1,84 +1,79 @@
 from django.shortcuts import redirect, render
-from proveedores.forms import ProveedorForm, ProveedorUpdateForm
-
 from proveedores.models import Proveedor
+from django.http import HttpResponseRedirect
+from proveedores.models import Proveedor
+from django.contrib import messages
 
 # Create your views here.
 
+def proveedores (request):
+    
+    #importar los proveedores desde el modulo admin
+    proveedores_list=Proveedor.objects.all()
 
-def proveedores(request):
+    return render(request,'proveedores/proveedores.html',  {"proveedores": proveedores_list})
 
-    proveedores= Proveedor.objects.all()
-
-    context={
-        "proveedores": proveedores
-    }
-    return render(request,'proveedores/proveedores.html',context)
-
-def proveedores_ver(request):
-
-    titulo = "Ventas - Ver"
-    if request.method == 'POST':
-        form = ProveedorForm(request.POST)
-        if form.is_valid():
-            return redirect('proveedores')
-    else:
-        form = ProveedorForm()
-    context = {
-        'titulo': titulo,
-        "form": form
-    }
-    return render(request, 'proveedores/proveedores-ver.html', context)
-
-def proveedores_crear(request):
-
-    titulo="Proveedores - Crear"
-    if request.method=="POST" and 'form-proveedor' in request.POST:
-        form= ProveedorForm(request.POST)
-        if form.is_valid():
-            form.save()
-            print("El proveedor se guardó correctamente")
-            return redirect('clientes')
-        else:
-            print("El proveedor NO se guardó")
-    else:
-        form= ProveedorForm()
-    context={
-        'titulo':titulo,
-        "form":form
-    }
-    return render(request,'proveedores/proveedores-crear.html',context)
-
-def proveedores_modificar(request,pk, *callback_kwargs):
-    titulo = "Proveedores - Modificar"
-    proveedor = Proveedor.objects.get(id=pk)
-    if request.method == "POST" and 'form-modificar' in request.POST:
-        form = ProveedorForm(request.POST, instance=Proveedor)
-        modal_status = 'show'
-        pk_proveedor = request.POST['pk']
-        ## cuerpo del modal ##
-        modal_title = f"Modificar {Proveedor}"
-        modal_submit = "Modificar"
-        #######################
-        tipo = "modificar"
-        form_update =ProveedorUpdateForm(instance=Proveedor)
-        
-        proveedor = Proveedor.objects.get(id=pk_proveedor)
-        if form.is_valid():
-            form.save()
+#Function to ADD Proveedor
+def proveedor_crear(request):
+    if request.method=="POST":
+        if request.POST.get('nombreEmpresa') \
+            and request.POST.get('email') \
+            and request.POST.get('telefono') \
+            and request.POST.get('direccion') \
+            and request.POST.get('modoPago') \
+            and request.POST.get('tiempoEntrega') \
+            and request.POST.get('transporteIncluido') \
+            and request.POST.get('estado') \
+            and request.POST.get('material') \
+            and request.POST.get('departamento'):
+            proveedor= Proveedor()  
+            proveedor.nombreEmpresa= request.POST.get('nombreEmpresa')
+            proveedor.email= request.POST.get('email')
+            proveedor.telefono= request.POST.get('telefono')
+            proveedor.direccion= request.POST.get('direccion')
+            proveedor.modoPago= request.POST.get('modoPago')
+            proveedor.tiempoEntrega= request.POST.get('tiempoEntrega')
+            proveedor.transporteIncluido= request.POST.get('transporteIncluido')
+            proveedor.estado= request.POST.get('estado')
+            proveedor.material= request.POST.get('material')
+            proveedor.departamento= request.POST.get('departamento')
+            proveedor.save()
+            messages.success(request, "Proveedor añadido con éxito!")
             return redirect('proveedores')
         else:
-            print("Hubo un error al guardar los cambios")
+            messages.error(request, "La creación del proveedor ha fallido!")
+
+#Function to View  Proveedor data individually
+def proveedor_ver(request, proveedor_id):
+    proveedor = Proveedor.objects.get( id = proveedor_id) 
+    if proveedor != None:
+        return render(request, "proveedores/proveedores-modificar.html", {'proveedor':proveedor} )
     else:
-        form = ProveedorForm(instance=Proveedor)
-    context = {
-        'titulo': titulo,
-        'form': form,
-        'modal_status':modal_status,
-        'modal_submit': modal_submit,
-        'modal_title': modal_title,
-        'pk': pk_proveedor,
-        'tipo': tipo,
-        'form_update':form_update
-    }
-    return render(request, 'proveedores/proveedores-modificar.html', context)
+        return redirect('proveedores/proveedores-ver.html')
+
+#Function to EDIT Proveedor
+def proveedor_modificar(request):
+    if request.method == "POST":
+        proveedor = Proveedor.objects.get(id = request.POST.get('id'))
+        if proveedor != None:
+            proveedor.nombreEmpresa= request.POST.get('nombreEmpresa')
+            proveedor.email= request.POST.get('email')
+            proveedor.telefono= request.POST.get('telefono')
+            proveedor.direccion= request.POST.get('direccion')
+            proveedor.modoPago= request.POST.get('modoPago')
+            proveedor.tiempoEntrega= request.POST.get('tiempoEntrega')
+            proveedor.transporteIncluido= request.POST.get('transporteIncluido')
+            proveedor.estado= request.POST.get('estado')
+            proveedor.material= request.POST.get('material')
+            proveedor.departamento= request.POST.get('departamento')
+            proveedor.save()
+            messages.success(request, "Proveedor Actualizado con éxito!")
+            return HttpResponseRedirect("proveedores/")
+
+#Function to DELETE Proveedor
+def delete_proveedor(request, proveedor_id):
+    if request.method == "POST":
+        proveedor = Proveedor.objects.get(id= proveedor_id)
+        proveedor.delete()
+        messages.success(request, "Proveedor eliminado satisfactoriamente!")
+        return redirect("proveedores")

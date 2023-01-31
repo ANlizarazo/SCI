@@ -43,6 +43,7 @@
                             table-striped border-dark">
                             <thead class="bg-success">
                                 <tr>
+                                    <th class="border-dark">ID Compra</th>
                                     <th class="border-dark">Fecha</th>
                                     <th class="border-dark">Detalle Compra</th>
                                     <th class="border-dark">Usuario</th>
@@ -52,6 +53,7 @@
                             <tbody>
                                 {% for compra in compras %}
                                 <tr>
+                                    <td class="border-dark text-black">{{compra.id}}</td>
                                     <td class="border-dark text-black">{{compra.fecha}}</td>
                                     <td class="border-dark text-black">{{compra.detalleCompra}}</td>
                                     <td class="border-dark text-black">{{compra.usuario}}</td>

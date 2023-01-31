@@ -45,6 +45,7 @@
                             table-striped border-dark">
                             <thead class="bg-success">
                                 <tr>
+                                    <th class="border-dark">ID Producto</th>
                                     <th class="border-dark">Nombre</th>
                                     <th class="border-dark">Precio</th>
                                     <th class="border-dark">Especificaciones</th>
@@ -59,6 +60,7 @@
                             <tbody>
                                 {% for producto in productos %}
                                 <tr>
+                                    <td class="border-dark text-black">{{producto.id}}</td>
                                     <td class="border-dark align middle text-center"><img class="rounded-circle" src="{{ MEDIA_URL }}{{usuario.foto.url}}" alt="" width="50" height="50"></td>
                                     <td class="border-dark text-black">{{producto.nombre}}</td>
                                     <td class="border-dark text-black">{{producto.precio}}</td>
