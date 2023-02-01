@@ -36,3 +36,7 @@ class Producto(models.Model):
         ordering = ['nombre']
         verbose_name = 'Producto'
         verbose_name_plural = 'Productos'
+
+
+
+

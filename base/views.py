@@ -25,6 +25,7 @@ def formRecuperacion(request):
     }
     return render(request,'registration/formrecuperacion.html',context)
 
+
 def correoEnviado(request):
     titulo="Correo de Recuperación Enviado"
     context={
