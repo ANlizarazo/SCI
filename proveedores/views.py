@@ -42,6 +42,7 @@ def proveedor_crear(request):
             return redirect('proveedores')
         else:
             messages.error(request, "La creación del proveedor ha fallido!")
+            return redirect('proveedores')
 
 #Function to View  Proveedor data individually
 def proveedor_ver(request, proveedor_id):
