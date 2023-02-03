@@ -1,90 +1,92 @@
-from pyexpat.errors import messages
-from django.shortcuts import render, redirect
-from usuarios.forms import UsuarioForm, UsuarioUpdateForm
-
+from django.shortcuts import redirect, render
 from usuarios.models import Usuario
+from django.http import HttpResponseRedirect
+from django.contrib import messages
+from django.contrib.auth.hashers import make_password
 
 # Create your views here.
-def usuarios(request):
-    titulo="Usuarios"
-    usuarios= Usuario.objects.all()
 
-    context={
-        'titulo':titulo,
-        "usuarios": usuarios
-    }
-    return render(request,'usuarios/usuarios.html',context)
+def usuarios (request):
+    
+    #importar los usuarios desde el modulo admin
+    usuarios_list=Usuario.objects.all()
 
-def usuarios_ver(request):
+    return render(request,'usuarios/usuarios.html',  {"usuarios": usuarios_list})
 
-    titulo = "Usuarios - Ver"
-    if request.method == 'POST':
-        form = UsuarioForm(request.POST)
-        if form.is_valid():
-            return redirect('usuarios')
-    else:
-        form = UsuarioForm()
-    context = {
-        'titulo': titulo,
-        "form": form
-    }
-    return render(request, 'usuarios/usuarios-ver.html', context)
-
-def usuarios_crear(request):
-
-    titulo="Usuarios - Crear"
-    if request.method == "POST" and 'form-usuario' in request.POST:
-        form=UsuarioForm(request.POST)
-        if form.is_valid():
-            form.save()
-            print("El usuario se guardó correctamente")
-            return redirect('usuarios')
-        else:
-            print("El usuario NO se guardó correctamente")
-    else:
-        form=UsuarioForm()
-    context={
-            'titulo':titulo,
-            "form":form
-    }
-    return render(request,'usuarios/usuarios-crear.html',context)
-
-def usuarios_modificar(request,pk, *callback_kwargs):
-    titulo = "Usuarios - Modificar"
-    usuario = Usuario.objects.get(id=pk)
-    if request.method == "POST" and 'form-modificar' in request.POST:
-        form = UsuarioForm(request.POST, instance=Usuario)
-        modal_status = 'show'
-        pk_usuario = request.POST['pk']
-        ## cuerpo del modal ##
-        modal_title = f"Modificar {Usuario}"
-        modal_submit = "Modificar"
-        #######################
-        tipo = "modificar"
-        form_update = UsuarioUpdateForm(instance=Usuario)
-        
-        usuarios = Usuario.objects.get(id=pk_usuario)
-        if form.is_valid():
-            form.save()
+#Function to ADD usuario
+def usuario_crear(request):
+    if request.method=="POST":
+        if request.POST.get('foto') \
+            and request.POST.get('nombres') \
+            and request.POST.get('apellidos') \
+            and request.POST.get('telefono') \
+            and request.POST.get('email') \
+            and request.POST.get('direccion') \
+            and request.POST.get('tipoDocumento') \
+            and request.POST.get('numDocumento') \
+            and request.POST.get('genero') \
+            and request.POST.get('rol') \
+            and request.POST.get('estado'):
+            usuario= Usuario()  
+            usuario.foto= request.POST.get('foto')
+            usuario.nombres= request.POST.get('nombres')
+            usuario.apellidos= request.POST.get('apellidos')
+            usuario.telefono= request.POST.get('telefono')
+            usuario.email= request.POST.get('email')
+            usuario.contraseña=make_password("@" + request.POST['nombres'][0] + request.POST['apellidos'][0] + request.POST['documento'][-4:])
+            usuario.direccion= request.POST.get('direccion')
+            usuario.tipoDocumento= request.POST.get('tipoDocumento')
+            usuario.numDocumento= request.POST.get('numDocumento')
+            usuario.genero= request.POST.get('genero')
+            usuario.estado= request.POST.get('estado')
+            usuario.save()
+            messages.success(request, " Usuario añadido con éxito!")
             return redirect('usuarios')
         else:
-            print("Hubo un error al guardar los cambios")
+            messages.error(request, "La creación del usuario ha fallido!")
+            return redirect('usuarios')
+
+#Function to View  usuario data individually
+def usuario_ver(request, usuario_id):
+    usuario = Usuario.objects.get( id = usuario_id) 
+    if usuario != None:
+        return render(request, "usuarios/usuarios-modificar.html", {'usuario':usuario} )
     else:
-        form = UsuarioForm(instance=Usuario)
-    context = {
-        'titulo': titulo,
-        'form': form,
-        'modal_status':modal_status,
-        'modal_submit': modal_submit,
-        'modal_title': modal_title,
-        'pk': pk_usuario,
-        'tipo': tipo,
-        'form_update':form_update
-    }
-    return render(request, 'usuarios/usuarios-modificar.html', context)
+        return redirect('usuarios/usuarios-ver.html')
+
+#Function to EDIT usuario
+def usuario_modificar(request):
+    if request.method == "POST":
+        usuario = Usuario.objects.get(id = request.POST.get('id'))
+        if usuario != None: 
+            usuario.foto= request.POST.get('foto')
+            usuario.nombres= request.POST.get('nombres')
+            usuario.apellidos= request.POST.get('apellidos')
+            usuario.telefono= request.POST.get('telefono')
+            usuario.email= request.POST.get('email')
+            usuario.direccion= request.POST.get('direccion')
+            usuario.tipoDocumento= request.POST.get('tipoDocumento')
+            usuario.numDocumento= request.POST.get('numDocumento')
+            usuario.genero= request.POST.get('genero')
+            usuario.estado= request.POST.get('estado')
+            usuario.save()
+            messages.success(request, "Usuario Actualizado con éxito!")
+            return HttpResponseRedirect("usuarios/")
+
+#Function to DELETE usuario
+def delete_usuario(request, usuario_id):
+    if request.method == "POST":
+        usuario = Usuario.objects.get(id= usuario_id)
+        usuario.delete()
+        messages.success(request, "Usuario eliminado satisfactoriamente!")
+        return redirect("usuarios")
 
 
-"""
+
+
+################################ EJEMPLO DE USUARIO ####################################
+
+""""
 def usuarios_crear(request):
     titulo="Usuarios - Crear"
     if request.method == "POST":
