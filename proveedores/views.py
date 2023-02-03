@@ -1,7 +1,6 @@
 from django.shortcuts import redirect, render
 from proveedores.models import Proveedor
 from django.http import HttpResponseRedirect
-from proveedores.models import Proveedor
 from django.contrib import messages
 
 # Create your views here.

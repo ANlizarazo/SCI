@@ -22,21 +22,6 @@
     <!-- Main content -->
 <section class="content">
     <div class="container-fluid">
-    {% if messages %}
-        {% for m in messages %}
-            {% if m.tags == 'success' %} 
-            <div class="alert alert-dismissible alert-success">
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                {{m}}
-            </div>
-            {% else %}
-            <div class="alert alert-dismissible alert-danger">
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                {{m}}
-            </div>
-            {% endif %}
-        {% endfor %}
-    {% endif %}
         <!-- Small boxes (Stat box) -->
         <div class="row">
             {% if request.user.is_authenticated %}
@@ -150,16 +135,11 @@
 <script src="/static/AdminLTE/jquery-ui/jquery-ui.min.js"></script>
 <!-- AdminLTE App -->
 <script src="/static/AdminLTE/js/adminlte.min.js"></script>
-<!-- fullCalendar 2.2.5 -->
-<script src="/static/AdminLTE/moment/moment.min.js"></script>
-<script src="/static/AdminLTE/fullcalendar/main.js"></script>
 
 {% endblock contenido %}
 
 
 {% block javascript %}
-<script>
-    scr="/static/AdminLTE/charts/chart-stock.js"
-</script>
+<script src="/static/AdminLTE/charts/chart-stock.js"></script>
 {% endblock javascript %}
     

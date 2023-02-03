@@ -40,7 +40,7 @@
                         <button type="button" class="btn btn-success float-right mr-0 mb-3"
                             name="form-crear-usuario"
                             data-bs-toggle="modal"
-                            data-bs-target="#crear_Usuario"> Crear Usuario</button>
+                            data-bs-target="#crear_Usuario{{usuario.pk}}"> Crear Usuario</button>
                         <!-- Datatable de usuarios -->
                         <table id="tabla-usuarios" class="table table-bordered
                             table-striped border-dark" style="font-size: 14px;">
@@ -77,10 +77,52 @@
                                             <i class="fas fa-eye"></i></button><c>{% include 'usuarios/usuarios-ver.html' %}</c>      
                                         <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modificar_Usuario">
                                             <i class="fas fa-edit"></i></button><c>{% include 'usuarios/usuarios-modificar.html' %}</c>
-                                        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#">
+                                        <button class="btn btn-danger"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#deleteModal{{usuario.pk}}">
                                             <i class="fas fa-trash-alt"></i></button>
                                     </td>
                                 </tr>
+                                <!-- Modal delete confirmation -->
+                                <div class="modal fade"
+                                    id="deleteModal{{usuario.pk}}"
+                                    tabindex="-1"
+                                    aria-labelledby="deleteModalLabel"
+                                    aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header bg-danger">
+                                                <h5 class="modal-title "
+                                                    id="deleteModalLabel"><i
+                                                        class="fas fa-trash-alt"></i>&nbsp;&nbsp; ELIMINAR USUARIO</h5>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="text-center
+                                                    text-danger"><i class="far
+                                                        fa-times-circle fa-5x
+                                                        mb-4 mt-2"></i></div>
+                                                <div class="text-center
+                                                    text-danger">
+                                                    <span class="">¿Estás seguro de que deseas eliminar este usuario?</span>
+                                                    <div class="text-dark mt-3
+                                                        mb-2">Usuario: <strong>{{usuario.nombres}} {{usuario.apellidos}} {{usuario.rol}}</strong></div>
+                                                </div>
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                <form method="post" action="{% url 'delete_usuario' usuario.pk %}">
+                                                    {% csrf_token %}
+
+                                                    <input type="submit"
+                                                        class="btn btn-danger"
+                                                        value="Eliminar">
+                                                </form>
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Cancelar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 {% endfor %}
                             </tbody>
                         </table>
