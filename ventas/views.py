@@ -1,6 +1,9 @@
 
 from django.shortcuts import redirect, render
 from django.http import HttpResponseRedirect
+from clientes.models import Cliente
+from servicios.models import Servicio
+from usuarios.models import Usuario
 from ventas.models import Venta
 from django.contrib import messages
 
@@ -30,14 +33,15 @@ def venta_crear(request):
             venta.porcentajeIva= request.POST.get('porcentajeIva')
             venta.totalVenta= request.POST.get('totalVenta')
             venta.detalleVenta= request.POST.get('detalleVenta')
-            venta.cliente= request.POST.get('cliente')
-            venta.usuario= request.POST.get('usuario')
-            venta.servicio= request.POST.get('servicio')
+            venta.cliente= Cliente.objects.get(id=int(request.POST['cliente'])),
+            venta.usuario= Usuario.objects.get(id=int(request.POST['usuario'])),
+            venta.servicio=Servicio.objects.get(id=int(request.POST['servicio'])),
             venta.save()
             messages.success(request, "La venta ha sido añadida con éxito!")
             return redirect('ventas')
         else:
             messages.error(request, "La creación de la venta ha fallido!")
+            return redirect('ventas')
 
 #Function to View Venta data individually
 def venta_ver(request, venta_id):

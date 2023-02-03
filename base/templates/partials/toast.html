@@ -1,7 +1,7 @@
 {% load static %}
 {% for message in messages %}
-<script src="/static/AdminLTE/jquery/jquery.min.js"></script>
-<script src="/static/AdminLTE/js/jquery.toast.js"></script>
+<script src="{% static 'AdminLTE/jquery/jquery.min.js' %}"></script>
+<script src="{% static 'AdminLTE/js/jquery.toast.js' %}"></script>
 {% if message.tags == 'success' %}
 <script>
   var mytoast= $.toast({

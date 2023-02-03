@@ -9,6 +9,8 @@
     <head>
         <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
         <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+        <!-- Alert -->
+        <link rel="stylesheet" href="{% static 'css/jquery.toast.css' %}">
         <!-- Ionicons -->
         <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
         <!-- Google Font: Source Sans Pro -->
@@ -20,7 +22,7 @@
         <!-- Theme style -->
         <link rel="stylesheet" href="{% static 'AdminLTE/css/adminlte.min.css' %}">
         <!-- overlayScrollbars -->
-        <link rel="stylesheet" href="{% static 'AdminLTE\overlayScrollbars\css\OverlayScrollbars.min.css' %}">
+        <link rel="stylesheet" href="{% static 'AdminLTE/overlayScrollbars/css/OverlayScrollbars.min.css' %}">
 
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -33,6 +35,8 @@
             {% include 'partials/sidebar.html' %}
             {% include 'proveedores/proveedores2.html' %}
             {% include 'proveedores/proveedores-crear.html' %}
+            <!-- /.Alert mensaje.-->
+            {% include 'partials/toast.html' %}
         </div>
     </body>
 </html>
