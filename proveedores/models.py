@@ -12,7 +12,7 @@ class Departamento(models.Model):
     ciudad = models.ForeignKey(Ciudad, on_delete=models.CASCADE, verbose_name="Ciudad",null=True)
 
     def __str__(self)->str:
-        return "%s" %(self.nombre)  
+        return "%s %s" %(self.nombre,self.ciudad)  
     
     class Meta:
         ordering = ['nombre']
@@ -53,7 +53,7 @@ class Proveedor(models.Model):
     departamento= models.ForeignKey(Departamento, on_delete=models.CASCADE, verbose_name="Departamento",null=True)
 
     def __str__(self)->str:
-        return "%s" %(self.nombreEmpresa)  
+        return "%s %s" %(self.nombreEmpresa,self.material)  
     
     class Meta:
         ordering = ['nombreEmpresa']

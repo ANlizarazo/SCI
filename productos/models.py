@@ -8,7 +8,7 @@ class Categoria(models.Model):
     descripcion = models.TextField(max_length=300, verbose_name="Descripción")
 
     def __str__(self)->str:
-        return "%s %s" %(self.nombre)  
+        return "%s" %(self.nombre)  
     
     class Meta:
         ordering = ['nombre']

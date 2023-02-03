@@ -4,7 +4,6 @@
 {% bootstrap_javascript %}
 {% bootstrap_messages %}
 
-
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -31,7 +30,7 @@
                         <div class="container-fluid row justify-content-center
                             align-items-center">
                             <div id=titulo class="col-auto text-center fs-1
-                                fw-light">
+                                fw-light text-white">
                                 MUNDIAL DE MALLAS Y ESTRUCTURAS INGENIERIA S.A.S
                             </div>
                         </div>
@@ -46,7 +45,7 @@
                     </button>
                 </div>
                 <div>
-                    <div>
+                    <div>                
                         <!-- espacio para el formulario -->
                         <div id="Inicio de Sesion">
                             <div class="d-flex flex-column min-vh-100
@@ -59,6 +58,10 @@
                                     <div class="card-body w-100">
                                         <form name="login" method="post">
                                             {% csrf_token %}
+                                            
+                                                {% if form.errors %}
+                                                    <p>Datos inválidos, Por favor intentalo nuevamente.</p>
+                                                {% endif %}
                                             <div class="input-group form-group
                                                 mt-3">
                                                 <div class="bg-dark
@@ -70,8 +73,11 @@
                                                 <label for="usuario">
                                                     <input type="text"
                                                     class="form-control"
-                                                    placeholder="Nombre de Usuario"
+                                                    placeholder="Usuario"
                                                     name="username" required>
+                                                <div class="invalid-feedback">
+                                                    Usuario no registrado.
+                                                </div>
                                                 </label>
                                             </div>
                                             <div class="input-group
@@ -92,12 +98,12 @@
                                             </div>
                                                 <div class="btn-success card-footer">
                                                     <div class="d-flex justify-content-center
-                                                        text-white"><a class="text-decoration-underline text-white"
-                                                            href="{% url 'password_reset' %}"> ¿Olvidaste tu contraseña?</a>
+                                                        text-white"><a class="text-decoration-underline text-white" title="¿Olvidaste tu contraseña?"
+                                                            href="{% url 'password_reset' %}">¿Olvidaste tu contraseña?</a>
                                                     </div>
                                                 </div>
                                                 <div class="form-group mt-3 mb-3"> 
-                                                    <input id="login-btn" class="btn btn-dark" type="submit" value="Ingresar">
+                                                    <input id="login-btn" class="btn btn-dark" type="submit" title="Ingresar" value="Ingresar">
                                                 </div>
                                         </form>
                                     </div>
@@ -112,7 +118,7 @@
                             <section class="d-flex justify-content-center
                                 justify-content-lg-between p-4 border-bottom">
                                 <!-- Left -->
-                                <div class="me-5 d-none d-lg-block">
+                                <div class="me-5 d-none d-lg-block text-white">
                                     <span>Tambien nos puedes contactar mediante
                                         nuestras redes sociales
                                         como:</span>
@@ -125,18 +131,18 @@
                                         href="https://www.facebook.com/mallasgaviones/"
                                         class="me-4
                                         text-reset">
-                                        <i class="fab fa-facebook-f">Facebook</i>
+                                        <i class="fab fa-facebook-f text-white">Facebook</i>
                                     </a>
                                     <a href="http://127.0.0.1:8000/error404/"
                                         class="me-4 text-reset">
-                                        <i class="fab fa-twitter">Twitter</i>
+                                        <i class="fab fa-twitter text-white">Twitter</i>
                                     </a>
                                     <a href="" class="me-4 text-reset">
-                                        <i class="fab fa-instagram">Instagram</i>
+                                        <i class="fab fa-instagram text-white">Instagram</i>
                                     </a>
                                     <a href="http://127.0.0.1:8000/error500/"
                                         class="me-4 text-reset">
-                                        <i class="fab fa-linkedin">Linkedin</i>
+                                        <i class="fab fa-linkedin text-white">Linkedin</i>
                                     </a>
                                 </div>
                                 <!-- Right -->
@@ -151,7 +157,7 @@
                                     <div class="row mt-3">
                                         <!-- Grid column -->
                                         <div class="col-md-3 col-lg-4 col-xl-3
-                                            mx-auto mb-4">
+                                            mx-auto mb-4 text-white">
                                             <!-- Content -->
                                             <h6 class="text-uppercase fw-bold
                                                 mb-4">
@@ -179,7 +185,7 @@
 
                                         <!-- Grid column -->
                                         <div class="col-md-2 col-lg-2 col-xl-2
-                                            mx-auto mb-4">
+                                            mx-auto mb-4 text-white">
                                             <!-- Links -->
                                             <h6 class="text-uppercase fw-bold
                                                 mb-4">
@@ -211,7 +217,7 @@
                                         <!-- Grid column -->
                                         <div class="col-md-4 col-lg-3 col-xl-3
                                             mx-auto mb-md-0
-                                            mb-4">
+                                            mb-4 text-white">
                                             <!-- Links -->
                                             <h6 class="text-uppercase fw-bold
                                                 mb-4">Contactanos</h6>
@@ -234,7 +240,7 @@
                                     <!-- Grid row -->
                                 </div>
                                 <!-- Copyright -->
-                                <div class="text-center p-4"
+                                <div class="text-center p-4 text-white"
                                     style="background-color: rgba(0, 0, 0,
                                     0.05);">
                                     © 2022 Copyright:

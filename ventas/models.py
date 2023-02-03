@@ -12,13 +12,15 @@ class DetalleVenta(models.Model):
     valorTotalProducto = models.PositiveIntegerField(validators = [ MinValueValidator ( 0 )], verbose_name="Valor Total Producto")
     producto = models.ForeignKey(Producto, on_delete=models.CASCADE, verbose_name="Producto",null=True)
     
+    def __str__(self)->str:
+        return "%s %s %s %s" %(self.id,self.producto,self.cantidadProducto,self.valorTotalProducto)  
     class Meta:
         verbose_name = 'Detalle Venta'
         verbose_name_plural = 'Detalles de Ventas'
 
 
 class Venta(models.Model):
-    subTotalVenta= models.PositiveIntegerField(validators = [ MinValueValidator ( 0 )], verbose_name="Subtotal Venta")
+    subtotalVenta= models.PositiveIntegerField(validators = [ MinValueValidator ( 0 )], verbose_name="Subtotal Venta")
     fecha= models.DateTimeField(verbose_name="Fecha Venta",help_text= "MM/DD/AAAA")
     porcentajeIva=models.DecimalField(validators=[MinValueValidator(0.0)],decimal_places=1,max_digits=20, verbose_name="Porcentaje IVA")
     totalVenta= models.PositiveIntegerField(validators = [ MinValueValidator ( 0 )], verbose_name="Total Venta")
@@ -28,7 +30,7 @@ class Venta(models.Model):
     servicio=models.ForeignKey(Servicio, on_delete=models.CASCADE, verbose_name="Servicio",null=True)
 
     def __str__(self)->str:
-        return "%s %s" %(self.fecha,self.cliente)  
+        return "%s %s" %(self.id,self.fecha)  
     
     class Meta:
         ordering = ['fecha']

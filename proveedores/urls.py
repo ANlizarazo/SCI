@@ -1,9 +1,15 @@
 from django.urls import path
-from proveedores.views import proveedores,proveedores_crear,proveedores_modificar,proveedores_ver
+from . import views
 
 urlpatterns = [
-    path('',proveedores,name="proveedores"),
-    path('proveedores-crear/',proveedores_crear,name="proveedores-crear"),
-    path('proveedores-modificar/',proveedores_modificar,name="proveedores-modificar"),
-    path('proveedores-ver/',proveedores_ver,name="proveedores-ver")
+    path('',views.proveedores,name="proveedores"),
+    #Path to ADD Proveedor
+    path('proveedor_crear',views.proveedor_crear,name="proveedor_crear"),
+    #Path to EDIT Proveedor
+    path('proveedores_modificar',views.proveedor_modificar,name="proveedor_modificar"),
+    #Path to View  Proveedor data individually
+    path('proveedores/proveedor_ver/<str:proveedor_id>',views.proveedor_ver,name="proveedores_ver"),
+    #Path to DELETE Proveedor
+    path('proveedores/proveedores/delete_proveedor/<int:proveedor_id>', views.delete_proveedor, name='delete_proveedor')
+
 ]

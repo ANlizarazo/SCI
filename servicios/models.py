@@ -13,7 +13,7 @@ class TipoServicio(models.Model):
     estado=models.CharField(max_length=1, choices=Estado.choices, default=Estado.ACTIVO, verbose_name="Estado")
 
     def __str__(self)->str:
-        return "%s %s" %(self.nombreServicio)  
+        return "%s" %(self.nombreServicio)  
     
     class Meta:
         ordering = ['nombreServicio']
@@ -30,7 +30,7 @@ class Servicio(models.Model):
     tecnico= models.ForeignKey(Tecnico, on_delete=models.CASCADE, verbose_name="Técnico",null=True)
 
     def __str__(self)->str:
-        return "%s %s" %(self.fechaInicio, self.tipoServicio)  
+        return "%s %s" %(self.id, self.tipoServicio)  
     
     class Meta:
         ordering = ['fechaInicio']

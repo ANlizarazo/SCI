@@ -1,3 +1,4 @@
+{% load static %}
 {% block contenido %}
 
 <!-- Content Wrapper. Contains page content -->
@@ -40,13 +41,12 @@
                         <!-- Este botón llama el modal -->
                         <a class="btn btn-success float-right mr-0 mb-3" data-bs-toggle="modal"
                             data-bs-target="#crearProducto"> Crear Producto</a>
-                        <!-- Modal de crear producto-->
-                        <c>{% include 'productos/productos-crear.html' %}</c>
                         <!-- Datatable de productos -->
-                        <table id="example1" class="table table-bordered
-                            table-striped border-dark"> {% load humanize %}
+                        <table id="tabla-productos" class="table table-bordered
+                            table-striped border-dark">
                             <thead class="bg-success">
                                 <tr>
+                                    <th class="border-dark">ID Producto</th>
                                     <th class="border-dark">Nombre</th>
                                     <th class="border-dark">Precio</th>
                                     <th class="border-dark">Especificaciones</th>
@@ -61,27 +61,15 @@
                             <tbody>
                                 {% for producto in productos %}
                                 <tr>
-                                    <td class="align middle text-center"><img class="rounded-circle" src="{{ MEDIA_URL }}{{usuario.foto.url}}" alt="" width="50" height="50"></td>
-                                    <td class="border-dark">{{producto.nombre}}</td>
-                                    <td class="border-dark">{{producto.precio}}</td>
-                                    <td class="border-dark">{{producto.especificaciones}}</td>
-                                    <td class="border-dark">{{producto.stock}}</td>
-                                    <td class="border-dark">{{producto.stockMinimo}}</td>
-                                    <th class="border-dark">{{producto.porcentajeIva}}</th>
-                                    <th class="border-dark">{{producto.categoria}}</th>
-                                    <th class="border-dark">{{producto.foto}}</th>
-                                    <th class="border-dark">{{producto.acciones}}</th>
-                                </tr>
-                                {% endfor %}
-                                <tr>
-                                    <td class="border-dark">Trident</td>
-                                    <td class="border-dark">Internet</td>
-                                    <td class="border-dark">Win 95+</td>
-                                    <td class="border-dark"> 4</td>
-                                    <td class="border-dark">X</td>
-                                    <td class="text-black border-dark">Trident</td>
-                                    <td class="text-black border-dark">Internet</td>
-                                    <td class="text-black border-dark">Win 95+</td>
+                                    <td class="border-dark text-black">{{producto.id}}</td>
+                                    <td class="border-dark align middle text-center"><img class="rounded-circle" src="{{ MEDIA_URL }}{{usuario.foto.url}}" alt="" width="50" height="50"></td>
+                                    <td class="border-dark text-black">{{producto.nombre}}</td>
+                                    <td class="border-dark text-black">{{producto.precio}}</td>
+                                    <td class="border-dark text-black">{{producto.especificaciones}}</td>
+                                    <td class="border-dark text-black">{{producto.stock}}</td>
+                                    <td class="border-dark text-black">{{producto.stockMinimo}}</td>
+                                    <td class="border-dark text-black">{{producto.porcentajeIva}}</td>
+                                    <td class="border-dark text-black">{{producto.categoria}}</td>
                                     <td class="border-dark">
                                         <a class="btn btn-success" data-bs-toggle="modal" data-bs-target="#verProducto">
                                             <i class="fas fa-eye"></i></a><c>{% include 'productos/productos-ver.html' %}</c>
@@ -90,6 +78,7 @@
                                         <a class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
                                     </td>
                                 </tr>
+                                {% endfor %}
                             </tbody>
                             </table>
                         </div>
@@ -101,17 +90,52 @@
             </div>
             <footer>{% include 'partials/footer.html' %}</footer>
             <!-- /.content-wrapper -->
+            {% endblock contenido %}
 
             <!-- jQuery -->
-            <script src="/static/AdminLTE/jquery/jquery.min.js"></script>
+            <script src="{% static 'AdminLTE/jquery/jquery.min.js' %}"></script>
             <!-- Bootstrap -->
-            <script src="/static/AdminLTE/js-copy/bootstrap.bundle.min.js"></script>
+            <script src="{% static 'AdminLTE/js-copy/bootstrap.bundle.min.js' %}"></script>
             <!-- jQuery UI -->
-            <script src="/static/AdminLTE/jquery-ui/jquery-ui.min.js"></script>
+            <script src="{% static 'AdminLTE/jquery-ui/jquery-ui.min.js' %}"></script>
             <!-- AdminLTE App -->
-            <script src="/static/AdminLTE/js/adminlte.min.js"></script>
-            <!-- fullCalendar 2.2.5 -->
-            <script src="/static/AdminLTE/moment/moment.min.js"></script>
-            <script src="/static/AdminLTE/fullcalendar/main.js"></script>
+            <script src="{% static 'AdminLTE/js/adminlte.min.js' %}"></script>
+            <!-- toastr alert -->
+            <script type="application/json" src="{% static 'AdminLTE/toastr/toastr.js.map' %}"></script>
+            <script type="text/javascript" src="{% static 'AdminLTE/toastr/toastr.min.js' %}"></script>
+            
+            <!-- DataTables  & Plugins -->
+            <script src="{% static 'AdminLTE/datatables/jquery.dataTables.min.js' %}"></script>
+            <script src="{% static 'AdminLTE/datatables-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+            <script src="{% static 'AdminLTE/datatables-responsive/js/dataTables.responsive.min.js' %}"></script>
+            <script src="{% static 'AdminLTE/datatables-responsive/js/responsive.bootstrap4.min.js' %}"></script>
+            <script src="{% static 'AdminLTE/datatables-buttons/js/dataTables.buttons.min.js' %}"></script>
+            <script src="{% static 'AdminLTE/datatables-buttons/js/buttons.bootstrap4.min.js' %}"></script>
+            <script src="{% static 'AdminLTE/jszip/jszip.min.js' %}"></script>
+            <script src="{% static 'AdminLTE/pdfmake/pdfmake.min.js' %}"></script>
+            <script src="{% static 'AdminLTE/pdfmake/vfs_fonts.js' %}"></script>
+            <script src="{% static 'AdminLTE/datatables-buttons/js/buttons.html5.min.js' %}"></script>
+            <script src="{% static 'AdminLTE/datatables-buttons/js/buttons.print.min.js' %}"></script>
+            <script src="{% static 'AdminLTE/datatables-buttons/js/buttons.colVis.min.js' %}"></script>
+            <script src="{% static 'AdminLTE/js/modal-status.js' %}"></script>
 
-            {% endblock contenido %}
+        <!--DataTable Productos-->
+        <script>
+                $(function () {
+                    $("#tabla-productos").DataTable({
+                        dom: 'Bfrtip',  
+                            language:{
+                                url: "{% static 'AdminLTE/datatables/datatables.spanish.json' %}"
+                            },
+                        //dataTable configurations
+                        "responsive": true, "paging": true, "lengthChange": false,
+                        "searching": true, "ordering": true, "info": true,
+                        "autoWidth": false, "pageLength": 8,
+                        "buttons": ["copy", "csv", "excel", "pdf", "print"],
+                    }
+                    
+                    ).buttons().container().appendTo('#tabla-productos_wrapper .col-md-6:eq(0)');
+                });
+            </script>
+        {% block javascript %}
+        {% endblock javascript %}

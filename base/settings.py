@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'bootstrap5', #pip install django-bootstrap-v5 
     'crispy_forms', #pip install django-crispy-forms
     'crispy_bootstrap5', #pip install crispy-bootstrap5
+    'django_select2',# pip install django-select2 pip install django-redis buscar en google git redis msi
     'usuarios',
     'clientes',
     'productos',
@@ -146,15 +147,23 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+<<<<<<< HEAD
 EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
 EMAIL_FILE_PATH = os.path.join(BASE_DIR, "sent_emails")
 EMAIL_HOST = 'smtp.googlemail.com'
 EMAIL_USE_TLS = True
+=======
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_FILE_PATH = BASE_DIR / "sent_emails"
+EMAIL_HOST = 'smtp.googlemail.com' #gmail
+>>>>>>> main
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'correoDjango2023@gmail.com'
-EMAIL_HOST_PASSWORD = 'zhceexpqwrnnhwdl'
+EMAIL_HOST_USER = 'correodjango2023@gmail.com'
+EMAIL_HOST_PASSWORD = 'iacsgerxgjjidbcu'
+EMAIL_USE_TLS = True
 
 
 LOGIN_REDIRECT_URL = reverse_lazy('inicio')

@@ -3,11 +3,15 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 
 
+<<<<<<< HEAD
 def login(request):
+=======
+def login_view(request):
+>>>>>>> main
     titulo="Inicio de Sesión"
     context={
         'titulo':titulo
-    }
+    }    
     return render(request,'registration/login.html',context)  
 
 @login_required
@@ -16,6 +20,7 @@ def inicio(request):
     context={
         'titulo':titulo
     }
+<<<<<<< HEAD
     return render(request,'index2.html',context) 
 
 def formRecuperacion(request):
@@ -48,6 +53,9 @@ def cambioExitoso(request):
     return render(request,'registration/cambioexitoso.html',context)
 
    
+=======
+    return render(request,'index2.html',context)    
+>>>>>>> main
 """
 def inicio(request):
     titulo="Página Principal"
@@ -98,6 +106,10 @@ def perfil(request):
 
 def logout_user(request):
     logout(request)
+<<<<<<< HEAD
     return redirect('login')
 
  
+=======
+    return redirect('login2')
+>>>>>>> main

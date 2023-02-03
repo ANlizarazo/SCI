@@ -1,3 +1,4 @@
+{% load static %}
 {% block contenido %}
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -38,12 +39,12 @@
                     <div class="card-body">
                         <!-- Modal de crear compra-->
                         <a class="btn btn-success float-right mr-0 mb-3" data-bs-toggle="modal" data-bs-target="#crearCompra"> Crear Compra</a>
-                        <div>{% include 'compras/compras-crear.html' %}</div>
                         <!-- Datatable de compra -->
-                        <table id="example1" class="table table-bordered
+                        <table id="tabla-compras" class="table table-bordered
                             table-striped border-dark">
                             <thead class="bg-success">
                                 <tr>
+                                    <th class="border-dark">ID Compra</th>
                                     <th class="border-dark">Fecha</th>
                                     <th class="border-dark">Detalle Compra</th>
                                     <th class="border-dark">Usuario</th>
@@ -53,16 +54,10 @@
                             <tbody>
                                 {% for compra in compras %}
                                 <tr>
-                                    <td class="border-dark">{{compra.fecha}}</td>
-                                    <td class="border-dark">{{compra.detalleCompra}}</td>
-                                    <td class="border-dark">{{Compra.usuario}</td>
-                                    <th class="border-dark">{{compra.acciones}}</th>
-                                </tr>
-                                {% endfor %}
-                                <tr>
-                                    <td class="border-dark">Trident</td>
-                                    <td class="border-dark">Internet</td>
-                                    <td class="text-black border-dark">Win 95+</td>
+                                    <td class="border-dark text-black">{{compra.id}}</td>
+                                    <td class="border-dark text-black">{{compra.fecha}}</td>
+                                    <td class="border-dark text-black">{{compra.detalleCompra}}</td>
+                                    <td class="border-dark text-black">{{compra.usuario}}</td>
                                     <td class="border-dark">
                                         <a class="btn btn-success" data-bs-toggle="modal" data-bs-target="#verCompra">
                                             <i class="fas fa-eye"></i></a><c>{% include 'compras/compras-ver.html' %}</c>
@@ -71,6 +66,7 @@
                                             <a class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
                                     </td>
                                 </tr>
+                                {% endfor %}
                             </table>
                         </div>
                         <!-- /.card-body -->
@@ -81,17 +77,52 @@
             </div>
             <footer>{% include 'partials/footer.html' %}</footer>
             <!-- /.content-wrapper -->
+            {% endblock contenido %}
 
             <!-- jQuery -->
-            <script src="/static/AdminLTE/jquery/jquery.min.js"></script>
+            <script src="{% static 'AdminLTE/jquery/jquery.min.js' %}"></script>
             <!-- Bootstrap -->
-            <script src="/static/AdminLTE/js-copy/bootstrap.bundle.min.js"></script>
+            <script src="{% static 'AdminLTE/js-copy/bootstrap.bundle.min.js' %}"></script>
             <!-- jQuery UI -->
-            <script src="/static/AdminLTE/jquery-ui/jquery-ui.min.js"></script>
+            <script src="{% static 'AdminLTE/jquery-ui/jquery-ui.min.js' %}"></script>
             <!-- AdminLTE App -->
-            <script src="/static/AdminLTE/js/adminlte.min.js"></script>
-            <!-- fullCalendar 2.2.5 -->
-            <script src="/static/AdminLTE/moment/moment.min.js"></script>
-            <script src="/static/AdminLTE/fullcalendar/main.js"></script>
-
-            {% endblock contenido %}
+            <script src="{% static 'AdminLTE/js/adminlte.min.js' %}"></script>
+            <!-- toastr alert -->
+            <script type="application/json" src="{% static 'AdminLTE/toastr/toastr.js.map' %}"></script>
+            <script type="text/javascript" src="{% static 'AdminLTE/toastr/toastr.min.js' %}"></script>
+            
+            <!-- DataTables  & Plugins -->
+            <script src="{% static 'AdminLTE/datatables/jquery.dataTables.min.js' %}"></script>
+            <script src="{% static 'AdminLTE/datatables-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+            <script src="{% static 'AdminLTE/datatables-responsive/js/dataTables.responsive.min.js' %}"></script>
+            <script src="{% static 'AdminLTE/datatables-responsive/js/responsive.bootstrap4.min.js' %}"></script>
+            <script src="{% static 'AdminLTE/datatables-buttons/js/dataTables.buttons.min.js' %}"></script>
+            <script src="{% static 'AdminLTE/datatables-buttons/js/buttons.bootstrap4.min.js' %}"></script>
+            <script src="{% static 'AdminLTE/jszip/jszip.min.js' %}"></script>
+            <script src="{% static 'AdminLTE/pdfmake/pdfmake.min.js' %}"></script>
+            <script src="{% static 'AdminLTE/pdfmake/vfs_fonts.js' %}"></script>
+            <script src="{% static 'AdminLTE/datatables-buttons/js/buttons.html5.min.js' %}"></script>
+            <script src="{% static 'AdminLTE/datatables-buttons/js/buttons.print.min.js' %}"></script>
+            <script src="{% static 'AdminLTE/datatables-buttons/js/buttons.colVis.min.js' %}"></script>
+            <script src="{% static 'AdminLTE/js/modal-status.js' %}"></script>
+            
+            <!--DataTable Compras-->
+            <script>
+                $(function () {
+                    $("#tabla-compras").DataTable({
+                        dom: 'Bfrtip',  
+                            language:{
+                                url: "{% static 'AdminLTE/datatables/datatables.spanish.json' %}"
+                            },
+                        //dataTable configurations
+                        "responsive": true, "paging": true, "lengthChange": false,
+                        "searching": true, "ordering": true, "info": true,
+                        "autoWidth": false, "pageLength": 8,
+                        "buttons": ["copy", "csv", "excel", "pdf", "print"],
+                    }
+                    
+                    ).buttons().container().appendTo('#tabla-compras .col-md-6:eq(0)');
+                });
+            </script>
+            {% block javascript %}
+            {% endblock javascript %}

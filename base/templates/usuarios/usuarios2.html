@@ -1,5 +1,5 @@
+{% load static %}
 {% block contenido %}
-{% load crispy_forms_tags %}
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -27,22 +27,23 @@
 
     <!-- Main content -->
     <section class="content">
-        <div class="container-fluid ">
+        <div class="container-fluid">
             <div class="row">
                 <!-- Card -->
-                <div class="card ">
+                <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title"><tr><b
-                                    class="text-success">Reporte de Usuarios</b></tr></h3>
+                        <h3 class="card-title"><tr><b class="text-success">Reporte de Usuarios</b></tr></h3>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
                         <!-- Este botón llama el modal -->
                         <button type="button" class="btn btn-success float-right mr-0 mb-3"
-                        data-bs-toggle="modal" data-bs-target="#crear_Usuario"> Crear Usuario</button>
+                            name="form-crear-usuario"
+                            data-bs-toggle="modal"
+                            data-bs-target="#crear_Usuario{{usuario.pk}}"> Crear Usuario</button>
                         <!-- Datatable de usuarios -->
-                        <table id="example1" class="table table-bordered
-                            table-striped border-dark">
+                        <table id="tabla-usuarios" class="table table-bordered
+                            table-striped border-dark" style="font-size: 14px;">
                             <thead class="bg-success">
                                 <tr>
                                     <th class="border-dark">Foto</th>
@@ -51,8 +52,8 @@
                                     <th class="border-dark">Teléfono</th>
                                     <th class="border-dark">Correo Electrónico</th>
                                     <th class="border-dark">Dirección</th>
-                                    <th class="border-dark">Tipo de documento</th>
-                                    <th class="border-dark">Número de documento</th>
+                                    <th class="border-dark">Tipo de Documento</th>
+                                    <th class="border-dark">Número de Documento</th>
                                     <th class="border-dark">Genero</th>
                                     <th class="border-dark">Rol</th>
                                     <th class="border-dark">Acciones</th>
@@ -61,29 +62,72 @@
                             <tbody>
                                 {% for usuario in usuarios %}
                                 <tr>
-                                    <td class="border-dark align middle text-center"><img class="rounded-circle" src="{{ MEDIA_URL }}{{usuario.foto.url}}" alt="" width="50" height="50"></td>
-                                    <td class="border-dark">{{usuario.nombres}}</td>
-                                    <td class="border-dark">{{usuario.apellidos}}</td>
-                                    <td class="border-dark">{{usuario.telefono}}</td>
-                                    <td class="border-dark">{{usuario.email}}</td>
-                                    <td class="border-dark">{{usuario.direccion}}</td>
-                                    <td class="border-dark">{{usuario.tipoDocumento}}</td>
-                                    <td class="border-dark">{{usuario.numDocumento}}</td>
-                                    <td class="border-dark">{{usuario.genero}}</td>
-                                    <td class="border-dark">{{usuario.rol}}</td>
-                                    <td class="border-dark">
+                                    <td class="border-dark align middle text-center"><img class="rounded-circle" src="{{ MEDIA_URL}}{{usuario.foto.url}}" alt="" width="50" height="50"></td>
+                                    <td class="border-dark text-black">{{usuario.nombres}}</td>
+                                    <td class="border-dark text-black">{{usuario.apellidos}}</td>
+                                    <td class="border-dark text-black">{{usuario.telefono}}</td>
+                                    <td class="border-dark text-black">{{usuario.email}}</td>
+                                    <td class="border-dark text-black">{{usuario.direccion}}</td>
+                                    <td class="border-dark text-black">{{usuario.tipoDocumento}}</td>
+                                    <td class="border-dark text-black">{{usuario.numDocumento}}</td>
+                                    <td class="border-dark text-black">{{usuario.genero}}</td>
+                                    <td class="border-dark text-black">{{usuario.rol}}</td>
+                                    <td class="border-dark text-black">
                                         <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#ver_Usuario">
-                                            <i class="fas fa-eye"></i></button>
+                                            <i class="fas fa-eye"></i></button><c>{% include 'usuarios/usuarios-ver.html' %}</c>      
                                         <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modificar_Usuario">
-                                            <i class="fas fa-edit"></i></button>
-                                        <button class="btn btn-danger"  data-bs-toggle="modal" data-bs-target="#eliminar_Usuario">
+                                            <i class="fas fa-edit"></i></button><c>{% include 'usuarios/usuarios-modificar.html' %}</c>
+                                        <button class="btn btn-danger"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#deleteModal{{usuario.pk}}">
                                             <i class="fas fa-trash-alt"></i></button>
                                     </td>
                                 </tr>
+                                <!-- Modal delete confirmation -->
+                                <div class="modal fade"
+                                    id="deleteModal{{usuario.pk}}"
+                                    tabindex="-1"
+                                    aria-labelledby="deleteModalLabel"
+                                    aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header bg-danger">
+                                                <h5 class="modal-title "
+                                                    id="deleteModalLabel"><i
+                                                        class="fas fa-trash-alt"></i>&nbsp;&nbsp; ELIMINAR USUARIO</h5>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="text-center
+                                                    text-danger"><i class="far
+                                                        fa-times-circle fa-5x
+                                                        mb-4 mt-2"></i></div>
+                                                <div class="text-center
+                                                    text-danger">
+                                                    <span class="">¿Estás seguro de que deseas eliminar este usuario?</span>
+                                                    <div class="text-dark mt-3
+                                                        mb-2">Usuario: <strong>{{usuario.nombres}} {{usuario.apellidos}} {{usuario.rol}}</strong></div>
+                                                </div>
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                <form method="post" action="{% url 'delete_usuario' usuario.pk %}">
+                                                    {% csrf_token %}
+
+                                                    <input type="submit"
+                                                        class="btn btn-danger"
+                                                        value="Eliminar">
+                                                </form>
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Cancelar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 {% endfor %}
                             </tbody>
                         </table>
                     </div>
+
                     <!-- /.card-body -->
                 </div>
                 <!-- /.card -->
@@ -92,17 +136,52 @@
         </div>
         <footer>{% include 'partials/footer.html' %}</footer>
         <!-- /.content-wrapper -->
+        {% endblock contenido %}
 
-        <!-- jQuery -->
-        <script src="/static/AdminLTE/jquery/jquery.min.js"></script>
-        <!-- Bootstrap -->
-        <script src="/static/AdminLTE/js-copy/bootstrap.bundle.min.js"></script>
-        <!-- jQuery UI -->
-        <script src="/static/AdminLTE/jquery-ui/jquery-ui.min.js"></script>
-        <!-- AdminLTE App -->
-        <script src="/static/AdminLTE/js/adminlte.min.js"></script>
-        <!-- fullCalendar 2.2.5 -->
-        <script src="/static/AdminLTE/moment/moment.min.js"></script>
-        <script src="/static/AdminLTE/fullcalendar/main.js"></script>
+            <!-- jQuery -->
+            <script src="{% static 'AdminLTE/jquery/jquery.min.js' %}"></script>
+            <!-- Bootstrap -->
+            <script src="{% static 'AdminLTE/js-copy/bootstrap.bundle.min.js' %}"></script>
+            <!-- jQuery UI -->
+            <script src="{% static 'AdminLTE/jquery-ui/jquery-ui.min.js' %}"></script>
+            <!-- AdminLTE App -->
+            <script src="{% static 'AdminLTE/js/adminlte.min.js' %}"></script>
+            <!-- toastr alert -->
+            <script type="application/json" src="{% static 'AdminLTE/toastr/toastr.js.map' %}"></script>
+            <script type="text/javascript" src="{% static 'AdminLTE/toastr/toastr.min.js' %}"></script>
+            
+            <!-- DataTables  & Plugins -->
+            <script src="{% static 'AdminLTE/datatables/jquery.dataTables.min.js' %}"></script>
+            <script src="{% static 'AdminLTE/datatables-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+            <script src="{% static 'AdminLTE/datatables-responsive/js/dataTables.responsive.min.js' %}"></script>
+            <script src="{% static 'AdminLTE/datatables-responsive/js/responsive.bootstrap4.min.js' %}"></script>
+            <script src="{% static 'AdminLTE/datatables-buttons/js/dataTables.buttons.min.js' %}"></script>
+            <script src="{% static 'AdminLTE/datatables-buttons/js/buttons.bootstrap4.min.js' %}"></script>
+            <script src="{% static 'AdminLTE/jszip/jszip.min.js' %}"></script>
+            <script src="{% static 'AdminLTE/pdfmake/pdfmake.min.js' %}"></script>
+            <script src="{% static 'AdminLTE/pdfmake/vfs_fonts.js' %}"></script>
+            <script src="{% static 'AdminLTE/datatables-buttons/js/buttons.html5.min.js' %}"></script>
+            <script src="{% static 'AdminLTE/datatables-buttons/js/buttons.print.min.js' %}"></script>
+            <script src="{% static 'AdminLTE/datatables-buttons/js/buttons.colVis.min.js' %}"></script>
+            <script src="{% static 'AdminLTE/js/modal-status.js' %}"></script>
 
-{% endblock contenido %}
+        <!--DataTable Usuarios-->
+        <script>
+                $(function () {
+                    $("#tabla-usuarios").DataTable({
+                        dom: 'Bfrtip',  
+                            language:{
+                                url: "{% static 'AdminLTE/datatables/datatables.spanish.json' %}"
+                            },
+                        //dataTable configurations
+                        "responsive": true, "paging": true, "lengthChange": false,
+                        "searching": true, "ordering": true, "info": true,
+                        "autoWidth": false, "pageLength": 8,
+                        "buttons": ["copy", "csv", "excel", "pdf", "print"],
+                    }
+                    
+                    ).buttons().container().appendTo('#tabla-usuarios_wrapper .col-md-6:eq(0)');
+                });
+            </script>
+        {% block javascript %}
+        {% endblock javascript %}
