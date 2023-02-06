@@ -1,68 +1,19 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required
+from django.views.defaults import page_not_found
+from usuarios.models import Municipio, Departamento
+from usuarios.forms import DepartamentoForm,MunicipioForm
+from django.contrib import messages
 from django.contrib.auth import logout
+from productos.models import Producto
+from usuarios.models import Usuario
+from facturas.models import Factura, Devolucion
 
-
-<<<<<<< HEAD
-def login(request):
-=======
-def login_view(request):
->>>>>>> main
-    titulo="Inicio de Sesión"
-    context={
-        'titulo':titulo
-    }    
-    return render(request,'registration/login.html',context)  
-
-@login_required
-def inicio(request):
-    titulo="Página Principal"
-    context={
-        'titulo':titulo
-    }
-<<<<<<< HEAD
-    return render(request,'index2.html',context) 
-
-def formRecuperacion(request):
-    titulo="Recupera tu Contraseña"
-    context={
-        'titulo':titulo
-    }
-    return render(request,'registration/formrecuperacion.html',context)
-
-
-def correoEnviado(request):
-    titulo="Correo de Recuperación Enviado"
-    context={
-        'titulo':titulo
-    }
-    return render(request,'registration/correoenviado.html',context)
-
-def nuevaContraseña(request):
-    titulo="Crea tu Nueva Contraseña"
-    context={
-        'titulo':titulo
-    }
-    return render(request,'registration/nuevacontraseña.html',context)
-
-def cambioExitoso(request):
-    titulo="Contraseña Cambiada Correctamente"
-    context={
-        'titulo':titulo
-    }
-    return render(request,'registration/cambioexitoso.html',context)
-
-   
-=======
-    return render(request,'index2.html',context)    
->>>>>>> main
-"""
-def inicio(request):
-    titulo="Página Principal"
+def inicioAdmin(request):
+    titulo="Tablero Principal"
     cantidad_productos= Producto.objects.all().count()
-    cantidad_clientes= Cliente.objects.all().count()
-    cantidad_ventas= Venta.objects.all().count()
-    cantidad_compras= cantidad_compra.objects.all().count()
+    cantidad_usuarios= Usuario.objects.all().count()
+    cantidad_facturas= Factura.objects.all().count()
+    cantidad_devoluciones= Devolucion.objects.all().count()
 
     labels_stock=[]
     data_stock=[]
@@ -72,44 +23,93 @@ def inicio(request):
         data_stock.append(producto.stock)
 
     context={
-        'titulo':titulo
-        'cantidad_clientes':cantidad_clientes,
+        'titulo':titulo,
+        'cantidad_usuarios':cantidad_usuarios,
         'cantidad_productos':cantidad_productos,
-        'cantidad_ventas':cantidad_ventas,
-        'cantidad_compras':cantidad_compras,
+        'cantidad_facturas':cantidad_facturas,
+        'cantidad_devoluciones':cantidad_devoluciones,
         'labels_stock': labels_stock,
         'data_stock':data_stock,
     }
-    return render(request,'index2.html',context)    
-"""
-def error404(request):
-    titulo="ERROR 404"
+    return render(request,'index-admin.html', context)
+
+def municipio(request):
+    titulo="Municipios"
+    municipios=Municipio.objects.all()
+    departamentos=Departamento.objects.all()
+
+    if request.method == "POST":
+        form= MunicipioForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(
+                request,f"Se agregó el municipio de {request.POST['nombre']} exitosamente!"
+            )
+            return redirect('municipio')
+        else:
+            messages.error(
+                request,f"Error al agregar {request.POST['nombre']}!"
+            )
+    else:
+        form= MunicipioForm()
     context={
         'titulo':titulo,
-    }
-    return render(request,'error404.html',context)    
+        'municipios':municipios,
+        'departamentos':departamentos,
 
-def error500(request,):
-    titulo="ERROR 500"
+    }
+    return render(request,'usuarios/municipios.html',context)
+def departamento(request):
+    titulo="Departamentos"
+    departamentos=Departamento.objects.all()
+    if request.method == "POST":
+        form= DepartamentoForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(
+                request,f"Se agregó el departamento de {request.POST['nombre']} exitosamente!"
+            )
+            return redirect('departamento')
+        else:
+            messages.error(
+                request,f"Error al agregar {request.POST['nombre']}!"
+            )
+    else:
+        form= DepartamentoForm()
     context={
         'titulo':titulo,
+        'departamentos':departamentos,
     }
-    return render(request,'error500.html',context)   
+    return render(request,'usuarios/departamentos.html',context)
 
-@login_required
-def perfil(request):
-    titulo="Mi Perfil"
+def departamento_eliminar(request,pk):
+    titulo="Departamentos"
+    
+    departamento=Departamento.objects.filter(id=pk).delete()
+    messages.success(
+            request,f"Se eliminó el departamento exitosamente!"
+        )
+    return redirect('departamento')
+    
     context={
-        'titulo':titulo
+        'titulo':titulo,
+        
     }
-    return render(request,'perfil.html',context)   
+    return render(request,'usuarios/departamentos.html',context)
+def error_404(request,exception):
+    return page_not_found(request,'404.html')
+
+def contacto(request):
+    context={}
+    return render(request,'contacto.html',context)
+
+# def loggedIn(request):
+#     if request.user.is_authenticated:
+#         respuesta:"Ingresado como "+ request.user.username
+#     else:
+#         respuesta:"No estas autenticado."
+#     return HttpResponse(respuesta)
 
 def logout_user(request):
     logout(request)
-<<<<<<< HEAD
-    return redirect('login')
-
- 
-=======
-    return redirect('login2')
->>>>>>> main
+    return redirect('inicio')

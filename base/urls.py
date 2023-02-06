@@ -1,5 +1,4 @@
 """base URL Configuration
-
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.1/topics/http/urls/
 Examples:
@@ -15,43 +14,43 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from django.contrib.auth import views as auth_views
-from django.contrib.auth.views import LoginView, LogoutView
+from django.conf.urls import handler404
+from base.views import contacto, departamento,departamento_eliminar, error_404, inicioAdmin, municipio
 
-from base.views import inicio, error404, error500, perfil
+from base.views import logout_user
+from django.contrib.auth import views as auth_views
 
 ####### Importes para subir imágenes #######
 from django.conf import settings
 from django.conf.urls.static import static
-
-from proveedores import views
 ############################################
 
+handler404= error_404
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('inicio/',inicio,name='inicio'),
-    path('error404/',error404,name='error404'),    
-    path('error500/',error500,name='error500'),
-    path('perfil/',perfil,name='perfil'),
+    path('adm/',inicioAdmin,name='inicio-admin'),
     path('usuarios/',include('usuarios.urls')),
-    path('ventas/',include('ventas.urls')),
-    path('servicios/',include('servicios.urls')),
-    path('proveedores/',include('proveedores.urls'), name="proveedores"),
-    path('proveedor_crear', views.proveedor_crear, name="proveedor_crear"),
-    path('proveedor_modificar', views.proveedor_modificar, name="proveedor_modificar"),
     
     path('productos/',include('productos.urls')),
-    path('compras/',include('compras.urls')),
-    path('clientes/',include('clientes.urls')),
-    path('tecnicos/',include('tecnico.urls')),
-    # --------------------------------------LOGIN--------------------------------------------
-    path('logout/',LogoutView.as_view(),name="logout"),
-    path('',auth_views.LoginView.as_view(), name='login_view'),
-    path('reset_password/',auth_views.PasswordResetView.as_view(),name='password_reset'),
-    path('reset_password_send/',auth_views.PasswordResetDoneView.as_view(),name='password_reset_done'),
-    path('reset/<uidb64>/<token>',auth_views.PasswordResetConfirmView.as_view(),name='password_reset_confirm'),
-    path('reset_password_complete/',auth_views.PasswordResetCompleteView.as_view(),name='password_reset_complete'),
-    path('accounts/',include('django.contrib.auth.urls')),
+    path('facturas/',include('facturas.urls')),
+
+
+    path('extras/municipio',municipio,name='municipio'),
+    path('extras/departamento',departamento,name='departamento'),
+    path('extras/departamento/eliminar/<int:pk>/',departamento_eliminar,name='departamento_eliminar'),
+
+    path('contacto/',contacto,name="contacto"),
+
+    
+    path('logout/',logout_user,name="logout"),
+    path('',auth_views.LoginView.as_view(),name='inicio'),
+    path('reiniciar/',auth_views.PasswordResetView.as_view(),name='pass_reset'),
+    path('reiniciar/enviar',auth_views.PasswordResetDoneView.as_view(),name='pass_reset_done'),
+    path('reiniciar/<uid64>/<token>',auth_views.PasswordResetConfirmView.as_view(),name='pass_reset_confirm'),
+    path('reiniciar/completo',auth_views.PasswordResetCompleteView.as_view(),name='pass_reset_reset_complete'),
+    path('', include('django.contrib.auth.urls')),
+
+
+    path("select2/", include("django_select2.urls")),
 
 ]+ static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)
-
