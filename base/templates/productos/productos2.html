@@ -62,7 +62,7 @@
                                 {% for producto in productos %}
                                 <tr>
                                     <td class="border-dark text-black">{{producto.id}}</td>
-                                    <td class="border-dark align middle text-center"><img class="rounded-circle" src="{{ MEDIA_URL }}{{usuario.foto.url}}" alt="" width="50" height="50"></td>
+                                    
                                     <td class="border-dark text-black">{{producto.nombre}}</td>
                                     <td class="border-dark text-black">{{producto.precio}}</td>
                                     <td class="border-dark text-black">{{producto.especificaciones}}</td>
@@ -70,6 +70,7 @@
                                     <td class="border-dark text-black">{{producto.stockMinimo}}</td>
                                     <td class="border-dark text-black">{{producto.porcentajeIva}}</td>
                                     <td class="border-dark text-black">{{producto.categoria}}</td>
+                                    <td class="border-dark align middle text-center"><img class="rounded-circle" src="{{ MEDIA_URL }}{{usuario.foto.url}}" alt="" width="50" height="50"></td>
                                     <td class="border-dark">
                                         <a class="btn btn-success" data-bs-toggle="modal" data-bs-target="#verProducto">
                                             <i class="fas fa-eye"></i></a><c>{% include 'productos/productos-ver.html' %}</c>
