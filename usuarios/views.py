@@ -74,15 +74,42 @@ def usuario_modificar(request):
             return HttpResponseRedirect("usuarios/")
 
 #Function to DELETE usuario
-def delete_usuario(request, usuario_id):
+"""def delete_usuario(request, usuario_id):
     if request.method == "POST":
         usuario = Usuario.objects.get(id= usuario_id)
         usuario.delete()
         messages.success(request, "Usuario eliminado satisfactoriamente!")
         return redirect("usuarios")
+"""
+def usuarios_eliminar(request, pk):
+    usuario = Usuario.objects.filter(id = pk).update(
+        estado = '0'
+    )
+    messages.error(request, "Usuario eliminado satisfactoriamente!")
+    return redirect('usuarios') 
 
+#Function to RECUPERAR usuarios
+def recuperar_usuarios(request):
+    
+    usuarios= Usuario.objects.all()
+    usuarios_recuperables = []
 
+    for usuario in usuarios:
+        if usuario.estado == '0':
+            usuarios_recuperables.append(usuario)
 
+    context={
+        "usuarios":usuarios_recuperables
+    }
+    return render(request,'usuarios/usuarios-recuperar.html',context)
+
+def recuperar(request, pk):
+    titulo = 'Recuperar Usuario'
+    Usuario.objects.filter(id = pk).update(
+        estado = '1'
+    )
+    messages.success(request, "Usuario restaurado satisfactoriamente!")
+    return redirect('usuarios')
 
 ################################ EJEMPLO DE USUARIO ####################################
 

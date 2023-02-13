@@ -24,7 +24,6 @@ from base.views import inicio, error404, error500, perfil
 from django.conf import settings
 from django.conf.urls.static import static
 
-from proveedores import views
 ############################################
 
 urlpatterns = [

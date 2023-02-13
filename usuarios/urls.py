@@ -1,14 +1,17 @@
 from django.urls import path
-from . import views
+from usuarios.views import recuperar, recuperar_usuarios, usuario_crear, usuario_modificar, usuario_ver, usuarios, usuarios_eliminar
 
 urlpatterns = [
-    path('',views.usuarios,name="usuarios"),
+    path('',usuarios,name="usuarios"),
     #Path to ADD usuario
-    path('usuario_crear',views.usuario_crear,name="usuario_crear"),
+    path('usuario_crear',usuario_crear,name="usuario_crear"),
     #Path to EDIT usuario
-    path('usuario_modificar',views.usuario_modificar,name="usuario_modificar"),
+    path('usuario_modificar',usuario_modificar,name="usuario_modificar"),
     #Path to View usuario data individually
-    path('usuarios/usuario_ver/<str:usuario_id>',views.usuario_ver,name="usuario_ver"),
+    path('usuarios/usuario_ver/<str:usuario_id>',usuario_ver,name="usuario_ver"),
     #Path to DELETE usuario
-    path('usuarios/usuarios/delete_usuario/<int:usuario_id>', views.delete_usuario, name='delete_usuario')
+    path('usuarios_eliminar/<int:pk>/', usuarios_eliminar, name="usuarios_eliminar"),
+    #Path to Recuperar usuarios
+    path('usuarios_recuperar/', recuperar_usuarios, name="recuperar_usuarios"),
+    path('recuperar/<int:pk>/', recuperar, name='recuperar'),
 ]
