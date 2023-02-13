@@ -24,7 +24,6 @@ from base.views import inicio, error404, error500, perfil
 from django.conf import settings
 from django.conf.urls.static import static
 
-from proveedores import views
 ############################################
 
 urlpatterns = [
@@ -37,9 +36,6 @@ urlpatterns = [
     path('ventas/',include('ventas.urls')),
     path('servicios/',include('servicios.urls')),
     path('proveedores/',include('proveedores.urls'), name="proveedores"),
-    path('proveedor_crear', views.proveedor_crear, name="proveedor_crear"),
-    path('proveedor_modificar', views.proveedor_modificar, name="proveedor_modificar"),
-    
     path('productos/',include('productos.urls')),
     path('compras/',include('compras.urls')),
     path('clientes/',include('clientes.urls')),

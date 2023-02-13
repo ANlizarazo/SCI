@@ -1,4 +1,5 @@
 {% load crispy_forms_tags %}
+{% block contenido %}
 
 <!-- Modal de modificar usuario -->
 
@@ -11,7 +12,7 @@
         <div class="modal-body">
             <!-- Formulario -->
             <form action="" method="POST">
-                {{VentaForm}}
+                {{form|crispy}}
                 {% csrf_token %}
             </form>
         </div>
@@ -22,3 +23,4 @@
     </div>
     </div>
 </div>       
+{% endblock contenido %}
