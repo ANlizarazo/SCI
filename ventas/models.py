@@ -25,9 +25,14 @@ class Venta(models.Model):
     porcentajeIva=models.DecimalField(validators=[MinValueValidator(0.0)],decimal_places=1,max_digits=20, verbose_name="Porcentaje IVA")
     totalVenta= models.PositiveIntegerField(validators = [ MinValueValidator ( 0 )], verbose_name="Total Venta")
     detalleVenta= models.ForeignKey(DetalleVenta, on_delete=models.CASCADE, verbose_name="Detalle Venta",null=True)
+
     cliente=models.ForeignKey(Cliente, on_delete=models.CASCADE, verbose_name="Cliente",null=True)
     usuario=models.ForeignKey(Usuario, on_delete=models.CASCADE, verbose_name="Usuario",null=True)
     servicio=models.ForeignKey(Servicio, on_delete=models.CASCADE, verbose_name="Servicio",null=True)
+    class Estado(models.TextChoices):
+        ACTIVO='1', _('Activo')
+        INACTIVO='0', _('Inactivo')    
+    Estado=models.CharField(max_length=1, choices=Estado.choices, default=Estado.ACTIVO, verbose_name="Estado")
 
     def __str__(self)->str:
         return "%s %s" %(self.id,self.fecha)  

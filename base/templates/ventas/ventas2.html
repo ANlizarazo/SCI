@@ -60,6 +60,7 @@
                             </thead>
                             <tbody>
                                 {% for venta in ventas %}
+                                {% if venta.estado == '1' %}
                                 <tr>
                                     <td class="border-dark text-black">{{venta.id}}</td>
                                     <td class="border-dark text-black">{{venta.subtotalVenta}}</td>
@@ -120,10 +121,12 @@
                                         </div>
                                     </div>
                                 </div>
+                                {% endif %}
                                 {% endfor %}
                             </tbody>
                         </table>
                     </div>
+                    <a href="{% url 'recuperar_ventas' %}" class="btn btn-warning float-right mr-1 mb-3" title="Papelera"><i class="fas fa-trash-restore"></i>&nbsp; Restaurar </a>
                     <!-- /.card-body -->
                 </div>
                 <!-- /.card -->
