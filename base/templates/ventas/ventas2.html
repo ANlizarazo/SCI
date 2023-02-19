@@ -108,7 +108,7 @@
                                             </div>
 
                                             <div class="modal-footer">
-                                                <form method="post" action="{% url 'delete_venta' venta.pk %}">
+                                                <form method="post" action="{% url 'ventas_eliminar' venta.pk %}">
                                                     {% csrf_token %}
 
                                                     <input type="submit"

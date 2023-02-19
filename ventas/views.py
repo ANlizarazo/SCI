@@ -83,7 +83,7 @@ def ventas_eliminar(request, pk):
     venta = Venta.objects.filter(id = pk).update(
         estado = '0'
     )
-    messages.error(request, "Venta eliminada satisfactoriamente!")
+    messages.success(request, "Venta eliminada satisfactoriamente!")
     return redirect('ventas') 
 
 #Function to RECUPERAR ventas
