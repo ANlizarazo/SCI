@@ -38,12 +38,9 @@
                     <!-- /.card-header -->
                     <div class="card-body">
                         <!-- Este botón llama el modal -->
-                        <button type="button" class="btn btn-success float-right
-                        mr-0 mb-3"
-                        data-bs-toggle="modal" data-bs-target="#crear_Tecnico{{tecnico.pk}}"> Crear Técnico</button>
+                        <button type="button" class="btn btn-success float-right mr-0 mb-3" data-bs-toggle="modal" data-bs-target="#crear_Tecnico{{tecnico.pk}}"> Crear Técnico</button>
                         <!-- Datatable de tecnicos -->
-                        <table id="tabla-tecnico" class="table table-bordered
-                            table-striped border-dark">
+                        <table id="tabla-tecnicos" class="table table-bordered table-striped border-dark">
                             <thead class="bg-success">
                                 <tr>
                                     <th class="border-dark">Nombres</th>
@@ -52,13 +49,13 @@
                                     <th class="border-dark">Genero</th>
                                     <th class="border-dark">Tipo de Documento</th>
                                     <th class="border-dark">Número de Documento</th>
-                                    <th class="border-dark">Estado</th>
                                     <th class="border-dark">Ciudad</th>
                                     <th class="border-dark">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {% for tecnico in tecnico %}
+                                {% if tecnico.estado == '1' %}
                                 <tr>
                                     <td class="border-dark text-black">{{tecnico.nombres}}</td>
                                     <td class="border-dark text-black">{{tecnico.apellidos}}</td>
@@ -66,7 +63,6 @@
                                     <td class="border-dark text-black">{{tecnico.genero}}</td>
                                     <td class="border-dark text-black">{{tecnico.tipoDocumento}}</td>
                                     <td class="border-dark text-black">{{tecnico.numDocumento}}</td>
-                                    <td class="border-dark text-black">{{tecnico.estado}}</td>
                                     <td class="border-dark text-black">{{tecnico.ciudad}}</td>
                                     <td class="border-dark text-black">
                                         <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#verTecnico">
@@ -106,7 +102,7 @@
                                             </div>
 
                                             <div class="modal-footer">
-                                                <form method="post" action="{% url 'delete_tecnico' tecnico.pk %}">
+                                                <form method="post" action="{% url 'tecnicos_eliminar' tecnico.pk %}">
                                                     {% csrf_token %}
 
                                                     <input type="submit"
@@ -119,10 +115,12 @@
                                         </div>
                                     </div>
                                 </div>
+                                {% endif %}
                                 {% endfor %}
                             </tbody>
                         </table>
                     </div>
+                    <a href="{% url 'recuperar_tecnicos' %}" class="btn btn-warning float-right mr-1 mb-3" title="Papelera"><i class="fas fa-trash-restore"></i>&nbsp; Restaurar </a>
                     <!-- /.card-body -->
                 </div>
                 <!-- /.card -->
