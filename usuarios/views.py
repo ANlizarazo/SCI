@@ -85,7 +85,7 @@ def usuarios_eliminar(request, pk):
     usuario = Usuario.objects.filter(id = pk).update(
         estado = '0'
     )
-    messages.error(request, "Usuario eliminado satisfactoriamente!")
+    messages.success(request, "Usuario eliminado satisfactoriamente!")
     return redirect('usuarios') 
 
 #Function to RECUPERAR usuarios
