@@ -35,7 +35,7 @@ urlpatterns = [
     path('usuarios/',include('usuarios.urls')),
     path('ventas/',include('ventas.urls')),
     path('servicios/',include('servicios.urls')),
-    path('proveedores/',include('proveedores.urls'), name="proveedores"),
+    path('proveedores/',include('proveedores.urls')),
     path('productos/',include('productos.urls')),
     path('compras/',include('compras.urls')),
     path('clientes/',include('clientes.urls')),

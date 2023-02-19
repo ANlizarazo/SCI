@@ -41,7 +41,7 @@
                         <a class="btn btn-success float-right mr-0 mb-3"
                             name="form-crear-venta"
                             data-bs-toggle="modal"
-                            data-bs-target="#crear_Venta{{venta.pk}}"> Crear Venta</a>
+                            data-bs-target="#crear_Venta{{venta.pk}}" title="Crear"> Crear Venta</a>
                         <!-- Datatable de ventas -->
                         <table id="tabla-ventas" class="table table-bordered
                             table-striped border-dark">
@@ -71,13 +71,13 @@
                                     <td class="border-dark text-black">{{venta.cliente}}</td>
                                     <td class="border-dark text-black">{{venta.usuario}}</td>
                                     <td class="border-dark text-black">
-                                        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#verVenta">
+                                        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#verVenta" title="Ver">
                                             <i class="fas fa-eye"></i></button><c>{% include 'ventas/ventas-ver.html' %}</c>      
-                                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modificar_Venta">
+                                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modificar_Venta" title="Modificar">
                                             <i class="fas fa-edit"></i></button><c>{% include 'ventas/ventas-modificar.html' %}</c>
                                             <button class="btn btn-danger"
                                             data-bs-toggle="modal"
-                                            data-bs-target="#deleteModal{{venta.pk}}">
+                                            data-bs-target="#deleteModal{{venta.pk}}" title="Eliminar">
                                             <i class="fas fa-trash-alt"></i></button>
                                     </td>
                                 </tr>
