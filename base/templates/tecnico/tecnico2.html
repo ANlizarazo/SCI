@@ -38,7 +38,7 @@
                     <!-- /.card-header -->
                     <div class="card-body">
                         <!-- Este botón llama el modal -->
-                        <button type="button" class="btn btn-success float-right mr-0 mb-3" data-bs-toggle="modal" data-bs-target="#crear_Tecnico{{tecnico.pk}}"> Crear Técnico</button>
+                        <button type="button" class="btn btn-success float-right mr-0 mb-3" data-bs-toggle="modal" data-bs-target="#crear_Tecnico{{tecnico.pk}}" title="Crear"> Crear Técnico</button>
                         <!-- Datatable de tecnicos -->
                         <table id="tabla-tecnicos" class="table table-bordered table-striped border-dark">
                             <thead class="bg-success">
@@ -65,13 +65,13 @@
                                     <td class="border-dark text-black">{{tecnico.numDocumento}}</td>
                                     <td class="border-dark text-black">{{tecnico.ciudad}}</td>
                                     <td class="border-dark text-black">
-                                        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#verTecnico">
+                                        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#verTecnico" title="Ver">
                                             <i class="fas fa-eye"></i></button><c>{% include 'tecnico/tecnico-ver.html' %}</c>        
-                                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modificarTecnico">
+                                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modificarTecnico" title="Modificar">
                                             <i class="fas fa-edit"></i></button><c>{% include 'tecnico/tecnico-modificar.html' %}</c>
                                             <button class="btn btn-danger"
                                             data-bs-toggle="modal"
-                                            data-bs-target="#deleteModal{{tecnico.pk}}">
+                                            data-bs-target="#deleteModal{{tecnico.pk}}" title="Eliminar">
                                             <i class="fas fa-trash-alt"></i></button>
                                     </td>
                                 </tr>
