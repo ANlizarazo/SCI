@@ -26,16 +26,18 @@ def venta_crear(request):
             and request.POST.get('detalleVenta') \
             and request.POST.get('cliente') \
             and request.POST.get('usuario') \
-            and request.POST.get('servicio'):
+            and request.POST.get('servicio') \
+            and request.POST.get('estado'):
             venta= Venta()  
             venta.subtotalVenta= request.POST.get('subtotalVenta')
             venta.fecha= request.POST.get('fecha')
             venta.porcentajeIva= request.POST.get('porcentajeIva')
             venta.totalVenta= request.POST.get('totalVenta')
             venta.detalleVenta= request.POST.get('detalleVenta')
-            venta.cliente= Cliente.objects.get(id=int(request.POST['cliente'])),
-            venta.usuario= Usuario.objects.get(id=int(request.POST['usuario'])),
-            venta.servicio=Servicio.objects.get(id=int(request.POST['servicio'])),
+            venta.cliente= Cliente.objects.get(id=int(request.POST['cliente']))
+            venta.usuario= Usuario.objects.get(id=int(request.POST['usuario']))
+            venta.servicio=Servicio.objects.get(id=int(request.POST['servicio']))
+            venta.estado= request.POST.get('estado')
             venta.save()
             messages.success(request, "La venta ha sido añadida con éxito!")
             return redirect('ventas')
@@ -64,14 +66,45 @@ def venta_modificar(request):
             venta.cliente= request.POST.get('cliente')
             venta.usuario= request.POST.get('usuario')
             venta.servicio= request.POST.get('servicio')
+            venta.estado= request.POST.get('estado')
             venta.save()
             messages.success(request, "La venta ha sido actualizada con éxito!")
             return HttpResponseRedirect('ventas/')
 
 #Function to DELETE Venta
-def delete_venta(request, venta_id):
+"""def delete_venta(request, venta_id):
     if request.method == "POST":
         venta = Venta.objects.get(id= venta_id)
         venta.delete()
         messages.success(request, "Venta eliminada satisfactoriamente!")
-        return redirect('ventas')
+        return redirect('ventas')"""
+        
+def ventas_eliminar(request, pk):
+    venta = Venta.objects.filter(id = pk).update(
+        estado = '0'
+    )
+    messages.success(request, "Venta eliminada satisfactoriamente!")
+    return redirect('ventas') 
+
+#Function to RECUPERAR ventas
+def recuperar_ventas(request):
+    
+    ventas= Venta.objects.all()
+    ventas_recuperables = []
+
+    for venta in ventas:
+        if venta.estado == '0':
+            ventas_recuperables.append(venta)
+
+    context={
+        "ventas":ventas_recuperables
+    }
+    return render(request,'ventas/ventas-recuperar.html',context)
+
+def recuperar(request, pk):
+    titulo = 'Recuperar Venta'
+    Venta.objects.filter(id = pk).update(
+        estado = '1'
+    )
+    messages.success(request, "Venta restaurada satisfactoriamente!")
+    return redirect('ventas')
