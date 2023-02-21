@@ -25,7 +25,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="shortcut icon" href="/static/img/logoMallas.ico" type="image/x-icon">
-        <title>PAPELERA USUARIOS</title>
+        <title>PAPELERA VENTAS</title>
     </head>
     <body class="hold-transition sidebar-mini layout-fixed">
         <div class="wrapper">
@@ -39,7 +39,7 @@
                         <div class="row mb-2">
                             <div class="col-sm-6">
                                 <h1 class="m-0 text-black"><tr><b
-                                            class="text-black">USUARIOS</b></tr></h1>
+                                            class="text-black">VENTAS</b></tr></h1>
                             </div>
                             <div class="col-sm-6">
                                 <ol class="breadcrumb float-sm-right">
@@ -47,8 +47,8 @@
                                             href="http://127.0.0.1:8000/inicio/">
                                             <b class="text-success">Inicio </b></a></li>
                                     <li class="breadcrumb-item-active"><a
-                                            href="http://127.0.0.1:8000/usuarios/"
-                                            class="text-success">/ Usuarios</a></li>
+                                            href="http://127.0.0.1:8000/ventas/"
+                                            class="text-success">/ Ventas</a></li>
                                 </ol>
                             </div>
                         </div>
@@ -63,44 +63,39 @@
                             <!-- Card -->
                             <div class="card ">
                                 <div class="card-header">
-                                    <h3 class="card-title text-success"><a href="{% url 'usuarios' %}"  title="Volver"><i Class="fas fa-reply text-green" ></i></a><tr><b
-                                                class="text-success">&nbsp;&nbsp; Papelera Usuarios</b></tr></h3>
+                                    <h3 class="card-title text-success"><a href="{% url 'ventas' %}"  title="Volver"><i Class="fas fa-reply text-green" ></i></a><tr><b
+                                                class="text-success">&nbsp;&nbsp; Papelera Venta</b></tr></h3>
                                 </div>
                                 <!-- /.card-header -->
                                 <div class="card-body">
-                                    <!-- Datatable de usuarios -->
-                                    <table id="tabla-usuarios" class="table table-bordered table-striped border-dark" style="font-size: 14px;">
+                                    <!-- Datatable de ventas -->
+                                    <table id="tabla-ventas" class="table table-bordered table-striped border-dark" style="font-size: 14px;">
                                         <thead class="bg-gray">
                                             <tr>
-                                                <th class="border-dark">Foto</th>
-                                                <th class="border-dark">Nombres</th>
-                                                <th class="border-dark">Apellidos</th>
-                                                <th class="border-dark">Teléfono</th>
-                                                <th class="border-dark">Correo Electrónico</th>
-                                                <th class="border-dark">Dirección</th>
-                                                <th class="border-dark">Tipo de Documento</th>
-                                                <th class="border-dark">Número de Documento</th>
-                                                <th class="border-dark">Genero</th>
-                                                <th class="border-dark">Rol</th>
+                                                <th class="border-dark">ID Venta</th>
+                                                <th class="border-dark">Subtotal Venta</th>
+                                                <th class="border-dark">Fecha Venta</th>
+                                                <th class="border-dark">Porcentaje IVA</th>
+                                                <th class="border-dark">Total Venta</th>
+                                                <th class="border-dark">Detalle Venta</th>
+                                                <th class="border-dark">Cliente</th>
+                                                <th class="border-dark">Usuario</th>
                                                 <th class="border-dark">Restaurar</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {% for usuario in usuarios %}
+                                            {% for venta in ventas %}
                                             <tr>
-                                                <td class="border-dark align middle text-center">
-                                                    <img class="rounded-circle" src="{{MEDIA_URL}}{{usuario.foto.url}}" alt="" width="50" height="50"></td>
-                                                <td class="border-dark text-black">{{usuario.nombres}}</td>
-                                                <td class="border-dark text-black">{{usuario.apellidos}}</td>
-                                                <td class="border-dark text-black">{{usuario.telefono}}</td>
-                                                <td class="border-dark text-black">{{usuario.email}}</td>
-                                                <td class="border-dark text-black">{{usuario.direccion}}</td>
-                                                <td class="border-dark text-black">{{usuario.tipoDocumento}}</td>
-                                                <td class="border-dark text-black">{{usuario.numDocumento}}</td>
-                                                <td class="border-dark text-black">{{usuario.genero}}</td>
-                                                <td class="border-dark text-black">{{usuario.rol}}</td>
+                                                <td class="border-dark text-black">{{venta.id}}</td>
+                                                <td class="border-dark text-black">{{venta.subtotalVenta}}</td>
+                                                <td class="border-dark text-black">{{venta.fecha}}</td>
+                                                <td class="border-dark text-black">{{venta.porcentajeIva}}</td>
+                                                <td class="border-dark text-black">{{venta.totalVenta}}</td>
+                                                <td class="border-dark text-black">{{venta.detalleVenta}}</td>
+                                                <td class="border-dark text-black">{{venta.cliente}}</td>
+                                                <td class="border-dark text-black">{{venta.usuario}}</td>
                                                 <td class="border-dark text-black">
-                                                    <a href="{% url 'recuperar' usuario.id %}" class="btn btn-warning" title="Restaurar"><i Class="fas fa-trash-restore"></i></a>
+                                                    <a href="{% url 'recuperar' venta.id %}" class="btn btn-warning" title="Restaurar"><i Class="fas fa-trash-restore"></i></a>
                                                 </td>
                                             </tr>
                                             {% endfor %}
@@ -143,10 +138,10 @@
             <script src="{% static 'AdminLTE/datatables-buttons/js/buttons.colVis.min.js' %}"></script>
             <script src="{% static 'AdminLTE/js/modal-status.js' %}"></script>
 
-                    <!--DataTable usuarios-->
+                    <!--DataTable ventas-->
                     <script>
                 $(function () {
-                    $("#tabla-usuarios").DataTable({
+                    $("#tabla-ventas").DataTable({
                         dom: 'frtip',
                         language:{
                             url: "/static/AdminLTE/datatables/datatables.spanish.json"
@@ -158,7 +153,7 @@
 
                     }
                     
-                    ).buttons().container().appendTo('#tabla-usuarios_wrapper .col-md-6:eq(0)');
+                    ).buttons().container().appendTo('#tabla-ventas_wrapper .col-md-6:eq(0)');
                 });
             </script>
         {% block javascript %}
