@@ -28,6 +28,10 @@ class Venta(models.Model):
     cliente=models.ForeignKey(Cliente, on_delete=models.CASCADE, verbose_name="Cliente",null=True)
     usuario=models.ForeignKey(Usuario, on_delete=models.CASCADE, verbose_name="Usuario",null=True)
     servicio=models.ForeignKey(Servicio, on_delete=models.CASCADE, verbose_name="Servicio",null=True)
+    class Estado(models.TextChoices):
+        ACTIVO='1', _('Activo')
+        INACTIVO='0', _('Inactivo')    
+    estado=models.CharField(max_length=1, choices=Estado.choices, default=Estado.ACTIVO, verbose_name="Estado")
 
     def __str__(self)->str:
         return "%s %s" %(self.id,self.fecha)  

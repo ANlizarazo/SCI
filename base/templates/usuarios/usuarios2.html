@@ -42,8 +42,7 @@
                             data-bs-toggle="modal"
                             data-bs-target="#crear_Usuario{{usuario.pk}}" title="Crear"> Crear Usuario</button>
                         <!-- Datatable de usuarios -->
-                        <table id="tabla-usuarios" class="table table-bordered
-                            table-striped border-dark" style="font-size: 14px;">
+                        <table id="tabla-usuarios" class="table table-bordered table-striped border-dark" style="font-size: 14px;">
                             <thead class="bg-success">
                                 <tr>
                                     <th class="border-dark">Foto</th>
@@ -63,7 +62,7 @@
                                 {% for usuario in usuarios %}
                                 {% if usuario.estado == '1' %}
                                 <tr>
-                                    <td class="border-dark align middle text-center"><img class="rounded-circle" src="{{MEDIA_URL}}{{usuario.foto.url}}" alt="" width="50" height="50"></td>
+                                    <td class="border-dark align middle text-center"><img class="rounded-circle" src="../static/img/perfil.jpg"  alt="" width="50" height="50"></td>
                                     <td class="border-dark text-black">{{usuario.nombres}}</td>
                                     <td class="border-dark text-black">{{usuario.apellidos}}</td>
                                     <td class="border-dark text-black">{{usuario.telefono}}</td>
