@@ -1,5 +1,5 @@
 from django.urls import path
-from usuarios.views import recuperar, recuperar_usuarios, usuario_crear, usuario_modificar, usuario_ver, usuarios, usuarios_eliminar
+from usuarios.views import recuperar, recuperar_usuarios, usuario_crear, usuario_editar, usuario_modificar, usuario_ver, usuarios, usuarios_eliminar
 
 urlpatterns = [
     path('',usuarios,name="usuarios"),
@@ -13,5 +13,6 @@ urlpatterns = [
     path('usuarios_eliminar/<int:pk>/', usuarios_eliminar, name="usuarios_eliminar"),
     #Path to Recuperar usuarios
     path('usuarios_recuperar/', recuperar_usuarios, name="recuperar_usuarios"),
-    path('recuperar/<int:pk>/', recuperar, name='recuperar'),
+    path('recuperar-usuario/<int:pk>/', recuperar, name='recuperar-usuario'),
+    path('editar/<int:pk>', usuario_editar, name = 'usuario-editar'),
 ]

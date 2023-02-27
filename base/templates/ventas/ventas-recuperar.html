@@ -95,7 +95,7 @@
                                                 <td class="border-dark text-black">{{venta.cliente}}</td>
                                                 <td class="border-dark text-black">{{venta.usuario}}</td>
                                                 <td class="border-dark text-black">
-                                                    <a href="{% url 'recuperar' venta.id %}" class="btn btn-warning" title="Restaurar"><i Class="fas fa-trash-restore"></i></a>
+                                                    <a href="{% url 'recuperar-venta' venta.id %}" class="btn btn-warning" title="Restaurar"><i Class="fas fa-trash-restore"></i></a>
                                                 </td>
                                             </tr>
                                             {% endfor %}
