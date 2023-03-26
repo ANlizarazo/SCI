@@ -1,10 +1,12 @@
 from django.shortcuts import redirect, render
-from usuarios.forms import UsuarioForm
 from usuarios.models import Usuario
 from django.http import HttpResponseRedirect
 from django.contrib import messages
 from django.contrib.auth.hashers import make_password
+
+# se incluyen las siguientes importaciones
 from django.contrib.auth.models import User
+from usuarios.forms import UsuarioForm
 
 # Create your views here.
 
@@ -32,6 +34,7 @@ def usuario_crear(request):
 
     return render(request, 'usuarios/usuarios.html', {'form': form})
         
+
 """
 #Function to ADD usuario
 def usuario_crear(request):
@@ -114,7 +117,7 @@ def usuario_modificar(request, pk):
         form = UsuarioForm(request.POST, instance = usuario)
         if form.is_valid():
             form.save()
-            
+            messages.success(request, "Usuario Actualizado con éxito!")
             return redirect('usuarios')
         else:
             print('Error al editar al usuario')
