@@ -64,7 +64,7 @@
                             <div class="card ">
                                 <div class="card-header">
                                     <h3 class="card-title text-success"><a href="{% url 'ventas' %}"  title="Volver"><i Class="fas fa-reply text-green" ></i></a><tr><b
-                                                class="text-success">&nbsp;&nbsp; Papelera Venta</b></tr></h3>
+                                                class="text-success">&nbsp;&nbsp; Papelera Ventas</b></tr></h3>
                                 </div>
                                 <!-- /.card-header -->
                                 <div class="card-body">
@@ -95,7 +95,7 @@
                                                 <td class="border-dark text-black">{{venta.cliente}}</td>
                                                 <td class="border-dark text-black">{{venta.usuario}}</td>
                                                 <td class="border-dark text-black">
-                                                    <a href="{% url 'recuperar' venta.id %}" class="btn btn-warning" title="Restaurar"><i Class="fas fa-trash-restore"></i></a>
+                                                    <a href="{% url 'recuperar-venta' venta.id %}" class="btn btn-warning" title="Restaurar"><i Class="fas fa-trash-restore"></i></a>
                                                 </td>
                                             </tr>
                                             {% endfor %}

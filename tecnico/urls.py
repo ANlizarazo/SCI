@@ -13,5 +13,5 @@ urlpatterns = [
     path('tecnicos_eliminar/<int:pk>/', tecnicos_eliminar, name="tecnicos_eliminar"),
     #Path to Recuperar tecnicos
     path('tecnicos_recuperar/', recuperar_tecnicos, name="recuperar_tecnicos"),
-    path('recuperar/<int:pk>/', recuperar, name='recuperar'),
+    path('recuperar-tecnico/<int:pk>/', recuperar, name='recuperar-tecnico'),
 ]

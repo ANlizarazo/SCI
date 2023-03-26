@@ -2,6 +2,10 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.core.validators import MinValueValidator
 
+# se incluyen las siguientes importaciones
+from django.contrib.auth.models import User
+
+
 
 # Create your models here.
 
@@ -31,7 +35,9 @@ class Usuario(models.Model):
     genero=models.CharField(max_length=3, choices=Genero.choices, verbose_name="Género")
     rol=models.CharField(max_length=5, choices=Rol.choices, verbose_name="Rol")
     estado=models.CharField(max_length=1, choices=Estado.choices, default=Estado.ACTIVO, verbose_name="Estado")
-    foto=models.ImageField(upload_to='images/usuarios', blank=True, default='/static/img/perfil.jpg')
+    #foto=models.ImageField(upload_to='images/usuarios', blank=True, default='/static/img/perfil.jpg')
+    
+    user = models.ForeignKey(User, on_delete = models.CASCADE, null = True, blank = True)
 
     def __str__(self)->str:
         return "%s %s %s" %(self.nombres, self.apellidos, self.rol)  
