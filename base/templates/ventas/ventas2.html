@@ -41,7 +41,7 @@
                         <a class="btn btn-success float-right mr-0 mb-3"
                             name="form-crear-venta"
                             data-bs-toggle="modal"
-                            data-bs-target="#crear_Venta{{venta.pk}}" title="Crear"> Crear Venta</a>
+                            data-bs-target="#crear_Venta" title="Crear"> Crear Venta</a>
                         <!-- Datatable de ventas -->
                         <table id="tabla-ventas" class="table table-bordered
                             table-striped border-dark">
@@ -71,8 +71,8 @@
                                     <td class="border-dark text-black">{{venta.cliente}}</td>
                                     <td class="border-dark text-black">{{venta.usuario}}</td>
                                     <td class="border-dark text-black">
-                                        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#verVenta" title="Ver">
-                                            <i class="fas fa-eye"></i></button><c>{% include 'ventas/ventas-ver.html' %}</c>      
+                                        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#verVenta{{venta.id}}" title="Ver">
+                                            <i class="fas fa-eye"></i></button>       
                                         <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modificar_Venta" title="Modificar">
                                             <i class="fas fa-edit"></i></button><c>{% include 'ventas/ventas-modificar.html' %}</c>
                                             <button class="btn btn-danger"
@@ -81,6 +81,72 @@
                                             <i class="fas fa-trash-alt"></i></button>
                                     </td>
                                 </tr>
+
+                                
+                                    <!-- Modal ver venta -->
+
+                                    <div class="modal fade" id="verVenta{{venta.id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-3" id="staticBackdropLabel"><b class="text-black">&nbsp;&nbsp;VER VENTA</b></h1>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <!-- Formulario -->
+                                                    <form  action="{% url 'venta_ver' venta.id %}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
+                                                    
+                                                        {% csrf_token %}          
+                                                        <div class="modal-body text-start" id="form-ver-venta"> 
+
+                                                            <div class="d-inline-block w-100">                                                            
+                                                                <label class="form-label ps-2 text-black" style="font-size: 17;">Subtotal Venta</label>
+                                                                <input type="number" name="subtotalVenta" class="form-control input-group mb-3 w-100" value="{{venta.subtotalVenta}}" required disabled/>
+                                                            </div>
+                                                            <div class="d-inline-block w-100">
+                                                                <label class="form-label ps-2 text-black" style="font-size: 17;">Fecha Venta</label>
+                                                                <input type="datetime" name="fechaVenta" class="form-control input-group mb-3 w-100" value="{{venta.fecha}}" required disabled/>
+                                                            </div>
+                                                            <div class="d-inline-block w-100">
+                                                                <label class="form-label ps-2 text-black" style="font-size: 17;">Porcentaje IVA</label>
+                                                                <input type="text" name="porcentajeIva" class="form-control input-group mb-3 w-100" value="{{venta.porcentajeIva}}" required disabled/>
+                                                            </div>
+                                                            <div class="d-inline-block w-100">
+                                                                <label class="form-label ps-2 text-black" style="font-size: 17;">Total Venta</label>
+                                                                <input type="number" name="totalVenta" class="form-control input-group mb-3 w-100" value="{{venta.totalVenta}}" required disabled/>
+                                                            </div>
+                                                            <div class="d-inline-block w-100">
+                                                                <label class="form-label ps-2 text-black" style="font-size: 17;">Detalle Venta</label>
+                                                                <input type="text" name="detalleVenta" class="form-control input-group mb-3 w-100" value="{{venta.detalleVenta}}" required disabled/>
+                                                            </div>
+                                                            <div class="d-inline-block w-100">
+                                                                <label class="form-label ps-2 text-black" style="font-size: 17;">Cliente</label>
+                                                                <input type="text" name="cliente" class="form-control input-group mb-3 w-100" value="{{venta.cliente}}" required disabled/>
+                                                            </div>
+                                                            <div class="d-inline-block w-100">
+                                                                <label class="form-label ps-2 text-black" style="font-size: 17;">Usuario</label>
+                                                                <input type="text" name="usuario" class="form-control input-group mb-3 w-100" value="{{venta.usuario}}" required disabled/>
+                                                            </div>
+                                                        </div>
+
+                                                        </div> 
+
+                                                        <div class="modal-footer">
+                                                            <!-- BOTÓN PARA GUARDAR LA INFORMACIÓN DIGITADA EN EL FORMULARIO DEL USUARIO -->
+                                                            <button type="reset" class="btn btn-success" data-bs-dismiss="modal">OK</button>
+                                                        </div>
+
+                                                    </form>
+
+                                                    
+
+                                                </div>
+
+                                            </div>
+                                            
+                                        </div>
+                                    </div>   
+
+<!-- Fin Modal -->
                                 <!-- Modal delete confirmation -->
                                 <div class="modal fade"
                                     id="deleteModal{{venta.pk}}"
