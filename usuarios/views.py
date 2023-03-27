@@ -25,7 +25,7 @@ def usuario_crear(request):
             form.save()
             user = User.objects.create_user(request.POST['email'], request.POST['email'], '123')
             user.save()
-
+            messages.success(request,"Usuario creado satisfastoriamente!")
             return redirect('usuarios')
         else:
             print('Error al crear al usuario')
@@ -120,7 +120,8 @@ def usuario_modificar(request, pk):
             messages.success(request, "Usuario Actualizado con éxito!")
             return redirect('usuarios')
         else:
-            print('Error al editar al usuario')
+            messages.error(request, "Usuario No Actualizado, hubo un error!")
+            return redirect('usuarios')
     else:
         form = UsuarioForm(instance = usuario)
 

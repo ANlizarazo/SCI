@@ -88,8 +88,7 @@
                                         <tbody>
                                             {% for usuario in usuarios %}
                                             <tr>
-                                                <td class="border-dark align middle text-center">
-                                                    <img class="rounded-circle" src="{{MEDIA_URL}}{{usuario.foto.url}}" alt="" width="50" height="50"></td>
+                                                <td class="border-dark align middle text-center"><img class="rounded-circle" src="../static/img/perfil.jpg"  alt="" width="50" height="50"></td>
                                                 <td class="border-dark text-black">{{usuario.nombres}}</td>
                                                 <td class="border-dark text-black">{{usuario.apellidos}}</td>
                                                 <td class="border-dark text-black">{{usuario.telefono}}</td>
@@ -100,9 +99,47 @@
                                                 <td class="border-dark text-black">{{usuario.genero}}</td>
                                                 <td class="border-dark text-black">{{usuario.rol}}</td>
                                                 <td class="border-dark text-black">
-                                                    <a href="{% url 'recuperar_usuario' usuario.id %}" class="btn btn-warning" title="Restaurar"><i Class="fas fa-trash-restore"></i></a>
+                                                    <a data-bs-toggle="modal" data-bs-target="#recuperarModal{{usuario.pk}}" class="btn btn-warning" title="Restaurar"><i Class="fas fa-trash-restore"></i></a>
                                                 </td>
                                             </tr>
+                                            
+                                    <!-- Modal recuperar confirmation -->
+                                    <div class="modal fade"
+                                    id="recuperarModal{{usuario.pk}}"
+                                    tabindex="-1"
+                                    aria-labelledby="deleteModalLabel"
+                                    aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header bg-warning">
+                                                <h5 class="modal-title "
+                                                    id="deleteModalLabel"><i
+                                                        class="fas fa-trash-restore"></i>&nbsp;&nbsp; <b>RESTAURAR USUARIO</b></h5>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="text-center
+                                                    text-black">
+                                                    <span class="">¿Estás seguro de que deseas recuperar este usuario?</span>
+                                                    <div class="text-dark mt-3
+                                                        mb-2">Usuario: <strong>{{usuario.nombres}} {{usuario.apellidos}} {{usuario.rol}}</strong></div>
+                                                </div>
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                <form method="post" action="{% url 'recuperar_usuario' usuario.id %}">
+                                                    {% csrf_token %}
+
+                                                    <input type="submit"
+                                                        class="btn btn-warning"
+                                                        value="Recuperar">
+                                                </form>
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Cancelar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+<!--Fin del modal-->
                                             {% endfor %}
                                         </tbody>
                                     </table>
