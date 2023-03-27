@@ -4,6 +4,10 @@ from django.http import HttpResponseRedirect
 from django.contrib import messages
 from django.contrib.auth.hashers import make_password
 
+# se incluyen las siguientes importaciones
+from django.contrib.auth.models import User
+from usuarios.forms import UsuarioForm
+
 # Create your views here.
 
 def usuarios (request):
@@ -13,6 +17,25 @@ def usuarios (request):
 
     return render(request,'usuarios/usuarios.html',  {"usuarios": usuarios_list})
 
+#Function to ADD usuario
+def usuario_crear(request):
+    if request.method == 'POST':
+        form = UsuarioForm(request.POST)
+        if form.is_valid():
+            form.save()
+            user = User.objects.create_user(request.POST['email'], request.POST['email'], '123')
+            user.save()
+            messages.success(request,"Usuario creado satisfastoriamente!")
+            return redirect('usuarios')
+        else:
+            print('Error al crear al usuario')
+    else:
+        form = UsuarioForm()
+
+    return render(request, 'usuarios/usuarios.html', {'form': form})
+        
+
+"""
 #Function to ADD usuario
 def usuario_crear(request):
     if request.method=="POST":
@@ -44,18 +67,33 @@ def usuario_crear(request):
             return redirect('usuarios')
         else:
             messages.error(request, "La creación del usuario ha fallido!")
-            return redirect('usuarios')
+            return redirect('usuarios')"""
 
 #Function to View  usuario data individually
-def usuario_ver(request, usuario_id):
+"""def usuario_ver(request, usuario_id):
     usuario = Usuario.objects.get( id = usuario_id) 
     if usuario != None:
         return render(request, "usuarios/usuarios-modificar.html", {'usuario':usuario} )
     else:
-        return redirect('usuarios/usuarios-ver.html')
+        return redirect('usuarios/usuarios-ver.html')"""
+    
+def usuario_ver(request, pk):
+    usuario = Usuario.objects.get(id = pk)
+    if request.method == 'POST':
+        form = UsuarioForm(request.POST, instance = usuario)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "usuario modificado")
+            return redirect('usuarios')
+        else:
+            print("Error al editar usuario")
+    else: 
+        form = UsuarioForm(instance = usuario)
+
+    return render(request)
 
 #Function to EDIT usuario
-def usuario_modificar(request):
+"""def usuario_modificar(request):
     if request.method == "POST":
         usuario = Usuario.objects.get(id = request.POST.get('id'))
         if usuario != None: 
@@ -71,7 +109,24 @@ def usuario_modificar(request):
             usuario.estado= request.POST.get('estado')
             usuario.save()
             messages.success(request, "Usuario Actualizado con éxito!")
-            return HttpResponseRedirect("usuarios/")
+            return HttpResponseRedirect("usuarios/")"""
+
+def usuario_modificar(request, pk):
+    usuario = Usuario.objects.get(id = pk)
+    if request.method == "POST":
+        form = UsuarioForm(request.POST, instance = usuario)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Usuario Actualizado con éxito!")
+            return redirect('usuarios')
+        else:
+            messages.error(request, "Usuario No Actualizado, hubo un error!")
+            return redirect('usuarios')
+    else:
+        form = UsuarioForm(instance = usuario)
+
+    return render(request, 'usuarios/usuarios.html', {'form': form})
+
 
 #Function to DELETE usuario
 """def delete_usuario(request, usuario_id):

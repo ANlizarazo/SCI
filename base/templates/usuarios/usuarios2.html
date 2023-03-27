@@ -40,93 +40,361 @@
                         <button type="button" class="btn btn-success float-right mr-0 mb-3"
                             name="form-crear-usuario"
                             data-bs-toggle="modal"
-                            data-bs-target="#crear_Usuario{{usuario.pk}}" title="Crear"> Crear Usuario</button>
+                            data-bs-target="#crear_Usuario" title="Crear"> Crear Usuario</button>
                         <!-- Datatable de usuarios -->
-                        <table id="tabla-usuarios" class="table table-bordered table-striped border-dark" style="font-size: 14px;">
-                            <thead class="bg-success">
-                                <tr>
-                                    <th class="border-dark">Foto</th>
-                                    <th class="border-dark">Nombres</th>
-                                    <th class="border-dark">Apellidos</th>
-                                    <th class="border-dark">Teléfono</th>
-                                    <th class="border-dark">Correo Electrónico</th>
-                                    <th class="border-dark">Dirección</th>
-                                    <th class="border-dark">Tipo de Documento</th>
-                                    <th class="border-dark">Número de Documento</th>
-                                    <th class="border-dark">Genero</th>
-                                    <th class="border-dark">Rol</th>
-                                    <th class="border-dark">Acciones</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for usuario in usuarios %}
-                                {% if usuario.estado == '1' %}
-                                <tr>
-                                    <td class="border-dark align middle text-center"><img class="rounded-circle" src="../static/img/perfil.jpg"  alt="" width="50" height="50"></td>
-                                    <td class="border-dark text-black">{{usuario.nombres}}</td>
-                                    <td class="border-dark text-black">{{usuario.apellidos}}</td>
-                                    <td class="border-dark text-black">{{usuario.telefono}}</td>
-                                    <td class="border-dark text-black">{{usuario.email}}</td>
-                                    <td class="border-dark text-black">{{usuario.direccion}}</td>
-                                    <td class="border-dark text-black">{{usuario.tipoDocumento}}</td>
-                                    <td class="border-dark text-black">{{usuario.numDocumento}}</td>
-                                    <td class="border-dark text-black">{{usuario.genero}}</td>
-                                    <td class="border-dark text-black">{{usuario.rol}}</td>
-                                    <td class="border-dark text-black">
-                                        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#ver_Usuario" title="Ver">
-                                            <i class="fas fa-eye"></i></button><c>{% include 'usuarios/usuarios-ver.html' %}</c>      
-                                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modificar_Usuario" title="Modificar">
-                                            <i class="fas fa-edit"></i></button><c>{% include 'usuarios/usuarios-modificar.html' %}</c>
-                                        <button class="btn btn-danger"
-                                            data-bs-toggle="modal"
-                                            data-bs-target="#deleteModal{{usuario.pk}}" title="Eliminar">
-                                            <i class="fas fa-trash-alt"></i></button>
-                                    </td>
-                                </tr>
-                                <!-- Modal delete confirmation -->
-                                <div class="modal fade"
-                                    id="deleteModal{{usuario.pk}}"
-                                    tabindex="-1"
-                                    aria-labelledby="deleteModalLabel"
-                                    aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header bg-danger">
-                                                <h5 class="modal-title "
-                                                    id="deleteModalLabel"><i
-                                                        class="fas fa-trash-alt"></i>&nbsp;&nbsp; ELIMINAR USUARIO</h5>
-                                            </div>
-                                            <div class="modal-body">
-                                                <div class="text-center
-                                                    text-danger"><i class="far
-                                                        fa-times-circle fa-5x
-                                                        mb-4 mt-2"></i></div>
-                                                <div class="text-center
-                                                    text-danger">
-                                                    <span class="">¿Estás seguro de que deseas eliminar este usuario?</span>
-                                                    <div class="text-dark mt-3
-                                                        mb-2">Usuario: <strong>{{usuario.nombres}} {{usuario.apellidos}} {{usuario.rol}}</strong></div>
+                        <div class="table-responsive">
+                            <table id="tabla-usuarios" class="table table-bordered table-striped border-dark" style="font-size: 14px;">
+                                <thead class="bg-success">
+                                    <tr>
+                                        <th class="border-dark">Foto</th>
+                                        <th class="border-dark">Nombres</th>
+                                        <th class="border-dark">Apellidos</th>
+                                        <th class="border-dark">Teléfono</th>
+                                        <th class="border-dark">Correo Electrónico</th>
+                                        <th class="border-dark">Dirección</th>
+                                        <th class="border-dark">Tipo de Documento</th>
+                                        <th class="border-dark">Número de Documento</th>
+                                        <th class="border-dark">Genero</th>
+                                        <th class="border-dark">Rol</th>
+                                        <th class="border-dark">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for usuario in usuarios %}
+                                    {% if usuario.estado == '1' %}
+                                    <tr>
+                                        <td class="border-dark align middle text-center"><img class="rounded-circle" src="../static/img/perfil.jpg"  alt="" width="50" height="50"></td>
+                                        <td class="border-dark text-black">{{usuario.nombres}}</td>
+                                        <td class="border-dark text-black">{{usuario.apellidos}}</td>
+                                        <td class="border-dark text-black">{{usuario.telefono}}</td>
+                                        <td class="border-dark text-black">{{usuario.email}}</td>
+                                        <td class="border-dark text-black">{{usuario.direccion}}</td>
+                                        <td class="border-dark text-black">{{usuario.tipoDocumento}}</td>
+                                        <td class="border-dark text-black">{{usuario.numDocumento}}</td>
+                                        <td class="border-dark text-black">{{usuario.genero}}</td>
+                                        <td class="border-dark text-black">{{usuario.rol}}</td>
+                                        <td class="border-dark text-black">
+                                            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#verUsuario{{usuario.id}}" title="Ver">
+                                                <i class="fas fa-eye"></i></button>   
+                                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modificar_Usuario{{usuario.pk}}" title="Modificar">
+                                                <i class="fas fa-edit"></i></button>
+                                            <button class="btn btn-danger"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#deleteModal{{usuario.pk}}" title="Eliminar">
+                                                <i class="fas fa-trash-alt"></i></button>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Modal ver usuario -->
+
+                                    <div class="modal fade" id="verUsuario{{usuario.id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-3" id="staticBackdropLabel"><b class="text-black">&nbsp;&nbsp;VER USUARIO</b></h1>
                                                 </div>
+                                                <div class="modal-body">
+                                                    <!-- Formulario -->
+                                                    <form  action="{% url 'usuario_ver' usuario.id %}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
+                                                    
+                                                        {% csrf_token %}          
+                                                        <div class="modal-body text-start" id="form-ver-usuario"> 
+
+                                                            <div class="d-inline-block w-100">                                                            
+                                                                <label class="form-label ps-2 text-black" style="font-size: 17;">Nombres</label>
+                                                                <input type="text" name="nombres" class="form-control input-group mb-3 w-100" value="{{usuario.nombres}}" required disabled/>
+                                                            </div>
+                                                            <div class="d-inline-block w-100">
+                                                                <label class="form-label ps-2 text-black" style="font-size: 17;">Apellidos</label>
+                                                                <input type="text" name="apellidos" class="form-control input-group mb-3 w-100" value="{{usuario.apellidos}}" required disabled/>
+                                                            </div>
+                                                            <div class="d-inline-block w-100">
+                                                                <label class="form-label ps-2 text-black" style="font-size: 17;">Télefono</label>
+                                                                <input type="number" name="telefono" class="form-control input-group mb-3 w-100" value="{{usuario.telefono}}" required disabled/>
+                                                            </div>
+                                                            <div class="d-inline-block w-100">
+                                                                <label class="form-label ps-2 text-black" style="font-size: 17;">Correo Electrónico</label>
+                                                                <input type="email" name="email" class="form-control input-group mb-3 w-100" value="{{usuario.email}}" required disabled/>
+                                                            </div>
+                                                            <div class="d-inline-block w-100">
+                                                                <label class="form-label ps-2 text-black" style="font-size: 17;">Dirección</label>
+                                                                <input type="text" name="direccion" class="form-control input-group mb-3 w-100" value="{{usuario.direccion}}" required disabled/>
+                                                            </div>
+                                                            <div class="d-inline-block w-100">
+                                                                <label class="form-label ps-2 text-black" style="font-size: 17;">Tipo de Documento</label>
+                                                                <input type="text" name="tipoDocumento" class="form-control input-group mb-3 w-100" value="{{usuario.tipoDocumento}}" required disabled/>
+                                                            </div>
+                                                            <div class="d-inline-block w-100">
+                                                                <label class="form-label ps-2 text-black" style="font-size: 17;">Numero de Documento</label>
+                                                                <input type="number" name="numDocumento" class="form-control input-group mb-3 w-100" value="{{usuario.numDocumento}}" required disabled/>
+                                                            </div>
+                                                            <div class="d-inline-block w-100">
+                                                                <label class="form-label ps-2 text-black" style="font-size: 17;">Genero</label>
+                                                                <input type="text" name="email" class="form-control input-group mb-3 w-100" value="{{usuario.genero}}" required disabled/>
+                                                            </div>
+                                                            <div class="d-inline-block w-100">
+                                                                <label class="form-label ps-2 text-black" style="font-size: 17;">Rol</label>
+                                                                <input type="text" name="rol" class="form-control input-group mb-3 w-100" value="{{usuario.rol}}" required disabled>
+                                                            </div>
+                                                        </div>
+
+                                                        </div> 
+
+                                                        <div class="modal-footer">
+                                                            <!-- BOTÓN PARA GUARDAR LA INFORMACIÓN DIGITADA EN EL FORMULARIO DEL USUARIO -->
+                                                            <button type="reset" class="btn btn-success" data-bs-dismiss="modal">OK</button>
+                                                        </div>
+
+                                                    </form>
+
+                                                    
+
+                                                </div>
+
                                             </div>
+                                            
+                                        </div>
+                                    </div>   
 
-                                            <div class="modal-footer">
-                                                <form method="post" action="{% url 'usuarios_eliminar' usuario.pk %}">
-                                                    {% csrf_token %}
+<!-- Fin Modal -->
 
-                                                    <input type="submit"
-                                                        class="btn btn-danger"
-                                                        value="Eliminar">
-                                                </form>
-                                                <button type="button" class="btn btn-secondary"
-                                                    data-bs-dismiss="modal">Cancelar</button>
+                                    <!-- Modal de modificar usuario -->
+
+                                    <div class="modal fade" id="modificar_Usuario{{usuario.pk}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-3" id="staticBackdropLabel"><b class="text-black">&nbsp;&nbsp; MODIFICAR USUARIO</b></h1>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <!-- Formulario -->
+                                                    <form  action="{% url 'usuario_modificar' usuario.pk %}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
+                                                    
+                                                        {% csrf_token %}          
+                                                        <div class="modal-body text-start" id="form-modificar-usuario"> 
+
+                                                        
+                                                    
+                                                            <div class="d-inline-block w-100">
+                                                                <label for="basic-url" for="validationCustom01" class="form-label ps-2 text-black" style="font-size: 17;">Nombres</label>
+                                                                <div class="input-group mb-3 w-100">
+                                                                    <input type="text" class="form-control"
+                                                                        name="nombres" id="id_nombres"
+                                                                        aria-describedby="basic-addon3" required minlength="1"
+                                                                        maxlength="50" id="validationCustom01" required value="{{usuario.nombres}}">
+                                                                        <div class="valid-feedback">
+                                                                            ¡Vamos bien!
+                                                                        </div>
+                                                                        <div class="invalid-feedback">
+                                                                            Completa la información.
+                                                                        </div>
+                                                                </div>
+                                                            </div>
+                                                    
+                                                            <div class="d-inline-block w-100">
+                                                                <label for="basic-url"  for="validationCustom02" class="form-label ps-2 text-black" style="font-size: 17;">Apellidos</label>
+                                                                <div class="input-group mb-3 w-100">
+                                                                    <input type="text" class="form-control"
+                                                                        name="apellidos" id="id_apellidos"
+                                                                        aria-describedby="basic-addon3" id="validationCustom02" required minlength="1"
+                                                                        maxlength="50" required value="{{usuario.apellidos}}">
+                                                                        <div class="valid-feedback">
+                                                                            ¡Vamos bien!
+                                                                        </div>
+                                                                        <div class="invalid-feedback">
+                                                                            Completa la información.
+                                                                        </div>
+                                                                </div>
+                                                            </div>
+                                                    
+                                                            <div class="d-inline-block w-100">
+                                                                <label for="basic-url" for="validationCustom03" class="form-label ps-2 text-black" style="font-size: 17;">Número de Teléfono</label>
+                                                                <div class="input-group mb-3 w-100">
+                                                                    <input type="number" class="form-control" name="telefono"
+                                                                        id="id_numeroTelefono"
+                                                                        aria-describedby="basic-addon3" id="validationCustom03" required minlength="1"
+                                                                        maxlength="20" required value="{{usuario.telefono}}">
+                                                                        <div class="valid-feedback">
+                                                                            ¡Vamos bien!
+                                                                        </div>
+                                                                        <div class="invalid-feedback">
+                                                                            Ingresa un número de teléfono valido.
+                                                                        </div>
+                                                                </div>
+                                                            </div>
+                                                    
+                                                            <div class="d-inline-block w-100">
+                                                                <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom04" style="font-size: 17;">Correo Electrónico</label>
+                                                                <div class="input-group mb-3 w-100">
+                                                                    <input type="email" class="form-control" name="email"
+                                                                        id="id_correoElectronico"
+                                                                        aria-describedby="basic-addon3" id="validationCustom04" required minlength="1"
+                                                                        maxlength="100" required value="{{usuario.email}}">
+                                                                        <div class="valid-feedback">
+                                                                            ¡Vamos bien!
+                                                                        </div>
+                                                                        <div class="invalid-feedback">
+                                                                            Ingresa un correo electrónico valido.
+                                                                        </div>
+                                                                </div>
+                                                            </div>
+                                                    
+                                                            <div class="d-inline-block w-100">
+                                                                <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom05" style="font-size: 17;">Dirección</label>
+                                                                <div class="input-group mb-3 w-100">
+                                                                    <input type="text" class="form-control" name="direccion"
+                                                                        id="id_direccionResidencia"
+                                                                        aria-describedby="basic-addon3" id="validationCustom05" required minlength="1"
+                                                                        maxlength="100" required value="{{usuario.direccion}}">
+                                                                        <div class="valid-feedback">
+                                                                            ¡Vamos bien!
+                                                                        </div>
+                                                                        <div class="invalid-feedback">
+                                                                            Ingresa un dirección valida.
+                                                                        </div>
+                                                                </div>
+                                                            </div>
+                                                    
+                                                            <div class="d-inline-block w-100">
+                                                                <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom06" style="font-size: 17;">Tipo de Documento</label>
+                                                                <div class="input-group mb-3 w-100">
+                                                                    <select id="id_tipoDocumento" class="form-select" name="tipoDocumento"
+                                                                        aria-label="tipo-activo" id="validationCustom06" required >
+                                                                        <option class="text-black" selected disabled hidden value>{{usuario.tipoDocumento}}</option>
+                                                                        <option class="text-black" value="CC">Cédula de Ciudadania</option>
+                                                                        <option class="text-black" value="CE">Cédula de Extranjería</option>
+                                                                        <option class="text-black" value="PP">Pasaporte</option>
+                                                                        <option class="text-black" value="OT">Otro</option>
+                                                                    </select>
+                                                                    <div class="valid-feedback">
+                                                                        ¡Vamos bien!
+                                                                    </div>
+                                                                    <div class="invalid-feedback">
+                                                                        Selecciona una opción valida.
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                    
+                                                            <div class="d-inline-block w-100">
+                                                                <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom07" style="font-size: 17;">Número de Documento</label>
+                                                                <div class="input-group mb-3 w-100">
+                                                                    <input type="number" class="form-control" name="numDocumento"
+                                                                        id="id_numeroDocumento"
+                                                                        aria-describedby="basic-addon3" required minlength="1"
+                                                                        maxlength="50" id="validationCustom07" required value="{{usuario.numDocumento}}">
+                                                                        <div class="valid-feedback">
+                                                                            ¡Vamos bien!
+                                                                        </div>
+                                                                        <div class="invalid-feedback">
+                                                                            Ingresa un número de documento valido.
+                                                                        </div>
+                                                                </div>
+                                                            </div>
+                                                    
+                                                            <div class="d-inline-block w-100">
+                                                                <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom08" style="font-size: 17;">Género</label>
+                                                                <div class="input-group mb-3 w-100">
+                                                                    <select id="id_genero" class="form-select" name="genero"
+                                                                        aria-label="tipo-activo" id="validationCustom08" required>
+                                                                        <option class="text-black" selected disabled hidden value>{{usuario.genero}}</option>
+                                                                        <option class="text-black" value="M">Masculino</option>
+                                                                        <option class="text-black" value="F">Femenino</option>
+                                                                        <option class="text-black" value="O">Otro</option>
+                                                                    </select>
+                                                                    <div class="valid-feedback">
+                                                                        ¡Vamos bien!
+                                                                    </div>
+                                                                    <div class="invalid-feedback">
+                                                                        Selecciona una opción valida.
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                    
+                                                            <div class="d-inline-block w-100">
+                                                                <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom09" style="font-size: 17;">Rol</label>
+                                                                <div class="input-group mb-3 w-100">
+                                                                    <select id="id_rol" class="form-select" name="rol"
+                                                                        aria-label="tipo-activo" id="validationCustom09" required>
+                                                                        <option class="text-black" selected disabled hidden value>{{usuario.rol}}</option>
+                                                                        <option class="text-black" value="Admin">Administrador</option>
+                                                                        <option class="text-black" value="Empl">Empleado</option>
+                                                                    </select>   
+                                                                    <div class="valid-feedback">
+                                                                        ¡Vamos bien!
+                                                                    </div>
+                                                                    <div class="invalid-feedback">
+                                                                        Selecciona una opción valida.
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div> 
+
+                                                        <div class="modal-footer">
+                                                            <!-- BOTÓN PARA GUARDAR LA INFORMACIÓN DIGITADA EN EL FORMULARIO DEL USUARIO -->
+                                                            <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                                            <input class="btn btn-success" type="submit" name="form-modificar-usuario" value="Modificar">
+                                                        </div>
+
+                                                    </form>
+
+                                                    
+
+                                                </div>
+
+                                            </div>
+                                            
+                                        </div>
+                                    </div>   
+
+<!-- Fin Modal -->
+
+                                    <!-- Modal delete confirmation -->
+                                    <div class="modal fade"
+                                        id="deleteModal{{usuario.pk}}"
+                                        tabindex="-1"
+                                        aria-labelledby="deleteModalLabel"
+                                        aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header bg-danger">
+                                                    <h5 class="modal-title "
+                                                        id="deleteModalLabel"><i
+                                                            class="fas fa-trash-alt"></i>&nbsp;&nbsp; <b>ELIMINAR USUARIO</b></h5>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="text-center
+                                                        text-danger"><i class="far
+                                                            fa-times-circle fa-5x
+                                                            mb-4 mt-2"></i></div>
+                                                    <div class="text-center
+                                                        text-danger">
+                                                        <span class="">¿Estás seguro de que deseas eliminar este usuario?</span>
+                                                        <div class="text-dark mt-3
+                                                            mb-2">Usuario: <strong>{{usuario.nombres}} {{usuario.apellidos}} {{usuario.rol}}</strong></div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="modal-footer">
+                                                    <form method="post" action="{% url 'usuarios_eliminar' usuario.pk %}">
+                                                        {% csrf_token %}
+
+                                                        <input type="submit"
+                                                            class="btn btn-danger"
+                                                            value="Eliminar">
+                                                    </form>
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">Cancelar</button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                {% endif %}
-                                {% endfor %}
-                            </tbody>
-                        </table>
+<!--Fin del modal-->
+                                    {% endif %}
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                     <a href="{% url 'recuperar_usuarios' %}" class="btn btn-warning float-right mr-1 mb-3" title="Papelera"><i class="fas fa-trash-restore"></i>&nbsp; Restaurar </a>
                     <!-- /.card-body -->
@@ -137,8 +405,94 @@
         </div>
         <footer>{% include 'partials/footer.html' %}</footer>
         <!-- /.content-wrapper -->
+
+
+            <!-- Modal crear Usuario -->
+
+    <div class="modal fade" id="#">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <form action="{% url 'usuario_crear' %}" method="POST">
+                    
+                    {% csrf_token %} 
+                    <div class="modal-header">
+                        <h5 class="modal-title">Crear Usuario</h5>
+                    </div>
+
+                    <div class="modal-body w-auto">
+                        <div class="form-group">
+                            <label>Nombre</label>
+                            <input type="text" name="nombres" class="form-control" required />
+                        </div>
+                        <div class="form-group">
+                            <label>Apellido</label>
+                            <input type="text" name="apellidos" class="form-control" required />
+                        </div>
+                        <div class="form-group">
+                            <label>Teléfono</label>
+                            <input type="number" name="telefono" class="form-control" required />
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" name="email" class="form-control" required />
+                        </div>
+                        <div class="form-group">
+                            <label>Dirección</label>
+                            <input type="text" name="direccion" class="form-control" required />
+                        </div>
+                        <div class="form-group">
+                            <label>Tipo Documento</label>
+                            <select class="form-select" name="tipoDocumento" required>
+                                <option class="text-black" selected disabled value>Seleccionar</option>
+                                <option class="text-black" value="CC">Cédula de Ciudadania</option>
+                                <option class="text-black" value="CE">Cédula de Extranjería</option>
+                                <option class="text-black" value="PP">Pasaporte</option>
+                                <option class="text-black" value="OT">Otro</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Número Documento</label>
+                            <input type="number" name="numDocumento" class="form-control" required />
+                        </div>
+                        <div class="form-group">
+                            <label>Género</label>
+                            <select class="form-select" name="genero" required>
+                                <option class="text-black" selected disabled value>Seleccionar</option>
+                                <option class="text-black" value="M">Masculino</option>
+                                <option class="text-black" value="F">Femenino</option>
+                                <option class="text-black" value="O">Otro</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Rol</label>
+                            <select class="form-select" name="rol" required>
+                                <option class="text-black" selected disabled value>Seleccionar</option>
+                                <option class="text-black" value="Admin">Administrador</option>
+                                <option class="text-black" value="Empl">Empleado</option>
+                            </select>   
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <input type="button" class="btn btn-secondary" data-bs-dismiss="modal" value="Cancelar" />
+                        <input type="submit" class="btn btn-success" value="Crear Usuario" />
+                    </div>
+
+                </form>
+
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Fin Modal -->
+
+
         {% endblock contenido %}
 
+
+        {% block javascript %}
             <!-- jQuery -->
             <script src="{% static 'AdminLTE/jquery/jquery.min.js' %}"></script>
             <!-- Bootstrap -->
@@ -175,7 +529,7 @@
                                 url: "{% static 'AdminLTE/datatables/datatables.spanish.json' %}"
                             },
                         //dataTable configurations
-                        "responsive": true, "paging": true, "lengthChange": false,
+                        "responsive": false, "paging": true, "lengthChange": true,
                         "searching": true, "ordering": true, "info": true,
                         "autoWidth": false, "pageLength": 8,
                         "buttons": ["copy", "csv", "excel", "pdf", "print"],
@@ -184,5 +538,5 @@
                     ).buttons().container().appendTo('#tabla-usuarios_wrapper .col-md-6:eq(0)');
                 });
             </script>
-        {% block javascript %}
+        
         {% endblock javascript %}

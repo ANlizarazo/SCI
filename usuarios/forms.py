@@ -8,7 +8,7 @@ class UsuarioForm(ModelForm):
         """Meta definition for Usuarioform."""
 
         model = Usuario
-        exclude=['estado']       
+        exclude=['estado', 'foto']       
 class UsuarioUpdateForm(ModelForm):
     class Meta:
         model= Usuario
