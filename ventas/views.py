@@ -1,13 +1,13 @@
-
 from django.shortcuts import redirect, render
 from django.http import HttpResponseRedirect
-from clientes.models import Cliente
-from servicios.models import Servicio
-from usuarios.models import Usuario
 from ventas.models import Venta
 from django.contrib import messages
 
-# Create your views here.
+# se incluyen las siguientes importaciones
+from django.contrib.auth.models import User
+from ventas.forms import VentaForm
+
+# Create your views here.   
 
 def ventas (request):
     
@@ -17,7 +17,7 @@ def ventas (request):
     return render(request,'ventas/ventas.html',  {"ventas": ventas_list})
 
 #Function to ADD Venta
-def venta_crear(request):
+"""def venta_crear(request):
     if request.method=="POST":
         if request.POST.get('subtotalVenta') \
             and request.POST.get('fecha') \
@@ -43,15 +43,51 @@ def venta_crear(request):
             return redirect('ventas')
         else:
             messages.error(request, "La creación de la venta ha fallido!")
+            return redirect('ventas')"""
+
+def venta_crear(request):
+    if request.method == 'POST':
+        form = VentaForm(request.POST)
+        if form.is_valid():
+            form.save()
+            venta = Venta.objects.create_user(request.POST['fecha'], request.POST['usuario'], '123')
+            venta.save()
+            messages.success(request,"Venta creada satisfastoriamente!")
             return redirect('ventas')
+        else:
+            print('Error al crear la venta')
+    else:
+        form = VentaForm()
+
+    return render(request, 'ventas/ventas.html', {'form': form})
+        
+
 
 #Function to View Venta data individually
-def venta_ver(request, venta_id):
+"""def venta_ver(request, venta_id):
     venta = Venta.objects.get( id = venta_id) 
     if venta != None:
         return render(request, "ventas/ventas-modificar.html", {'venta':venta} )
     else:
         return redirect('proveedores/proveedores-ver.html')
+"""
+
+def venta_ver(request, pk):
+    venta = Venta.objects.get(id = pk)
+    if request.method == 'POST':
+        form = VentaForm(request.POST, instance = venta)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "venta modificada")
+            return redirect('ventas')
+        else:
+            messages.error(request, "Error al modificar venta")
+            print("Error al editar venta")
+    else: 
+        form = VentaForm(instance = venta)
+
+    return render(request)
+
 
 #Function to EDIT Venta
 def venta_modificar(request):
