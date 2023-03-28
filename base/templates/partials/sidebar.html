@@ -14,11 +14,9 @@
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
                 <img src="{{MEDIA_URL}}{{image_user}}" class="img-circle elevation-2 h-75" alt="User Image">
-                <img src="../static/img/perfil.jpg" class="img-circle elevation-2 h-75" alt="User Image">
             </div>
             <div class="info">
-                <a href="http://127.0.0.1:8000/perfil/" class="d-block">Lizeth Ojeda</a>
-                <Strong>{{usuario_actual.first_name}}</Strong>
+                <a href="http://127.0.0.1:8000/perfil/" class="d-block"><Strong>{{user.nombres}} {{user.apellidos}}</Strong></a>
                 <Strong>{{user.username}}</Strong>
             </div>
         </div>

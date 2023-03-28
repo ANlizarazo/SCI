@@ -47,6 +47,7 @@
                             <thead class="bg-success">
                                 <tr>
                                     <th class="border-dark">Foto</th>
+                                    <th class="border-dark">Username</th>
                                     <th class="border-dark">Nombres</th>
                                     <th class="border-dark">Apellidos</th>
                                     <th class="border-dark">Teléfono</th>
@@ -63,6 +64,7 @@
                                 {% for usuario in usuarios %}
                                 <tr>
                                     <td class="border-dark align middle text-center"><img class="rounded-circle" src="{{ MEDIA_URL}}{{usuario.foto.url}}" alt="" width="50" height="50"></td>
+                                    <td class="border-dark text-black">{{usuario.username}}</td>
                                     <td class="border-dark text-black">{{usuario.nombres}}</td>
                                     <td class="border-dark text-black">{{usuario.apellidos}}</td>
                                     <td class="border-dark text-black">{{usuario.telefono}}</td>

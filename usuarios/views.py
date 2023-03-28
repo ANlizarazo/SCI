@@ -1,8 +1,11 @@
 from django.shortcuts import redirect, render
 from usuarios.models import Usuario
+from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
 from django.contrib import messages
 from django.contrib.auth.hashers import make_password
+from django.views.generic import CreateView
+from .forms import FormUsuario
 
 # Create your views here.
 
@@ -14,37 +17,11 @@ def usuarios (request):
     return render(request,'usuarios/usuarios.html',  {"usuarios": usuarios_list})
 
 #Function to ADD usuario
-def usuario_crear(request):
-    if request.method=="POST":
-        if request.POST.get('foto') \
-            and request.POST.get('nombres') \
-            and request.POST.get('apellidos') \
-            and request.POST.get('telefono') \
-            and request.POST.get('email') \
-            and request.POST.get('direccion') \
-            and request.POST.get('tipoDocumento') \
-            and request.POST.get('numDocumento') \
-            and request.POST.get('genero') \
-            and request.POST.get('rol') \
-            and request.POST.get('estado'):
-            usuario= Usuario()  
-            usuario.foto= request.POST.get('foto')
-            usuario.nombres= request.POST.get('nombres')
-            usuario.apellidos= request.POST.get('apellidos')
-            usuario.telefono= request.POST.get('telefono')
-            usuario.email= request.POST.get('email')
-            usuario.contraseña=make_password("@" + request.POST['nombres'][0] + request.POST['apellidos'][0] + request.POST['documento'][-4:])
-            usuario.direccion= request.POST.get('direccion')
-            usuario.tipoDocumento= request.POST.get('tipoDocumento')
-            usuario.numDocumento= request.POST.get('numDocumento')
-            usuario.genero= request.POST.get('genero')
-            usuario.estado= request.POST.get('estado')
-            usuario.save()
-            messages.success(request, " Usuario añadido con éxito!")
-            return redirect('usuarios')
-        else:
-            messages.error(request, "La creación del usuario ha fallido!")
-            return redirect('usuarios')
+class CrearUsuario(CreateView):
+    model = Usuario
+    form_class = FormUsuario
+    template_name = ('usuarios/usuarios.html')
+    success_url = reverse_lazy('usuario')
 
 #Function to View  usuario data individually
 def usuario_ver(request, usuario_id):

@@ -1,10 +1,12 @@
 from django.urls import path
+from django.contrib.auth.decorators import login_required
+from usuarios.views import CrearUsuario
 from . import views
 
 urlpatterns = [
     path('',views.usuarios,name="usuarios"),
     #Path to ADD usuario
-    path('usuario_crear',views.usuario_crear,name="usuario_crear"),
+    path('crear_usuario/',login_required(CrearUsuario.as_view())),
     #Path to EDIT usuario
     path('usuario_modificar',views.usuario_modificar,name="usuario_modificar"),
     #Path to View usuario data individually

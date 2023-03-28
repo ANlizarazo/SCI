@@ -1,188 +1,79 @@
-{% load crispy_forms_tags %}
+{% load static %}
+{% block contenido %}
 
-<!-- Modal de crear usuario -->
-
-<div class="modal fade" id="crear_Usuario" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-    <div class="modal-content">
-        <div class="modal-header">
-        <h1 class="modal-title fs-3" id="staticBackdropLabel"><b class="text-black" >CREAR NUEVO USUARIO</b></h1>
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-black"><tr><b class="text-black">USUARIOS</b></tr></h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a
+                                href="http://127.0.0.1:8000/inicio/">
+                                <b class="text-success">Inicio </b></a></li>
+                        <li class="breadcrumb-item-active"><a
+                                href="http://127.0.0.1:8000/usuarios/"
+                                class="text-success"> / Usuarios</a></li>
+                    </ol>
+                </div>
+            </div>
         </div>
-        <div class="modal-body">
-            <!-- Formulario -->
-            <form id="f_usuario" action="" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
-                            
-                <div class="modal-body text-start" id="form-nuevo-usuario">
+        <!-- /.container-fluid -->
+    </section>
 
-                    {% csrf_token %}
-
-                    <div class="d-inline-block w-100">
-                        <label for="basic-url" class="form-label ps-2 text-black" style="font-size: 17;">Foto</label>
-                        <div class="input-group mb-3 w-100">
-                            <input type="file" class="form-control" name="foto"
-                                id="id_foto"
-                                aria-describedby="basic-addon3">
-                        </div>
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <!-- Card -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title"><tr><b class="text-success">Reporte de Usuarios</b></tr></h3>
                     </div>
-            
-                    <div class="d-inline-block w-100">
-                        <label for="basic-url" for="validationCustom01" class="form-label ps-2 text-black" style="font-size: 17;">Nombres</label>
-                        <div class="input-group mb-3 w-100">
-                            <input type="text" class="form-control"
-                                name="Nombres" id="id_nombres"
-                                aria-describedby="basic-addon3" required minlength="1"
-                                maxlength="50" id="validationCustom01" required>
-                                <div class="valid-feedback">
-                                    ¡Vamos bien!
-                                </div>
-                                <div class="invalid-feedback">
-                                    Completa la información.
-                                </div>
-                        </div>
-                    </div>
-            
-                    <div class="d-inline-block w-100">
-                        <label for="basic-url"  for="validationCustom02" class="form-label ps-2 text-black" style="font-size: 17;">Apellidos</label>
-                        <div class="input-group mb-3 w-100">
-                            <input type="text" class="form-control"
-                                name="apellidos" id="id_apellidos"
-                                aria-describedby="basic-addon3" id="validationCustom02" required minlength="1"
-                                maxlength="50" required>
-                                <div class="valid-feedback">
-                                    ¡Vamos bien!
-                                </div>
-                                <div class="invalid-feedback">
-                                    Completa la información.
-                                </div>
-                        </div>
-                    </div>
-            
-                    <div class="d-inline-block w-100">
-                        <label for="basic-url" for="validationCustom03" class="form-label ps-2 text-black" style="font-size: 17;">Número de Teléfono</label>
-                        <div class="input-group mb-3 w-100">
-                            <input type="number" class="form-control" name="numeroTelefono"
-                                id="id_numeroTelefono"
-                                aria-describedby="basic-addon3" id="validationCustom03" required minlength="1"
-                                maxlength="20" required>
-                                <div class="valid-feedback">
-                                    ¡Vamos bien!
-                                </div>
-                                <div class="invalid-feedback">
-                                    Ingresa un número de teléfono valido.
-                                </div>
-                        </div>
-                    </div>
-            
-                    <div class="d-inline-block w-100">
-                        <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom04" style="font-size: 17;">Correo Electrónico</label>
-                        <div class="input-group mb-3 w-100">
-                            <input type="email" class="form-control" name="correoElectronico"
-                                id="id_correoElectronico"
-                                aria-describedby="basic-addon3" id="validationCustom04" required minlength="1"
-                                maxlength="100" required>
-                                <div class="valid-feedback">
-                                    ¡Vamos bien!
-                                </div>
-                                <div class="invalid-feedback">
-                                    Ingresa un correo electrónico valido.
-                                </div>
-                        </div>
-                    </div>
-            
-                    <div class="d-inline-block w-100">
-                        <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom05" style="font-size: 17;">Dirección</label>
-                        <div class="input-group mb-3 w-100">
-                            <input type="text" class="form-control" name="direccionResidencia"
-                                id="id_direccionResidencia"
-                                aria-describedby="basic-addon3" id="validationCustom05" required minlength="1"
-                                maxlength="100" required>
-                                <div class="valid-feedback">
-                                    ¡Vamos bien!
-                                </div>
-                                <div class="invalid-feedback">
-                                    Ingresa un dirección valida.
-                                </div>
-                        </div>
-                    </div>
-            
-                    <div class="d-inline-block w-100">
-                        <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom06" style="font-size: 17;">Tipo de Documento</label>
-                        <div class="input-group mb-3 w-100">
-                            <select id="id_tipoDocumento" class="form-select" name="tipoDocumento"
-                                aria-label="tipo-activo" id="validationCustom06" required>
-                                <option class="text-black" selected disabled value>Seleccionar</option>
-                                <option class="text-black" value="CC">Cédula de Ciudadania</option>
-                                <option class="text-black" value="CE">Cédula de Extranjería</option>
-                                <option class="text-black" value="PP">Pasaporte</option>
-                                <option class="text-black" value="OT">Otro</option>
-                            </select>
-                            <div class="valid-feedback">
-                                ¡Vamos bien!
-                            </div>
-                            <div class="invalid-feedback">
-                                Selecciona una opción valida.
-                            </div>
-                        </div>
-                    </div>
-            
-                    <div class="d-inline-block w-100">
-                        <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom07" style="font-size: 17;">Número de Documento</label>
-                        <div class="input-group mb-3 w-100">
-                            <input type="number" class="form-control" name="numeroDocumento"
-                                id="id_numeroDocumento"
-                                aria-describedby="basic-addon3" required minlength="1"
-                                maxlength="50" id="validationCustom07" required>
-                                <div class="valid-feedback">
-                                    ¡Vamos bien!
-                                </div>
-                                <div class="invalid-feedback">
-                                    Ingresa un número de documento valido.
-                                </div>
-                        </div>
-                    </div>
-            
-                    <div class="d-inline-block w-100">
-                        <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom08" style="font-size: 17;">Género</label>
-                        <div class="input-group mb-3 w-100">
-                            <select id="id_genero" class="form-select" name="genero"
-                                aria-label="tipo-activo" id="validationCustom08" required>
-                                <option class="text-black" selected disabled value>Seleccionar</option>
-                                <option class="text-black" value="Masculino">Masculino</option>
-                                <option class="text-black" value="Femenino">Femenino</option>
-                                <option class="text-black" value="Otro">Otro</option>
-                            </select>
-                            <div class="valid-feedback">
-                                ¡Vamos bien!
-                            </div>
-                            <div class="invalid-feedback">
-                                Selecciona una opción valida.
-                            </div>
-                        </div>
-                    </div>
-            
-                    <div class="d-inline-block w-100">
-                        <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom09" style="font-size: 17;">Rol</label>
-                        <div class="input-group mb-3 w-100">
-                            <select id="id_rol" class="form-select" name="rol"
-                                aria-label="tipo-activo" id="validationCustom09" required>
-                                <option class="text-black" selected disabled value>Seleccionar</option>
-                                <option class="text-black" value="Administrador">Administrador</option>
-                                <option class="text-black" value="Empleado">Empleado</option>
-                            </select>   
-                            <div class="valid-feedback">
-                                ¡Vamos bien!
-                            </div>
-                            <div class="invalid-feedback">
-                                Selecciona una opción valida.
-                            </div>
-                        </div>
-                    </div>
-        <script src="/static/js/funciones.js"></script>
-        <div class="modal-footer">
-        <!-- BOTÓN PARA GUARDAR LA INFORMACIÓN DIGITADA EN EL FORMULARIO DEL USUARIO -->
-        <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <input class="btn btn-success" type="submit" name="form-nuevo-usuario" value="Crear">
+                    <!-- /.card-header -->
+                </div>
+            </div>
+            <!-- /.card-body -->
         </div>
-    </div>
-    </div>
-</div>   
+        <!-- /.card -->
+    </section>
+            <!-- /.content -->
+        </div>
+        <footer>{% include 'partials/footer.html' %}</footer>
+        <!-- /.content-wrapper -->
+        {% endblock contenido %}
+
+            <!-- jQuery -->
+            <script src="{% static 'AdminLTE/jquery/jquery.min.js' %}"></script>
+            <!-- Bootstrap -->
+            <script src="{% static 'AdminLTE/js-copy/bootstrap.bundle.min.js' %}"></script>
+            <!-- jQuery UI -->
+            <script src="{% static 'AdminLTE/jquery-ui/jquery-ui.min.js' %}"></script>
+            <!-- AdminLTE App -->
+            <script src="{% static 'AdminLTE/js/adminlte.min.js' %}"></script>
+            <!-- toastr alert -->
+            <script type="application/json" src="{% static 'AdminLTE/toastr/toastr.js.map' %}"></script>
+            <script type="text/javascript" src="{% static 'AdminLTE/toastr/toastr.min.js' %}"></script>
+            
+            <!-- DataTables  & Plugins -->
+            <script src="{% static 'AdminLTE/datatables/jquery.dataTables.min.js' %}"></script>
+            <script src="{% static 'AdminLTE/datatables-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+            <script src="{% static 'AdminLTE/datatables-responsive/js/dataTables.responsive.min.js' %}"></script>
+            <script src="{% static 'AdminLTE/datatables-responsive/js/responsive.bootstrap4.min.js' %}"></script>
+            <script src="{% static 'AdminLTE/datatables-buttons/js/dataTables.buttons.min.js' %}"></script>
+            <script src="{% static 'AdminLTE/datatables-buttons/js/buttons.bootstrap4.min.js' %}"></script>
+            <script src="{% static 'AdminLTE/jszip/jszip.min.js' %}"></script>
+            <script src="{% static 'AdminLTE/pdfmake/pdfmake.min.js' %}"></script>
+            <script src="{% static 'AdminLTE/pdfmake/vfs_fonts.js' %}"></script>
+            <script src="{% static 'AdminLTE/datatables-buttons/js/buttons.html5.min.js' %}"></script>
+            <script src="{% static 'AdminLTE/datatables-buttons/js/buttons.print.min.js' %}"></script>
+            <script src="{% static 'AdminLTE/datatables-buttons/js/buttons.colVis.min.js' %}"></script>
+            <script src="{% static 'AdminLTE/js/modal-status.js' %}"></script>
+
+
+        {% block javascript %}
+        {% endblock javascript %}
