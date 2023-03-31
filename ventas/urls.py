@@ -1,15 +1,17 @@
 from django.urls import path
-from . import views
+from ventas.views import  recuperar, recuperar_ventas, venta_crear, venta_modificar, venta_ver, ventas, ventas_eliminar 
 
 urlpatterns = [
-    path('',views.ventas,name="ventas"),
+    path('',ventas,name="ventas"),
     #Path to ADD Venta
-    path('venta_crear',views.venta_crear,name="venta_crear"),
+    path('venta_crear', venta_crear,name="venta_crear"),
     #Path to EDIT Venta
-    path('venta_modificar',views.venta_modificar,name="venta_modificar"),
+    path('venta_modificar', venta_modificar,name="venta_modificar"),
     #Path to View Venta data individually
-    path('ventas/venta_ver/<str:venta_id>',views.venta_ver,name="venta_ver"),
+    path('ventas/venta_ver/<str:venta_id>',venta_ver,name="venta_ver"),
     #Path to DELETE Venta
-    path('ventas/ventas/delete_venta/<int:venta_id>', views.delete_venta, name='delete_venta')
-
+    path('ventas_eliminar/<int:pk>/', ventas_eliminar, name="ventas_eliminar"),
+    #Path to Recuperar Ventas
+    path('ventas_recuperar/', recuperar_ventas, name="recuperar_ventas"),
+    path('recuperar-venta/<int:pk>/', recuperar, name='recuperar-venta'),
 ]

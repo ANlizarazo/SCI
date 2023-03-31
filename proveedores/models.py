@@ -46,7 +46,7 @@ class Proveedor(models.Model):
         ACTIVO='1', _('Activo')
         INACTIVO='0', _('Inactivo')
     modoPago=models.CharField(max_length=3, choices=ModoPago.choices, default=ModoPago.EF, verbose_name="Modo de Pago")
-    tiempoEntrega= models.SmallIntegerField(validators=[MinValueValidator(1)], verbose_name="Tiempo Entrega") 
+    tiempoEntrega= models.PositiveSmallIntegerField(validators=[MinValueValidator(1)], verbose_name="Tiempo Entrega") 
     transporteIncluido= models.CharField( max_length=2, choices=TransporteIncluido.choices, verbose_name="Transporte Incluido")
     estado=models.CharField(max_length=1, choices=Estado.choices, default=Estado.ACTIVO, verbose_name="Estado")
     material= models.ForeignKey(Material, on_delete=models.CASCADE, verbose_name="Material",null=True) 

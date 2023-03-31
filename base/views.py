@@ -24,14 +24,12 @@ def inicio(request):
     cantidad_clientes= Cliente.objects.all().count()
     cantidad_ventas= Venta.objects.all().count()
     cantidad_compras= cantidad_compra.objects.all().count()
-
     labels_stock=[]
     data_stock=[]
     productos= Producto.objects.all().order_by('stock')
     for producto in productos:
         labels_stock.append(producto.nombre)
         data_stock.append(producto.stock)
-
     context={
         'titulo':titulo
         'cantidad_clientes':cantidad_clientes,
@@ -67,4 +65,4 @@ def perfil(request):
 
 def logout_user(request):
     logout(request)
-    return redirect('login2')
+    return redirect('login')
