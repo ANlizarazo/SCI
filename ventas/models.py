@@ -20,7 +20,7 @@ class DetalleVenta(models.Model):
 
 
 class Venta(models.Model):
-    subtotalVenta= models.PositiveIntegerField(validators = [ MinValueValidator ( 0 )], verbose_name="Subtotal Venta")
+    subtotalVenta= models.PositiveIntegerField(validators = [ MinValueValidator ( 0 )], verbose_name="Subtotal Venta", null = True)
     fecha= models.DateTimeField(verbose_name="Fecha Venta",help_text= "MM/DD/AAAA")
     porcentajeIva=models.DecimalField(validators=[MinValueValidator(0.0)],decimal_places=1,max_digits=20, verbose_name="Porcentaje IVA")
     totalVenta= models.PositiveIntegerField(validators = [ MinValueValidator ( 0 )], verbose_name="Total Venta")
