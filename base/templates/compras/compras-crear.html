@@ -7,13 +7,13 @@
     <div class="modal-content">
         {% block title-color %} <div class="modal-header bg-success">{% endblock title-color %}
             <h1 class="modal-title fs-3" id="addModalLabel" id="staticBackdropLabel">
-                {% block modal-title %}<b class="text-white fas fa-plus">&nbsp;&nbsp; CREAR NUEVO PROVEEDOR</b></h1>{% endblock modal-title %}
+                {% block modal-title %}<b class="text-white fas fa-plus">&nbsp;&nbsp; CREAR NUEVA COMPRA</b></h1>{% endblock modal-title %}
         </div>
         <div class="modal-body">
             <!-- Formulario -->
-            <form id="f_proveedor" method="POST" {% block action %} action="/proveedor_crear" {% endblock action %} autocomplete="off" class="needs-validation" enctype="multipart/form-data" novalidate>
+            <form id="f_proveedor" method="POST" {% block action %} action="/compra_crear" {% endblock action %} autocomplete="off" class="needs-validation" enctype="multipart/form-data" novalidate>
                     {% csrf_token %}
-                <div class="modal-body text-start" id="form-nuevo-proveedor">
+                <div class="modal-body text-start" id="form-nuevo-compra">
                 <!--======= Block Id (root) ======== -->
                 
                 {% block Value_id %}{% endblock Value_id %}
