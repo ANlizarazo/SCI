@@ -1,7 +1,8 @@
 from django.shortcuts import redirect, render
-from clientes.forms import ClienteForm, ClienteUpdateForm
+from clientes.forms import ClienteForm, ClienteUpdateForm, CiudadForm
 
 from clientes.models import Cliente
+from clientes.models import Ciudad
 
 # Create your views here.
 
@@ -9,9 +10,13 @@ from clientes.models import Cliente
 def clientes(request):
     
     clientes= Cliente.objects.all()
+    form = ClienteForm(request.POST)
+    formCiudad = CiudadForm(request.POST)
     
     context={
-        "clientes":clientes
+        "clientes":clientes,
+        'form': form,
+        'formCiudad': formCiudad
     }
     return render(request,'clientes/clientes.html',context)
 
@@ -30,24 +35,47 @@ def clientes_ver(request):
     }
     return render(request, 'clientes/clientes-ver.html', context)
 
-def clientes_crear(request):
 
-    titulo="Clientes - Crear"
-    if request.method=="POST" and 'form-crear' in request.POST:
-        form= ClienteForm(request.POST)
+
+def clientes_crear(request):
+    if request.method == 'POST':
+        form = ClienteForm(request.POST)
         if form.is_valid():
             form.save()
-            print("El cliente se guardó correctamente")
+            print('Cliente creado correctamente')
+
             return redirect('clientes')
         else:
-            print("El cliente NO se guardó")
-    else:
-        form= ClienteForm()
-    context={
-        'titulo':titulo,
-        "form":form
-    }
-    return render(request,'clientes/clientes-crear.html',context)
+            print('Cliente NO FUÉ CREADO')
+
+        context = {
+            'form': form
+        }
+
+        return render(request, 'clientes/clientes.html', context)
+
+
+
+# def clientes_crear(request):
+
+#     titulo="Clientes - Crear"
+#     if request.method=="POST":
+#         form= ClienteForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             print("El cliente se guardó correctamente")
+#             return redirect('clientes')
+#         else:
+#             print("El cliente NO se guardó")
+#     else:
+#         form= ClienteForm()
+#     context={
+#         'titulo':titulo,
+#         "form":form
+#     }
+#     return render(request,'clientes/clientes.html',context)
+
+
 
 def clientes_modificar(request,pk, *callback_kwargs):
     titulo = "Clientes - Modificar"
@@ -82,3 +110,23 @@ def clientes_modificar(request,pk, *callback_kwargs):
         'form_update':form_update
     }
     return render(request, 'clientes/clientes-modificar.html', context)
+
+
+
+def ciudad_crear(request):
+    if request.method == 'POST':
+        formCiudad = CiudadForm(request.POST)
+        if formCiudad.is_valid():
+            formCiudad.save()        
+        
+            print('Cliente creado correctamente')
+
+            return redirect('clientes')
+        else:
+            print('Cliente NO FUÉ CREADO')
+
+        context = {
+            'form': formCiudad
+        }
+
+        return render(request, 'clientes/clientes.html', context)
