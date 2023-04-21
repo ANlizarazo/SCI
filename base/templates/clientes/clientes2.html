@@ -30,25 +30,16 @@
         <div class="container-fluid ">
             <div class="row">
                 <!-- Card -->
-                <div class="card">
+                <div class="card ">
                     <div class="card-header">
-                        <div class="d-flex justify-content-between">
-                            <div>
-                                <h3 class="card-title text-success"><tr><b
+                        <h3 class="card-title text-success"><tr><b
                                     class="text-success">Reporte de Clientes</b></tr></h3>
-                            </div>
-                            <div>
-                                <!-- Este botón llama el modal ciudad -->
-                                <a class="btn btn-success float-right mr-0 mb-3" data-bs-toggle="modal"
-                                data-bs-target="#crear_ciudad" title="Crear Ciudad">Crear Ciudad</a>
-                            </div>
-                        </div>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
                         <!-- Este botón llama el modal -->
                         <a class="btn btn-success float-right mr-0 mb-3" data-bs-toggle="modal"
-                            data-bs-target="#crear_cliente" title="Crear Cliente"> Crear Cliente</a>
+                            data-bs-target="#crear_Cliente" title="Crear Cliente"> Crear Cliente</a>
                         <!-- Datatable de clientes -->
                         <table id="tabla-clientes" class="table table-bordered
                             table-striped border-dark">
@@ -80,25 +71,11 @@
                                         <a class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
                                     </td>
                                 </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>        
-            
-                </div>
-            </div>            
-                        
-                        <!-- /.card-body -->
-        </div>
-                    <!-- /.card -->
-    </section>
-                <!-- /.content -->
-       
 
-
+                                
              <!-- Modal de crear cliente -->
 
-             <div class="modal fade" id="crear_cliente">
+             <div class="modal fade" id="crear_Cliente">
                 <div class="modal-dialog">
 
                     <div class="modal-content">
@@ -126,55 +103,18 @@
                     
                 </div>
             </div>   
-
-
-
-            <!-- Modal de crear ciudad -->
-
-            <div class="modal fade" id="crear_ciudad">
-                <div class="modal-dialog">
-
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-3"><b class="text-black" >CREAR NUEVA CIUDAD</b></h1>
+                                {% endfor %}
+                            </table>
                         </div>
-                
-
-                        <div class="modal-body">
-                            <!-- Formulario -->
-                            <form action="{% url 'ciudad-crear' %}" method="POST">
-                                {{formCiudad|crispy}}
-                                {% csrf_token %}                
-
-                                <div class="modal-footer">
-                                    <!-- BOTÓN PARA GUARDAR LA INFORMACIÓN DIGITADA EN EL FORMULARIO DEL CLIENTE -->
-                                    <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                    <input class="btn btn-success" type="submit" value="Crear">
-                                </div>
-
-                            </form>            
-                        </div> 
-                        
+                        <!-- /.card-body -->
                     </div>
-                    
-                </div>
-            </div>  
-
+                    <!-- /.card -->
+                </section>
+                <!-- /.content -->
+            </div>
             <footer>{% include 'partials/footer.html' %}</footer>
             <!-- /.content-wrapper -->
-
-
-           
-
-
-
-
-
-
-
             {% endblock contenido %}
-
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
             <!-- jQuery -->
             <script src="{% static 'AdminLTE/jquery/jquery.min.js' %}"></script>

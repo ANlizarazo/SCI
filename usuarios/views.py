@@ -188,7 +188,6 @@ def usuarios_crear(request):
                 my_group.user_set.add(usuario.user)
             else:
                 user=User.objects.get(username=request.POST['documento'])
-
             usuario= Usuario.objects.create(
                 nombres=request.POST['nombres'],
                 apellidos=request.POST['apellidos'],
