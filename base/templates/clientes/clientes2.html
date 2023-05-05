@@ -1,4 +1,5 @@
 {% load static %}
+{% load crispy_forms_tags %}
 {% block contenido %}
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -38,7 +39,7 @@
                     <div class="card-body">
                         <!-- Este botón llama el modal -->
                         <a class="btn btn-success float-right mr-0 mb-3" data-bs-toggle="modal"
-                            data-bs-target="#crearCliente" title="Crear Cliente"> Crear Cliente</a>
+                            data-bs-target="#crear_Cliente" title="Crear Cliente"> Crear Cliente</a>
                         <!-- Datatable de clientes -->
                         <table id="tabla-clientes" class="table table-bordered
                             table-striped border-dark">
@@ -70,6 +71,38 @@
                                         <a class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
                                     </td>
                                 </tr>
+
+                                
+             <!-- Modal de crear cliente -->
+
+             <div class="modal fade" id="crear_Cliente">
+                <div class="modal-dialog">
+
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-3"><b class="text-black" >CREAR NUEVO CLIENTE</b></h1>
+                        </div>
+                
+
+                        <div class="modal-body">
+                            <!-- Formulario -->
+                            <form action="{% url 'clientes-crear' %}" method="POST">
+                                {{form|crispy}}
+                                {% csrf_token %}                
+
+                                <div class="modal-footer">
+                                    <!-- BOTÓN PARA GUARDAR LA INFORMACIÓN DIGITADA EN EL FORMULARIO DEL CLIENTE -->
+                                    <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                    <input class="btn btn-success" type="submit" value="Crear">
+                                </div>
+
+                            </form>            
+                        </div> 
+                        
+                    </div>
+                    
+                </div>
+            </div>   
                                 {% endfor %}
                             </table>
                         </div>

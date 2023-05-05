@@ -10,7 +10,7 @@ class DetalleCompra(models.Model):
     valorTotalMaterial = models.BigIntegerField(validators = [ MinValueValidator ( 0 )], verbose_name="Valor Total Material")
     proveedor = models.ForeignKey(Proveedor, on_delete=models.CASCADE, verbose_name="Proveedor",null=True)
     
-    def __str__(self)->str:
+    def _str_(self)->str:
         return "%s %s %s %s" %(self.id,self.proveedor,self.cantidadMaterial,self.valorTotalMaterial)  
 
     class Meta:
@@ -23,7 +23,7 @@ class Compra(models.Model):
     detalleCompra = models.ForeignKey(DetalleCompra, on_delete=models.CASCADE, verbose_name="Detalle Compra",null=True)
     usuario=models.ForeignKey(Usuario, on_delete=models.CASCADE, verbose_name="Usuario",null=True)
 
-    def __str__(self)->str:
+    def _str_(self)->str:
         return "%s %s" %(self.id,self.fecha)  
 
     class Meta:
