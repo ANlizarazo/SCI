@@ -32,7 +32,6 @@ class Usuario(models.Model):
     genero=models.CharField(max_length=3, choices=Genero.choices, verbose_name="Género")
     rol=models.CharField(max_length=5, choices=Rol.choices, verbose_name="Rol")
     estado=models.CharField(max_length=1, choices=Estado.choices, default=Estado.ACTIVO, verbose_name="Estado")
-    user = models.ForeignKey(User, on_delete = models.CASCADE, null = True, blank = True)
     #foto=models.ImageField(upload_to='images/usuarios', blank=True, default='/static/img/perfil.jpg')
 
 

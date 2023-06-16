@@ -66,7 +66,7 @@
                             mt-5" width="150px"
                             src="/static/img/perfil.jpg">
                         <span class="font-weight-bold
-                            text-black">LizethO</span><span
+                            text-black">{{user.username}}</span><span
                             class="text-black">{{user.email}}</span><span>
                         </span></div>
                 </div>
@@ -80,7 +80,7 @@
                         <div class="row mt-2">
                             <div class="col-md-6"><label class="labels text-white">Nombres</label><select
                                 type="text" class="form-control text-black" placeholder="Nombres" 
-                                value="" disabled><option>Lizeth Paola</option></select></div>
+                                value="" disabled><option>{{user.nombres}}</option></select></div>
                             <div class="col-md-6"><label
                                     class="labels
                                     text-white">Apellidos</label><select
@@ -88,8 +88,7 @@
                                     class="form-control
                                     text-black"
                                     placeholder="Apellidos"
-                                    value="" disabled><option>Julio
-                                        Ojeda</option></select></div>
+                                    value="" disabled><option>{{user.apellidos}}</option></select></div>
                         </div>
                         <div class="row mt-3">
                             <div class="col-md-12"><label
@@ -99,8 +98,7 @@
                                     class="form-control
                                     text-black"
                                     placeholder="Teléfono"
-                                    value="" disabled><option>+57
-                                        3156487941</option></select></div><hr>
+                                    value="" disabled><option>{{user.telefono}}</option></select></div><hr>
                             <div class="col-md-12"><label
                                     class="labels
                                     text-white">Tipo de
@@ -110,8 +108,7 @@
                                     text-black"
                                     placeholder="Tipo de
                                     Documento" value=""
-                                    disabled><option>Cédula
-                                        de Ciudadanía</option></select></div><hr>
+                                    disabled><option>{{user.tipoDocumento}}</option></select></div><hr>
                             <div class="col-md-12"><label
                                     class="labels
                                     text-white">Número de
@@ -121,7 +118,7 @@
                                     text-black"
                                     placeholder="Número de
                                     Documento" value=""
-                                    disabled><option>1098456354</option></select></div><hr>
+                                    disabled><option>{{user.numDocumento}}</option></select></div><hr>
                             <div class="col-md-12"><label
                                     class="labels
                                     text-white">Email</label><select
@@ -129,7 +126,7 @@
                                     class="form-control
                                     text-black"
                                     placeholder="Email"
-                                    value="" disabled><option>lizethojeda@gmail.com</option></select></div><hr>
+                                    value="" disabled><option>{{user.email}}</option></select></div><hr>
                             <div class="col-md-12"><label
                                     class="labels
                                     text-white">Dirección</label><select
@@ -137,9 +134,7 @@
                                     class="form-control
                                     text-black"
                                     placeholder="Dirección"
-                                    value="" disabled><option>Calle
-                                        104f
-                                        #9a-89</option></select></div><hr>
+                                    value="" disabled><option>{{user.direccion}}</option></select></div><hr>
                             <div class="col-md-12"><label
                                     class="labels
                                     text-white">Género</label><select
@@ -147,7 +142,7 @@
                                     class="form-control
                                     text-black"
                                     placeholder="Género"
-                                    value="" disabled><option>Femenino</option></select></div><hr>
+                                    value="" disabled><option>{{user.genero}}</option></select></div><hr>
                             <div class="col-md-12"><label
                                     class="labels
                                     text-white">Rol</label><select
@@ -155,7 +150,7 @@
                                     class="form-control
                                     text-black"
                                     placeholder="Rol"
-                                    value="" disabled><option>Administrador</option></select></div><hr>
+                                    value="" disabled><option>{{user.rol}}</option></select></div><hr>
                             <div class="col-md-12"><label
                                     class="labels
                                     text-white">Estado</label><select
@@ -163,7 +158,7 @@
                                     class="form-control
                                     text-black"
                                     placeholder="Estado"
-                                    value="" disabled><option>Activo</option></select></div><hr>
+                                    value="" disabled><option>{{user.estado}}</option></select></div><hr>
                         </div>
                         <div class="row mt-3">
                             <div class="col-md-6"><label

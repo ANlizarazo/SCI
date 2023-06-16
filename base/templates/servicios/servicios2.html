@@ -52,34 +52,403 @@
                                     <th class="border-dark">Precio</th>
                                     <th class="border-dark">Observación Final</th>
                                     <th class="border-dark">Tipo de Servicio</th>
-                                    <th class="border-dark">Técnico</th>
+                                    <th class="border-dark">Estado</th>
                                     <th class="border-dark">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {% for servicio in servicios %}
+                                {% if servicio.estado == 'Activo' %}
                                 <tr>
                                     <td class="border-dark text-black">{{servicio.id}}</td>
                                     <td class="border-dark text-black">{{servicio.observacion}}</td>
-                                    <td class="border-dark text-black">{{servicio.fechaInicio}}</td>
-                                    <td class="border-dark text-black">{{servicio.fechaEntrega}}</td>
+                                    <td class="border-dark text-black">{{servicio.fechaInicio|date:"d/m/Y"}}</td>
+                                    <td class="border-dark text-black">{{servicio.fechaEntrega|date:"d/m/Y"}}</td>
                                     <td class="border-dark text-black">{{servicio.precio}}</td>
                                     <td class="border-dark text-black">{{servicio.observacionFinal}}</td>
                                     <td class="border-dark text-black">{{servicio.tipoServicio}}</td>
-                                    <td class="border-dark text-black">{{servicio.tecnico}}</td>
+                                    <td class="border-dark text-black">{{servicio.estado}}</td>
                                     <td class="border-dark">
-                                        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#verServicio">
-                                            <i class="fas fa-eye"></i></button><c>{% include 'servicios/servicios-ver.html' %}</c>
-                                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modificarServicio">
-                                            <i class="fas fa-edit"></i></button><c>{% include 'servicios/servicios-modificar.html' %}</c>
-                                        <button class="btn btn-danger text-center" data-bs-toggle="modal" data-bs-target="#">
-                                            <i class="fas fa-trash-alt"></i></button>
+                                        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#verServicio{{servicio.pk}}">
+                                            <i class="fas fa-eye"></i></button><c></c>
+                                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modificarServicio{{servicio.pk}}">
+                                            <i class="fas fa-edit"></i></button><c></c>
+                                        
+                              
+                                            <button class="btn btn-danger"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#deleteModal{{servicio.pk}}" title="Eliminar">
+                                                <i class="fas fa-trash-alt"></i></button>
                                     </td>
                                 </tr>
+
+
+                                <!-- Modal de modificar servicio -->
+
+                                <div class="modal fade" id="modificarServicio{{servicio.pk}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-3" id="staticBackdropLabel"><b class="text-black" >MODIFICAR SERVICIO</b></h1>
+                                            </div>
+                                            <div class="modal-body">
+                                                <!-- Formulario -->
+                                                <form  action="{% url 'servicios-modificar' servicio.pk %}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
+                
+                                                    {% csrf_token %}          
+                                                    <div class="modal-body text-start" id="form-nuevo-usuario"> 
+                                
+                                                    
+                                                
+                                                        <div class="d-inline-block w-100">
+                                                            <label for="basic-url" for="validationCustom01" class="form-label ps-2 text-black" style="font-size: 17;">Observación</label>
+                                                            <div class="input-group mb-3 w-100">
+                                                                <textarea type="text" class="form-control"
+                                                                    name="observacion" id="id_nombres"
+                                                                    aria-describedby="basic-addon3" required minlength="1"
+                                                                    maxlength="250" id="" required value="{{servicio.observacion}}">{{servicio.observacion}}</textarea>
+                                                                    <div class="valid-feedback">
+                                                                        ¡Vamos bien!
+                                                                    </div>
+                                                                    <div class="invalid-feedback">
+                                                                        Completa la información.
+                                                                    </div>
+                                                            </div>
+                                                        </div>
+                                                
+                                                        <div class="d-inline-block w-100">
+                                                            <label for="basic-url"  for="validationCustom02" class="form-label ps-2 text-black" style="font-size: 17;">Fecha de Inicio día/mes/año</label>
+                                                            <div class="input-group mb-3 w-100">
+                                                                <input type="text" class="form-control"
+                                                                    name="fechaInicio" id="id_apellidos"
+                                                                    aria-describedby="basic-addon3" id="validationCustom02" required minlength="1"
+                                                                    maxlength="50" required value="{{servicio.fechaInicio|date:'d/m/Y'}}">
+                                                                    <div class="valid-feedback">
+                                                                        ¡Vamos bien!
+                                                                    </div>
+                                                                    <div class="invalid-feedback">
+                                                                        Completa la información.
+                                                                    </div>
+                                                            </div>
+                                                        </div>
+                                                
+
+                                                        <div class="d-inline-block w-100">
+                                                            <label for="basic-url" for="validationCustom03" class="form-label ps-2 text-black" style="font-size: 17;">Fecha de Entrega día/mes/año</label>
+                                                            <div class="input-group mb-3 w-100">
+                                                                <input type="text" class="form-control" name="fechaEntrega"
+                                                                    id="id_numeroTelefono"
+                                                                    aria-describedby="basic-addon3" id="validationCustom03" required minlength="1"
+                                                                    maxlength="20" required value="{{servicio.fechaEntrega|date:'d/m/Y'}}" >
+                                                                    <div class="valid-feedback">
+                                                                        ¡Vamos bien!
+                                                                    </div>
+                                                                    <div class="invalid-feedback">
+                                                                        Ingresa un número de teléfono valido.
+                                                                    </div>
+                                                            </div>
+                                                        </div>
+
+                                                                                                        
+                                                        <div class="d-inline-block w-100">
+                                                            <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom04" style="font-size: 17;">Precio</label>
+                                                            <div class="input-group mb-3 w-100">
+                                                                <input type="number" class="form-control" name="precio"
+                                                                    id="id_correoElectronico"
+                                                                    aria-describedby="basic-addon3" id="validationCustom04" required minlength="1"
+                                                                    maxlength="100" required value="{{servicio.precio}}">
+                                                                    <div class="valid-feedback">
+                                                                        ¡Vamos bien!
+                                                                    </div>
+                                                                    <div class="invalid-feedback">
+                                                                        Ingresa un correo electrónico valido.
+                                                                    </div>
+                                                            </div>
+                                                        </div>
+                                                
+                                                        <div class="d-inline-block w-100">
+                                                            <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom05" style="font-size: 17;">Observación Final</label>
+                                                            <div class="input-group mb-3 w-100">
+                                                                <textarea type="text" class="form-control" name="observacionFinal"
+                                                                    id="id_direccionResidencia"
+                                                                    aria-describedby="basic-addon3" id="validationCustom05" required minlength="1"
+                                                                    maxlength="100" required value="{{servicio.observacionFinal}}">{{servicio.observacionFinal}}</textarea>
+                                                                    <div class="valid-feedback">
+                                                                        ¡Vamos bien!
+                                                                    </div>
+                                                                    <div class="invalid-feedback">
+                                                                        Ingresa un dirección valida.
+                                                                    </div>
+                                                            </div>
+                                                        </div>
+                                                
+                                                        <div class="d-inline-block w-100">
+                                                            <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom06" style="font-size: 17;">Tipo de Servicio</label>
+                                                            <div class="input-group mb-3 w-100">
+                                                                <select id="id_tipoDocumento" class="form-select" name="tipoServicio"
+                                                                    aria-label="tipo-activo" id="validationCustom06" required>
+                                                                    <option class="text-black" selected value="{{servicio.tipoServicio}}">{{servicio.tipoServicio}}</option>
+                                                                    <option class="text-black" value="Montaje">Montaje</option>
+                                                                    <option class="text-black" value="Desmontaje">Desmontaje</option>
+                                                                    <option class="text-black" value="Transporte">Transporte</option>
+                                                                    <option class="text-black" value="Otro">Otro</option>
+                                                                </select>
+                                                                <div class="valid-feedback">
+                                                                    ¡Vamos bien!
+                                                                </div>
+                                                                <div class="invalid-feedback">
+                                                                    Selecciona una opción valida.
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="d-inline-block w-100">
+                                                            <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom06" style="font-size: 17;">Estado</label>
+                                                            <div class="input-group mb-3 w-100">
+                                                                <select id="id_tipoDocumento" class="form-select" name="estado"
+                                                                    aria-label="tipo-activo" id="validationCustom06" required>
+                                                                    <option class="text-black" selected value="{{servicio.estado}}">{{servicio.estado}}</option>
+                                                                    <option class="text-black" value="Activo">Activo</option>
+                                                                    <option class="text-black" value="Inactivo">Inactivo</option>
+                                                                </select>
+                                                                <div class="valid-feedback">
+                                                                    ¡Vamos bien!
+                                                                </div>
+                                                                <div class="invalid-feedback">
+                                                                    Selecciona una opción valida.
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                
+                                
+                                                    </div> 
+                                
+                                                    <div class="modal-footer">
+                                                        <!-- BOTÓN PARA GUARDAR LA INFORMACIÓN DIGITADA EN EL FORMULARIO DEL USUARIO -->
+                                                        <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                                        <input class="btn btn-success" type="submit" name="form-nuevo-usuario" value="Modificar">
+                                                    </div>
+                                
+                                                </form>
+                                
+
+                                                
+
+                                            </div>
+
+                                        </div>
+                                        
+                                    </div>
+                                </div>   
+    
+
+                                <!-- Modal de ver servicio -->
+
+                                <div class="modal fade" id="verServicio{{servicio.pk}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-3" id="staticBackdropLabel"><b class="text-black" >VER SERVICIO</b></h1>
+                                            </div>
+                                            <div class="modal-body">
+                                                <!-- Formulario -->
+                                                <form  action="{% url 'servicios-modificar' servicio.pk %}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
+                
+                                                    {% csrf_token %}          
+                                                    <div class="modal-body text-start" id="form-nuevo-usuario"> 
+                                
+                                                    
+                                                
+                                                        <div class="d-inline-block w-100">
+                                                            <label for="basic-url" for="validationCustom01" class="form-label ps-2 text-black" style="font-size: 17;">Observación</label>
+                                                            <div class="input-group mb-3 w-100">
+                                                                <textarea type="text" class="form-control"
+                                                                    name="observacion" id="id_nombres"
+                                                                    aria-describedby="basic-addon3" required minlength="1"
+                                                                    maxlength="250" id="" required value="{{servicio.observacion}}" disabled>{{servicio.observacion}}</textarea>
+                                                                    <div class="valid-feedback">
+                                                                        ¡Vamos bien!
+                                                                    </div>
+                                                                    <div class="invalid-feedback">
+                                                                        Completa la información.
+                                                                    </div>
+                                                            </div>
+                                                        </div>
+                                                
+                                                        <div class="d-inline-block w-100">
+                                                            <label for="basic-url"  for="validationCustom02" class="form-label ps-2 text-black" style="font-size: 17;">Fecha de Inicio día/mes/año</label>
+                                                            <div class="input-group mb-3 w-100">
+                                                                <input type="text" class="form-control"
+                                                                    name="fechaInicio" id="id_apellidos"
+                                                                    aria-describedby="basic-addon3" id="validationCustom02" required minlength="1"
+                                                                    maxlength="50" required value="{{servicio.fechaInicio|date:'d/m/Y'}}" disabled>
+                                                                    <div class="valid-feedback">
+                                                                        ¡Vamos bien!
+                                                                    </div>
+                                                                    <div class="invalid-feedback">
+                                                                        Completa la información.
+                                                                    </div>
+                                                            </div>
+                                                        </div>
+                                                
+
+                                                        <div class="d-inline-block w-100">
+                                                            <label for="basic-url" for="validationCustom03" class="form-label ps-2 text-black" style="font-size: 17;">Fecha de Entrega día/mes/año</label>
+                                                            <div class="input-group mb-3 w-100">
+                                                                <input type="text" class="form-control" name="fechaEntrega"
+                                                                    id="id_numeroTelefono"
+                                                                    aria-describedby="basic-addon3" id="validationCustom03" required minlength="1"
+                                                                    maxlength="20" required value="{{servicio.fechaEntrega|date:'d/m/Y'}}" >
+                                                                    <div class="valid-feedback">
+                                                                        ¡Vamos bien!
+                                                                    </div>
+                                                                    <div class="invalid-feedback">
+                                                                        Ingresa un número de teléfono valido.
+                                                                    </div>
+                                                            </div>
+                                                        </div>
+
+                                                                                                        
+                                                        <div class="d-inline-block w-100">
+                                                            <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom04" style="font-size: 17;">Precio</label>
+                                                            <div class="input-group mb-3 w-100">
+                                                                <input type="number" class="form-control" name="precio"
+                                                                    id="id_correoElectronico"
+                                                                    aria-describedby="basic-addon3" id="validationCustom04" required minlength="1"
+                                                                    maxlength="100" required value="{{servicio.precio}}">
+                                                                    <div class="valid-feedback">
+                                                                        ¡Vamos bien!
+                                                                    </div>
+                                                                    <div class="invalid-feedback">
+                                                                        Ingresa un correo electrónico valido.
+                                                                    </div>
+                                                            </div>
+                                                        </div>
+                                                
+                                                        <div class="d-inline-block w-100">
+                                                            <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom05" style="font-size: 17;">Observación Final</label>
+                                                            <div class="input-group mb-3 w-100">
+                                                                <textarea type="text" class="form-control" name="observacionFinal"
+                                                                    id="id_direccionResidencia"
+                                                                    aria-describedby="basic-addon3" id="validationCustom05" required minlength="1"
+                                                                    maxlength="100" required value="{{servicio.observacionFinal}}">{{servicio.observacionFinal}}</textarea>
+                                                                    <div class="valid-feedback">
+                                                                        ¡Vamos bien!
+                                                                    </div>
+                                                                    <div class="invalid-feedback">
+                                                                        Ingresa un dirección valida.
+                                                                    </div>
+                                                            </div>
+                                                        </div>
+                                                
+                                                        <div class="d-inline-block w-100">
+                                                            <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom06" style="font-size: 17;">Tipo de Servicio</label>
+                                                            <div class="input-group mb-3 w-100">
+                                                                <select id="id_tipoDocumento" class="form-select" name="tipoServicio"
+                                                                    aria-label="tipo-activo" id="validationCustom06" required>
+                                                                    <option class="text-black" selected value="{{servicio.tipoServicio}}">{{servicio.tipoServicio}}</option>
+                                                                    <option class="text-black" value="Montaje">Montaje</option>
+                                                                    <option class="text-black" value="Desmontaje">Desmontaje</option>
+                                                                    <option class="text-black" value="Transporte">Transporte</option>
+                                                                    <option class="text-black" value="Otro">Otro</option>
+                                                                </select>
+                                                                <div class="valid-feedback">
+                                                                    ¡Vamos bien!
+                                                                </div>
+                                                                <div class="invalid-feedback">
+                                                                    Selecciona una opción valida.
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="d-inline-block w-100">
+                                                            <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom06" style="font-size: 17;">Estado</label>
+                                                            <div class="input-group mb-3 w-100">
+                                                                <select id="id_tipoDocumento" class="form-select" name="estado"
+                                                                    aria-label="tipo-activo" id="validationCustom06" required>
+                                                                    <option class="text-black" selected value="{{servicio.estado}}">{{servicio.estado}}</option>
+                                                                    <option class="text-black" value="Activo">Activo</option>
+                                                                    <option class="text-black" value="Inactivo">Inactivo</option>
+                                                                </select>
+                                                                <div class="valid-feedback">
+                                                                    ¡Vamos bien!
+                                                                </div>
+                                                                <div class="invalid-feedback">
+                                                                    Selecciona una opción valida.
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                
+                                
+                                                    </div> 
+                                
+                                                    <div class="modal-footer">
+                                                        <!-- BOTÓN PARA GUARDAR LA INFORMACIÓN DIGITADA EN EL FORMULARIO DEL USUARIO -->
+                                                        <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Regresar</button>
+                                                        
+                                                    </div>
+                                
+                                                </form>
+                                
+
+                                                
+
+                                            </div>
+
+                                        </div>
+                                        
+                                    </div>
+                                </div>   
+                                
+                                
+
+
+                                <!-- Modal delete confirmation -->
+                                <div class="modal fade"
+                                    id="deleteModal{{servicio.pk}}"
+                                    tabindex="-1"
+                                    aria-labelledby="deleteModalLabel"
+                                    aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header bg-danger">
+                                                <h5 class="modal-title "
+                                                    id="deleteModalLabel"><i
+                                                        class="fas fa-trash-alt"></i>&nbsp;&nbsp; ELIMINAR SERVICIO</h5>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="text-center
+                                                    text-danger"><i class="far
+                                                        fa-times-circle fa-5x
+                                                        mb-4 mt-2"></i></div>
+                                                <div class="text-center
+                                                    text-danger">
+                                                    <span class="">¿Estás seguro de que deseas eliminar este servicio?</span>
+                                                    <div class="text-dark mt-3
+                                                        mb-2">Servicio: <strong>{{servicio.id}}</strong></div>
+                                                </div>
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                <form method="post" action="{% url 'servicios_eliminar' servicio.pk %}">
+                                                    {% csrf_token %}
+
+                                                    <input type="submit"
+                                                        class="btn btn-danger"
+                                                        value="Eliminar">
+                                                </form>
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Cancelar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endif %}                                
                                 {% endfor %}
                             </table>
                         </div>
                         <!-- /.card-body -->
+                        <a href="{% url 'recuperar_servicios' %}" class="btn btn-warning float-right mr-1 mb-3" title="Papelera"><i class="fas fa-trash-restore"></i>&nbsp; Restaurar </a>
                     </div>
                     <!-- /.card -->
                 </section>
