@@ -1,28 +1,90 @@
-{% block contenido %}
 {% load crispy_forms_tags %}
 
-<!-- Modal de crear cliente -->
 
-<div class="modal fade" id="crearCliente" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<!-- Modal de crear categoría -->
+
+<div class="modal fade" id="crearCategoria" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
-    <div class="modal-content">
-        <div class="modal-header">
-        <h1 class="modal-title fs-3" id="staticBackdropLabel"><b class="text-black" >Crear Cliente</b></h1>
-        </div>
-        <div class="modal-body">
-            <!-- Formulario -->
-            <!--<form action="" method="POST">
-                {{ClienteForm}}
-                {% csrf_token %}
-            </form>-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-3" id="staticBackdropLabel"><b class="text-black" >Crear Categorías</b></h1>
+            </div>
+            <div class="modal-body">
+                <!-- Formulario -->
+                <form  action="{% url 'categoria-crear-cat' %}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
+                
+                    {% csrf_token %}          
+                    <div class="modal-body text-start" id="form-nuevo-usuario"> 
 
+                    
+                
+                        <div class="d-inline-block w-100">
+                            <label for="basic-url" for="validationCustom01" class="form-label ps-2 text-black" style="font-size: 17;">Nombre</label>
+                            <div class="input-group mb-3 w-100">
+                                <input type="text" class="form-control"
+                                    name="nombrecat" id="id_nombres"
+                                    aria-describedby="basic-addon3" required minlength="1"
+                                    maxlength="50" id="validationCustom01" required>
+                                    <div class="valid-feedback">
+                                        ¡Vamos bien!
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        Completa la información.
+                                    </div>
+                            </div>
+                        </div>
+                
+                        
+                
+                        <div class="d-inline-block w-100">
+                            <label for="basic-url" for="validationCustom03" class="form-label ps-2 text-black" style="font-size: 17;">Descripción</label>
+                            <div class="input-group mb-3 w-100">
+                                <textarea type="text" class="form-control" name="descripcioncat"
+                                    id="id_numeroTelefono"
+                                    aria-describedby="basic-addon3" id="validationCustom03" required minlength="1"
+                                    maxlength="250" required></textarea>
+                                    <div class="valid-feedback">
+                                        ¡Vamos bien!
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        Ingresa un número de teléfono valido.
+                                    </div>
+                            </div>
+                        </div>
+                
+                        
+                                        
+
+                        <div class="d-inline-block w-100">
+                            <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom06" style="font-size: 17;">Estado</label>
+                            <div class="input-group mb-3 w-100">
+                                <select id="id_tipoDocumento" class="form-select" name="estadocat"
+                                    aria-label="tipo-activo" id="validationCustom06" required>
+                                    <option class="text-black" selected disabled value>Seleccionar</option>
+                                    <option class="text-black" value="1">Activo</option>
+                                    <option class="text-black" value="0">Inactivo</option>
+                                </select>
+                                <div class="valid-feedback">
+                                    ¡Vamos bien!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Selecciona una opción valida.
+                                </div>
+                            </div>
+                        </div>    
+                        
+
+                    </div> 
+
+                    <div class="modal-footer">
+                        <!-- BOTÓN PARA GUARDAR LA INFORMACIÓN DIGITADA EN EL FORMULARIO DE CATEGORÍA -->
+                        <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <input class="btn btn-success" type="submit" name="form-nuevo-usuario" value="Crear">
+                    </div>
+
+                </form>
+            </div>
             
         </div>
-        <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <input class="btn btn-success" type="submit" value="Crear">
-        </div>
     </div>
-    </div>
-</div>       
-{% endblock contenido %}
+</div>    
