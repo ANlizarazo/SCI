@@ -4,7 +4,7 @@ from proveedores.views import delete_proveedor, proveedor_crear, proveedor_modif
 urlpatterns = [
     path('',proveedores,name="proveedores"),
     #Path to ADD Proveedor
-    path('proveedores-crear/',proveedores_crear,name="proveedores-crear"),
+    path('proveedores-crear/',proveedor_crear,name="proveedores-crear"),
     #Path to EDIT Proveedor
     path('proveedores_modificar/',proveedor_modificar,name="proveedores-modificar"),
     #Path to View  Proveedor data individually
