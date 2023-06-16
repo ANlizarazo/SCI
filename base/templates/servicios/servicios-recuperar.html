@@ -26,7 +26,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="shortcut icon" href="/static/img/logoMallas.ico"
             type="image/x-icon">
-        <title>PAPELERA CLIENTES</title>
+        <title>PAPELERA SERVICIOS</title>
     </head>
     <body class="hold-transition sidebar-mini layout-fixed">
         <div class="wrapper">
@@ -40,7 +40,7 @@
                         <div class="row mb-2">
                             <div class="col-sm-6">
                                 <h1 class="m-0 text-black"><tr><b
-                                            class="text-black">CLIENTES</b></tr></h1>
+                                            class="text-black">SERVICIOS</b></tr></h1>
                             </div>
                             <div class="col-sm-6">
                                 <ol class="breadcrumb float-sm-right">
@@ -48,8 +48,8 @@
                                             href="http://127.0.0.1:8000/inicio/">
                                             <b class="text-success">Inicio </b></a></li>
                                     <li class="breadcrumb-item-active"><a
-                                            href="http://127.0.0.1:8000/clientes/"
-                                            class="text-success">/ Clientes</a></li>
+                                            href="http://127.0.0.1:8000/tecnicos/"
+                                            class="text-success">/ Servicios</a></li>
                                 </ol>
                             </div>
                         </div>
@@ -64,8 +64,8 @@
                             <!-- Card -->
                             <div class="card ">
                                 <div class="card-header">
-                                    <h3 class="card-title text-success"><a href="{% url 'clientes' %}" title="Volver"><i Class="fas fa-reply text-green"></i>
-                                        </a><tr><b class="text-success">&nbsp;&nbsp; Papelera Clientes</b></tr></h3>
+                                    <h3 class="card-title text-success"><a href="{% url 'tecnico' %}" title="Volver"><i Class="fas fa-reply text-green"></i>
+                                        </a><tr><b class="text-success">&nbsp;&nbsp; Papelera Servicios</b></tr></h3>
                                 </div>
                                 <!-- /.card-header -->
                                 <div class="card-body">
@@ -73,28 +73,29 @@
                                     <table id="tabla-tecnico" class="table table-bordered table-striped border-dark">
                                         <thead class="bg-gray">
                                             <tr>
-                                                <th class="border-dark">Nombre Empresa</th>
-                                                <th class="border-dark">NIT</th>
-                                                <th class="border-dark">Teléfono</th>
-                                                <th class="border-dark">Dirección</th>
-                                                <th class="border-dark">Email</th>
-                                                <th class="border-dark">Ciudad</th>
-                                                <th class="border-dark">Estado</th>
+                                                <th class="border-dark">ID Servicio</th>
+                                                <th class="border-dark">Observación</th>
+                                                <th class="border-dark">Fecha de Inicio</th>
+                                                <th class="border-dark">Fecha de Entrega</th>
+                                                <th class="border-dark">Precio</th>
+                                                <th class="border-dark">Observación Final</th>
+                                                <th class="border-dark">Tipo de Servicio</th>
                                                 <th class="border-dark">Acciones</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {% for cliente in clientes %}
+                                            {% for servicio in servicios %}
                                             <tr>
-                                                <td class="border-dark text-black">{{cliente.nombreEmpresa}}</td>
-                                                <td class="border-dark text-black">{{cliente.nit}}</td>
-                                                <td class="border-dark text-black">{{cliente.telefono}}</td>
-                                                <td class="border-dark text-black">{{cliente.direccion}}</td>
-                                                <td class="border-dark text-black">{{cliente.email}}</td>
-                                                <td class="border-dark text-black">{{cliente.ciudad}}</td>
-                                                <td class="border-dark text-black">{{cliente.estado}}</td>
+                                                <td class="border-dark text-black">{{servicio.id}}</td>
+                                                <td class="border-dark text-black">{{servicio.observacion}}</td>
+                                                <td class="border-dark text-black">{{servicio.fechaInicio}}</td>
+                                                <td class="border-dark text-black">{{servicio.fechaEntrega}}</td>
+                                                <td class="border-dark text-black">{{servicio.precio}}</td>
+                                                <td class="border-dark text-black">{{servicio.observacionFinal}}</td>
+                                                <td class="border-dark text-black">{{servicio.tipoServicio}}</td>
+  
                                                 <td class="border-dark text-black">
-                                                    <a href="{% url 'recuperar_cliente' cliente.id %}" class="btn btn-warning" title="Restaurar">
+                                                    <a href="{% url 'recuperar-ser' servicio.id %}" class="btn btn-warning" title="Restaurar">
                                                         <i Class="fas fa-trash-restore"></i></a>
                                                 </td>
                                             </tr>

@@ -56,77 +56,55 @@ def clientes_crear(request):
 
 
 
-# def clientes_crear(request):
 
-#     titulo="Clientes - Crear"
-#     if request.method=="POST":
-#         form= ClienteForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             print("El cliente se guardó correctamente")
-#             return redirect('clientes')
-#         else:
-#             print("El cliente NO se guardó")
-#     else:
-#         form= ClienteForm()
-#     context={
-#         'titulo':titulo,
-#         "form":form
-#     }
-#     return render(request,'clientes/clientes.html',context)
-
-
-
-def clientes_modificar(request,pk, *callback_kwargs):
-    titulo = "Clientes - Modificar"
-    cliente = Cliente.objects.get(id=pk)
-    if request.method == "POST" and 'form-modificar' in request.POST:
-        form = ClienteForm(request.POST, instance=Cliente)
-        modal_status = 'show'
-        pk_cliente = request.POST['pk']
-        ## cuerpo del modal ##
-        modal_title = f"Modificar {Cliente}"
-        modal_submit = "Modificar"
-        #######################
-        tipo = "modificar"
-        form_update = ClienteUpdateForm(instance=Cliente)
-        
-        cliente = Cliente.objects.get(id=pk_cliente)
+#Function to EDIT cliente
+def clientes_modificar(request, pk):
+    cliente = Cliente.objects.get(id = pk)
+    if request.method == "POST":
+        form = ClienteForm(request.POST, instance = cliente)
         if form.is_valid():
             form.save()
+            
             return redirect('clientes')
         else:
-            print("Hubo un error al guardar los cambios")
+            print('Error al editar al cliente')
     else:
-        form = ClienteForm(instance=Cliente)
-    context = {
-        'titulo': titulo,
-        'form': form,
-        'modal_status':modal_status,
-        'modal_submit': modal_submit,
-        'modal_title': modal_title,
-        'pk': pk_cliente,
-        'tipo': tipo,
-        'form_update':form_update
+        form = ClienteForm(instance = cliente)
+
+    return render(request, 'tecnico/tecnico.html', {'form': form})    
+
+
+
+def clientes_eliminar(request, pk):
+    cliente = Cliente.objects.filter(id = pk).update(
+        estado = '0'
+    )
+   
+    return redirect('clientes') 
+
+
+
+#Function to RECUPERAR cliente
+def recuperar_clientes(request):
+    
+    clientes= Cliente.objects.all()
+    clientes_recuperables = []
+
+    for cliente in clientes:
+        if cliente.estado == '0':
+            clientes_recuperables.append(cliente)
+
+    context={
+        "clientes":clientes_recuperables
     }
-    return render(request, 'clientes/clientes-modificar.html', context)
+    return render(request,'clientes/clientes-recuperar.html',context)
 
 
 
-def ciudad_crear(request):
-    if request.method == 'POST':
-        formCiudad = CiudadForm(request.POST)
-        if formCiudad.is_valid():
-            formCiudad.save()        
-        
-            print('Cliente creado correctamente')
-
-            return redirect('clientes')
-        else:
-            print('Cliente NO FUÉ CREADO')
-
-        context = {
-            'form': formCiudad
-        }
-
-        return render(request, 'clientes/clientes.html', context)
+def recuperar_cliente(request, pk):
+    titulo = 'Recuperar Cliente'
+    Cliente.objects.filter(id = pk).update(
+        estado = '1'
+    )
+    
+    return redirect('clientes')

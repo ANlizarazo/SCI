@@ -24,5 +24,3 @@ class CiudadForm(ModelForm):
 
         model = Ciudad
         fields = '__all__'
-
-
