@@ -1,66 +1,1204 @@
 {% load crispy_forms_tags %}
 
+<!-- Modal de crear cliente -->
 
-<!-- Modal de crear categoría -->
-
-<div class="modal fade" id="crearCategoria" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="crear_cliente" data-bs-backdrop="static"
+    data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+    aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-3" id="staticBackdropLabel"><b class="text-black" >Crear Categorías</b></h1>
+                <h1 class="modal-title fs-3" id="staticBackdropLabel"><b
+                        class="text-black">CREAR NUEVO CLIENTE</b></h1>
             </div>
             <div class="modal-body">
                 <!-- Formulario -->
-                <form  action="{% url 'categoria-crear-cat' %}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
-                
-                    {% csrf_token %}          
-                    <div class="modal-body text-start" id="form-nuevo-usuario"> 
+                <form action="{% url 'clientes-crear' %}" method="POST"
+                    enctype="multipart/form-data" class="needs-validation"
+                    novalidate>
+                    {% csrf_token %}
+                    <div class="modal-body text-start" id="form-nuevo-tecnico">
+                        
 
-                    
-                
                         <div class="d-inline-block w-100">
-                            <label for="basic-url" for="validationCustom01" class="form-label ps-2 text-black" style="font-size: 17;">Nombre</label>
+                            <label for="basic-url" for="validationCustom01"
+                                class="form-label ps-2 text-black"
+                                style="font-size: 17;">Nombre Empresa</label>
                             <div class="input-group mb-3 w-100">
                                 <input type="text" class="form-control"
-                                    name="nombrecat" id="id_nombres"
-                                    aria-describedby="basic-addon3" required minlength="1"
-                                    maxlength="50" id="validationCustom01" required>
-                                    <div class="valid-feedback">
-                                        ¡Vamos bien!
-                                    </div>
-                                    <div class="invalid-feedback">
-                                        Completa la información.
-                                    </div>
+                                    name="nombreEmpresa" id="id_nombres"
+                                    aria-describedby="basic-addon3" required
+                                    minlength="1"
+                                    maxlength="50" id="validationCustom01"
+                                    required>
+                                <div class="valid-feedback">
+                                    ¡Vamos bien!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Completa la información.
+                                </div>
                             </div>
                         </div>
-                
-                        
-                
-                        <div class="d-inline-block w-100">
-                            <label for="basic-url" for="validationCustom03" class="form-label ps-2 text-black" style="font-size: 17;">Descripción</label>
-                            <div class="input-group mb-3 w-100">
-                                <textarea type="text" class="form-control" name="descripcioncat"
-                                    id="id_numeroTelefono"
-                                    aria-describedby="basic-addon3" id="validationCustom03" required minlength="1"
-                                    maxlength="250" required></textarea>
-                                    <div class="valid-feedback">
-                                        ¡Vamos bien!
-                                    </div>
-                                    <div class="invalid-feedback">
-                                        Ingresa un número de teléfono valido.
-                                    </div>
-                            </div>
-                        </div>
-                
-                        
-                                        
 
                         <div class="d-inline-block w-100">
-                            <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom06" style="font-size: 17;">Estado</label>
+                            <label for="basic-url" for="validationCustom02"
+                                class="form-label ps-2 text-black"
+                                style="font-size: 17;">NIT</label>
                             <div class="input-group mb-3 w-100">
-                                <select id="id_tipoDocumento" class="form-select" name="estadocat"
-                                    aria-label="tipo-activo" id="validationCustom06" required>
-                                    <option class="text-black" selected disabled value>Seleccionar</option>
+                                <input type="number" class="form-control"
+                                    name="nit" id="id_apellidos"
+                                    aria-describedby="basic-addon3"
+                                    id="validationCustom02" required
+                                    minlength="1"
+                                    maxlength="50" required>
+                                <div class="valid-feedback">
+                                    ¡Vamos bien!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Completa la información.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="d-inline-block w-100">
+                            <label for="basic-url" for="validationCustom03"
+                                class="form-label ps-2 text-black"
+                                style="font-size: 17;">Número de Teléfono</label>
+                            <div class="input-group mb-3 w-100">
+                                <input type="number" class="form-control"
+                                    name="telefono"
+                                    id="id_numeroTelefono"
+                                    aria-describedby="basic-addon3"
+                                    id="validationCustom03" required
+                                    minlength="1"
+                                    maxlength="20" required>
+                                <div class="valid-feedback">
+                                    ¡Vamos bien!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Ingresa un número de teléfono valido.
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="d-inline-block w-100">
+                            <label for="basic-url" class="form-label ps-2
+                                text-black" for="validationCustom07"
+                                style="font-size: 17;">Dirección</label>
+                            <div class="input-group mb-3 w-100">
+                                <input type="text" class="form-control"
+                                    name="direccion"
+                                    id="id_numeroDocumento"
+                                    aria-describedby="basic-addon3" required
+                                    minlength="1"
+                                    maxlength="50" id="validationCustom07"
+                                    required>
+                                <div class="valid-feedback">
+                                    ¡Vamos bien!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Ingresa un número de documento valido.
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="d-inline-block w-100">
+                            <label for="basic-url" class="form-label ps-2
+                                text-black" for="validationCustom07"
+                                style="font-size: 17;">Email</label>
+                            <div class="input-group mb-3 w-100">
+                                <input type="email" class="form-control"
+                                    name="email"
+                                    id="id_numeroDocumento"
+                                    aria-describedby="basic-addon3" required
+                                    minlength="1"
+                                    maxlength="50" id="validationCustom07"
+                                    required>
+                                <div class="valid-feedback">
+                                    ¡Vamos bien!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Ingresa un número de documento valido.
+                                </div>
+                            </div>
+                        </div>
+
+
+                        
+
+
+                        <div class="d-inline-block w-100">
+                            <label for="basic-url" class="form-label ps-2
+                                text-black" for="validationCustom09"
+                                style="font-size: 17;">Ciudad</label>
+                            <div class="input-group mb-3 w-100">
+                                <select id="id_rol" class="form-select"
+                                    name="ciudad"
+                                    aria-label="tipo-activo"
+                                    id="validationCustom09" required>
+                                    <option class="text-black" selected disabled
+                                        value>Seleccionar</option>
+                                    <option class="text-black" value="Abejorral">Abejorral</option>
+                                    <option class="text-black" value="Abrego">Abrego</option>
+                                    <option class="text-black" value="Abriaquí">Abriaquí</option>
+                                    <option class="text-black" value="Acacías">Acacías</option>
+                                    <option class="text-black" value="Acandí">Acandí</option>
+                                    <option class="text-black" value="Acevedo">Acevedo</option>
+                                    <option class="text-black" value="Achí">Achí</option>
+                                    <option class="text-black" value="Agrado">Agrado</option>
+                                    <option class="text-black" value="Agua de Dios">Agua de Dios</option>
+                                    <option class="text-black" value="Aguachica">Aguachica</option>
+                                    <option class="text-black" value="Aguada">Aguada</option>
+                                    <option class="text-black" value="Aguadas">Aguadas</option>
+                                    <option class="text-black" value="Aguazul">Aguazul</option>
+                                    <option class="text-black" value="Agustín Codazzi">Agustín Codazzi</option>
+                                    <option class="text-black" value="Aipe">Aipe</option>
+                                    <option class="text-black" value="Albán">Albán</option>tion>
+                                    <option class="text-black" value="Albania">Albania</option>
+                                    <option class="text-black" value="Alcalá">Alcalá</option>
+                                    <option class="text-black" value="Aldana">Aldana</option>
+                                    <option class="text-black" value="Alejandría">Alejandría</option>
+                                    <option class="text-black" value="Algarrobo">Algarrobo</option>
+                                    <option class="text-black" value="Algeciras">Algeciras</option>
+                                    <option class="text-black" value="Almaguer">Almaguer</option>
+                                    <option class="text-black" value="Almeida">Almeida</option>
+                                    <option class="text-black" value="Alpujarra">Alpujarra</option>
+                                    <option class="text-black" value="Altamira">Altamira</option>
+                                    <option class="text-black" value="Alto Baudo">Alto Baudo</option>
+                                    <option class="text-black" value="Altos del Rosario">Altos del Rosario</option>
+                                    <option class="text-black" value="Alvarado">Alvarado</option>
+                                    <option class="text-black" value="Amagá">Amagá</option>
+                                    <option class="text-black" value="Amalfi">Amalfi</option>
+                                    <option class="text-black" value="Ambalema">Ambalema</option>
+                                    <option class="text-black" value="Anapoima">Anapoima</option>
+                                    <option class="text-black" value="Ancuyá">Ancuyá</option>
+                                    <option class="text-black" value="Andalucía">Andalucía</option>
+                                    <option class="text-black" value="Andes">Andes</option>
+                                    <option class="text-black" value="Angelópolis">Angelópolis</option>
+                                    <option class="text-black" value="Angostura">Angostura</option>
+                                    <option class="text-black" value="Anolaima">Anolaima</option>
+                                    <option class="text-black" value="Anorí">Anorí</option>
+                                    <option class="text-black" value="Anserma">Anserma</option>
+                                    <option class="text-black" value="Ansermanuevo">Ansermanuevo</option>
+                                    <option class="text-black" value="Anza">Anza</option>
+                                    <option class="text-black" value="Anzoátegui">Anzoátegui</option>
+                                    <option class="text-black" value="Apartadó">Apartadó</option>
+                                    <option class="text-black" value="Apía">Apía</option>
+                                    <option class="text-black" value="Apulo">Apulo</option>
+                                    <option class="text-black" value="Aquitania">Aquitania</option>
+                                    <option class="text-black" value="Aracataca">Aracataca</option>
+                                    <option class="text-black" value="Aranzazu">Aranzazu</option>
+                                    <option class="text-black" value="Aratoca">Aratoca</option>
+                                    <option class="text-black" value="Arauca">Arauca</option>
+                                    <option class="text-black" value="Arauquita">Arauquita</option>
+                                    <option class="text-black" value="Arbeláez">Arbeláez</option>
+                                    <option class="text-black" value="Arboleda">Arboleda</option>
+                                    <option class="text-black" value="Arboledas">Arboledas</option>
+                                    <option class="text-black" value="Arboletes">Arboletes</option>
+                                    <option class="text-black" value="Arcabuco">Arcabuco</option>
+                                    <option class="text-black" value="Arenal">Arenal</option>
+                                    <option class="text-black" value="Argelia">Argelia</option>
+                                    <option class="text-black" value="Ariguaní">Ariguaní</option>
+                                    <option class="text-black" value="Arjona">Arjona</option>
+                                    <option class="text-black" value="Armenia">Armenia</option>
+                                    <option class="text-black" value="Armero">Armero</option>
+                                    <option class="text-black" value="Arroyohondo">Arroyohondo</option>
+                                    <option class="text-black" value="Astrea">Astrea</option>
+                                    <option class="text-black" value="Ataco">Ataco</option>
+                                    <option class="text-black" value="Atrato">Atrato</option>
+                                    <option class="text-black" value="Ayapel">Ayapel</option>
+                                    <option class="text-black" value="Bagadó">Bagadó</option>
+                                    <option class="text-black" value="Bahía Solano">Bahía Solano</option>
+                                    <option class="text-black" value="Bajo Baudó">Bajo Baudó</option>
+                                    <option class="text-black" value="Balboa">Balboa</option>
+                                    <option class="text-black" value="Baranoa">Baranoa</option>
+                                    <option class="text-black" value="Baraya">Baraya</option>
+                                    <option class="text-black" value="Barbacoas">Barbacoas</option>
+                                    <option class="text-black" value="Barbosa">Barbosa</option>
+                                    <option class="text-black" value="Barichara">Barichara</option>
+                                    <option class="text-black" value="Barranca de Upía">Barranca de Upía</option>
+                                    <option class="text-black" value="Barrancabermeja">Barrancabermeja</option>
+                                    <option class="text-black" value="Barrancas">Barrancas</option>
+                                    <option class="text-black" value="Barranco de Loba">Barranco de Loba</option>
+                                    <option class="text-black" value="Barranco Minas">Barranco Minas</option>
+                                    <option class="text-black" value="Barranquilla">Barranquilla</option>
+                                    <option class="text-black" value="Becerril">Becerril</option>
+                                    <option class="text-black" value="Belalcázar">Belalcázar</option>
+                                    <option class="text-black" value="Belén">Belén</option>
+                                    <option class="text-black" value="Belén de Bajirá">Belén de Bajirá</option>
+                                    <option class="text-black" value="Belén de Los Andaquies">Belén de Los Andaquies</option>
+                                    <option class="text-black" value="Belén de Umbría">Belén de Umbría</option>
+                                    <option class="text-black" value="Bello">Bello</option>
+                                    <option class="text-black" value="Belmira">Belmira</option>
+                                    <option class="text-black" value="Beltrán">Beltrán</option>
+                                    <option class="text-black" value="Berbeo">Berbeo</option>
+                                    <option class="text-black" value="Betania">Betania</option>
+                                    <option class="text-black" value="Betéitiva">Betéitiva</option>
+                                    <option class="text-black" value="Betulia">Betulia</option>
+                                    <option class="text-black" value="Bituima">Bituima</option>
+                                    <option class="text-black" value="Boavita">Boavita</option>
+                                    <option class="text-black" value="Bochalema">Bochalema</option>
+                                    <option class="text-black" value="Bogotá">Bogotá</option>
+                                    <option class="text-black" value="Bojacá">Bojacá</option>
+                                    <option class="text-black" value="Bojaya">Bojaya</option>
+                                    <option class="text-black" value="Bolívar">Bolívar</option>
+                                    <option class="text-black" value="Bosconia">Bosconia</option>
+                                    <option class="text-black" value="Boyacá">Boyacá</option>
+                                    <option class="text-black" value="Briceño">Briceño</option>
+                                    <option class="text-black" value="Bucaramanga">Bucaramanga</option>
+                                    <option class="text-black" value="Bucarasica">Bucarasica</option>
+                                    <option class="text-black" value="Buenaventura">Buenaventura</option>
+                                    <option class="text-black" value="Buenavista">Buenavista</option>
+                                    <option class="text-black" value="Buenos Aires">Buenos Aires</option>
+                                    <option class="text-black" value="Buesaco">Buesaco</option>
+                                    <option class="text-black" value="Buga">Buga</option>
+                                    <option class="text-black" value="Bugalagrande">Bugalagrande</option>
+                                    <option class="text-black" value="Buriticá">Buriticá</option>
+                                    <option class="text-black" value="Busbanzá">Busbanzá</option>
+                                    <option class="text-black" value="Cabrera">Cabrera</option>
+                                    <option class="text-black" value="Cabuyaro">Cabuyaro</option>
+                                    <option class="text-black" value="Cacahual">Cacahual</option>
+                                    <option class="text-black" value="Cáceres">Cáceres</option>
+                                    <option class="text-black" value="Cachipay">Cachipay</option>
+                                    <option class="text-black" value="Cachirá">Cachirá</option>
+                                    <option class="text-black" value="Cácota">Cácota</option>
+                                    <option class="text-black" value="Caicedo">Caicedo</option>
+                                    <option class="text-black" value="Caicedonia">Caicedonia</option>
+                                    <option class="text-black" value="Caimito">Caimito</option>
+                                    <option class="text-black" value="Cajamarca">Cajamarca</option>
+                                    <option class="text-black" value="Cajibío">Cajibío</option>
+                                    <option class="text-black" value="Cajicá">Cajicá</option>
+                                    <option class="text-black" value="Calamar">Calamar</option>
+                                    <option class="text-black" value="Calarca">Calarca</option>
+                                    <option class="text-black" value="Caldas">Caldas</option>
+                                    <option class="text-black" value="Caldono">Caldono</option>
+                                    <option class="text-black" value="Cali">Cali</option>
+                                    <option class="text-black" value="California">California</option>
+                                    <option class="text-black" value="Calima">Calima</option>
+                                    <option class="text-black" value="Caloto">Caloto</option>
+                                    <option class="text-black" value="Campamento">Campamento</option>
+                                    <option class="text-black" value="Campo de la Cruz">Campo de la Cruz</option>
+                                    <option class="text-black" value="Campoalegre">Campoalegre</option>
+                                    <option class="text-black" value="Campohermoso">Campohermoso</option>
+                                    <option class="text-black" value="Canalete">Canalete</option>
+                                    <option class="text-black" value="Cañasgordas">Cañasgordas</option>
+                                    <option class="text-black" value="Candelaria">Candelaria</option>
+                                    <option class="text-black" value="Cantagallo">Cantagallo</option>
+                                    <option class="text-black" value="Caparrapí">Caparrapí</option>
+                                    <option class="text-black" value="Capitanejo">Capitanejo</option>
+                                    <option class="text-black" value="Caqueza">Caqueza</option>
+                                    <option class="text-black" value="Caracolí">Caracolí</option>
+                                    <option class="text-black" value="Caramanta">Caramanta</option>
+                                    <option class="text-black" value="Carcasí">Carcasí</option>
+                                    <option class="text-black" value="Carepa">Carepa</option>
+                                    <option class="text-black" value="Carmen de Apicalá">Carmen de Apicalá</option>
+                                    <option class="text-black" value="Carmen de Carupa">Carmen de Carupa</option>
+                                    <option class="text-black" value="Carmen del Darien">Carmen del Darien</option>
+                                    <option class="text-black" value="Carmen del Viboral">Carmen del Viboral</option>
+                                    <option class="text-black" value="Carolina">Carolina</option>
+                                    <option class="text-black" value="Cartagena">Cartagena</option>
+                                    <option class="text-black" value="Cartagena del Chairá">Cartagena del Chairá</option>
+                                    <option class="text-black" value="Cartago">Cartago</option>
+                                    <option class="text-black" value="Caruru">Caruru</option>
+                                    <option class="text-black" value="Casabianca">Casabianca</option>
+                                    <option class="text-black" value="Castilla La Nueva">Castilla La Nueva</option>
+                                    <option class="text-black" value="Caucasia">Caucasia</option>
+                                    <option class="text-black" value="Cepitá">Cepitá</option>
+                                    <option class="text-black" value="Cereté">Cereté</option>
+                                    <option class="text-black" value="Cerinza">Cerinza</option>
+                                    <option class="text-black" value="Cerrito">Cerrito</option>
+                                    <option class="text-black" value="Cerro San Antonio">Cerro San Antonio</option>
+                                    <option class="text-black" value="Cértegui">Cértegui</option>
+                                    <option class="text-black" value="Chachagüí">Chachagüí</option>
+                                    <option class="text-black" value="Chaguaní">Chaguaní</option>
+                                    <option class="text-black" value="Chalán">Chalán</option>
+                                    <option class="text-black" value="Chameza">Chameza</option>
+                                    <option class="text-black" value="Chaparral">Chaparral</option>
+                                    <option class="text-black" value="Charalá">Charalá</option>
+                                    <option class="text-black" value="Charta">Charta</option>
+                                    <option class="text-black" value="Chía">Chía</option>
+                                    <option class="text-black" value="Chibolo">Chibolo</option>
+                                    <option class="text-black" value="Chigorodó">Chigorodó</option>
+                                    <option class="text-black" value="Chima">Chima</option>
+                                    <option class="text-black" value="Chimá">Chimá</option>
+                                    <option class="text-black" value="Chimichagua">Chimichagua</option>
+                                    <option class="text-black" value="Chinácota">Chinácota</option>
+                                    <option class="text-black" value="Chinavita">Chinavita</option>
+                                    <option class="text-black" value="Chinchiná">Chinchiná</option>
+                                    <option class="text-black" value="Chinú">Chinú</option>
+                                    <option class="text-black" value="Chipaque">Chipaque</option>
+                                    <option class="text-black" value="Chipatá">Chipatá</option>
+                                    <option class="text-black" value="Chiquinquirá">Chiquinquirá</option>
+                                    <option class="text-black" value="Chíquiza">Chíquiza</option>
+                                    <option class="text-black" value="Chiriguaná">Chiriguaná</option>
+                                    <option class="text-black" value="Chiscas">Chiscas</option>
+                                    <option class="text-black" value="Chita">Chita</option>
+                                    <option class="text-black" value="Chitagá">Chitagá</option>
+                                    <option class="text-black" value="Chitaraque">Chitaraque</option>
+                                    <option class="text-black" value="Chivatá">Chivatá</option>
+                                    <option class="text-black" value="Chivor">Chivor</option>
+                                    <option class="text-black" value="Choachí">Choachí</option>
+                                    <option class="text-black" value="Chocontá">Chocontá</option>
+                                    <option class="text-black" value="Cicuco">Cicuco</option>
+                                    <option class="text-black" value="Ciénaga">Ciénaga</option>
+                                    <option class="text-black" value="Ciénaga de Oro">Ciénaga de Oro</option>
+                                    <option class="text-black" value="Ciénega">Ciénega</option>
+                                    <option class="text-black" value="Cimitarra">Cimitarra</option>
+                                    <option class="text-black" value="Circasia">Circasia</option>
+                                    <option class="text-black" value="Cisneros">Cisneros</option>
+                                    <option class="text-black" value="Ciudad Bolívar">Ciudad Bolívar</option>
+                                    <option class="text-black" value="Clemencia">Clemencia</option>
+                                    <option class="text-black" value="Cocorná">Cocorná</option>
+                                    <option class="text-black" value="Coello">Coello</option>
+                                    <option class="text-black" value="Cogua">Cogua</option>
+                                    <option class="text-black" value="Colombia">Colombia</option>
+                                    <option class="text-black" value="Colón">Colón</option>
+                                    <option class="text-black" value="Coloso">Coloso</option>
+                                    <option class="text-black" value="Cómbita">Cómbita</option>
+                                    <option class="text-black" value="Concepción">Concepción</option>
+                                    <option class="text-black" value="Concordia">Concordia</option>
+                                    <option class="text-black" value="Condoto">Condoto</option>
+                                    <option class="text-black" value="Confines">Confines</option>
+                                    <option class="text-black" value="Consaca">Consaca</option>
+                                    <option class="text-black" value="Contadero">Contadero</option>
+                                    <option class="text-black" value="Contratación">Contratación</option>
+                                    <option class="text-black" value="Convención">Convención</option>
+                                    <option class="text-black" value="Copacabana">Copacabana</option>
+                                    <option class="text-black" value="Coper">Coper</option>
+                                    <option class="text-black" value="Córdoba">Córdoba</option>
+                                    <option class="text-black" value="Corinto">Corinto</option>
+                                    <option class="text-black" value="Coromoro">Coromoro</option>
+                                    <option class="text-black" value="Corozal">Corozal</option>
+                                    <option class="text-black" value="Corrales">Corrales</option>
+                                    <option class="text-black" value="Cota">Cota</option>
+                                    <option class="text-black" value="Cotorra">Cotorra</option>
+                                    <option class="text-black" value="Covarachía">Covarachía</option>
+                                    <option class="text-black" value="Coveñas">Coveñas</option>
+                                    <option class="text-black" value="Coyaima">Coyaima</option>
+                                    <option class="text-black" value="Cravo Norte">Cravo Norte</option>
+                                    <option class="text-black" value="Cuaspud">Cuaspud</option>
+                                    <option class="text-black" value="Cubará">Cubará</option>
+                                    <option class="text-black" value="Cubarral">Cubarral</option>
+                                    <option class="text-black" value="Cucaita">Cucaita</option>
+                                    <option class="text-black" value="Cucunubá">Cucunubá</option>
+                                    <option class="text-black" value="Cúcuta">Cúcuta</option>
+                                    <option class="text-black" value="Cucutilla">Cucutilla</option>
+                                    <option class="text-black" value="Cuítiva">Cuítiva</option>
+                                    <option class="text-black" value="Cumaral">Cumaral</option>
+                                    <option class="text-black" value="Cumaribo">Cumaribo</option>
+                                    <option class="text-black" value="Cumbal">Cumbal</option>
+                                    <option class="text-black" value="Cumbitara">Cumbitara</option>
+                                    <option class="text-black" value="Cunday">Cunday</option>
+                                    <option class="text-black" value="Curillo">Curillo</option>
+                                    <option class="text-black" value="Curití">Curití</option>
+                                    <option class="text-black" value="Curumaní">Curumaní</option>
+                                    <option class="text-black" value="Dabeiba">Dabeiba</option>
+                                    <option class="text-black" value="Dagua">Dagua</option>
+                                    <option class="text-black" value="Dibulla">Dibulla</option>
+                                    <option class="text-black" value="Distracción">Distracción</option>
+                                    <option class="text-black" value="Dolores">Dolores</option>
+                                    <option class="text-black" value="Don Matías">Don Matías</option>
+                                    <option class="text-black" value="Dosquebradas">Dosquebradas</option>
+                                    <option class="text-black" value="Duitama">Duitama</option>
+                                    <option class="text-black" value="Durania">Durania</option>
+                                    <option class="text-black" value="Ebéjico">Ebéjico</option>
+                                    <option class="text-black" value="El Águila">El Águila</option>
+                                    <option class="text-black" value="El Bagre">El Bagre</option>
+                                    <option class="text-black" value="El Banco">El Banco</option>
+                                    <option class="text-black" value="El Cairo">El Cairo</option>
+                                    <option class="text-black" value="El Calvario">El Calvario</option>
+                                    <option class="text-black" value="El Cantón del San Pablo">El Cantón del San Pablo</option>
+                                    <option class="text-black" value="El Carmen">El Carmen</option>
+                                    <option class="text-black" value="El Carmen de Atrato">El Carmen de Atrato</option>
+                                    <option class="text-black" value="El Carmen de Bolívar">El Carmen de Bolívar</option>
+                                    <option class="text-black" value="El Carmen de Chucurí">El Carmen de Chucurí</option>
+                                    <option class="text-black" value="El Carmen de Viboral">El Carmen de Viboral</option>
+                                    <option class="text-black" value="El Castillo">El Castillo</option>
+                                    <option class="text-black" value="El Cerrito">El Cerrito</option>
+                                    <option class="text-black" value="El Charco">El Charco</option>
+                                    <option class="text-black" value="El Cocuy">El Cocuy</option>
+                                    <option class="text-black" value="El Colegio">El Colegio</option>
+                                    <option class="text-black" value="El Copey">El Copey</option>
+                                    <option class="text-black" value="El Doncello">El Doncello</option>
+                                    <option class="text-black" value="El Dorado">El Dorado</option>
+                                    <option class="text-black" value="El Dovio">El Dovio</option>
+                                    <option class="text-black" value="El encanto">El encanto</option>
+                                    <option class="text-black" value="El Espino">El Espino</option>
+                                    <option class="text-black" value="El Guacamayo">El Guacamayo</option>
+                                    <option class="text-black" value="El Guamo">El Guamo</option>
+                                    <option class="text-black" value="El Litoral del San Juan">El Litoral del San Juan</option>
+                                    <option class="text-black" value="El Molino">El Molino</option>
+                                    <option class="text-black" value="El Paso">El Paso</option>
+                                    <option class="text-black" value="El Paujil">El Paujil</option>
+                                    <option class="text-black" value="El Peñol">El Peñol</option>
+                                    <option class="text-black" value="El Piñon">El Piñon</option>
+                                    <option class="text-black" value="El Playón">El Playón</option>
+                                    <option class="text-black" value="El Retén">El Retén</option>
+                                    <option class="text-black" value="El Retorno">El Retorno</option>
+                                    <option class="text-black" value="El Roble">El Roble</option>
+                                    <option class="text-black" value="El Rosal">El Rosal</option>
+                                    <option class="text-black" value="El Rosario">El Rosario</option>
+                                    <option class="text-black" value="El Santuario">El Santuario</option>
+                                    <option class="text-black" value="El Tablón de Gómez">El Tablón de Gómez</option>
+                                    <option class="text-black" value="El Tambo">El Tambo</option>
+                                    <option class="text-black" value="El Tarra">El Tarra</option>
+                                    <option class="text-black" value="El Zulia">El Zulia</option>
+                                    <option class="text-black" value="Elías">Elías</option>
+                                    <option class="text-black" value="Encino">Encino</option>
+                                    <option class="text-black" value="Enciso">Enciso</option>
+                                    <option class="text-black" value="Entrerrios">Entrerrios</option>
+                                    <option class="text-black" value="Envigado">Envigado</option>
+                                    <option class="text-black" value="Espinal">Espinal</option>
+                                    <option class="text-black" value="Facatativá">Facatativá</option>
+                                    <option class="text-black" value="Falan">Falan</option>
+                                    <option class="text-black" value="Filadelfia">Filadelfia</option>
+                                    <option value="Filandia">Filandia</option>
+                                    <option value="Firavitoba">Firavitoba</option>
+                                    <option class="text-black" value="Flandes">Flandes</option>
+                                    <option class="text-black" value="Florencia">Florencia</option>
+                                    <option class="text-black" value="Floresta">Floresta</option>
+                                    <option class="text-black" value="Florián">Florián</option>
+                                    <option class="text-black" value="Florida">Florida</option>
+                                    <option class="text-black" value="Floridablanca">Floridablanca</option>
+                                    <option class="text-black" value="Fomeque">Fomeque</option>
+                                    <option class="text-black" value="Fonseca">Fonseca</option>
+                                    <option class="text-black" value="Fortul">Fortul</option>
+                                    <option class="text-black" value="Fosca">Fosca</option>
+                                    <option class="text-black" value="Francisco Pizarro">Francisco Pizarro</option>
+                                    <option class="text-black" value="Fredonia">Fredonia</option>
+                                    <option class="text-black" value="Fresno">Fresno</option>
+                                    <option class="text-black" value="Frontino">Frontino</option>
+                                    <option class="text-black" value="Fuente de Oro">Fuente de Oro</option>
+                                    <option class="text-black" value="Fundación">Fundación</option>
+                                    <option class="text-black" value="Funes">Funes</option>
+                                    <option class="text-black" value="Funza">Funza</option>
+                                    <option class="text-black" value="Fúquene">Fúquene</option>
+                                    <option class="text-black" value="Fusagasugá">Fusagasugá</option>
+                                    <option class="text-black" value="Gachala">Gachala</option>
+                                    <option class="text-black" value="Gachancipá">Gachancipá</option>
+                                    <option class="text-black" value="Gachantivá">Gachantivá</option>
+                                    <option class="text-black" value="Gachetá">Gachetá</option>
+                                    <option class="text-black" value="Galán">Galán</option>
+                                    <option class="text-black" value="Galapa">Galapa</option>
+                                    <option class="text-black" value="Galeras">Galeras</option>
+                                    <option class="text-black" value="Gama">Gama</option>
+                                    <option class="text-black" value="Gamarra">Gamarra</option>
+                                    <option class="text-black" value="Gambita">Gambita</option>
+                                    <option class="text-black" value="Gameza">Gameza</option>
+                                    <option class="text-black" value="Garagoa">Garagoa</option>
+                                    <option class="text-black" value="Garzón">Garzón</option>
+                                    <option class="text-black" value="Génova">Génova</option>
+                                    <option class="text-black" value="Gigante">Gigante</option>
+                                    <option class="text-black" value="Ginebra">Ginebra</option>
+                                    <option class="text-black" value="Giraldo">Giraldo</option>
+                                    <option class="text-black" value="Girardot">Girardot</option>
+                                    <option class="text-black" value="Girardota">Girardota</option>
+                                    <option class="text-black" value="Girón">Girón</option>
+                                    <option class="text-black" value="Gómez Plata">Gómez Plata</option>
+                                    <option class="text-black" value="González">González</option>
+                                    <option class="text-black" value="Gramalote">Gramalote</option>
+                                    <option class="text-black" value="Granada">Granada</option>
+                                    <option class="text-black" value="Guaca">Guaca</option>
+                                    <option class="text-black" value="Guacamayas">Guacamayas</option>
+                                    <option class="text-black" value="Guacarí">Guacarí</option>
+                                    <option class="text-black" value="Guachetá">Guachetá</option>
+                                    <option class="text-black" value="Guachucal">Guachucal</option>
+                                    <option class="text-black" value="Guadalupe">Guadalupe</option>
+                                    <option class="text-black" value="Guadalupe">Guadalupe</option>
+                                    <option class="text-black" value="Guadalupe">Guadalupe</option>
+                                    <option class="text-black" value="Guaduas">Guaduas</option>
+                                    <option class="text-black" value="Guaitarilla">Guaitarilla</option>
+                                    <option class="text-black" value="Gualmatán">Gualmatán</option>
+                                    <option class="text-black" value="Guamal">Guamal</option>
+                                    <option class="text-black" value="Guamo">Guamo</option>
+                                    <option class="text-black" value="Guapi">Guapi</option>
+                                    <option class="text-black" value="Guapotá">Guapotá</option>
+                                    <option class="text-black" value="Guaranda">Guaranda</option>
+                                    <option class="text-black" value="Guarne">Guarne</option>
+                                    <option class="text-black" value="Guasca">Guasca</option>
+                                    <option class="text-black" value="Guatape">Guatape</option>
+                                    <option class="text-black" value="Guataquí">Guataquí</option>
+                                    <option class="text-black" value="Guatavita">Guatavita</option>
+                                    <option class="text-black" value="Guateque">Guateque</option>
+                                    <option class="text-black" value="Guática">Guática</option>
+                                    <option class="text-black" value="Guavatá">Guavatá</option>
+                                    <option class="text-black" value="Guayabal de Siquima">Guayabal de Siquima</option>
+                                    <option class="text-black" value="Guayabetal">Guayabetal</option>
+                                    <option class="text-black" value="Guayatá">Guayatá</option>
+                                    <option class="text-black" value="Güepsa">Güepsa</option>
+                                    <option class="text-black" value="Güicán">Güicán</option>
+                                    <option class="text-black" value="Gutiérrez">Gutiérrez</option>
+                                    <option class="text-black" value="Hacarí">Hacarí</option>
+                                    <option class="text-black" value="Hatillo de Loba">Hatillo de Loba</option>
+                                    <option class="text-black" value="Hato">Hato</option>
+                                    <option class="text-black" value="Hato Corozal">Hato Corozal</option>
+                                    <option class="text-black" value="Hatonuevo">Hatonuevo</option>
+                                    <option class="text-black" value="Heliconia">Heliconia</option>
+                                    <option class="text-black" value="Herrán">Herrán</option>
+                                    <option class="text-black" value="Herveo">Herveo</option>
+                                    <option class="text-black" value="Hispania">Hispania</option>
+                                    <option class="text-black" value="Hobo">Hobo</option>
+                                    <option class="text-black" value="Honda">Honda</option>
+                                    <option class="text-black" value="Ibagué">Ibagué</option>
+                                    <option class="text-black" value="Icononzo">Icononzo</option>
+                                    <option class="text-black" value="Iles">Iles</option>
+                                    <option class="text-black" value="Imués">Imués</option>
+                                    <option class="text-black" value="Inírida">Inírida</option>
+                                    <option class="text-black" value="Inzá">Inzá</option>
+                                    <option class="text-black" value="Ipiales">Ipiales</option>
+                                    <option class="text-black" value="Iquira">Iquira</option>
+                                    <option class="text-black" value="Isnos">Isnos</option>
+                                    <option class="text-black" value="Istmina">Istmina</option>
+                                    <option class="text-black" value="Itagui">Itagui</option>
+                                    <option class="text-black" value="Ituango">Ituango</option>
+                                    <option class="text-black" value="Iza">Iza</option>
+                                    <option class="text-black" value="Jambaló">Jambaló</option>
+                                    <option class="text-black" value="Jamundí">Jamundí</option>
+                                    <option class="text-black" value="Jardín">Jardín</option>
+                                    <option class="text-black" value="Jenesano">Jenesano</option>
+                                    <option class="text-black" value="Jericó">Jericó</option>
+                                    <option class="text-black" value="Jerusalén">Jerusalén</option>
+                                    <option class="text-black" value="Jesús María">Jesús María</option>
+                                    <option class="text-black" value="Jordán">Jordán</option>
+                                    <option class="text-black" value="Juan de Acosta">Juan de Acosta</option>
+                                    <option class="text-black" value="Junín">Junín</option>
+                                    <option class="text-black" value="Juradó">Juradó</option>
+                                    <option class="text-black" value="La Apartada">La Apartada</option>
+                                    <option class="text-black" value="La Argentina">La Argentina</option>
+                                    <option class="text-black" value="La Belleza">La Belleza</option>
+                                    <option class="text-black" value="La Calera">La Calera</option>
+                                    <option class="text-black" value="La Capilla">La Capilla</option>
+                                    <option class="text-black" value="La Ceja">La Ceja</option>
+                                    <option class="text-black" value="La Celia">La Celia</option>
+                                    <option class="text-black" value="La chorrera">La chorrera</option>
+                                    <option class="text-black" value="La Cruz">La Cruz</option>
+                                    <option class="text-black" value="La Cumbre">La Cumbre</option>
+                                    <option class="text-black" value="La Dorada">La Dorada</option>
+                                    <option class="text-black" value="La Esperanza">La Esperanza</option>
+                                    <option class="text-black" value="La Estrella">La Estrella</option>
+                                    <option class="text-black" value="La Florida">La Florida</option>
+                                    <option class="text-black" value="La Gloria">La Gloria</option>
+                                    <option class="text-black" value="La Guadalupe">La Guadalupe</option>
+                                    <option class="text-black" value="La Jagua de Ibirico">La Jagua de Ibirico</option>
+                                    <option class="text-black" value="La Jagua del Pilar">La Jagua del Pilar</option>
+                                    <option class="text-black" value="La Llanada">La Llanada</option>
+                                    <option class="text-black" value="La Macarena">La Macarena</option>
+                                    <option class="text-black" value="La Merced">La Merced</option>
+                                    <option class="text-black" value="La Mesa">La Mesa</option>
+                                    <option class="text-black" value="La Montañita">La Montañita</option>
+                                    <option class="text-black" value="La Palma">La Palma</option>
+                                    <option class="text-black" value="La Paz">La Paz</option>
+                                    <option class="text-black" value="La pedrera">La pedrera</option>
+                                    <option class="text-black" value="La Peña">La Peña</option>
+                                    <option class="text-black" value="La Pintada">La Pintada</option>
+                                    <option class="text-black" value="La Plata">La Plata</option>
+                                    <option class="text-black" value="La Playa">La Playa</option>
+                                    <option class="text-black" value="La Primavera">La Primavera</option>
+                                    <option class="text-black" value="La Salina">La Salina</option>
+                                    <option class="text-black" value="La Sierra">La Sierra</option>
+                                    <option class="text-black" value="La Tebaida">La Tebaida</option>
+                                    <option class="text-black" value="La Tola">La Tola</option>
+                                    <option class="text-black" value="La Unión">La Unión</option>
+                                    <option class="text-black" value="La Uvita">La Uvita</option>
+                                    <option class="text-black" value="La Vega">La Vega</option>
+                                    <option class="text-black" value="La Victoria">La Victoria</option>
+                                    <option class="text-black" value="La Virginia">La Virginia</option>
+                                    <option class="text-black" value="Labateca">Labateca</option>
+                                    <option class="text-black" value="Labranzagrande">Labranzagrande</option>
+                                    <option class="text-black" value="Landázuri">Landázuri</option>
+                                    <option class="text-black" value="Lebríja">Lebríja</option>
+                                    <option class="text-black" value="Leguízamo">Leguízamo</option>
+                                    <option class="text-black" value="Leiva">Leiva</option>
+                                    <option class="text-black" value="Lejanías">Lejanías</option>
+                                    <option class="text-black" value="Lenguazaque">Lenguazaque</option>
+                                    <option class="text-black" value="Lérida">Lérida</option>
+                                    <option class="text-black" value="Leticia">Leticia</option>
+                                    <option class="text-black" value="Líbano">Líbano</option>
+                                    <option class="text-black" value="Liborina">Liborina</option>
+                                    <option class="text-black" value="Linares">Linares</option>
+                                    <option class="text-black" value="Lloró">Lloró</option>
+                                    <option class="text-black" value="López">López</option>
+                                    <option class="text-black" value="Lorica">Lorica</option>
+                                    <option class="text-black" value="Los Andes">Los Andes</option>
+                                    <option class="text-black" value="Los Córdobas">Los Córdobas</option>
+                                    <option class="text-black" value="Los Palmitos">Los Palmitos</option>
+                                    <option class="text-black" value="Los Patios">Los Patios</option>
+                                    <option class="text-black" value="Los Santos">Los Santos</option>
+                                    <option class="text-black" value="Lourdes">Lourdes</option>
+                                    <option class="text-black" value="Luruaco">Luruaco</option>
+                                    <option class="text-black" value="Macanal">Macanal</option>
+                                    <option class="text-black" value="Macaravita">Macaravita</option>
+                                    <option class="text-black" value="Maceo">Maceo</option>
+                                    <option class="text-black" value="Macheta">Macheta</option>
+                                    <option class="text-black" value="Madrid">Madrid</option>
+                                    <option class="text-black" value="Magangué">Magangué</option>
+                                    <option class="text-black" value="Magüi">Magüi</option>
+                                    <option class="text-black" value="Mahates">Mahates</option>
+                                    <option class="text-black" value="Maicao">Maicao</option>
+                                    <option class="text-black" value="Majagual">Majagual</option>
+                                    <option class="text-black" value="Málaga">Málaga</option>
+                                    <option class="text-black" value="Malambo">Malambo</option>
+                                    <option class="text-black" value="Mallama">Mallama</option>
+                                    <option class="text-black" value="Manatí">Manatí</option>
+                                    <option class="text-black" value="Manaure">Manaure</option>
+                                    <option class="text-black" value="Manaure">Manaure</option>
+                                    <option class="text-black" value="Maní">Maní</option>
+                                    <option class="text-black" value="Manizales">Manizales</option>
+                                    <option class="text-black" value="Manta">Manta</option>
+                                    <option class="text-black" value="Manzanares">Manzanares</option>
+                                    <option class="text-black" value="Mapiripán">Mapiripán</option>
+                                    <option class="text-black" value="Mapiripana">Mapiripana</option>
+                                    <option class="text-black" value="Margarita">Margarita</option>
+                                    <option class="text-black" value="María La Baja">María La Baja</option>
+                                    <option class="text-black" value="Marinilla">Marinilla</option>
+                                    <option class="text-black" value="Maripí">Maripí</option>
+                                    <option class="text-black" value="Mariquita">Mariquita</option>
+                                    <option class="text-black" value="Marmato">Marmato</option>
+                                    <option class="text-black" value="Marquetalia">Marquetalia</option>
+                                    <option class="text-black" value="Marsella">Marsella</option>
+                                    <option class="text-black" value="Marulanda">Marulanda</option>
+                                    <option class="text-black" value="Matanza">Matanza</option>
+                                    <option class="text-black" value="Medellín">Medellín</option>
+                                    <option class="text-black" value="Medina">Medina</option>
+                                    <option class="text-black" value="Medio Atrato">Medio Atrato</option>
+                                    <option class="text-black" value="Medio Baudó">Medio Baudó</option>
+                                    <option class="text-black" value="Medio San Juan">Medio San Juan</option>
+                                    <option class="text-black" value="Melgar">Melgar</option>
+                                    <option class="text-black" value="Mercaderes">Mercaderes</option>
+                                    <option class="text-black" value="Mesetas">Mesetas</option>
+                                    <option class="text-black" value="Milán">Milán</option>
+                                    <option class="text-black" value="Miraflores">Miraflores</option>
+                                    <option class="text-black" value="Miranda">Miranda</option>
+                                    <option class="text-black" value="Miriti Paraná">Miriti Paraná</option>
+                                    <option class="text-black" value="Mistrató">Mistrató</option>
+                                    <option class="text-black" value="Mitú">Mitú</option>
+                                    <option class="text-black" value="Mocoa">Mocoa</option>
+                                    <option class="text-black" value="Mogotes">Mogotes</option>
+                                    <option class="text-black" value="Molagavita">Molagavita</option>
+                                    <option class="text-black" value="Momil">Momil</option>
+                                    <option class="text-black" value="Mompós">Mompós</option>
+                                    <option class="text-black" value="Mongua">Mongua</option>
+                                    <option class="text-black" value="Monguí">Monguí</option>
+                                    <option class="text-black" value="Moniquirá">Moniquirá</option>
+                                    <option class="text-black" value="Moñitos">Moñitos</option>
+                                    <option class="text-black" value="Montebello">Montebello</option>
+                                    <option class="text-black" value="Montecristo">Montecristo</option>
+                                    <option class="text-black" value="Montelíbano">Montelíbano</option>
+                                    <option class="text-black" value="Montenegro">Montenegro</option>
+                                    <option class="text-black" value="Montería">Montería</option>
+                                    <option class="text-black" value="Monterrey">Monterrey</option>
+                                    <option class="text-black" value="Morales">Morales</option>
+                                    <option class="text-black" value="Morelia">Morelia</option>
+                                    <option class="text-black" value="Morichal">Morichal</option>
+                                    <option class="text-black" value="Morroa">Morroa</option>
+                                    <option class="text-black" value="Mosquera">Mosquera</option>
+                                    <option class="text-black" value="Motavita">Motavita</option>
+                                    <option class="text-black" value="Murillo">Murillo</option>
+                                    <option class="text-black" value="Murindó">Murindó</option>
+                                    <option class="text-black" value="Mutatá">Mutatá</option>
+                                    <option class="text-black" value="Mutiscua">Mutiscua</option>
+                                    <option class="text-black" value="Muzo">Muzo</option>
+                                    <option class="text-black" value="Nariño">Nariño</option>
+                                    <option class="text-black" value="Nátaga">Nátaga</option>
+                                    <option class="text-black" value="Natagaima">Natagaima</option>
+                                    <option class="text-black" value="Nechí">Nechí</option>
+                                    <option class="text-black" value="Necoclí">Necoclí</option>
+                                    <option class="text-black" value="Neira">Neira</option>
+                                    <option class="text-black" value="Neiva">Neiva</option>
+                                    <option class="text-black" value="Nemocón">Nemocón</option>
+                                    <option class="text-black" value="Nilo">Nilo</option>
+                                    <option class="text-black" value="Nimaima">Nimaima</option>
+                                    <option class="text-black" value="Nobsa">Nobsa</option>
+                                    <option class="text-black" value="Nocaima">Nocaima</option>
+                                    <option class="text-black" value="Norcasia">Norcasia</option>
+                                    <option class="text-black" value="Nóvita">Nóvita</option>
+                                    <option class="text-black" value="Nueva Granada">Nueva Granada</option>
+                                    <option class="text-black" value="Nuevo Colón">Nuevo Colón</option>
+                                    <option class="text-black" value="Nunchía">Nunchía</option>
+                                    <option class="text-black" value="Nuquí">Nuquí</option>
+                                    <option class="text-black" value="Obando">Obando</option>
+                                    <option class="text-black" value="Ocamonte">Ocamonte</option>
+                                    <option class="text-black" value="Ocaña">Ocaña</option>
+                                    <option class="text-black" value="Oiba">Oiba</option>
+                                    <option class="text-black" value="Oicatá">Oicatá</option>
+                                    <option class="text-black" value="Olaya">Olaya</option>
+                                    <option class="text-black" value="Olaya Herrera">Olaya Herrera</option>
+                                    <option class="text-black" value="Onzaga">Onzaga</option>
+                                    <option class="text-black" value="Oporapa">Oporapa</option>
+                                    <option class="text-black" value="Orito">Orito</option>
+                                    <option class="text-black" value="Orocué">Orocué</option>
+                                    <option class="text-black" value="Ortega">Ortega</option>
+                                    <option class="text-black" value="Ospina">Ospina</option>
+                                    <option class="text-black" value="Otanche">Otanche</option>
+                                    <option class="text-black" value="Ovejas">Ovejas</option>
+                                    <option class="text-black" value="Pachavita">Pachavita</option>
+                                    <option class="text-black" value="Pacho">Pacho</option>
+                                    <option class="text-black" value="Pacoa">Pacoa</option>
+                                    <option class="text-black" value="Pácora">Pácora</option>
+                                    <option class="text-black" value="Padilla">Padilla</option>
+                                    <option class="text-black" value="Paez">Paez</option>
+                                    <option class="text-black" value="Páez">Páez</option>
+                                    <option class="text-black" value="Paicol">Paicol</option>
+                                    <option class="text-black" value="Pailitas">Pailitas</option>
+                                    <option class="text-black" value="Paime">Paime</option>
+                                    <option class="text-black" value="Paipa">Paipa</option>
+                                    <option class="text-black" value="Pajarito">Pajarito</option>
+                                    <option class="text-black" value="Palermo">Palermo</option>
+                                    <option class="text-black" value="Palestina">Palestina</option>
+                                    <option class="text-black" value="Palmar">Palmar</option>
+                                    <option class="text-black" value="Palmar de Varela">Palmar de Varela</option>
+                                    <option class="text-black" value="Palmas del Socorro">Palmas del Socorro</option>
+                                    <option class="text-black" value="Palmira">Palmira</option>
+                                    <option class="text-black" value="Palmito">Palmito</option>
+                                    <option class="text-black" value="Palocabildo">Palocabildo</option>
+                                    <option class="text-black" value="Pamplona">Pamplona</option>
+                                    <option class="text-black" value="Pamplonita">Pamplonita</option>
+                                    <option class="text-black" value="Pana Pana">Pana Pana</option>
+                                    <option class="text-black" value="Pandi">Pandi</option>
+                                    <option class="text-black" value="Panqueba">Panqueba</option>
+                                    <option class="text-black" value="Papunaua">Papunaua</option>
+                                    <option class="text-black" value="Páramo">Páramo</option>
+                                    <option class="text-black" value="Paratebueno">Paratebueno</option>
+                                    <option class="text-black" value="Pasca">Pasca</option>
+                                    <option class="text-black" value="Pasto">Pasto</option>
+                                    <option class="text-black" value="Patía">Patía</option>
+                                    <option class="text-black" value="Pauna">Pauna</option>
+                                    <option class="text-black" value="Paya">Paya</option>
+                                    <option class="text-black" value="Paz de Ariporo">Paz de Ariporo</option>
+                                    <option class="text-black" value="Paz de Río">Paz de Río</option>
+                                    <option class="text-black" value="Pedraza">Pedraza</option>
+                                    <option class="text-black" value="Pelaya">Pelaya</option>
+                                    <option class="text-black" value="Peñol">Peñol</option>
+                                    <option class="text-black" value="Pensilvania">Pensilvania</option>
+                                    <option class="text-black" value="Peque">Peque</option>
+                                    <option class="text-black" value="Pereira">Pereira</option>
+                                    <option class="text-black" value="Pesca">Pesca</option>
+                                    <option class="text-black" value="Piamonte">Piamonte</option>
+                                    <option class="text-black" value="Piedecuesta">Piedecuesta</option>
+                                    <option class="text-black" value="Piedras">Piedras</option>
+                                    <option class="text-black" value="Piendamó">Piendamó</option>
+                                    <option class="text-black" value="Pijao">Pijao</option>
+                                    <option class="text-black" value="Pijiño del Carmen">Pijiño del Carmen</option>
+                                    <option class="text-black" value="Pinchote">Pinchote</option>
+                                    <option class="text-black" value="Pinillos">Pinillos</option>
+                                    <option class="text-black" value="Piojó">Piojó</option>
+                                    <option class="text-black" value="Pisba">Pisba</option>
+                                    <option class="text-black" value="Pital">Pital</option>
+                                    <option class="text-black" value="Pitalito">Pitalito</option>
+                                    <option class="text-black" value="Pivijay">Pivijay</option>
+                                    <option class="text-black" value="Planadas">Planadas</option>
+                                    <option class="text-black" value="Planeta Rica">Planeta Rica</option>
+                                    <option class="text-black" value="Plato">Plato</option>
+                                    <option class="text-black" value="Policarpa">Policarpa</option>
+                                    <option class="text-black" value="Polonuevo">Polonuevo</option>
+                                    <option class="text-black" value="Ponedera">Ponedera</option>
+                                    <option class="text-black" value="Popayán">Popayán</option>
+                                    <option class="text-black" value="Pore">Pore</option>
+                                    <option class="text-black" value="Potosí">Potosí</option>
+                                    <option class="text-black" value="Pradera">Pradera</option>
+                                    <option class="text-black" value="Prado">Prado</option>
+                                    <option class="text-black" value="Providencia">Providencia</option>
+                                    <option class="text-black" value="Pueblo Bello">Pueblo Bello</option>
+                                    <option class="text-black" value="Pueblo Nuevo">Pueblo Nuevo</option>
+                                    <option class="text-black" value="Pueblo Rico">Pueblo Rico</option>
+                                    <option class="text-black" value="Pueblorrico">Pueblorrico</option>
+                                    <option class="text-black" value="Puebloviejo">Puebloviejo</option>
+                                    <option class="text-black" value="Puente Nacional">Puente Nacional</option>
+                                    <option class="text-black" value="Puerres">Puerres</option>
+                                    <option class="text-black" value="Puerto Alegría">Puerto Alegría</option>
+                                    <option class="text-black" value="Puerto Arica">Puerto Arica</option>
+                                    <option class="text-black" value="Puerto Asís">Puerto Asís</option>
+                                    <option class="text-black" value="Puerto Berrío">Puerto Berrío</option>
+                                    <option class="text-black" value="Puerto Boyacá">Puerto Boyacá</option>
+                                    <option class="text-black" value="Puerto Caicedo">Puerto Caicedo</option>
+                                    <option class="text-black" value="Puerto Carreño">Puerto Carreño</option>
+                                    <option class="text-black" value="Puerto Colombia">Puerto Colombia</option>
+                                    <option class="text-black" value="Puerto Concordia">Puerto Concordia</option>
+                                    <option class="text-black" value="Puerto Escondido">Puerto Escondido</option>
+                                    <option class="text-black" value="Puerto Gaitán">Puerto Gaitán</option>
+                                    <option class="text-black" value="Puerto Guzmán">Puerto Guzmán</option>
+                                    <option class="text-black" value="Puerto Libertador">Puerto Libertador</option>
+                                    <option class="text-black" value="Puerto Lleras">Puerto Lleras</option>
+                                    <option class="text-black" value="Puerto López">Puerto López</option>
+                                    <option class="text-black" value="Puerto Nare">Puerto Nare</option>
+                                    <option class="text-black" value="Puerto Nariño">Puerto Nariño</option>
+                                    <option class="text-black" value="Puerto Parra">Puerto Parra</option>
+                                    <option class="text-black" value="Puerto Rico">Puerto Rico</option>
+                                    <option class="text-black" value="Puerto Rico">Puerto Rico</option>
+                                    <option class="text-black" value="Puerto Rondón">Puerto Rondón</option>
+                                    <option class="text-black" value="Puerto Salgar">Puerto Salgar</option>
+                                    <option class="text-black" value="Puerto Santander">Puerto Santander</option>
+                                    <option class="text-black" value="Puerto Tejada">Puerto Tejada</option>
+                                    <option class="text-black" value="Puerto Triunfo">Puerto Triunfo</option>
+                                    <option class="text-black" value="Puerto Wilches">Puerto Wilches</option>
+                                    <option class="text-black" value="Pulí">Pulí</option>
+                                    <option class="text-black" value="Pupiales">Pupiales</option>
+                                    <option class="text-black" value="Puracé">Puracé</option>
+                                    <option class="text-black" value="Purificación">Purificación</option>
+                                    <option class="text-black" value="Purísima">Purísima</option>
+                                    <option class="text-black" value="Quebradanegra">Quebradanegra</option>
+                                    <option class="text-black" value="Quetame">Quetame</option>
+                                    <option class="text-black" value="Quibdó">Quibdó</option>
+                                    <option class="text-black" value="Quimbaya">Quimbaya</option>
+                                    <option class="text-black" value="Quinchía">Quinchía</option>
+                                    <option class="text-black" value="Quípama">Quípama</option>
+                                    <option class="text-black" value="Quipile">Quipile</option>
+                                    <option class="text-black" value="Ragonvalia">Ragonvalia</option>
+                                    <option class="text-black" value="Ramiriquí">Ramiriquí</option>
+                                    <option class="text-black" value="Ráquira">Ráquira</option>
+                                    <option class="text-black" value="Recetor">Recetor</option>
+                                    <option class="text-black" value="Regidor">Regidor</option>
+                                    <option class="text-black" value="Remedios">Remedios</option>
+                                    <option class="text-black" value="Remolino">Remolino</option>
+                                    <option class="text-black" value="Repelón">Repelón</option>
+                                    <option class="text-black" value="Restrepo">Restrepo</option>
+                                    <option class="text-black" value="Retiro">Retiro</option>
+                                    <option class="text-black" value="Ricaurte">Ricaurte</option>
+                                    <option class="text-black" value="Río de Oro">Río de Oro</option>
+                                    <option class="text-black" value="Río Iro">Río Iro</option>
+                                    <option class="text-black" value="Río Quito">Río Quito</option>
+                                    <option class="text-black" value="Río Viejo">Río Viejo</option>
+                                    <option class="text-black" value="Rioblanco">Rioblanco</option>
+                                    <option class="text-black" value="Riofrío">Riofrío</option>
+                                    <option class="text-black" value="Riohacha">Riohacha</option>
+                                    <option class="text-black" value="Rionegro">Rionegro</option>
+                                    <option class="text-black" value="Riosucio">Riosucio</option>
+                                    <option class="text-black" value="Risaralda">Risaralda</option>
+                                    <option class="text-black" value="Rivera">Rivera</option>
+                                    <option class="text-black" value="Roberto Payán">Roberto Payán</option>
+                                    <option class="text-black" value="Roldanillo">Roldanillo</option>
+                                    <option class="text-black" value="Roncesvalles">Roncesvalles</option>
+                                    <option class="text-black" value="Rondón">Rondón</option>
+                                    <option class="text-black" value="Rosas">Rosas</option>
+                                    <option class="text-black" value="Rovira">Rovira</option>
+                                    <option class="text-black" value="Sabana de Torres">Sabana de Torres</option>
+                                    <option class="text-black" value="Sabanagrande">Sabanagrande</option>
+                                    <option class="text-black" value="Sabanalarga">Sabanalarga</option>
+                                    <option class="text-black" value="Sabanas de San Angel">Sabanas de San Angel</option>
+                                    <option class="text-black" value="Sabaneta">Sabaneta</option>
+                                    <option class="text-black" value="Saboyá">Saboyá</option>
+                                    <option class="text-black" value="Sácama">Sácama</option>
+                                    <option class="text-black" value="Sáchica">Sáchica</option>
+                                    <option class="text-black" value="Sahagún">Sahagún</option>
+                                    <option class="text-black" value="Saladoblanco">Saladoblanco</option>
+                                    <option class="text-black" value="Salamina">Salamina</option>
+                                    <option class="text-black" value="Salazar">Salazar</option>
+                                    <option class="text-black" value="Saldaña">Saldaña</option>
+                                    <option class="text-black" value="Salento">Salento</option>
+                                    <option class="text-black" value="Salgar">Salgar</option>
+                                    <option class="text-black" value="Samacá">Samacá</option>
+                                    <option class="text-black" value="Samaná">Samaná</option>
+                                    <option class="text-black" value="Samaniego">Samaniego</option>
+                                    <option class="text-black" value="Sampués">Sampués</option>
+                                    <option class="text-black" value="San Agustín">San Agustín</option>
+                                    <option class="text-black" value="San Alberto">San Alberto</option>
+                                    <option class="text-black" value="San Andrés">San Andrés</option>
+                                    <option class="text-black" value="San Andrés Sotavento">San Andrés Sotavento</option>
+                                    <option class="text-black" value="San Antero">San Antero</option>
+                                    <option class="text-black" value="San Antonio">San Antonio</option>
+                                    <option class="text-black" value="San Antonio del Tequendama">San Antonio del Tequendama</option>
+                                    <option class="text-black" value="San Benito">San Benito</option>
+                                    <option class="text-black" value="San Benito Abad">San Benito Abad</option>
+                                    <option class="text-black" value="San Bernardo">San Bernardo</option>
+                                    <option class="text-black" value="San Bernardo del Viento">San Bernardo del Viento</option>
+                                    <option class="text-black" value="San Calixto">San Calixto</option>
+                                    <option class="text-black" value="San Carlos">San Carlos</option>
+                                    <option class="text-black" value="San Carlos de Guaroa">San Carlos de Guaroa</option>
+                                    <option class="text-black" value="San Cayetano">San Cayetano</option>
+                                    <option class="text-black" value="San Cristóbal">San Cristóbal</option>
+                                    <option class="text-black" value="San Diego">San Diego</option>
+                                    <option class="text-black" value="San Eduardo">San Eduardo</option>
+                                    <option class="text-black" value="San Estanislao">San Estanislao</option>
+                                    <option class="text-black" value="San Felipe">San Felipe</option>
+                                    <option class="text-black" value="San Fernando">San Fernando</option>
+                                    <option class="text-black" value="San Francisco">San Francisco</option>
+                                    <option class="text-black" value="San Gil">San Gil</option>
+                                    <option class="text-black" value="San Jacinto">San Jacinto</option>
+                                    <option class="text-black" value="San Jacinto del Cauca">San Jacinto del Cauca</option>
+                                    <option class="text-black" value="San Jerónimo">San Jerónimo</option>
+                                    <option class="text-black" value="San Joaquín">San Joaquín</option>
+                                    <option class="text-black" value="San José">San José</option>
+                                    <option class="text-black" value="San José de la Montaña">San José de la Montaña</option>
+                                    <option class="text-black" value="San José de Miranda">San José de Miranda</option>
+                                    <option class="text-black" value="San José de Pare">San José de Pare</option>
+                                    <option class="text-black" value="San José del Fragua">San José del Fragua</option>
+                                    <option class="text-black" value="San José del Guaviare">San José del Guaviare</option>
+                                    <option class="text-black" value="San José del Palmar">San José del Palmar</option>
+                                    <option class="text-black" value="San Juan de Arama">San Juan de Arama</option>
+                                    <option class="text-black" value="San Juan de Betulia">San Juan de Betulia</option>
+                                    <option class="text-black" value="San Juan de Río Seco">San Juan de Río Seco</option>
+                                    <option class="text-black" value="San Juan de Urabá">San Juan de Urabá</option>
+                                    <option class="text-black" value="San Juan del Cesar">San Juan del Cesar</option>
+                                    <option class="text-black" value="San Juan Nepomuceno">San Juan Nepomuceno</option>
+                                    <option class="text-black" value="San Juanito">San Juanito</option>
+                                    <option class="text-black" value="San Lorenzo">San Lorenzo</option>
+                                    <option class="text-black" value="San Luis">San Luis</option>
+                                    <option class="text-black" value="San Luis de Gaceno">San Luis de Gaceno</option>
+                                    <option class="text-black" value="San Luis de Palenque">San Luis de Palenque</option>
+                                    <option class="text-black" value="San Marcos">San Marcos</option>
+                                    <option class="text-black" value="San Martín">San Martín</option>
+                                    <option class="text-black" value="San Martín de Loba">San Martín de Loba</option>
+                                    <option class="text-black" value="San Mateo">San Mateo</option>
+                                    <option class="text-black" value="San Miguel">San Miguel</option>
+                                    <option class="text-black" value="San Miguel de Sema">San Miguel de Sema</option>
+                                    <option class="text-black" value="San Onofre">San Onofre</option>
+                                    <option class="text-black" value="San Pablo">San Pablo</option>
+                                    <option class="text-black" value="San Pablo de Borbur">San Pablo de Borbur</option>
+                                    <option class="text-black" value="San Pedro">San Pedro</option>
+                                    <option class="text-black" value="San Pedro de Cartago">San Pedro de Cartago</option>
+                                    <option class="text-black" value="San Pedro de Uraba">San Pedro de Uraba</option>
+                                    <option class="text-black" value="San Pelayo">San Pelayo</option>
+                                    <option class="text-black" value="San Rafael">San Rafael</option>
+                                    <option class="text-black" value="San Roque">San Roque</option>
+                                    <option class="text-black" value="San Sebastián">San Sebastián</option>
+                                    <option class="text-black" value="San Sebastián de Buenavista">San Sebastián de Buenavista</option>
+                                    <option class="text-black" value="San Vicente">San Vicente</option>
+                                    <option class="text-black" value="San Vicente de Chucurí">San Vicente de Chucurí</option>
+                                    <option class="text-black" value="San Vicente del Caguán">San Vicente del Caguán</option>
+                                    <option class="text-black" value="San Zenón">San Zenón</option>
+                                    <option class="text-black" value="Sandoná">Sandoná</option>
+                                    <option class="text-black" value="Santa Ana">Santa Ana</option>
+                                    <option class="text-black" value="Santa Bárbara">Santa Bárbara</option>
+                                    <option class="text-black" value="Santa Bárbara de Pinto">Santa Bárbara de Pinto</option>
+                                    <option class="text-black" value="Santa Catalina">Santa Catalina</option>
+                                    <option class="text-black" value="Santa Helena del Opón">Santa Helena del Opón</option>
+                                    <option class="text-black" value="Santa Isabel">Santa Isabel</option>
+                                    <option class="text-black" value="Santa Lucía">Santa Lucía</option>
+                                    <option class="text-black" value="Santa María">Santa María</option>
+                                    <option class="text-black" value="Santa Rosa">Santa Rosa</option>
+                                    <option class="text-black" value="Santa Rosa de Cabal">Santa Rosa de Cabal</option>
+                                    <option class="text-black" value="Santa Rosa de Osos">Santa Rosa de Osos</option>
+                                    <option class="text-black" value="Santa Rosa de Viterbo">Santa Rosa de Viterbo</option>
+                                    <option class="text-black" value="Santa Rosa del Sur">Santa Rosa del Sur</option>
+                                    <option class="text-black" value="Santa Rosalía">Santa Rosalía</option>
+                                    <option class="text-black" value="Santa Sofía">Santa Sofía</option>
+                                    <option class="text-black" value="Santacruz">Santacruz</option>
+                                    <option class="text-black" value="Santafé de Antioquia">Santafé de Antioquia</option>
+                                    <option class="text-black" value="Santana">Santana</option>
+                                    <option class="text-black" value="Santander de Quilichao">Santander de Quilichao</option>
+                                    <option class="text-black" value="Santiago">Santiago</option>
+                                    <option class="text-black" value="Santiago">Santiago</option>
+                                    <option class="text-black" value="Santiago de Tolú">Santiago de Tolú</option>
+                                    <option class="text-black" value="Santo Domingo">Santo Domingo</option>
+                                    <option class="text-black" value="Santo Tomás">Santo Tomás</option>
+                                    <option class="text-black" value="Santuario">Santuario</option>
+                                    <option class="text-black" value="Sapuyes">Sapuyes</option>
+                                    <option class="text-black" value="Saravena">Saravena</option>
+                                    <option class="text-black" value="Sardinata">Sardinata</option>
+                                    <option class="text-black" value="Sasaima">Sasaima</option>
+                                    <option class="text-black" value="Sativanorte">Sativanorte</option>
+                                    <option class="text-black" value="Sativasur">Sativasur</option>
+                                    <option class="text-black" value="Segovia">Segovia</option>
+                                    <option class="text-black" value="Sesquilé">Sesquilé</option>
+                                    <option class="text-black" value="Sevilla">Sevilla</option>
+                                    <option class="text-black" value="Siachoque">Siachoque</option>
+                                    <option class="text-black" value="Sibaté">Sibaté</option>
+                                    <option class="text-black" value="Sibundoy">Sibundoy</option>
+                                    <option class="text-black" value="Silos">Silos</option>
+                                    <option class="text-black" value="Silvania">Silvania</option>
+                                    <option class="text-black" value="Silvia">Silvia</option>
+                                    <option class="text-black" value="Simacota">Simacota</option>
+                                    <option class="text-black" value="Simijaca">Simijaca</option>
+                                    <option class="text-black" value="Simití">Simití</option>
+                                    <option class="text-black" value="Sincé">Sincé</option>
+                                    <option class="text-black" value="Sincelejo">Sincelejo</option>
+                                    <option class="text-black" value="Sipí">Sipí</option>
+                                    <option class="text-black" value="Sitionuevo">Sitionuevo</option>
+                                    <option class="text-black" value="Soacha">Soacha</option>
+                                    <option class="text-black" value="Soatá">Soatá</option>
+                                    <option class="text-black" value="Socha">Socha</option>
+                                    <option class="text-black" value="Socorro">Socorro</option>
+                                    <option class="text-black" value="Socotá">Socotá</option>
+                                    <option class="text-black" value="Sogamoso">Sogamoso</option>
+                                    <option class="text-black" value="Solano">Solano</option>
+                                    <option class="text-black" value="Soledad">Soledad</option>
+                                    <option class="text-black" value="Solita">Solita</option>
+                                    <option class="text-black" value="Somondoco">Somondoco</option>
+                                    <option class="text-black" value="Sonson">Sonson</option>
+                                    <option class="text-black" value="Sopetrán">Sopetrán</option>
+                                    <option class="text-black" value="Soplaviento">Soplaviento</option>
+                                    <option class="text-black" value="Sopó">Sopó</option>
+                                    <option class="text-black" value="Sora">Sora</option>
+                                    <option class="text-black" value="Soracá">Soracá</option>
+                                    <option class="text-black" value="Sotaquirá">Sotaquirá</option>
+                                    <option class="text-black" value="Sotara">Sotara</option>
+                                    <option class="text-black" value="Suaita">Suaita</option>
+                                    <option class="text-black" value="Suan">Suan</option>
+                                    <option class="text-black" value="Suárez">Suárez</option>
+                                    <option class="text-black" value="Suaza">Suaza</option>
+                                    <option class="text-black" value="Subachoque">Subachoque</option>
+                                    <option class="text-black" value="Sucre">Sucre</option>
+                                    <option class="text-black" value="Suesca">Suesca</option>
+                                    <option class="text-black" value="Supatá">Supatá</option>
+                                    <option class="text-black" value="Supía">Supía</option>
+                                    <option class="text-black" value="Suratá">Suratá</option>
+                                    <option class="text-black" value="Susa">Susa</option>
+                                    <option class="text-black" value="Susacón">Susacón</option>
+                                    <option class="text-black" value="Sutamarchán">Sutamarchán</option>
+                                    <option class="text-black" value="Sutatausa">Sutatausa</option>
+                                    <option class="text-black" value="Sutatenza">Sutatenza</option>
+                                    <option class="text-black" value="Tabio">Tabio</option>
+                                    <option class="text-black" value="Tadó">Tadó</option>
+                                    <option class="text-black" value="Talaigua Nuevo">Talaigua Nuevo</option>
+                                    <option class="text-black" value="Tamalameque">Tamalameque</option>
+                                    <option class="text-black" value="Támara">Támara</option>
+                                    <option class="text-black" value="Tame">Tame</option>
+                                    <option class="text-black" value="Támesis">Támesis</option>
+                                    <option class="text-black" value="Taminango">Taminango</option>
+                                    <option class="text-black" value="Tangua">Tangua</option>
+                                    <option class="text-black" value="Taraira">Taraira</option>
+                                    <option class="text-black" value="Tarapacá">Tarapacá</option>
+                                    <option class="text-black" value="Tarazá">Tarazá</option>
+                                    <option class="text-black" value="Tarqui">Tarqui</option>
+                                    <option class="text-black" value="Tarso">Tarso</option>
+                                    <option class="text-black" value="Tasco">Tasco</option>
+                                    <option class="text-black" value="Tauramena">Tauramena</option>
+                                    <option class="text-black" value="Tausa">Tausa</option>
+                                    <option class="text-black" value="Tello">Tello</option>
+                                    <option class="text-black" value="Tena">Tena</option>
+                                    <option class="text-black" value="Tenerife">Tenerife</option>
+                                    <option class="text-black" value="Tenjo">Tenjo</option>
+                                    <option class="text-black" value="Tenza">Tenza</option>
+                                    <option class="text-black" value="Teorama">Teorama</option>
+                                    <option class="text-black" value="Teruel">Teruel</option>
+                                    <option class="text-black" value="Tesalia">Tesalia</option>
+                                    <option class="text-black" value="Tibacuy">Tibacuy</option>
+                                    <option class="text-black" value="Tibaná">Tibaná</option>
+                                    <option class="text-black" value="Tibasosa">Tibasosa</option>
+                                    <option class="text-black" value="Tibirita">Tibirita</option>
+                                    <option class="text-black" value="Tibú">Tibú</option>
+                                    <option class="text-black" value="Tierralta">Tierralta</option>
+                                    <option class="text-black" value="Timaná">Timaná</option>
+                                    <option class="text-black" value="Timbío">Timbío</option>
+                                    <option class="text-black" value="Timbiquí">Timbiquí</option>
+                                    <option class="text-black" value="Tinjacá">Tinjacá</option>
+                                    <option class="text-black" value="Tipacoque">Tipacoque</option>
+                                    <option class="text-black" value="Tiquisio">Tiquisio</option>
+                                    <option class="text-black" value="Titiribí">Titiribí</option>
+                                    <option class="text-black" value="Toca">Toca</option>
+                                    <option class="text-black" value="Tocaima">Tocaima</option>
+                                    <option class="text-black" value="Tocancipá">Tocancipá</option>
+                                    <option class="text-black" value="Togüí">Togüí</option>
+                                    <option class="text-black" value="Toledo">Toledo</option>
+                                    <option class="text-black" value="Tolú Viejo">Tolú Viejo</option>
+                                    <option class="text-black" value="Tona">Tona</option>
+                                    <option class="text-black" value="Tópaga">Tópaga</option>
+                                    <option class="text-black" value="Topaipí">Topaipí</option>
+                                    <option class="text-black" value="Toribio">Toribio</option>
+                                    <option class="text-black" value="Toro">Toro</option>
+                                    <option class="text-black" value="Tota">Tota</option>
+                                    <option class="text-black" value="Totoró">Totoró</option>
+                                    <option class="text-black" value="Trinidad">Trinidad</option>
+                                    <option class="text-black" value="Trujillo">Trujillo</option>
+                                    <option class="text-black" value="Tubará">Tubará</option>
+                                    <option class="text-black" value="Tuluá">Tuluá</option>
+                                    <option class="text-black" value="Tumaco">Tumaco</option>
+                                    <option class="text-black" value="Tunja">Tunja</option>
+                                    <option class="text-black" value="Tununguá">Tununguá</option>
+                                    <option class="text-black" value="Túquerres">Túquerres</option>
+                                    <option class="text-black" value="Turbaco">Turbaco</option>
+                                    <option class="text-black" value="Turbaná">Turbaná</option>
+                                    <option class="text-black" value="Turbo">Turbo</option>
+                                    <option class="text-black" value="Turmequé">Turmequé</option>
+                                    <option class="text-black" value="Tuta">Tuta</option>
+                                    <option class="text-black" value="Tutazá">Tutazá</option>
+                                    <option class="text-black" value="Ubalá">Ubalá</option>
+                                    <option class="text-black" value="Ubaque">Ubaque</option>
+                                    <option class="text-black" value="Ulloa">Ulloa</option>
+                                    <option class="text-black" value="Umbita">Umbita</option>
+                                    <option class="text-black" value="Une">Une</option>
+                                    <option class="text-black" value="Unguía">Unguía</option>
+                                    <option class="text-black" value="Unión Panamericana">Unión Panamericana</option>
+                                    <option class="text-black" value="Uramita">Uramita</option>
+                                    <option class="text-black" value="Uribe">Uribe</option>
+                                    <option class="text-black" value="Uribia">Uribia</option>
+                                    <option class="text-black" value="Urrao">Urrao</option>
+                                    <option class="text-black" value="Urumita">Urumita</option>
+                                    <option class="text-black" value="Usiacurí">Usiacurí</option>
+                                    <option class="text-black" value="Útica">Útica</option>
+                                    <option class="text-black" value="Valdivia">Valdivia</option>
+                                    <option class="text-black" value="Valencia">Valencia</option>
+                                    <option class="text-black" value="Valle de San José">Valle de San José</option>
+                                    <option class="text-black" value="Valle de San Juan">Valle de San Juan</option>
+                                    <option class="text-black" value="Valle del Guamuez">Valle del Guamuez</option>
+                                    <option class="text-black" value="Valledupar">Valledupar</option>
+                                    <option class="text-black" value="Valparaíso">Valparaíso</option>
+                                    <option class="text-black" value="Vegachí">Vegachí</option>
+                                    <option class="text-black" value="Vélez">Vélez</option>
+                                    <option class="text-black" value="Venadillo">Venadillo</option>
+                                    <option class="text-black" value="Venecia">Venecia</option>
+                                    <option class="text-black" value="Ventaquemada">Ventaquemada</option>
+                                    <option class="text-black" value="Vergara">Vergara</option>
+                                    <option class="text-black" value="Versalles">Versalles</option>
+                                    <option class="text-black" value="Vetas">Vetas</option>
+                                    <option class="text-black" value="Vianí">Vianí</option>
+                                    <option class="text-black" value="Victoria">Victoria</option>
+                                    <option class="text-black" value="Vigía del Fuerte">Vigía del Fuerte</option>
+                                    <option class="text-black" value="Vijes">Vijes</option>
+                                    <option class="text-black" value="Villa Caro">Villa Caro</option>
+                                    <option class="text-black" value="Villa de Leyva">Villa de Leyva</option>
+                                    <option class="text-black" value="Villa de San Diego de Ubate">Villa de San Diego de Ubate</option>
+                                    <option class="text-black" value="Villa del Rosario">Villa del Rosario</option>
+                                    <option class="text-black" value="Villa Rica">Villa Rica</option>
+                                    <option class="text-black" value="Villagarzón">Villagarzón</option>
+                                    <option class="text-black" value="Villagómez">Villagómez</option>
+                                    <option class="text-black" value="Villahermosa">Villahermosa</option>
+                                    <option class="text-black" value="Villamaría">Villamaría</option>
+                                    <option class="text-black" value="Villanueva">Villanueva</option>
+                                    <option class="text-black" value="Villapinzón">Villapinzón</option>
+                                    <option class="text-black" value="Villarrica">Villarrica</option>
+                                    <option class="text-black" value="Villavicencio">Villavicencio</option>
+                                    <option class="text-black" value="Villavieja">Villavieja</option>
+                                    <option class="text-black" value="Villeta">Villeta</option>
+                                    <option class="text-black" value="Viotá">Viotá</option>
+                                    <option class="text-black" value="Viracachá">Viracachá</option>
+                                    <option class="text-black" value="Vistahermosa">Vistahermosa</option>
+                                    <option class="text-black" value="Viterbo">Viterbo</option>
+                                    <option class="text-black" value="Yacopí">Yacopí</option>
+                                    <option class="text-black" value="Yacuanquer">Yacuanquer</option>
+                                    <option class="text-black" value="Yaguará">Yaguará</option>
+                                    <option class="text-black" value="Yalí">Yalí</option>
+                                    <option class="text-black" value="Yarumal">Yarumal</option>
+                                    <option class="text-black" value="Yavaraté">Yavaraté</option>
+                                    <option class="text-black" value="Yolombó">Yolombó</option>
+                                    <option class="text-black" value="Yondó">Yondó</option>
+                                    <option class="text-black" value="Yopal">Yopal</option>
+                                    <option class="text-black" value="Yotoco">Yotoco</option>
+                                    <option class="text-black" value="Yumbo">Yumbo</option>
+                                    <option class="text-black" value="Zambrano">Zambrano</option>
+                                    <option class="text-black" value="Zapatoca">Zapatoca</option>
+                                    <option class="text-black" value="Zapayán">Zapayán</option>
+                                    <option class="text-black" value="Zaragoza">Zaragoza</option>
+                                    <option class="text-black" value="Zarzal">Zarzal</option>
+                                    <option class="text-black" value="Zetaquira">Zetaquira</option>
+                                    <option class="text-black" value="Zipacón">Zipacón</option>
+                                    <option class="text-black" value="Zipaquirá">Zipaquirá</option>
+                                    <option class="text-black" value="Zona Bananera">Zona Bananera</option>
+                                </select>
+                                <div class="valid-feedback">
+                                    ¡Vamos bien!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Selecciona una opción valida.
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="d-inline-block w-100">
+                            <label for="basic-url" class="form-label ps-2
+                                text-black" for="validationCustom08"
+                                style="font-size: 17;">Estado</label>
+                            <div class="input-group mb-3 w-100">
+                                <select id="id_rol" class="form-select"
+                                    name="estado"
+                                    aria-label="tipo-activo"
+                                    id="validationCustom08" required>
+                                    <option class="text-black" selected disabled
+                                        value>Seleccionar</option>
                                     <option class="text-black" value="1">Activo</option>
                                     <option class="text-black" value="0">Inactivo</option>
                                 </select>
@@ -71,20 +1209,23 @@
                                     Selecciona una opción valida.
                                 </div>
                             </div>
-                        </div>    
+                        </div>
+
                         
+                        <div class="modal-footer">
+                            <!-- BOTÓN PARA GUARDAR LA INFORMACIÓN DIGITADA EN EL FORMULARIO DEL USUARIO -->
+                            <button type="reset" class="btn btn-secondary"
+                                data-bs-dismiss="modal">Cancelar</button>
+                            <input class="btn btn-success" type="submit"
+                                name="form-nuevo-usuario" value="Crear">
+                        </div>
 
-                    </div> 
 
-                    <div class="modal-footer">
-                        <!-- BOTÓN PARA GUARDAR LA INFORMACIÓN DIGITADA EN EL FORMULARIO DE CATEGORÍA -->
-                        <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                        <input class="btn btn-success" type="submit" name="form-nuevo-usuario" value="Crear">
                     </div>
 
                 </form>
             </div>
-            
         </div>
     </div>
-</div>    
+</div>
+<script src="/static/js/funciones.js"></script>
