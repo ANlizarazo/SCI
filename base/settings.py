@@ -157,7 +157,7 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_FILE_PATH = BASE_DIR / 'sent_emails'
 EMAIL_PORT = '587'
 EMAIL_HOST_USER = 'correodjango2023@gmail.com'
-EMAIL_HOST_PASSWORD = 'iacsgerxgjjidbcu'
+EMAIL_HOST_PASSWORD = 'iacsgerxgjjidbcu'  #generada desde la aplicacion google correo
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False 
 

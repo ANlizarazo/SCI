@@ -36,7 +36,7 @@ def compras_crear(request):
             form.save()
             print("La compra se guardó correctamente")
         else:
-            print("La compre no se guardó")
+            print("La compra no se guardó")
     else:
         form= CompraForm()
 
