@@ -32,7 +32,8 @@
                 <!-- Card -->
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title"><tr><b class="text-success">Reporte de Usuarios</b></tr></h3>
+                        <h3 class="card-title"><tr><b 
+                            class="text-success">Reporte de Usuarios</b></tr></h3>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
@@ -42,8 +43,7 @@
                             data-bs-toggle="modal"
                             data-bs-target="#crear_Usuario" title="Crear"> Crear Usuario</button>
                         <!-- Datatable de usuarios -->
-                        <div class="table-responsive">
-                            <table id="tabla-usuarios" class="table table-bordered table-striped border-dark" style="font-size: 14px;">
+                            <table id="tabla-usuarios" class="table table-responsive table-bordered table-striped border-dark" style="font-size: 14px;">
                                 <thead class="bg-success">
                                     <tr>
                                         <th class="border-dark">Foto</th>
@@ -78,9 +78,7 @@
                                                 <i class="fas fa-eye"></i></button>   
                                             <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modificar_Usuario{{usuario.pk}}" title="Modificar">
                                                 <i class="fas fa-edit"></i></button>
-                                            <button class="btn btn-danger"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#deleteModal{{usuario.pk}}" title="Eliminar">
+                                            <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal{{usuario.pk}}" title="Eliminar">
                                                 <i class="fas fa-trash-alt"></i></button>
                                         </td>
                                     </tr>
@@ -396,9 +394,9 @@
                                 </tbody>
                             </table>
                         </div>
+                        <a href="{% url 'recuperar_usuarios' %}" class="btn btn-warning float-right mr-1 mb-3" title="Papelera"><i class="fas fa-trash-restore"></i>&nbsp; Restaurar </a>
+                        <!-- /.card-body -->
                     </div>
-                    <a href="{% url 'recuperar_usuarios' %}" class="btn btn-warning float-right mr-1 mb-3" title="Papelera"><i class="fas fa-trash-restore"></i>&nbsp; Restaurar </a>
-                    <!-- /.card-body -->
                 </div>
                 <!-- /.card -->
             </section>
