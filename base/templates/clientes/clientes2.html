@@ -14,10 +14,10 @@
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a
                                 href="http://127.0.0.1:8000/inicio/">
-                                <b class="text-success">Inicio </b></a></li>
+                                <b class="text-success" title = "Inicio">Inicio </b></a></li>
                         <li class="breadcrumb-item-active"><a
                                 href="http://127.0.0.1:8000/clientes/"
-                                class="text-success">/ Clientes</a></li>
+                                class="text-success" title = "Clientes">/ Clientes</a></li>
                     </ol>
                 </div>
             </div>
@@ -37,13 +37,9 @@
                                 <h3 class="card-title text-success"><tr><b
                                     class="text-success">Reporte de Clientes</b></tr></h3>
                             </div>
-                            <div>
-                                <!-- Este botón llama el modal ciudad -->
-                                
-                            </div>
                         </div>
                     </div>
-                    <!-- /.card-header -->
+                    <!-- /.card-body -->
                     <div class="card-body">
                         <!-- Este botón llama el modal -->
                         <a class="btn btn-success float-right mr-0 mb-3" data-bs-toggle="modal"
@@ -59,7 +55,6 @@
                                     <th class="border-dark">Dirección</th>
                                     <th class="border-dark">Email</th>
                                     <th class="border-dark">Ciudad</th>
-                                    <th class="border-dark">Estado</th>
                                     <th class="border-dark">Acciones</th>
                                 </tr>
                             </thead>
@@ -73,12 +68,11 @@
                                     <td class="border-dark text-black">{{cliente.direccion}}</td>
                                     <td class="border-dark text-black">{{cliente.email}}</td>
                                     <td class="border-dark text-black">{{cliente.ciudad}}</td>
-                                    <td class="border-dark text-black">{{cliente.estado}}</td>
                                     <td class="border-dark text-black">
-                                        <a class="btn btn-success" data-bs-toggle="modal" data-bs-target="#verCliente{{cliente.pk}}">
-                                            <i class="fas fa-eye"></i></a><c></c>
-                                        <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editar_cliente{{cliente.pk}}">
-                                            <i class="fas fa-edit"></i></a><c></c>
+                                        <a class="btn btn-success" data-bs-toggle="modal" title = "Ver" data-bs-target="#verCliente{{cliente.pk}}">
+                                            <i class="fas fa-eye"></i></a>
+                                        <a class="btn btn-primary" data-bs-toggle="modal" title = "Modificar" data-bs-target="#editar_cliente{{cliente.pk}}">
+                                            <i class="fas fa-edit"></i></a>
                                             <button class="btn btn-danger"
                                             data-bs-toggle="modal"
                                             data-bs-target="#borrar_cliente{{cliente.pk}}" title="Eliminar">
@@ -86,7 +80,7 @@
                                     </td>
                                 </tr>
 
-                                <!-- Modal de Editar cliente -->
+                                <!-- Modal de modificar cliente -->
 
                                 <div class="modal fade" id="editar_cliente{{cliente.pk}}" data-bs-backdrop="static"
                                 data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
@@ -99,12 +93,11 @@
                                         </div>
                                         <div class="modal-body">
                                             <!-- Formulario -->
-                                            <form action="{% url 'clientes-modificar' cliente.pk %}" method="POST"
+                                            <form action= "{% url 'clientes-modificar' cliente.pk %}" method="POST"
                                                 enctype="multipart/form-data" class="needs-validation"
                                                 novalidate>
                                                 {% csrf_token %}
                                                 <div class="modal-body text-start" id="form-nuevo-tecnico">
-                                                    
 
                                                     <div class="d-inline-block w-100">
                                                         <label for="basic-url" for="validationCustom01"
@@ -115,7 +108,7 @@
                                                                 name="nombreEmpresa" id="id_nombres"
                                                                 aria-describedby="basic-addon3" required
                                                                 minlength="1"
-                                                                maxlength="50" id="validationCustom01"
+                                                                maxlength="100" id="validationCustom01"
                                                                 required value="{{cliente.nombreEmpresa}}">
                                                             <div class="valid-feedback">
                                                                 ¡Vamos bien!
@@ -132,11 +125,11 @@
                                                             style="font-size: 17;">NIT</label>
                                                         <div class="input-group mb-3 w-100">
                                                             <input type="number" class="form-control"
-                                                                name="nit" id="id_apellidos"
+                                                                name="nit" id="id_nit"
                                                                 aria-describedby="basic-addon3"
                                                                 id="validationCustom02" required
                                                                 minlength="1"
-                                                                maxlength="50" required value="{{cliente.nit}}">
+                                                                maxlength="20" required value="{{cliente.nit}}">
                                                             <div class="valid-feedback">
                                                                 ¡Vamos bien!
                                                             </div>
@@ -170,21 +163,21 @@
 
                                                     <div class="d-inline-block w-100">
                                                         <label for="basic-url" class="form-label ps-2
-                                                            text-black" for="validationCustom07"
+                                                            text-black" for="validationCustom04"
                                                             style="font-size: 17;">Dirección</label>
                                                         <div class="input-group mb-3 w-100">
                                                             <input type="text" class="form-control"
                                                                 name="direccion"
-                                                                id="id_numeroDocumento"
+                                                                id="id_direccion"
                                                                 aria-describedby="basic-addon3" required
                                                                 minlength="1"
-                                                                maxlength="50" id="validationCustom07"
+                                                                maxlength="50" id="validationCustom04"
                                                                 required value="{{cliente.direccion}}">
                                                             <div class="valid-feedback">
                                                                 ¡Vamos bien!
                                                             </div>
                                                             <div class="invalid-feedback">
-                                                                Ingresa un número de documento valido.
+                                                                Ingresa una dirección valida.
                                                             </div>
                                                         </div>
                                                     </div>
@@ -192,21 +185,21 @@
 
                                                     <div class="d-inline-block w-100">
                                                         <label for="basic-url" class="form-label ps-2
-                                                            text-black" for="validationCustom07"
+                                                            text-black" for="validationCustom05"
                                                             style="font-size: 17;">Email</label>
                                                         <div class="input-group mb-3 w-100">
                                                             <input type="email" class="form-control"
                                                                 name="email"
-                                                                id="id_numeroDocumento"
+                                                                id="id_email"
                                                                 aria-describedby="basic-addon3" required
                                                                 minlength="1"
-                                                                maxlength="50" id="validationCustom07"
+                                                                maxlength="100" id="validationCustom05"
                                                                 required value="{{cliente.email}}">
                                                             <div class="valid-feedback">
                                                                 ¡Vamos bien!
                                                             </div>
                                                             <div class="invalid-feedback">
-                                                                Ingresa un número de documento valido.
+                                                                Ingresa un email valido.
                                                             </div>
                                                         </div>
                                                     </div>
@@ -217,13 +210,13 @@
 
                                                     <div class="d-inline-block w-100">
                                                         <label for="basic-url" class="form-label ps-2
-                                                            text-black" for="validationCustom09"
+                                                            text-black" for="validationCustom06"
                                                             style="font-size: 17;">Ciudad</label>
                                                         <div class="input-group mb-3 w-100">
-                                                            <select id="id_rol" class="form-select"
+                                                            <select id="id_ciudad" class="form-select"
                                                                 name="ciudad"
                                                                 aria-label="tipo-activo"
-                                                                id="validationCustom09" required>
+                                                                id="validationCustom06" required>
                                                                 <option class="text-black" selected 
                                                                     value="{{cliente.ciudad}}">{{cliente.ciudad}}</option>
                                                                 <option class="text-black" value="Abejorral">Abejorral</option>
@@ -540,8 +533,8 @@
                                                                 <option class="text-black" value="Facatativá">Facatativá</option>
                                                                 <option class="text-black" value="Falan">Falan</option>
                                                                 <option class="text-black" value="Filadelfia">Filadelfia</option>
-                                                                <option value="Filandia">Filandia</option>
-                                                                <option value="Firavitoba">Firavitoba</option>
+                                                                <option class="text-black" value="Filandia">Filandia</option>
+                                                                <option class="text-black" value="Firavitoba">Firavitoba</option>
                                                                 <option class="text-black" value="Flandes">Flandes</option>
                                                                 <option class="text-black" value="Florencia">Florencia</option>
                                                                 <option class="text-black" value="Floresta">Floresta</option>
@@ -1275,13 +1268,13 @@
 
                                                     <div class="d-inline-block w-100">
                                                         <label for="basic-url" class="form-label ps-2
-                                                            text-black" for="validationCustom08"
+                                                            text-black" for="validationCustom07"
                                                             style="font-size: 17;">Estado</label>
                                                         <div class="input-group mb-3 w-100">
-                                                            <select id="id_rol" class="form-select"
+                                                            <select id="id_estado" class="form-select"
                                                                 name="estado"
                                                                 aria-label="tipo-activo"
-                                                                id="validationCustom08" required>
+                                                                id="validationCustom07" required>
                                                                 <option class="text-black" selected 
                                                                     value="{{cliente.estado}}">{{cliente.estado}}</option>
                                                                 <option class="text-black" value="1">Activo</option>
@@ -1298,11 +1291,11 @@
 
                                                     
                                                     <div class="modal-footer">
-                                                        <!-- BOTÓN PARA GUARDAR LA INFORMACIÓN DIGITADA EN EL FORMULARIO DEL USUARIO -->
+                                                        <!-- BOTÓN PARA GUARDAR LA INFORMACIÓN MODIFICADA EN EL FORMULARIO -->
                                                         <button type="reset" class="btn btn-secondary"
                                                             data-bs-dismiss="modal">Cancelar</button>
                                                         <input class="btn btn-success" type="submit"
-                                                            name="form-nuevo-usuario" value="Crear">
+                                                            name="form-nuevo-cliente" value="Modificar">
                                                     </div>
 
 
@@ -1316,463 +1309,458 @@
 
 
 
-                                 <!-- Modal de Ver cliente -->
-                                 <div class="modal fade" id="verCliente{{cliente.pk}}" data-bs-backdrop="static"
-                                 data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
-                                 aria-hidden="true">
-                                 <div class="modal-dialog">
-                                     <div class="modal-content">
-                                         <div class="modal-header">
-                                             <h1 class="modal-title fs-3" id="staticBackdropLabel"><b
-                                                     class="text-black">VER CLIENTE</b></h1>
-                                         </div>
-                                         <div class="modal-body">
-                                             <!-- Formulario -->
-                                             <form action="" method="POST"
-                                                 enctype="multipart/form-data" class="needs-validation"
-                                                 novalidate>
-                                                 {% csrf_token %}
-                                                 <div class="modal-body text-start" id="form-nuevo-tecnico">
-                                                     
+                                <!-- Modal de Ver cliente -->
+                                <div class="modal fade" id="verCliente{{cliente.pk}}" data-bs-backdrop="static"
+                                data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+                                aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-3" id="staticBackdropLabel"><b
+                                                    class="text-black">VER CLIENTE</b></h1>
+                                        </div>
+                                        <div class="modal-body">
+                                            <!-- Formulario -->
+                                            <form action="" method="POST"
+                                                enctype="multipart/form-data" class="needs-validation"
+                                                novalidate>
+
+                                                {% csrf_token %}
+                                                <div class="modal-body text-start" id="form-nuevo-cliente">
  
-                                                     <div class="d-inline-block w-100">
-                                                         <label for="basic-url" for="validationCustom01"
-                                                             class="form-label ps-2 text-black"
-                                                             style="font-size: 17;">Nombre Empresa</label>
-                                                         <div class="input-group mb-3 w-100">
-                                                             <input type="text" class="form-control"
-                                                                 name="nombreEmpresa" id="id_nombres"
-                                                                 aria-describedby="basic-addon3" required
-                                                                 minlength="1"
-                                                                 maxlength="50" id="validationCustom01"
-                                                                 required disabled value="{{cliente.nombreEmpresa}}">
-                                                             <div class="valid-feedback">
-                                                                 ¡Vamos bien!
-                                                             </div>
-                                                             <div class="invalid-feedback">
-                                                                 Completa la información.
-                                                             </div>
-                                                         </div>
-                                                     </div>
+                                                    <div class="d-inline-block w-100">
+                                                        <label for="basic-url" for="validationCustom01"
+                                                            class="form-label ps-2 text-black"
+                                                            style="font-size: 17;">Nombre Empresa</label>
+                                                        <div class="input-group mb-3 w-100">
+                                                            <input type="text" class="form-control"
+                                                                name="nombreEmpresa" id="id_nombres"
+                                                                aria-describedby="basic-addon3" required
+                                                                minlength="1"
+                                                                maxlength="100" id="validationCustom01"
+                                                                required disabled value="{{cliente.nombreEmpresa}}">
+                                                            <div class="valid-feedback">
+                                                                ¡Vamos bien!
+                                                            </div>
+                                                            <div class="invalid-feedback">
+                                                                Completa la información.
+                                                            </div>
+                                                        </div>
+                                                    </div>
  
-                                                     <div class="d-inline-block w-100">
-                                                         <label for="basic-url" for="validationCustom02"
-                                                             class="form-label ps-2 text-black"
-                                                             style="font-size: 17;">NIT</label>
-                                                         <div class="input-group mb-3 w-100">
-                                                             <input type="number" class="form-control"
-                                                                 name="nit" id="id_apellidos"
-                                                                 aria-describedby="basic-addon3"
-                                                                 id="validationCustom02" required
-                                                                 minlength="1"
-                                                                 maxlength="50" required disabled value="{{cliente.nit}}">
-                                                             <div class="valid-feedback">
-                                                                 ¡Vamos bien!
-                                                             </div>
-                                                             <div class="invalid-feedback">
-                                                                 Completa la información.
-                                                             </div>
-                                                         </div>
-                                                     </div>
+                                                    <div class="d-inline-block w-100">
+                                                        <label for="basic-url" for="validationCustom02"
+                                                            class="form-label ps-2 text-black"
+                                                            style="font-size: 17;">NIT</label>
+                                                        <div class="input-group mb-3 w-100">
+                                                            <input type="number" class="form-control"
+                                                                name="nit" id="id_nit"
+                                                                aria-describedby="basic-addon3"
+                                                                id="validationCustom02" required
+                                                                minlength="1"
+                                                                maxlength="20" required disabled value="{{cliente.nit}}">
+                                                            <div class="valid-feedback">
+                                                                ¡Vamos bien!
+                                                            </div>
+                                                            <div class="invalid-feedback">
+                                                                Completa la información.
+                                                            </div>
+                                                        </div>
+                                                    </div>
  
-                                                     <div class="d-inline-block w-100">
-                                                         <label for="basic-url" for="validationCustom03"
-                                                             class="form-label ps-2 text-black"
-                                                             style="font-size: 17;">Número de Teléfono</label>
-                                                         <div class="input-group mb-3 w-100">
-                                                             <input type="number" class="form-control"
-                                                                 name="telefono"
-                                                                 id="id_numeroTelefono"
-                                                                 aria-describedby="basic-addon3"
-                                                                 id="validationCustom03" required
-                                                                 minlength="1"
-                                                                 maxlength="20" required disabled value="{{cliente.telefono}}">
-                                                             <div class="valid-feedback">
-                                                                 ¡Vamos bien!
-                                                             </div>
-                                                             <div class="invalid-feedback">
-                                                                 Ingresa un número de teléfono valido.
-                                                             </div>
-                                                         </div>
-                                                     </div>
- 
- 
-                                                     <div class="d-inline-block w-100">
-                                                         <label for="basic-url" class="form-label ps-2
-                                                             text-black" for="validationCustom07"
-                                                             style="font-size: 17;">Dirección</label>
-                                                         <div class="input-group mb-3 w-100">
-                                                             <input type="text" class="form-control"
-                                                                 name="direccion"
-                                                                 id="id_numeroDocumento"
-                                                                 aria-describedby="basic-addon3" required
-                                                                 minlength="1"
-                                                                 maxlength="50" id="validationCustom07"
-                                                                 required disabled value="{{cliente.direccion}}">
-                                                             <div class="valid-feedback">
-                                                                 ¡Vamos bien!
-                                                             </div>
-                                                             <div class="invalid-feedback">
-                                                                 Ingresa un número de documento valido.
-                                                             </div>
-                                                         </div>
-                                                     </div>
- 
- 
-                                                     <div class="d-inline-block w-100">
-                                                         <label for="basic-url" class="form-label ps-2
-                                                             text-black" for="validationCustom07"
-                                                             style="font-size: 17;">Email</label>
-                                                         <div class="input-group mb-3 w-100">
-                                                             <input type="email" class="form-control"
-                                                                 name="email"
-                                                                 id="id_numeroDocumento"
-                                                                 aria-describedby="basic-addon3" required
-                                                                 minlength="1"
-                                                                 maxlength="50" id="validationCustom07"
-                                                                 required disabled value="{{cliente.email}}">
-                                                             <div class="valid-feedback">
-                                                                 ¡Vamos bien!
-                                                             </div>
-                                                             <div class="invalid-feedback">
-                                                                 Ingresa un número de documento valido.
-                                                             </div>
-                                                         </div>
-                                                     </div>
+                                                    <div class="d-inline-block w-100">
+                                                        <label for="basic-url" for="validationCustom03"
+                                                            class="form-label ps-2 text-black"
+                                                            style="font-size: 17;">Número de Teléfono</label>
+                                                        <div class="input-group mb-3 w-100">
+                                                            <input type="number" class="form-control"
+                                                                name="telefono"
+                                                                id="id_numeroTelefono"
+                                                                aria-describedby="basic-addon3"
+                                                                id="validationCustom03" required
+                                                                minlength="1"
+                                                                maxlength="20" required disabled value="{{cliente.telefono}}">
+                                                            <div class="valid-feedback">
+                                                                ¡Vamos bien!
+                                                            </div>
+                                                            <div class="invalid-feedback">
+                                                                Ingresa un número de teléfono valido.
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="d-inline-block w-100">
+                                                        <label for="basic-url" class="form-label ps-2
+                                                            text-black" for="validationCustom04"
+                                                            style="font-size: 17;">Dirección</label>
+                                                        <div class="input-group mb-3 w-100">
+                                                            <input type="text" class="form-control"
+                                                                name="direccion"
+                                                                id="id_direccion"
+                                                                aria-describedby="basic-addon3" required
+                                                                minlength="1"
+                                                                maxlength="50" id="validationCustom04"
+                                                                required disabled value="{{cliente.direccion}}">
+                                                            <div class="valid-feedback">
+                                                                ¡Vamos bien!
+                                                            </div>
+                                                            <div class="invalid-feedback">
+                                                                Ingresa una dirección valida.
+                                                            </div>
+                                                        </div>
+                                                    </div>
  
  
-                                                     
- 
- 
-                                                     <div class="d-inline-block w-100">
-                                                         <label for="basic-url" class="form-label ps-2
-                                                             text-black" for="validationCustom09"
-                                                             style="font-size: 17;">Ciudad</label>
-                                                         <div class="input-group mb-3 w-100">
-                                                             <select id="id_rol" class="form-select"
-                                                                 name="ciudad"
-                                                                 aria-label="tipo-activo"
-                                                                 id="validationCustom09" required disabled>
-                                                                 <option class="text-black" selected 
-                                                                     value="{{cliente.ciudad}}">{{cliente.ciudad}}</option>
-                                                                 <option class="text-black" value="Abejorral">Abejorral</option>
-                                                                 <option class="text-black" value="Abrego">Abrego</option>
-                                                                 <option class="text-black" value="Abriaquí">Abriaquí</option>
-                                                                 <option class="text-black" value="Acacías">Acacías</option>
-                                                                 <option class="text-black" value="Acandí">Acandí</option>
-                                                                 <option class="text-black" value="Acevedo">Acevedo</option>
-                                                                 <option class="text-black" value="Achí">Achí</option>
-                                                                 <option class="text-black" value="Agrado">Agrado</option>
-                                                                 <option class="text-black" value="Agua de Dios">Agua de Dios</option>
-                                                                 <option class="text-black" value="Aguachica">Aguachica</option>
-                                                                 <option class="text-black" value="Aguada">Aguada</option>
-                                                                 <option class="text-black" value="Aguadas">Aguadas</option>
-                                                                 <option class="text-black" value="Aguazul">Aguazul</option>
-                                                                 <option class="text-black" value="Agustín Codazzi">Agustín Codazzi</option>
-                                                                 <option class="text-black" value="Aipe">Aipe</option>
-                                                                 <option class="text-black" value="Albán">Albán</option>tion>
-                                                                 <option class="text-black" value="Albania">Albania</option>
-                                                                 <option class="text-black" value="Alcalá">Alcalá</option>
-                                                                 <option class="text-black" value="Aldana">Aldana</option>
-                                                                 <option class="text-black" value="Alejandría">Alejandría</option>
-                                                                 <option class="text-black" value="Algarrobo">Algarrobo</option>
-                                                                 <option class="text-black" value="Algeciras">Algeciras</option>
-                                                                 <option class="text-black" value="Almaguer">Almaguer</option>
-                                                                 <option class="text-black" value="Almeida">Almeida</option>
-                                                                 <option class="text-black" value="Alpujarra">Alpujarra</option>
-                                                                 <option class="text-black" value="Altamira">Altamira</option>
-                                                                 <option class="text-black" value="Alto Baudo">Alto Baudo</option>
-                                                                 <option class="text-black" value="Altos del Rosario">Altos del Rosario</option>
-                                                                 <option class="text-black" value="Alvarado">Alvarado</option>
-                                                                 <option class="text-black" value="Amagá">Amagá</option>
-                                                                 <option class="text-black" value="Amalfi">Amalfi</option>
-                                                                 <option class="text-black" value="Ambalema">Ambalema</option>
-                                                                 <option class="text-black" value="Anapoima">Anapoima</option>
-                                                                 <option class="text-black" value="Ancuyá">Ancuyá</option>
-                                                                 <option class="text-black" value="Andalucía">Andalucía</option>
-                                                                 <option class="text-black" value="Andes">Andes</option>
-                                                                 <option class="text-black" value="Angelópolis">Angelópolis</option>
-                                                                 <option class="text-black" value="Angostura">Angostura</option>
-                                                                 <option class="text-black" value="Anolaima">Anolaima</option>
-                                                                 <option class="text-black" value="Anorí">Anorí</option>
-                                                                 <option class="text-black" value="Anserma">Anserma</option>
-                                                                 <option class="text-black" value="Ansermanuevo">Ansermanuevo</option>
-                                                                 <option class="text-black" value="Anza">Anza</option>
-                                                                 <option class="text-black" value="Anzoátegui">Anzoátegui</option>
-                                                                 <option class="text-black" value="Apartadó">Apartadó</option>
-                                                                 <option class="text-black" value="Apía">Apía</option>
-                                                                 <option class="text-black" value="Apulo">Apulo</option>
-                                                                 <option class="text-black" value="Aquitania">Aquitania</option>
-                                                                 <option class="text-black" value="Aracataca">Aracataca</option>
-                                                                 <option class="text-black" value="Aranzazu">Aranzazu</option>
-                                                                 <option class="text-black" value="Aratoca">Aratoca</option>
-                                                                 <option class="text-black" value="Arauca">Arauca</option>
-                                                                 <option class="text-black" value="Arauquita">Arauquita</option>
-                                                                 <option class="text-black" value="Arbeláez">Arbeláez</option>
-                                                                 <option class="text-black" value="Arboleda">Arboleda</option>
-                                                                 <option class="text-black" value="Arboledas">Arboledas</option>
-                                                                 <option class="text-black" value="Arboletes">Arboletes</option>
-                                                                 <option class="text-black" value="Arcabuco">Arcabuco</option>
-                                                                 <option class="text-black" value="Arenal">Arenal</option>
-                                                                 <option class="text-black" value="Argelia">Argelia</option>
-                                                                 <option class="text-black" value="Ariguaní">Ariguaní</option>
-                                                                 <option class="text-black" value="Arjona">Arjona</option>
-                                                                 <option class="text-black" value="Armenia">Armenia</option>
-                                                                 <option class="text-black" value="Armero">Armero</option>
-                                                                 <option class="text-black" value="Arroyohondo">Arroyohondo</option>
-                                                                 <option class="text-black" value="Astrea">Astrea</option>
-                                                                 <option class="text-black" value="Ataco">Ataco</option>
-                                                                 <option class="text-black" value="Atrato">Atrato</option>
-                                                                 <option class="text-black" value="Ayapel">Ayapel</option>
-                                                                 <option class="text-black" value="Bagadó">Bagadó</option>
-                                                                 <option class="text-black" value="Bahía Solano">Bahía Solano</option>
-                                                                 <option class="text-black" value="Bajo Baudó">Bajo Baudó</option>
-                                                                 <option class="text-black" value="Balboa">Balboa</option>
-                                                                 <option class="text-black" value="Baranoa">Baranoa</option>
-                                                                 <option class="text-black" value="Baraya">Baraya</option>
-                                                                 <option class="text-black" value="Barbacoas">Barbacoas</option>
-                                                                 <option class="text-black" value="Barbosa">Barbosa</option>
-                                                                 <option class="text-black" value="Barichara">Barichara</option>
-                                                                 <option class="text-black" value="Barranca de Upía">Barranca de Upía</option>
-                                                                 <option class="text-black" value="Barrancabermeja">Barrancabermeja</option>
-                                                                 <option class="text-black" value="Barrancas">Barrancas</option>
-                                                                 <option class="text-black" value="Barranco de Loba">Barranco de Loba</option>
-                                                                 <option class="text-black" value="Barranco Minas">Barranco Minas</option>
-                                                                 <option class="text-black" value="Barranquilla">Barranquilla</option>
-                                                                 <option class="text-black" value="Becerril">Becerril</option>
-                                                                 <option class="text-black" value="Belalcázar">Belalcázar</option>
-                                                                 <option class="text-black" value="Belén">Belén</option>
-                                                                 <option class="text-black" value="Belén de Bajirá">Belén de Bajirá</option>
-                                                                 <option class="text-black" value="Belén de Los Andaquies">Belén de Los Andaquies</option>
-                                                                 <option class="text-black" value="Belén de Umbría">Belén de Umbría</option>
-                                                                 <option class="text-black" value="Bello">Bello</option>
-                                                                 <option class="text-black" value="Belmira">Belmira</option>
-                                                                 <option class="text-black" value="Beltrán">Beltrán</option>
-                                                                 <option class="text-black" value="Berbeo">Berbeo</option>
-                                                                 <option class="text-black" value="Betania">Betania</option>
-                                                                 <option class="text-black" value="Betéitiva">Betéitiva</option>
-                                                                 <option class="text-black" value="Betulia">Betulia</option>
-                                                                 <option class="text-black" value="Bituima">Bituima</option>
-                                                                 <option class="text-black" value="Boavita">Boavita</option>
-                                                                 <option class="text-black" value="Bochalema">Bochalema</option>
-                                                                 <option class="text-black" value="Bogotá">Bogotá</option>
-                                                                 <option class="text-black" value="Bojacá">Bojacá</option>
-                                                                 <option class="text-black" value="Bojaya">Bojaya</option>
-                                                                 <option class="text-black" value="Bolívar">Bolívar</option>
-                                                                 <option class="text-black" value="Bosconia">Bosconia</option>
-                                                                 <option class="text-black" value="Boyacá">Boyacá</option>
-                                                                 <option class="text-black" value="Briceño">Briceño</option>
-                                                                 <option class="text-black" value="Bucaramanga">Bucaramanga</option>
-                                                                 <option class="text-black" value="Bucarasica">Bucarasica</option>
-                                                                 <option class="text-black" value="Buenaventura">Buenaventura</option>
-                                                                 <option class="text-black" value="Buenavista">Buenavista</option>
-                                                                 <option class="text-black" value="Buenos Aires">Buenos Aires</option>
-                                                                 <option class="text-black" value="Buesaco">Buesaco</option>
-                                                                 <option class="text-black" value="Buga">Buga</option>
-                                                                 <option class="text-black" value="Bugalagrande">Bugalagrande</option>
-                                                                 <option class="text-black" value="Buriticá">Buriticá</option>
-                                                                 <option class="text-black" value="Busbanzá">Busbanzá</option>
-                                                                 <option class="text-black" value="Cabrera">Cabrera</option>
-                                                                 <option class="text-black" value="Cabuyaro">Cabuyaro</option>
-                                                                 <option class="text-black" value="Cacahual">Cacahual</option>
-                                                                 <option class="text-black" value="Cáceres">Cáceres</option>
-                                                                 <option class="text-black" value="Cachipay">Cachipay</option>
-                                                                 <option class="text-black" value="Cachirá">Cachirá</option>
-                                                                 <option class="text-black" value="Cácota">Cácota</option>
-                                                                 <option class="text-black" value="Caicedo">Caicedo</option>
-                                                                 <option class="text-black" value="Caicedonia">Caicedonia</option>
-                                                                 <option class="text-black" value="Caimito">Caimito</option>
-                                                                 <option class="text-black" value="Cajamarca">Cajamarca</option>
-                                                                 <option class="text-black" value="Cajibío">Cajibío</option>
-                                                                 <option class="text-black" value="Cajicá">Cajicá</option>
-                                                                 <option class="text-black" value="Calamar">Calamar</option>
-                                                                 <option class="text-black" value="Calarca">Calarca</option>
-                                                                 <option class="text-black" value="Caldas">Caldas</option>
-                                                                 <option class="text-black" value="Caldono">Caldono</option>
-                                                                 <option class="text-black" value="Cali">Cali</option>
-                                                                 <option class="text-black" value="California">California</option>
-                                                                 <option class="text-black" value="Calima">Calima</option>
-                                                                 <option class="text-black" value="Caloto">Caloto</option>
-                                                                 <option class="text-black" value="Campamento">Campamento</option>
-                                                                 <option class="text-black" value="Campo de la Cruz">Campo de la Cruz</option>
-                                                                 <option class="text-black" value="Campoalegre">Campoalegre</option>
-                                                                 <option class="text-black" value="Campohermoso">Campohermoso</option>
-                                                                 <option class="text-black" value="Canalete">Canalete</option>
-                                                                 <option class="text-black" value="Cañasgordas">Cañasgordas</option>
-                                                                 <option class="text-black" value="Candelaria">Candelaria</option>
-                                                                 <option class="text-black" value="Cantagallo">Cantagallo</option>
-                                                                 <option class="text-black" value="Caparrapí">Caparrapí</option>
-                                                                 <option class="text-black" value="Capitanejo">Capitanejo</option>
-                                                                 <option class="text-black" value="Caqueza">Caqueza</option>
-                                                                 <option class="text-black" value="Caracolí">Caracolí</option>
-                                                                 <option class="text-black" value="Caramanta">Caramanta</option>
-                                                                 <option class="text-black" value="Carcasí">Carcasí</option>
-                                                                 <option class="text-black" value="Carepa">Carepa</option>
-                                                                 <option class="text-black" value="Carmen de Apicalá">Carmen de Apicalá</option>
-                                                                 <option class="text-black" value="Carmen de Carupa">Carmen de Carupa</option>
-                                                                 <option class="text-black" value="Carmen del Darien">Carmen del Darien</option>
-                                                                 <option class="text-black" value="Carmen del Viboral">Carmen del Viboral</option>
-                                                                 <option class="text-black" value="Carolina">Carolina</option>
-                                                                 <option class="text-black" value="Cartagena">Cartagena</option>
-                                                                 <option class="text-black" value="Cartagena del Chairá">Cartagena del Chairá</option>
-                                                                 <option class="text-black" value="Cartago">Cartago</option>
-                                                                 <option class="text-black" value="Caruru">Caruru</option>
-                                                                 <option class="text-black" value="Casabianca">Casabianca</option>
-                                                                 <option class="text-black" value="Castilla La Nueva">Castilla La Nueva</option>
-                                                                 <option class="text-black" value="Caucasia">Caucasia</option>
-                                                                 <option class="text-black" value="Cepitá">Cepitá</option>
-                                                                 <option class="text-black" value="Cereté">Cereté</option>
-                                                                 <option class="text-black" value="Cerinza">Cerinza</option>
-                                                                 <option class="text-black" value="Cerrito">Cerrito</option>
-                                                                 <option class="text-black" value="Cerro San Antonio">Cerro San Antonio</option>
-                                                                 <option class="text-black" value="Cértegui">Cértegui</option>
-                                                                 <option class="text-black" value="Chachagüí">Chachagüí</option>
-                                                                 <option class="text-black" value="Chaguaní">Chaguaní</option>
-                                                                 <option class="text-black" value="Chalán">Chalán</option>
-                                                                 <option class="text-black" value="Chameza">Chameza</option>
-                                                                 <option class="text-black" value="Chaparral">Chaparral</option>
-                                                                 <option class="text-black" value="Charalá">Charalá</option>
-                                                                 <option class="text-black" value="Charta">Charta</option>
-                                                                 <option class="text-black" value="Chía">Chía</option>
-                                                                 <option class="text-black" value="Chibolo">Chibolo</option>
-                                                                 <option class="text-black" value="Chigorodó">Chigorodó</option>
-                                                                 <option class="text-black" value="Chima">Chima</option>
-                                                                 <option class="text-black" value="Chimá">Chimá</option>
-                                                                 <option class="text-black" value="Chimichagua">Chimichagua</option>
-                                                                 <option class="text-black" value="Chinácota">Chinácota</option>
-                                                                 <option class="text-black" value="Chinavita">Chinavita</option>
-                                                                 <option class="text-black" value="Chinchiná">Chinchiná</option>
-                                                                 <option class="text-black" value="Chinú">Chinú</option>
-                                                                 <option class="text-black" value="Chipaque">Chipaque</option>
-                                                                 <option class="text-black" value="Chipatá">Chipatá</option>
-                                                                 <option class="text-black" value="Chiquinquirá">Chiquinquirá</option>
-                                                                 <option class="text-black" value="Chíquiza">Chíquiza</option>
-                                                                 <option class="text-black" value="Chiriguaná">Chiriguaná</option>
-                                                                 <option class="text-black" value="Chiscas">Chiscas</option>
-                                                                 <option class="text-black" value="Chita">Chita</option>
-                                                                 <option class="text-black" value="Chitagá">Chitagá</option>
-                                                                 <option class="text-black" value="Chitaraque">Chitaraque</option>
-                                                                 <option class="text-black" value="Chivatá">Chivatá</option>
-                                                                 <option class="text-black" value="Chivor">Chivor</option>
-                                                                 <option class="text-black" value="Choachí">Choachí</option>
-                                                                 <option class="text-black" value="Chocontá">Chocontá</option>
-                                                                 <option class="text-black" value="Cicuco">Cicuco</option>
-                                                                 <option class="text-black" value="Ciénaga">Ciénaga</option>
-                                                                 <option class="text-black" value="Ciénaga de Oro">Ciénaga de Oro</option>
-                                                                 <option class="text-black" value="Ciénega">Ciénega</option>
-                                                                 <option class="text-black" value="Cimitarra">Cimitarra</option>
-                                                                 <option class="text-black" value="Circasia">Circasia</option>
-                                                                 <option class="text-black" value="Cisneros">Cisneros</option>
-                                                                 <option class="text-black" value="Ciudad Bolívar">Ciudad Bolívar</option>
-                                                                 <option class="text-black" value="Clemencia">Clemencia</option>
-                                                                 <option class="text-black" value="Cocorná">Cocorná</option>
-                                                                 <option class="text-black" value="Coello">Coello</option>
-                                                                 <option class="text-black" value="Cogua">Cogua</option>
-                                                                 <option class="text-black" value="Colombia">Colombia</option>
-                                                                 <option class="text-black" value="Colón">Colón</option>
-                                                                 <option class="text-black" value="Coloso">Coloso</option>
-                                                                 <option class="text-black" value="Cómbita">Cómbita</option>
-                                                                 <option class="text-black" value="Concepción">Concepción</option>
-                                                                 <option class="text-black" value="Concordia">Concordia</option>
-                                                                 <option class="text-black" value="Condoto">Condoto</option>
-                                                                 <option class="text-black" value="Confines">Confines</option>
-                                                                 <option class="text-black" value="Consaca">Consaca</option>
-                                                                 <option class="text-black" value="Contadero">Contadero</option>
-                                                                 <option class="text-black" value="Contratación">Contratación</option>
-                                                                 <option class="text-black" value="Convención">Convención</option>
-                                                                 <option class="text-black" value="Copacabana">Copacabana</option>
-                                                                 <option class="text-black" value="Coper">Coper</option>
-                                                                 <option class="text-black" value="Córdoba">Córdoba</option>
-                                                                 <option class="text-black" value="Corinto">Corinto</option>
-                                                                 <option class="text-black" value="Coromoro">Coromoro</option>
-                                                                 <option class="text-black" value="Corozal">Corozal</option>
-                                                                 <option class="text-black" value="Corrales">Corrales</option>
-                                                                 <option class="text-black" value="Cota">Cota</option>
-                                                                 <option class="text-black" value="Cotorra">Cotorra</option>
-                                                                 <option class="text-black" value="Covarachía">Covarachía</option>
-                                                                 <option class="text-black" value="Coveñas">Coveñas</option>
-                                                                 <option class="text-black" value="Coyaima">Coyaima</option>
-                                                                 <option class="text-black" value="Cravo Norte">Cravo Norte</option>
-                                                                 <option class="text-black" value="Cuaspud">Cuaspud</option>
-                                                                 <option class="text-black" value="Cubará">Cubará</option>
-                                                                 <option class="text-black" value="Cubarral">Cubarral</option>
-                                                                 <option class="text-black" value="Cucaita">Cucaita</option>
-                                                                 <option class="text-black" value="Cucunubá">Cucunubá</option>
-                                                                 <option class="text-black" value="Cúcuta">Cúcuta</option>
-                                                                 <option class="text-black" value="Cucutilla">Cucutilla</option>
-                                                                 <option class="text-black" value="Cuítiva">Cuítiva</option>
-                                                                 <option class="text-black" value="Cumaral">Cumaral</option>
-                                                                 <option class="text-black" value="Cumaribo">Cumaribo</option>
-                                                                 <option class="text-black" value="Cumbal">Cumbal</option>
-                                                                 <option class="text-black" value="Cumbitara">Cumbitara</option>
-                                                                 <option class="text-black" value="Cunday">Cunday</option>
-                                                                 <option class="text-black" value="Curillo">Curillo</option>
-                                                                 <option class="text-black" value="Curití">Curití</option>
-                                                                 <option class="text-black" value="Curumaní">Curumaní</option>
-                                                                 <option class="text-black" value="Dabeiba">Dabeiba</option>
-                                                                 <option class="text-black" value="Dagua">Dagua</option>
-                                                                 <option class="text-black" value="Dibulla">Dibulla</option>
-                                                                 <option class="text-black" value="Distracción">Distracción</option>
-                                                                 <option class="text-black" value="Dolores">Dolores</option>
-                                                                 <option class="text-black" value="Don Matías">Don Matías</option>
-                                                                 <option class="text-black" value="Dosquebradas">Dosquebradas</option>
-                                                                 <option class="text-black" value="Duitama">Duitama</option>
-                                                                 <option class="text-black" value="Durania">Durania</option>
-                                                                 <option class="text-black" value="Ebéjico">Ebéjico</option>
-                                                                 <option class="text-black" value="El Águila">El Águila</option>
-                                                                 <option class="text-black" value="El Bagre">El Bagre</option>
-                                                                 <option class="text-black" value="El Banco">El Banco</option>
-                                                                 <option class="text-black" value="El Cairo">El Cairo</option>
-                                                                 <option class="text-black" value="El Calvario">El Calvario</option>
-                                                                 <option class="text-black" value="El Cantón del San Pablo">El Cantón del San Pablo</option>
-                                                                 <option class="text-black" value="El Carmen">El Carmen</option>
-                                                                 <option class="text-black" value="El Carmen de Atrato">El Carmen de Atrato</option>
-                                                                 <option class="text-black" value="El Carmen de Bolívar">El Carmen de Bolívar</option>
-                                                                 <option class="text-black" value="El Carmen de Chucurí">El Carmen de Chucurí</option>
-                                                                 <option class="text-black" value="El Carmen de Viboral">El Carmen de Viboral</option>
-                                                                 <option class="text-black" value="El Castillo">El Castillo</option>
-                                                                 <option class="text-black" value="El Cerrito">El Cerrito</option>
-                                                                 <option class="text-black" value="El Charco">El Charco</option>
-                                                                 <option class="text-black" value="El Cocuy">El Cocuy</option>
-                                                                 <option class="text-black" value="El Colegio">El Colegio</option>
-                                                                 <option class="text-black" value="El Copey">El Copey</option>
-                                                                 <option class="text-black" value="El Doncello">El Doncello</option>
-                                                                 <option class="text-black" value="El Dorado">El Dorado</option>
-                                                                 <option class="text-black" value="El Dovio">El Dovio</option>
-                                                                 <option class="text-black" value="El encanto">El encanto</option>
-                                                                 <option class="text-black" value="El Espino">El Espino</option>
-                                                                 <option class="text-black" value="El Guacamayo">El Guacamayo</option>
-                                                                 <option class="text-black" value="El Guamo">El Guamo</option>
-                                                                 <option class="text-black" value="El Litoral del San Juan">El Litoral del San Juan</option>
-                                                                 <option class="text-black" value="El Molino">El Molino</option>
-                                                                 <option class="text-black" value="El Paso">El Paso</option>
-                                                                 <option class="text-black" value="El Paujil">El Paujil</option>
-                                                                 <option class="text-black" value="El Peñol">El Peñol</option>
-                                                                 <option class="text-black" value="El Piñon">El Piñon</option>
-                                                                 <option class="text-black" value="El Playón">El Playón</option>
-                                                                 <option class="text-black" value="El Retén">El Retén</option>
-                                                                 <option class="text-black" value="El Retorno">El Retorno</option>
-                                                                 <option class="text-black" value="El Roble">El Roble</option>
-                                                                 <option class="text-black" value="El Rosal">El Rosal</option>
-                                                                 <option class="text-black" value="El Rosario">El Rosario</option>
-                                                                 <option class="text-black" value="El Santuario">El Santuario</option>
-                                                                 <option class="text-black" value="El Tablón de Gómez">El Tablón de Gómez</option>
-                                                                 <option class="text-black" value="El Tambo">El Tambo</option>
-                                                                 <option class="text-black" value="El Tarra">El Tarra</option>
-                                                                 <option class="text-black" value="El Zulia">El Zulia</option>
-                                                                 <option class="text-black" value="Elías">Elías</option>
-                                                                 <option class="text-black" value="Encino">Encino</option>
-                                                                 <option class="text-black" value="Enciso">Enciso</option>
-                                                                 <option class="text-black" value="Entrerrios">Entrerrios</option>
-                                                                 <option class="text-black" value="Envigado">Envigado</option>
-                                                                 <option class="text-black" value="Espinal">Espinal</option>
-                                                                 <option class="text-black" value="Facatativá">Facatativá</option>
-                                                                 <option class="text-black" value="Falan">Falan</option>
-                                                                 <option class="text-black" value="Filadelfia">Filadelfia</option>
-                                                                 <option value="Filandia">Filandia</option>
-                                                                 <option value="Firavitoba">Firavitoba</option>
-                                                                 <option class="text-black" value="Flandes">Flandes</option>
-                                                                 <option class="text-black" value="Florencia">Florencia</option>
+                                                    <div class="d-inline-block w-100">
+                                                        <label for="basic-url" class="form-label ps-2
+                                                            text-black" for="validationCustom05"
+                                                            style="font-size: 17;">Email</label>
+                                                        <div class="input-group mb-3 w-100">
+                                                            <input type="email" class="form-control"
+                                                                name="email"
+                                                                id="id_email"
+                                                                aria-describedby="basic-addon3" required
+                                                                minlength="1"
+                                                                maxlength="50" id="validationCustom05"
+                                                                required disabled value="{{cliente.email}}">
+                                                            <div class="valid-feedback">
+                                                                ¡Vamos bien!
+                                                            </div>
+                                                            <div class="invalid-feedback">
+                                                                Ingresa email valido.
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="d-inline-block w-100">
+                                                        <label for="basic-url" class="form-label ps-2
+                                                            text-black" for="validationCustom06"
+                                                            style="font-size: 17;">Ciudad</label>
+                                                        <div class="input-group mb-3 w-100">
+                                                            <select id="id_ciudad" class="form-select"
+                                                                name="ciudad"
+                                                                aria-label="tipo-activo"
+                                                                id="validationCustom09" required disabled>
+                                                                <option class="text-black" selected 
+                                                                    value="{{cliente.ciudad}}">{{cliente.ciudad}}</option>
+                                                                <option class="text-black" value="Abejorral">Abejorral</option>
+                                                                <option class="text-black" value="Abrego">Abrego</option>
+                                                                <option class="text-black" value="Abriaquí">Abriaquí</option>
+                                                                <option class="text-black" value="Acacías">Acacías</option>
+                                                                <option class="text-black" value="Acandí">Acandí</option>
+                                                                <option class="text-black" value="Acevedo">Acevedo</option>
+                                                                <option class="text-black" value="Achí">Achí</option>
+                                                                <option class="text-black" value="Agrado">Agrado</option>
+                                                                <option class="text-black" value="Agua de Dios">Agua de Dios</option>
+                                                                <option class="text-black" value="Aguachica">Aguachica</option>
+                                                                <option class="text-black" value="Aguada">Aguada</option>
+                                                                <option class="text-black" value="Aguadas">Aguadas</option>
+                                                                <option class="text-black" value="Aguazul">Aguazul</option>
+                                                                <option class="text-black" value="Agustín Codazzi">Agustín Codazzi</option>
+                                                                <option class="text-black" value="Aipe">Aipe</option>
+                                                                <option class="text-black" value="Albán">Albán</option>tion>
+                                                                <option class="text-black" value="Albania">Albania</option>
+                                                                <option class="text-black" value="Alcalá">Alcalá</option>
+                                                                <option class="text-black" value="Aldana">Aldana</option>
+                                                                <option class="text-black" value="Alejandría">Alejandría</option>
+                                                                <option class="text-black" value="Algarrobo">Algarrobo</option>
+                                                                <option class="text-black" value="Algeciras">Algeciras</option>
+                                                                <option class="text-black" value="Almaguer">Almaguer</option>
+                                                                <option class="text-black" value="Almeida">Almeida</option>
+                                                                <option class="text-black" value="Alpujarra">Alpujarra</option>
+                                                                <option class="text-black" value="Altamira">Altamira</option>
+                                                                <option class="text-black" value="Alto Baudo">Alto Baudo</option>
+                                                                <option class="text-black" value="Altos del Rosario">Altos del Rosario</option>
+                                                                <option class="text-black" value="Alvarado">Alvarado</option>
+                                                                <option class="text-black" value="Amagá">Amagá</option>
+                                                                <option class="text-black" value="Amalfi">Amalfi</option>
+                                                                <option class="text-black" value="Ambalema">Ambalema</option>
+                                                                <option class="text-black" value="Anapoima">Anapoima</option>
+                                                                <option class="text-black" value="Ancuyá">Ancuyá</option>
+                                                                <option class="text-black" value="Andalucía">Andalucía</option>
+                                                                <option class="text-black" value="Andes">Andes</option>
+                                                                <option class="text-black" value="Angelópolis">Angelópolis</option>
+                                                                <option class="text-black" value="Angostura">Angostura</option>
+                                                                <option class="text-black" value="Anolaima">Anolaima</option>
+                                                                <option class="text-black" value="Anorí">Anorí</option>
+                                                                <option class="text-black" value="Anserma">Anserma</option>
+                                                                <option class="text-black" value="Ansermanuevo">Ansermanuevo</option>
+                                                                <option class="text-black" value="Anza">Anza</option>
+                                                                <option class="text-black" value="Anzoátegui">Anzoátegui</option>
+                                                                <option class="text-black" value="Apartadó">Apartadó</option>
+                                                                <option class="text-black" value="Apía">Apía</option>
+                                                                <option class="text-black" value="Apulo">Apulo</option>
+                                                                <option class="text-black" value="Aquitania">Aquitania</option>
+                                                                <option class="text-black" value="Aracataca">Aracataca</option>
+                                                                <option class="text-black" value="Aranzazu">Aranzazu</option>
+                                                                <option class="text-black" value="Aratoca">Aratoca</option>
+                                                                <option class="text-black" value="Arauca">Arauca</option>
+                                                                <option class="text-black" value="Arauquita">Arauquita</option>
+                                                                <option class="text-black" value="Arbeláez">Arbeláez</option>
+                                                                <option class="text-black" value="Arboleda">Arboleda</option>
+                                                                <option class="text-black" value="Arboledas">Arboledas</option>
+                                                                <option class="text-black" value="Arboletes">Arboletes</option>
+                                                                <option class="text-black" value="Arcabuco">Arcabuco</option>
+                                                                <option class="text-black" value="Arenal">Arenal</option>
+                                                                <option class="text-black" value="Argelia">Argelia</option>
+                                                                <option class="text-black" value="Ariguaní">Ariguaní</option>
+                                                                <option class="text-black" value="Arjona">Arjona</option>
+                                                                <option class="text-black" value="Armenia">Armenia</option>
+                                                                <option class="text-black" value="Armero">Armero</option>
+                                                                <option class="text-black" value="Arroyohondo">Arroyohondo</option>
+                                                                <option class="text-black" value="Astrea">Astrea</option>
+                                                                <option class="text-black" value="Ataco">Ataco</option>
+                                                                <option class="text-black" value="Atrato">Atrato</option>
+                                                                <option class="text-black" value="Ayapel">Ayapel</option>
+                                                                <option class="text-black" value="Bagadó">Bagadó</option>
+                                                                <option class="text-black" value="Bahía Solano">Bahía Solano</option>
+                                                                <option class="text-black" value="Bajo Baudó">Bajo Baudó</option>
+                                                                <option class="text-black" value="Balboa">Balboa</option>
+                                                                <option class="text-black" value="Baranoa">Baranoa</option>
+                                                                <option class="text-black" value="Baraya">Baraya</option>
+                                                                <option class="text-black" value="Barbacoas">Barbacoas</option>
+                                                                <option class="text-black" value="Barbosa">Barbosa</option>
+                                                                <option class="text-black" value="Barichara">Barichara</option>
+                                                                <option class="text-black" value="Barranca de Upía">Barranca de Upía</option>
+                                                                <option class="text-black" value="Barrancabermeja">Barrancabermeja</option>
+                                                                <option class="text-black" value="Barrancas">Barrancas</option>
+                                                                <option class="text-black" value="Barranco de Loba">Barranco de Loba</option>
+                                                                <option class="text-black" value="Barranco Minas">Barranco Minas</option>
+                                                                <option class="text-black" value="Barranquilla">Barranquilla</option>
+                                                                <option class="text-black" value="Becerril">Becerril</option>
+                                                                <option class="text-black" value="Belalcázar">Belalcázar</option>
+                                                                <option class="text-black" value="Belén">Belén</option>
+                                                                <option class="text-black" value="Belén de Bajirá">Belén de Bajirá</option>
+                                                                <option class="text-black" value="Belén de Los Andaquies">Belén de Los Andaquies</option>
+                                                                <option class="text-black" value="Belén de Umbría">Belén de Umbría</option>
+                                                                <option class="text-black" value="Bello">Bello</option>
+                                                                <option class="text-black" value="Belmira">Belmira</option>
+                                                                <option class="text-black" value="Beltrán">Beltrán</option>
+                                                                <option class="text-black" value="Berbeo">Berbeo</option>
+                                                                <option class="text-black" value="Betania">Betania</option>
+                                                                <option class="text-black" value="Betéitiva">Betéitiva</option>
+                                                                <option class="text-black" value="Betulia">Betulia</option>
+                                                                <option class="text-black" value="Bituima">Bituima</option>
+                                                                <option class="text-black" value="Boavita">Boavita</option>
+                                                                <option class="text-black" value="Bochalema">Bochalema</option>
+                                                                <option class="text-black" value="Bogotá">Bogotá</option>
+                                                                <option class="text-black" value="Bojacá">Bojacá</option>
+                                                                <option class="text-black" value="Bojaya">Bojaya</option>
+                                                                <option class="text-black" value="Bolívar">Bolívar</option>
+                                                                <option class="text-black" value="Bosconia">Bosconia</option>
+                                                                <option class="text-black" value="Boyacá">Boyacá</option>
+                                                                <option class="text-black" value="Briceño">Briceño</option>
+                                                                <option class="text-black" value="Bucaramanga">Bucaramanga</option>
+                                                                <option class="text-black" value="Bucarasica">Bucarasica</option>
+                                                                <option class="text-black" value="Buenaventura">Buenaventura</option>
+                                                                <option class="text-black" value="Buenavista">Buenavista</option>
+                                                                <option class="text-black" value="Buenos Aires">Buenos Aires</option>
+                                                                <option class="text-black" value="Buesaco">Buesaco</option>
+                                                                <option class="text-black" value="Buga">Buga</option>
+                                                                <option class="text-black" value="Bugalagrande">Bugalagrande</option>
+                                                                <option class="text-black" value="Buriticá">Buriticá</option>
+                                                                <option class="text-black" value="Busbanzá">Busbanzá</option>
+                                                                <option class="text-black" value="Cabrera">Cabrera</option>
+                                                                <option class="text-black" value="Cabuyaro">Cabuyaro</option>
+                                                                <option class="text-black" value="Cacahual">Cacahual</option>
+                                                                <option class="text-black" value="Cáceres">Cáceres</option>
+                                                                <option class="text-black" value="Cachipay">Cachipay</option>
+                                                                <option class="text-black" value="Cachirá">Cachirá</option>
+                                                                <option class="text-black" value="Cácota">Cácota</option>
+                                                                <option class="text-black" value="Caicedo">Caicedo</option>
+                                                                <option class="text-black" value="Caicedonia">Caicedonia</option>
+                                                                <option class="text-black" value="Caimito">Caimito</option>
+                                                                <option class="text-black" value="Cajamarca">Cajamarca</option>
+                                                                <option class="text-black" value="Cajibío">Cajibío</option>
+                                                                <option class="text-black" value="Cajicá">Cajicá</option>
+                                                                <option class="text-black" value="Calamar">Calamar</option>
+                                                                <option class="text-black" value="Calarca">Calarca</option>
+                                                                <option class="text-black" value="Caldas">Caldas</option>
+                                                                <option class="text-black" value="Caldono">Caldono</option>
+                                                                <option class="text-black" value="Cali">Cali</option>
+                                                                <option class="text-black" value="California">California</option>
+                                                                <option class="text-black" value="Calima">Calima</option>
+                                                                <option class="text-black" value="Caloto">Caloto</option>
+                                                                <option class="text-black" value="Campamento">Campamento</option>
+                                                                <option class="text-black" value="Campo de la Cruz">Campo de la Cruz</option>
+                                                                <option class="text-black" value="Campoalegre">Campoalegre</option>
+                                                                <option class="text-black" value="Campohermoso">Campohermoso</option>
+                                                                <option class="text-black" value="Canalete">Canalete</option>
+                                                                <option class="text-black" value="Cañasgordas">Cañasgordas</option>
+                                                                <option class="text-black" value="Candelaria">Candelaria</option>
+                                                                <option class="text-black" value="Cantagallo">Cantagallo</option>
+                                                                <option class="text-black" value="Caparrapí">Caparrapí</option>
+                                                                <option class="text-black" value="Capitanejo">Capitanejo</option>
+                                                                <option class="text-black" value="Caqueza">Caqueza</option>
+                                                                <option class="text-black" value="Caracolí">Caracolí</option>
+                                                                <option class="text-black" value="Caramanta">Caramanta</option>
+                                                                <option class="text-black" value="Carcasí">Carcasí</option>
+                                                                <option class="text-black" value="Carepa">Carepa</option>
+                                                                <option class="text-black" value="Carmen de Apicalá">Carmen de Apicalá</option>
+                                                                <option class="text-black" value="Carmen de Carupa">Carmen de Carupa</option>
+                                                                <option class="text-black" value="Carmen del Darien">Carmen del Darien</option>
+                                                                <option class="text-black" value="Carmen del Viboral">Carmen del Viboral</option>
+                                                                <option class="text-black" value="Carolina">Carolina</option>
+                                                                <option class="text-black" value="Cartagena">Cartagena</option>
+                                                                <option class="text-black" value="Cartagena del Chairá">Cartagena del Chairá</option>
+                                                                <option class="text-black" value="Cartago">Cartago</option>
+                                                                <option class="text-black" value="Caruru">Caruru</option>
+                                                                <option class="text-black" value="Casabianca">Casabianca</option>
+                                                                <option class="text-black" value="Castilla La Nueva">Castilla La Nueva</option>
+                                                                <option class="text-black" value="Caucasia">Caucasia</option>
+                                                                <option class="text-black" value="Cepitá">Cepitá</option>
+                                                                <option class="text-black" value="Cereté">Cereté</option>
+                                                                <option class="text-black" value="Cerinza">Cerinza</option>
+                                                                <option class="text-black" value="Cerrito">Cerrito</option>
+                                                                <option class="text-black" value="Cerro San Antonio">Cerro San Antonio</option>
+                                                                <option class="text-black" value="Cértegui">Cértegui</option>
+                                                                <option class="text-black" value="Chachagüí">Chachagüí</option>
+                                                                <option class="text-black" value="Chaguaní">Chaguaní</option>
+                                                                <option class="text-black" value="Chalán">Chalán</option>
+                                                                <option class="text-black" value="Chameza">Chameza</option>
+                                                                <option class="text-black" value="Chaparral">Chaparral</option>
+                                                                <option class="text-black" value="Charalá">Charalá</option>
+                                                                <option class="text-black" value="Charta">Charta</option>
+                                                                <option class="text-black" value="Chía">Chía</option>
+                                                                <option class="text-black" value="Chibolo">Chibolo</option>
+                                                                <option class="text-black" value="Chigorodó">Chigorodó</option>
+                                                                <option class="text-black" value="Chima">Chima</option>
+                                                                <option class="text-black" value="Chimá">Chimá</option>
+                                                                <option class="text-black" value="Chimichagua">Chimichagua</option>
+                                                                <option class="text-black" value="Chinácota">Chinácota</option>
+                                                                <option class="text-black" value="Chinavita">Chinavita</option>
+                                                                <option class="text-black" value="Chinchiná">Chinchiná</option>
+                                                                <option class="text-black" value="Chinú">Chinú</option>
+                                                                <option class="text-black" value="Chipaque">Chipaque</option>
+                                                                <option class="text-black" value="Chipatá">Chipatá</option>
+                                                                <option class="text-black" value="Chiquinquirá">Chiquinquirá</option>
+                                                                <option class="text-black" value="Chíquiza">Chíquiza</option>
+                                                                <option class="text-black" value="Chiriguaná">Chiriguaná</option>
+                                                                <option class="text-black" value="Chiscas">Chiscas</option>
+                                                                <option class="text-black" value="Chita">Chita</option>
+                                                                <option class="text-black" value="Chitagá">Chitagá</option>
+                                                                <option class="text-black" value="Chitaraque">Chitaraque</option>
+                                                                <option class="text-black" value="Chivatá">Chivatá</option>
+                                                                <option class="text-black" value="Chivor">Chivor</option>
+                                                                <option class="text-black" value="Choachí">Choachí</option>
+                                                                <option class="text-black" value="Chocontá">Chocontá</option>
+                                                                <option class="text-black" value="Cicuco">Cicuco</option>
+                                                                <option class="text-black" value="Ciénaga">Ciénaga</option>
+                                                                <option class="text-black" value="Ciénaga de Oro">Ciénaga de Oro</option>
+                                                                <option class="text-black" value="Ciénega">Ciénega</option>
+                                                                <option class="text-black" value="Cimitarra">Cimitarra</option>
+                                                                <option class="text-black" value="Circasia">Circasia</option>
+                                                                <option class="text-black" value="Cisneros">Cisneros</option>
+                                                                <option class="text-black" value="Ciudad Bolívar">Ciudad Bolívar</option>
+                                                                <option class="text-black" value="Clemencia">Clemencia</option>
+                                                                <option class="text-black" value="Cocorná">Cocorná</option>
+                                                                <option class="text-black" value="Coello">Coello</option>
+                                                                <option class="text-black" value="Cogua">Cogua</option>
+                                                                <option class="text-black" value="Colombia">Colombia</option>
+                                                                <option class="text-black" value="Colón">Colón</option>
+                                                                <option class="text-black" value="Coloso">Coloso</option>
+                                                                <option class="text-black" value="Cómbita">Cómbita</option>
+                                                                <option class="text-black" value="Concepción">Concepción</option>
+                                                                <option class="text-black" value="Concordia">Concordia</option>
+                                                                <option class="text-black" value="Condoto">Condoto</option>
+                                                                <option class="text-black" value="Confines">Confines</option>
+                                                                <option class="text-black" value="Consaca">Consaca</option>
+                                                                <option class="text-black" value="Contadero">Contadero</option>
+                                                                <option class="text-black" value="Contratación">Contratación</option>
+                                                                <option class="text-black" value="Convención">Convención</option>
+                                                                <option class="text-black" value="Copacabana">Copacabana</option>
+                                                                <option class="text-black" value="Coper">Coper</option>
+                                                                <option class="text-black" value="Córdoba">Córdoba</option>
+                                                                <option class="text-black" value="Corinto">Corinto</option>
+                                                                <option class="text-black" value="Coromoro">Coromoro</option>
+                                                                <option class="text-black" value="Corozal">Corozal</option>
+                                                                <option class="text-black" value="Corrales">Corrales</option>
+                                                                <option class="text-black" value="Cota">Cota</option>
+                                                                <option class="text-black" value="Cotorra">Cotorra</option>
+                                                                <option class="text-black" value="Covarachía">Covarachía</option>
+                                                                <option class="text-black" value="Coveñas">Coveñas</option>
+                                                                <option class="text-black" value="Coyaima">Coyaima</option>
+                                                                <option class="text-black" value="Cravo Norte">Cravo Norte</option>
+                                                                <option class="text-black" value="Cuaspud">Cuaspud</option>
+                                                                <option class="text-black" value="Cubará">Cubará</option>
+                                                                <option class="text-black" value="Cubarral">Cubarral</option>
+                                                                <option class="text-black" value="Cucaita">Cucaita</option>
+                                                                <option class="text-black" value="Cucunubá">Cucunubá</option>
+                                                                <option class="text-black" value="Cúcuta">Cúcuta</option>
+                                                                <option class="text-black" value="Cucutilla">Cucutilla</option>
+                                                                <option class="text-black" value="Cuítiva">Cuítiva</option>
+                                                                <option class="text-black" value="Cumaral">Cumaral</option>
+                                                                <option class="text-black" value="Cumaribo">Cumaribo</option>
+                                                                <option class="text-black" value="Cumbal">Cumbal</option>
+                                                                <option class="text-black" value="Cumbitara">Cumbitara</option>
+                                                                <option class="text-black" value="Cunday">Cunday</option>
+                                                                <option class="text-black" value="Curillo">Curillo</option>
+                                                                <option class="text-black" value="Curití">Curití</option>
+                                                                <option class="text-black" value="Curumaní">Curumaní</option>
+                                                                <option class="text-black" value="Dabeiba">Dabeiba</option>
+                                                                <option class="text-black" value="Dagua">Dagua</option>
+                                                                <option class="text-black" value="Dibulla">Dibulla</option>
+                                                                <option class="text-black" value="Distracción">Distracción</option>
+                                                                <option class="text-black" value="Dolores">Dolores</option>
+                                                                <option class="text-black" value="Don Matías">Don Matías</option>
+                                                                <option class="text-black" value="Dosquebradas">Dosquebradas</option>
+                                                                <option class="text-black" value="Duitama">Duitama</option>
+                                                                <option class="text-black" value="Durania">Durania</option>
+                                                                <option class="text-black" value="Ebéjico">Ebéjico</option>
+                                                                <option class="text-black" value="El Águila">El Águila</option>
+                                                                <option class="text-black" value="El Bagre">El Bagre</option>
+                                                                <option class="text-black" value="El Banco">El Banco</option>
+                                                                <option class="text-black" value="El Cairo">El Cairo</option>
+                                                                <option class="text-black" value="El Calvario">El Calvario</option>
+                                                                <option class="text-black" value="El Cantón del San Pablo">El Cantón del San Pablo</option>
+                                                                <option class="text-black" value="El Carmen">El Carmen</option>
+                                                                <option class="text-black" value="El Carmen de Atrato">El Carmen de Atrato</option>
+                                                                <option class="text-black" value="El Carmen de Bolívar">El Carmen de Bolívar</option>
+                                                                <option class="text-black" value="El Carmen de Chucurí">El Carmen de Chucurí</option>
+                                                                <option class="text-black" value="El Carmen de Viboral">El Carmen de Viboral</option>
+                                                                <option class="text-black" value="El Castillo">El Castillo</option>
+                                                                <option class="text-black" value="El Cerrito">El Cerrito</option>
+                                                                <option class="text-black" value="El Charco">El Charco</option>
+                                                                <option class="text-black" value="El Cocuy">El Cocuy</option>
+                                                                <option class="text-black" value="El Colegio">El Colegio</option>
+                                                                <option class="text-black" value="El Copey">El Copey</option>
+                                                                <option class="text-black" value="El Doncello">El Doncello</option>
+                                                                <option class="text-black" value="El Dorado">El Dorado</option>
+                                                                <option class="text-black" value="El Dovio">El Dovio</option>
+                                                                <option class="text-black" value="El encanto">El encanto</option>
+                                                                <option class="text-black" value="El Espino">El Espino</option>
+                                                                <option class="text-black" value="El Guacamayo">El Guacamayo</option>
+                                                                <option class="text-black" value="El Guamo">El Guamo</option>
+                                                                <option class="text-black" value="El Litoral del San Juan">El Litoral del San Juan</option>
+                                                                <option class="text-black" value="El Molino">El Molino</option>
+                                                                <option class="text-black" value="El Paso">El Paso</option>
+                                                                <option class="text-black" value="El Paujil">El Paujil</option>
+                                                                <option class="text-black" value="El Peñol">El Peñol</option>
+                                                                <option class="text-black" value="El Piñon">El Piñon</option>
+                                                                <option class="text-black" value="El Playón">El Playón</option>
+                                                                <option class="text-black" value="El Retén">El Retén</option>
+                                                                <option class="text-black" value="El Retorno">El Retorno</option>
+                                                                <option class="text-black" value="El Roble">El Roble</option>
+                                                                <option class="text-black" value="El Rosal">El Rosal</option>
+                                                                <option class="text-black" value="El Rosario">El Rosario</option>
+                                                                <option class="text-black" value="El Santuario">El Santuario</option>
+                                                                <option class="text-black" value="El Tablón de Gómez">El Tablón de Gómez</option>
+                                                                <option class="text-black" value="El Tambo">El Tambo</option>
+                                                                <option class="text-black" value="El Tarra">El Tarra</option>
+                                                                <option class="text-black" value="El Zulia">El Zulia</option>
+                                                                <option class="text-black" value="Elías">Elías</option>
+                                                                <option class="text-black" value="Encino">Encino</option>
+                                                                <option class="text-black" value="Enciso">Enciso</option>
+                                                                <option class="text-black" value="Entrerrios">Entrerrios</option>
+                                                                <option class="text-black" value="Envigado">Envigado</option>
+                                                                <option class="text-black" value="Espinal">Espinal</option>
+                                                                <option class="text-black" value="Facatativá">Facatativá</option>
+                                                                <option class="text-black" value="Falan">Falan</option>
+                                                                <option class="text-black" value="Filadelfia">Filadelfia</option>
+                                                                <option value="Filandia">Filandia</option>
+                                                                <option value="Firavitoba">Firavitoba</option>
+                                                                <option class="text-black" value="Flandes">Flandes</option>
+                                                                <option class="text-black" value="Florencia">Florencia</option>
                                                                  <option class="text-black" value="Floresta">Floresta</option>
                                                                  <option class="text-black" value="Florián">Florián</option>
                                                                  <option class="text-black" value="Florida">Florida</option>
@@ -2491,27 +2479,27 @@
                                                                  <option class="text-black" value="Zipacón">Zipacón</option>
                                                                  <option class="text-black" value="Zipaquirá">Zipaquirá</option>
                                                                  <option class="text-black" value="Zona Bananera">Zona Bananera</option>
-                                                             </select>
-                                                             <div class="valid-feedback">
-                                                                 ¡Vamos bien!
-                                                             </div>
-                                                             <div class="invalid-feedback">
-                                                                 Selecciona una opción valida.
-                                                             </div>
-                                                         </div>
-                                                     </div>
+                                                            </select>
+                                                            <div class="valid-feedback">
+                                                                ¡Vamos bien!
+                                                            </div>
+                                                            <div class="invalid-feedback">
+                                                                Selecciona una opción valida.
+                                                            </div>
+                                                        </div>
+                                                    </div>
 
 
 
-                                                     <div class="d-inline-block w-100">
+                                                    <div class="d-inline-block w-100">
                                                         <label for="basic-url" class="form-label ps-2
-                                                            text-black" for="validationCustom08"
+                                                            text-black" for="validationCustom07"
                                                             style="font-size: 17;">Estado</label>
                                                         <div class="input-group mb-3 w-100">
-                                                            <select id="id_rol" class="form-select"
+                                                            <select id="id_estado" class="form-select"
                                                                 name="estado"
                                                                 aria-label="tipo-activo"
-                                                                id="validationCustom08" required disabled>
+                                                                id="validationCustom07" required disabled>
                                                                 <option class="text-black" selected 
                                                                     value="{{cliente.estado}}">{{cliente.estado}}</option>
                                                                 <option class="text-black" value="1">Activo</option>
@@ -2526,67 +2514,61 @@
                                                         </div>
                                                     </div>
 
-                                                     
-                                                     <div class="modal-footer">
-                                                         <!-- BOTÓN PARA GUARDAR LA INFORMACIÓN DIGITADA EN EL FORMULARIO DEL USUARIO -->
-                                                         <button type="btn" class="btn btn-success"
-                                                             data-bs-dismiss="modal">Regresar</button>
-                                                         
-                                                     </div>
- 
- 
-                                                 </div>
- 
-                                             </form>
-                                         </div>
-                                     </div>
-                                 </div>
-                                 </div>
- 
-                           
- 
+                                                    
+                                                    <div class="modal-footer">
+                                                        <!-- BOTÓN PARA GUARDAR LA INFORMACIÓN DIGITADA EN EL FORMULARIO DEL USUARIO -->
+                                                        <button type="reset" class="btn btn-success"
+                                                            data-bs-dismiss="modal">Regresar</button>    
+                                                    </div>
+                                                </div>
+
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
 
 
-                                 <!-- Modal delete confirmation -->
-                                 <div class="modal fade"
-                                 id="borrar_cliente{{cliente.pk}}"
-                                 tabindex="-1"
-                                 aria-labelledby="deleteModalLabel"
-                                 aria-hidden="true">
-                                 <div class="modal-dialog">
-                                     <div class="modal-content">
-                                         <div class="modal-header bg-danger">
-                                             <h5 class="modal-title "
-                                                 id="deleteModalLabel"><i
-                                                     class="fas fa-trash-alt"></i>&nbsp;&nbsp; ELIMINAR CLIENTE</h5>
-                                         </div>
-                                         <div class="modal-body">
-                                             <div class="text-center
-                                                 text-danger"><i class="far
-                                                     fa-times-circle fa-5x
-                                                     mb-4 mt-2"></i></div>
-                                             <div class="text-center
-                                                 text-danger">
-                                                 <span class="">¿Estás seguro de que deseas eliminar este usuario?</span>
-                                                 <div class="text-dark mt-3
-                                                     mb-2">Cliente: <strong>{{cliente.nombreEmpresa}}</strong></div>
-                                             </div>
-                                         </div>
+                                <!-- Modal delete client -->
+                                <div class="modal fade"
+                                id="borrar_cliente{{cliente.pk}}"
+                                tabindex="-1"
+                                aria-labelledby="deleteModalLabel"
+                                aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header bg-danger">
+                                            <h5 class="modal-title "
+                                                id="deleteModalLabel"><i
+                                                    class="fas fa-trash-alt"></i>&nbsp;&nbsp; ELIMINAR CLIENTE</h5>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="text-center
+                                                text-danger"><i class="far
+                                                    fa-times-circle fa-5x
+                                                    mb-4 mt-2"></i></div>
+                                            <div class="text-center
+                                                text-danger">
+                                                <span class="">¿Estás seguro de que deseas eliminar este cliente?</span>
+                                                <div class="text-dark mt-3
+                                                    mb-2">Cliente: <strong>{{cliente.nombreEmpresa}}</strong></div>
+                                            </div>
+                                        </div>
 
-                                         <div class="modal-footer">
-                                             <form method="post" action="{% url 'clientes_eliminar' cliente.pk %}">
-                                                 {% csrf_token %}
+                                        <div class="modal-footer">
+                                            <form method="post" action="{% url 'clientes_eliminar' cliente.pk %}">
+                                                {% csrf_token %}
 
-                                                 <input type="submit"
-                                                     class="btn btn-danger"
-                                                     value="Eliminar">
-                                             </form>
-                                             <button type="button" class="btn btn-secondary"
-                                                 data-bs-dismiss="modal">Cancelar</button>
-                                         </div>
-                                     </div>
-                                 </div>
-                             </div> 
+                                                <input type="submit"
+                                                    class="btn btn-danger"
+                                                    value="Eliminar">
+                                            </form>
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Cancelar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> 
 
 
                                 {% endif %}
@@ -2619,15 +2601,6 @@
 
             <footer>{% include 'partials/footer.html' %}</footer>
             <!-- /.content-wrapper -->
-
-
-           
-
-
-
-
-
-
 
             {% endblock contenido %}
 
