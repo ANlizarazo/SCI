@@ -3,7 +3,6 @@
 {% load bootstrap5 %}
 {% bootstrap_css %}
 {% bootstrap_javascript %}
-{% bootstrap_messages %}
 
 <!DOCTYPE html>
 <html lang="es">
@@ -21,11 +20,10 @@
         <!-- Theme style -->
         <link rel="stylesheet" href="{% static 'AdminLTE/css/adminlte.min.css' %}">
         <!-- overlayScrollbars -->
-        <link rel="stylesheet" href="{% static 'AdminLTE\overlayScrollbars\css\OverlayScrollbars.min.css' %}">
+        <link rel="stylesheet" href="{% static 'AdminLTE/overlayScrollbars/css/OverlayScrollbars.min.css' %}">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="shortcut icon" href="/static/img/logoMallas.ico"
-            type="image/x-icon">
+        <link rel="shortcut icon" href="/static/img/logoMallas.ico" type="image/x-icon">
         <title>PAPELERA PRODUCTOS</title>
     </head>
     <body class="hold-transition sidebar-mini layout-fixed">
@@ -49,7 +47,7 @@
                                             <b class="text-success">Inicio </b></a></li>
                                     <li class="breadcrumb-item-active"><a
                                             href="http://127.0.0.1:8000/productos/"
-                                            class="text-success">/ Servicios</a></li>
+                                            class="text-success">/ Productos</a></li>
                                 </ol>
                             </div>
                         </div>
@@ -64,13 +62,13 @@
                             <!-- Card -->
                             <div class="card ">
                                 <div class="card-header">
-                                    <h3 class="card-title text-success"><a href="{% url 'productos' %}" title="Volver"><i Class="fas fa-reply text-green"></i>
-                                        </a><tr><b class="text-success">&nbsp;&nbsp; Papelera Productos</b></tr></h3>
+                                    <h3 class="card-title text-success"><a href="{% url 'productos' %}"  title="Volver"><i Class="fas fa-reply text-green" ></i></a><tr><b
+                                                class="text-success">&nbsp;&nbsp; Papelera Productos</b></tr></h3>
                                 </div>
                                 <!-- /.card-header -->
                                 <div class="card-body">
-                                    <!-- Datatable de productos -->
-                                    <table id="tabla-tecnico" class="table table-bordered table-striped border-dark">
+                                    <!-- Datatable de usuarios -->
+                                    <table id="tabla-usuarios" class="table table-bordered table-striped border-dark" style="font-size: 14px;">
                                         <thead class="bg-gray">
                                             <tr>
                                                 <th class="border-dark">ID Producto</th>
@@ -78,27 +76,64 @@
                                                 <th class="border-dark">Precio</th>
                                                 <th class="border-dark">Especificaciones</th>
                                                 <th class="border-dark">Cantidad</th>
-                                                <th class="border-dark">Cantidad Mínima</th>
                                                 <th class="border-dark">Categoría</th>
+                                                <th class="border-dark">Estado</th>                                  
                                                 <th class="border-dark">Acciones</th>
+                                                <th class="border-dark">Restaurar</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {% for producto in productos %}
+                                            {% for usuario in usuarios %}
                                             <tr>
                                                 <td class="border-dark text-black">{{producto.id}}</td>
                                                 <td class="border-dark text-black">{{producto.nombre}}</td>
                                                 <td class="border-dark text-black">{{producto.precio}}</td>
                                                 <td class="border-dark text-black">{{producto.especificaciones}}</td>
                                                 <td class="border-dark text-black">{{producto.stock}}</td>
-                                                <td class="border-dark text-black">{{producto.stockMinimo}}</td>                                
                                                 <td class="border-dark text-black">{{producto.categoria}}</td>
-  
-                                                <td class="border-dark text-black">
-                                                    <a href="{% url 'recuperar_pro' producto.id %}" class="btn btn-warning" title="Restaurar">
-                                                        <i Class="fas fa-trash-restore"></i></a>
+                                                <td class="border-dark text-black">{{producto.estado}}</td>
+                                                <td class="border-dark">
+                                                    <buttom data-bs-toggle="modal" data-bs-target="#recuperarModal{{productos.pk}}" class="btn btn-warning" title="Restaurar"><i Class="fas fa-trash-restore"></i></buttom>
                                                 </td>
                                             </tr>
+                                            
+                                    <!-- Modal recuperar confirmation -->
+                                    <div class="modal fade"
+                                    id="recuperarModal{{producto.pk}}"
+                                    tabindex="-1"
+                                    aria-labelledby="deleteModalLabel"
+                                    aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header bg-warning">
+                                                <h5 class="modal-title "
+                                                    id="deleteModalLabel"><i
+                                                        class="fas fa-trash-restore"></i>&nbsp;&nbsp; <b>RESTAURAR PRODUCTO</b></h5>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="text-center
+                                                    text-black">
+                                                    <span class="">¿Estás seguro de que deseas recuperar este producto?</span>
+                                                    <div class="text-dark mt-3
+                                                        mb-2">Producto: <strong>{{producto.id}} {{producto.nombre}}</strong></div>
+                                                </div>
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                <form method="post" action="{% url 'recuperar_producto' producto.id %}">
+                                                    {% csrf_token %}
+
+                                                    <input type="submit"
+                                                        class="btn btn-warning"
+                                                        value="Recuperar">
+                                                </form>
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Cancelar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+<!--Fin del modal-->
                                             {% endfor %}
                                         </tbody>
                                     </table>
@@ -112,37 +147,37 @@
                     <footer>{% include 'partials/footer.html' %}</footer>
                     <!-- /.content-wrapper -->
                     {% endblock contenido %}
-                    <!-- jQuery -->
-                    <script src="{% static 'AdminLTE/jquery/jquery.min.js' %}"></script>
-                    <!-- Bootstrap -->
-                    <script src="{% static 'AdminLTE/js-copy/bootstrap.bundle.min.js' %}"></script>
-                    <!-- jQuery UI -->
-                    <script src="{% static 'AdminLTE/jquery-ui/jquery-ui.min.js' %}"></script>
-                    <!-- AdminLTE App -->
-                    <script src="{% static 'AdminLTE/js/adminlte.min.js' %}"></script>
-                    <!-- toastr alert -->
-                    <script type="application/json" src="{% static 'AdminLTE/toastr/toastr.js.map' %}"></script>
-                    <script type="text/javascript" src="{% static 'AdminLTE/toastr/toastr.min.js' %}"></script>
+            <!-- jQuery -->
+            <script src="{% static 'AdminLTE/jquery/jquery.min.js' %}"></script>
+            <!-- Bootstrap -->
+            <script src="{% static 'AdminLTE/js-copy/bootstrap.bundle.min.js' %}"></script>
+            <!-- jQuery UI -->
+            <script src="{% static 'AdminLTE/jquery-ui/jquery-ui.min.js' %}"></script>
+            <!-- AdminLTE App -->
+            <script src="{% static 'AdminLTE/js/adminlte.min.js' %}"></script>
+            <!-- toastr alert -->
+            <script type="application/json" src="{% static 'AdminLTE/toastr/toastr.js.map' %}"></script>
+            <script type="text/javascript" src="{% static 'AdminLTE/toastr/toastr.min.js' %}"></script>
+            
+            <!-- DataTables  & Plugins -->
+            <script src="{% static 'AdminLTE/datatables/jquery.dataTables.min.js' %}"></script>
+            <script src="{% static 'AdminLTE/datatables-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+            <script src="{% static 'AdminLTE/datatables-responsive/js/dataTables.responsive.min.js' %}"></script>
+            <script src="{% static 'AdminLTE/datatables-responsive/js/responsive.bootstrap4.min.js' %}"></script>
+            <script src="{% static 'AdminLTE/datatables-buttons/js/dataTables.buttons.min.js' %}"></script>
+            <script src="{% static 'AdminLTE/datatables-buttons/js/buttons.bootstrap4.min.js' %}"></script>
+            <script src="{% static 'AdminLTE/jszip/jszip.min.js' %}"></script>
+            <script src="{% static 'AdminLTE/pdfmake/pdfmake.min.js' %}"></script>
+            <script src="{% static 'AdminLTE/pdfmake/vfs_fonts.js' %}"></script>
+            <script src="{% static 'AdminLTE/datatables-buttons/js/buttons.html5.min.js' %}"></script>
+            <script src="{% static 'AdminLTE/datatables-buttons/js/buttons.print.min.js' %}"></script>
+            <script src="{% static 'AdminLTE/datatables-buttons/js/buttons.colVis.min.js' %}"></script>
+            <script src="{% static 'AdminLTE/js/modal-status.js' %}"></script>
 
-                    <!-- DataTables  & Plugins -->
-                    <script src="{% static 'AdminLTE/datatables/jquery.dataTables.min.js' %}"></script>
-                    <script src="{% static 'AdminLTE/datatables-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
-                    <script src="{% static 'AdminLTE/datatables-responsive/js/dataTables.responsive.min.js' %}"></script>
-                    <script src="{% static 'AdminLTE/datatables-responsive/js/responsive.bootstrap4.min.js' %}"></script>
-                    <script src="{% static 'AdminLTE/datatables-buttons/js/dataTables.buttons.min.js' %}"></script>
-                    <script src="{% static 'AdminLTE/datatables-buttons/js/buttons.bootstrap4.min.js' %}"></script>
-                    <script src="{% static 'AdminLTE/jszip/jszip.min.js' %}"></script>
-                    <script src="{% static 'AdminLTE/pdfmake/pdfmake.min.js' %}"></script>
-                    <script src="{% static 'AdminLTE/pdfmake/vfs_fonts.js' %}"></script>
-                    <script src="{% static 'AdminLTE/datatables-buttons/js/buttons.html5.min.js' %}"></script>
-                    <script src="{% static 'AdminLTE/datatables-buttons/js/buttons.print.min.js' %}"></script>
-                    <script src="{% static 'AdminLTE/datatables-buttons/js/buttons.colVis.min.js' %}"></script>
-                    <script src="{% static 'AdminLTE/js/modal-status.js' %}"></script>
-
-                    <!--DataTable tecnicos-->
+                    <!--DataTable usuarios-->
                     <script>
                 $(function () {
-                    $("#tabla-tecnico").DataTable({
+                    $("#tabla-usuarios").DataTable({
                         dom: 'frtip',
                         language:{
                             url: "/static/AdminLTE/datatables/datatables.spanish.json"
@@ -154,10 +189,10 @@
 
                     }
                     
-                    ).buttons().container().appendTo('#tabla-tecnico_wrapper .col-md-6:eq(0)');
+                    ).buttons().container().appendTo('#tabla-usuarios_wrapper .col-md-6:eq(0)');
                 });
             </script>
-                    {% block javascript %}
-                    {% endblock javascript %}
+        {% block javascript %}
+        {% endblock javascript %}
     </body>
 </html>
