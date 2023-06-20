@@ -69,7 +69,7 @@
                                 </div>
                                 <!-- /.card-header -->
                                 <div class="card-body">
-                                    <!-- Datatable de productos -->
+                                    <!-- Datatable de recuperar categoría -->
                                     <table id="tabla-tecnico" class="table table-bordered table-striped border-dark">
                                         <thead class="bg-gray">
                                             <tr>
@@ -83,9 +83,8 @@
                                             {% for categoria in categorias %}
                                             <tr>
                                                 <td class="border-dark text-black">{{categoria.id}}</td>
-                                                <td class="border-dark text-black">{{categoria.nombre}}</td>
-                                                <td class="border-dark text-black">{{categoria.descripcion}}</td>                              
-                                                <td class="border-dark text-black">{{categoria.estado}}</td>
+                                                <td class="border-dark text-black">{{categoria.nombrecat}}</td>
+                                                <td class="border-dark text-black">{{categoria.descripcioncat}}</td>  
   
                                                 <td class="border-dark text-black">
                                                     <a href="{% url 'recuperar_cat' categoria.id %}" class="btn btn-warning" title="Restaurar">

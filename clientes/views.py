@@ -52,7 +52,7 @@ def clientes_crear(request):
             'form': form
         }
 
-        return render(request, 'clientes/clientes.html', context)
+        return render(request, 'clientes/clientes-crear.html', context)
 
 
 

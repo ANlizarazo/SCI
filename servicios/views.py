@@ -8,9 +8,10 @@ from servicios.models import Servicio
 def servicios(request):
 
     servicios= Servicio.objects.all()
-
+    form = ServicioForm()
     context={
-        "servicios": servicios
+        "servicios": servicios,
+        "form": form,
     }
     return render(request,'servicios/servicios.html',context)
 
@@ -33,7 +34,7 @@ def servicios_crear(request):
         'titulo':titulo,
         "form":form
     }
-    return render(request,'servicios/servicios.html',context)
+    return render(request,'servicios/servicios-crear.html',context)
 
 
     
