@@ -38,13 +38,10 @@
                     <!-- /.card-header -->
                     <div class="card-body">
                         <!-- Este botón llama el modal -->
-                        <a class="btn btn-success float-right mr-0 mb-3"
-                            data-bs-toggle="modal" title="Crear"
-                            data-bs-target="#crear_Proveedor{{proveedor.pk}}">
-                            Crear Proveedor</a>
+                        <a class="btn btn-success float-right mr-0 mb-3" data-bs-toggle="modal" title="Crear" data-bs-target="#crear_Proveedor{{proveedor.pk}}"> Crear Proveedor</a>
                         <!-- Datatable de Proveedores -->
                         <table id="tabla-proveedores" class="table table-bordered
-                            table-striped border-dark">
+                            table-striped table-responsive border-dark">
                             <thead class="bg-success">
                                 <tr>
                                     <th class="border-dark">Nombre Empresa</th>
@@ -76,12 +73,12 @@
                                         <button class="btn btn-success"
                                             data-bs-toggle="modal"
                                             data-bs-target="#verProveedor">
-                                            <i class="fas fa-eye"></i></button><c>{% include 'proveedores/proveedores-ver.html' %}</c>
+                                            <i class="fas fa-eye"></i></button><c></c>
                                         <button class="btn btn-primary"
                                             title="Modificar"
                                             data-bs-toggle="modal"
                                             data-bs-target="#modificarProveedor">
-                                            <i class="fas fa-edit"></i></button><c>{% include 'proveedores/proveedores-modificar.html' %}</c>
+                                            <i class="fas fa-edit"></i></button><c></c>
                                         <button class="btn btn-danger"
                                             data-bs-toggle="modal"
                                             data-bs-target="#deleteModal{{proveedor.pk}}">
