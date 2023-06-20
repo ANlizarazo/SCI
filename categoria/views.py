@@ -87,7 +87,7 @@ def categoria_modificar(request, pk):
 
 def categoria_eliminar(request, pk):
     categoria = Categoria.objects.filter(id = pk).update(
-        estado = '0'
+        estadocat = '0'
     )
     messages.success(request, "Categoría eliminada satisfactoriamente!")
     return redirect('categorias') 
@@ -101,7 +101,7 @@ def recuperar_categoria(request):
     categorias_recuperables = []
 
     for categoria in categorias:
-        if categoria.estado != '1':
+        if categoria.estadocat != '1':
             categorias_recuperables.append(categoria)
 
     context={
