@@ -28,6 +28,7 @@ def usuario_crear(request):
             messages.success(request,"Usuario creado satisfastoriamente!")
             return redirect('usuarios')
         else:
+            messages.error(request,"Ha ocurrido un error al crear usuario!")
             print('Error al crear al usuario')
     else:
         form = UsuarioForm()

@@ -5,18 +5,16 @@
 <div class="modal fade" {% block modal-id %}  id="crear_Proveedor" {% endblock modal-id %} data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-labelledby="addModalLabel" aria-hidden="true">
     <div class="modal-dialog">
     <div class="modal-content">
-        {% block title-color %} <div class="modal-header bg-success">{% endblock title-color %}
-            <h1 class="modal-title fs-3" id="addModalLabel" id="staticBackdropLabel">
-                {% block modal-title %}<b class="text-white fas fa-plus">&nbsp;&nbsp; CREAR NUEVO PROVEEDOR</b></h1>{% endblock modal-title %}
+        <div class="modal-header">
+            <h1 class="modal-title fs-3" id="staticBackdropLabel"><b class="text-black">&nbsp;&nbsp; CREAR NUEVO PROVEEDOR</b></h1>
         </div>
         <div class="modal-body">
             <!-- Formulario -->
-            <form id="f_proveedor" method="POST" {% block action %} action="/proveedor_crear" {% endblock action %} autocomplete="off" class="needs-validation" enctype="multipart/form-data" novalidate>
-                    {% csrf_token %}
-                <div class="modal-body text-start" id="form-nuevo-proveedor">
-                <!--======= Block Id (root) ======== -->
-                
-                {% block Value_id %}{% endblock Value_id %}
+            <form  action="{% url 'proveedores-crear' %}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
+            
+                {% csrf_token %}          
+                <div class="modal-body text-start" id="form-nuevo-proveedor"> 
+
                     <div class="d-inline-block w-100">
                         <label for="basic-url" for="validationCustom01" class="form-label ps-2 text-black" style="font-size: 17;">Nombre Empresa</label>
                         <div class="input-group mb-3 w-100">
@@ -203,13 +201,21 @@
                             </div>
                         </div>
                     </div>
-        <script src="/static/js/funciones.js"></script>
-        <div class="modal-footer">
-        <!-- BOTÓN PARA GUARDAR LA INFORMACIÓN DIGITADA EN EL FORMULARIO DEL USUARIO -->
-        <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <button type="submit"  class="{% block btn-color %} btn btn-success {% endblock btn-color %}" name="form-nuevo-proveedor"  value="Crear"> 
-            {% block btn-action %}<i class="fas fa-plus"></i>&nbsp; Crear {% endblock btn-action %}</button>
+
+                </div> 
+
+                    <div class="modal-footer">
+                        <!-- BOTÓN PARA GUARDAR LA INFORMACIÓN DIGITADA EN EL FORMULARIO DEL USUARIO -->
+                        <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <input class="btn btn-success" type="submit" name="form-nuevo-usuario" value="Crear">
+                        
+                    </div>
+                </form>
+                
+            </div>
+            
+            
         </div>
-    </div>
-    </div>
-</div>   
+    </div>   
+    
+    <script src="/static/js/funciones.js"></script>
