@@ -1,5 +1,6 @@
 {% load static %}
 {% block contenido %}
+
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -13,10 +14,10 @@
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a
                                 href="http://127.0.0.1:8000/inicio/">
-                                <b class="text-success">Inicio </b></a></li>
+                                <b class="text-success" title="Inicio" >Inicio </b></a></li>
                         <li class="breadcrumb-item-active"><a
                                 href="http://127.0.0.1:8000/compras/"
-                                class="text-success">/ Compras</a></li>
+                                class="text-success" title="Compras" >/ Compras</a></li>
                     </ol>
                 </div>
             </div>
@@ -26,10 +27,10 @@
 
     <!-- Main content -->
     <section class="content">
-        <div class="container-fluid ">
+        <div class="container-fluid">
             <div class="row">
                 <!-- Card -->
-                <div class="card ">
+                <div class="card">
                     <div class="card-header">
                         <h3 class="card-title text-success"><tr><b
                                     class="text-success">Reporte de
@@ -37,40 +38,414 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <!-- Modal de crear compra-->
-                        <a class="btn btn-success float-right mr-0 mb-3" data-bs-toggle="modal" data-bs-target="#crearCompra"> Crear Compra</a>
-                        <!-- Datatable de compra -->
+                        <!-- Este botón llama el modal -->
+                        <button type="button" class="btn btn-success float-right mr-0 mb-3"
+                            name="form-crear-compra"
+                            data-bs-toggle="modal"
+                            data-bs-target="#crearCompra" title="Crear Compra"> Crear Compra</button>
+                        <!-- Datatable de compras -->
                         <table id="tabla-compras" class="table table-bordered
                             table-striped border-dark">
                             <thead class="bg-success">
                                 <tr>
                                     <th class="border-dark">ID Compra</th>
                                     <th class="border-dark">Fecha</th>
+                                    <th class="border-dark">Proveedor</th>
                                     <th class="border-dark">Detalle Compra</th>
-                                    <th class="border-dark">Usuario</th>
-                                    <th class="border-dark">Acciones</th>
+                                    <th class="border-dark">Cantidad Material</th>                               
+                                    <th class="border-dark">Material</th>                                  
+                                    <th class="border-dark">Valor Total</th>
                                 </tr>
                             </thead>
                             <tbody>
+
                                 {% for compra in compras %}
+                                {% if compra.estado == '1' %}
                                 <tr>
                                     <td class="border-dark text-black">{{compra.id}}</td>
                                     <td class="border-dark text-black">{{compra.fecha}}</td>
+                                    <td class="border-dark text-black">{{compra.proveedor}}</td>
                                     <td class="border-dark text-black">{{compra.detalleCompra}}</td>
-                                    <td class="border-dark text-black">{{compra.usuario}}</td>
-                                    <td class="border-dark">
-                                        <a class="btn btn-success" data-bs-toggle="modal" data-bs-target="#verCompra">
-                                            <i class="fas fa-eye"></i></a><c>{% include 'compras/compras-ver.html' %}</c>
-                                            <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modificarCompra">
-                                            <i class="fas fa-edit"></i></a><c>{% include 'compras/compras-modificar.html' %}</c>
-                                            <a class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
+                                    <td class="border-dark text-black">{{compra.cantidadMaterial}}</td>                             
+                                    <td class="border-dark text-black">{{compra.valorTotalMaterial}}</td>
+                                    <td class="border-dark text-black">
+                                    
+                                        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#verCompra{{compra.id}}" title="Ver">
+                                            <i class="fas fa-eye"></i></button>   
+                                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modificarCompra{{compra.pk}}" title="Modificar">
+                                            <i class="fas fa-edit"></i></button>
+                                        <button class="btn btn-danger"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#deleteModal{{compra.pk}}" title="Eliminar">
+                                            <i class="fas fa-trash-alt"></i></button>
                                     </td>
                                 </tr>
+
+                                <!-- Modal de editar compra -->
+
+                                <div class="modal fade" id="modificarCompra{{compra.pk}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-3" id="staticBackdropLabel"><b class="text-black" >Modificar Compras</b></h1>
+                                            </div>
+                                            <div class="modal-body">
+                                                <!-- Formulario -->
+                                                {% if form.errors %}
+                                                    <p style="color: red">Por favor revisa este campo</p>
+                                                {% endif %}
+                                                <form  action="{% url 'compras_modificar' compra.pk %}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
+                                                
+                                                    {% csrf_token %}          
+                                                    <div class="modal-body text-start" id="form-nuevo-usuario"> 
+
+                                                    
+                                                
+                                                        <div class="d-inline-block w-100">
+                                                            <label for="basic-url" for="validationCustom01" class="form-label ps-2 text-black" style="font-size: 17;">Fecha</label>
+                                                            <div class="input-group mb-3 w-100">
+                                                                <input type="text" class="form-control"
+                                                                    name="fecha" id="id_fecha"
+                                                                    aria-describedby="basic-addon3" id="validationCustom01" required minlength="1"
+                                                                    maxlength="50" required value="{{compra.fecha|date:'d/m/Y'}}">
+                                                                        ¡Vamos bien!
+                                                                    </div>
+                                                                    <div class="invalid-feedback">
+                                                                    </div>
+                                                            </div>
+                                                        </div>
+                                                
+                                                        <div class="d-inline-block w-100">
+                                                            <label for="basic-url"  for="validationCustom02" class="form-label ps-2 text-black" style="font-size: 17;">Proveedor</label>
+                                                            <div class="input-group mb-3 w-100">
+                                                                <input type="number" class="form-control"
+                                                                    name="proveedor" id="id_proveedor"
+                                                                    aria-describedby="basic-addon3" id="validationCustom02" required minlength="1"
+                                                                    maxlength="50" required value="{{compra.proveedor}}">
+                                                                    <div class="valid-feedback">
+                                                                        ¡Vamos bien!
+                                                                    </div>
+                                                                    <div class="invalid-feedback">
+                                                                        Completa la información.
+                                                                    </div>
+                                                            </div>
+                                                        </div>
+                                                
+                                                        <div class="d-inline-block w-100">
+                                                            <label for="basic-url" for="validationCustom03" class="form-label ps-2 text-black" style="font-size: 17;">Detalle Compra</label>
+                                                            <div class="input-group mb-3 w-100">
+                                                                <textarea type="text" class="form-control" name="detalleCompra"
+                                                                    id="id_detalleCompra"
+                                                                    aria-describedby="basic-addon3" id="validationCustom03" required minlength="1"
+                                                                    maxlength="250" required>{{compra.detalleCompra}}</textarea>
+                                                                    <div class="valid-feedback">
+                                                                        ¡Vamos bien!
+                                                                    </div>
+                                                                    <div class="invalid-feedback">
+                                                                        Ingresa un número de dirección valido.
+                                                                    </div>
+                                                            </div>
+                                                        </div>
+                                                
+                                                        <div class="d-inline-block w-100">
+                                                            <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom04" style="font-size: 17;">Cantidad de Material</label>
+                                                            <div class="input-group mb-3 w-100">
+                                                                <input type="number" class="form-control" name="cantidadMaterial"
+                                                                id="id_cantidadMaterial" aria-describedby="basic-addon3" id="validationCustom04" required minlength="1"
+                                                                maxlength="100" required value="{{compra.cantidadMaterial}}">
+
+                                                                <div class="valid-feedback">
+                                                                    ¡Vamos bien!
+                                                                </div>
+                                                                <div class="invalid-feedback">
+                                                                    Selecciona una opción valida.
+                                                                </div>
+                                                            </div>
+                                                        </div> 
+                                                
+                                                        
+                                                
+                                                        <div class="d-inline-block w-100">
+                                                            <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom05" style="font-size: 17;">Material</label>
+                                                            <div class="input-group mb-3 w-100">
+                                                                <select id="id_material" class="form-select" name="material"
+                                                                    aria-label="tipo-activo" id="validationCustom05" require {% block Value-material %}{% endblock Value-material %}>
+                                                                    <option class="text-black" selected value>Seleccionar</option>
+                                                                    <option class="text-black" value="mallas">Mallas</option>
+                                                                    <option class="text-black" value="tubos">Tubos en acero</option>
+                                                                    <option class="text-black" value="alambres">Alambres</option>
+                                                                    <option class="text-black" value="madera">Madera</option>>
+                                                                    <option class="text-black" value="canecas">Caneca en acero</option>
+
+                                                                </select>
+                                                                <div class="valid-feedback">
+                                                                    ¡Vamos bien!
+                                                                </div>
+                                                                <div class="invalid-feedback">
+                                                                    Selecciona una opción valida.
+                                                                </div>
+                                                            </div>
+                                                        </div> 
+                                                        
+                                                        <div class="d-inline-block w-100">
+                                                            <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom06" style="font-size: 17;">Valor Total</label>
+                                                            <div class="input-group mb-3 w-100">
+                                                                <input type="number" class="form-control" name="valorTotal"
+                                                                aria-describedby="basic-addon3" id="validationCustom06" required minlength="1"
+                                                                maxlength="50" required value="{{compra.valorTotal}}">
+                                                                
+                                                                <div class="valid-feedback">
+                                                                    ¡Vamos bien!
+                                                                </div>
+                                                                <div class="invalid-feedback">
+                                                                    Selecciona una opción valida.
+                                                                </div>
+                                                            </div>
+                                                        </div>  
+                                                        
+                                                        
+                                                        <div class="d-inline-block w-100">
+                                                            <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom07" style="font-size: 17;">Estado</label>
+                                                            <div class="input-group mb-3 w-100">
+                                                                <select id="id_estado" class="form-select" name="estado"
+                                                                    aria-label="tipo-activo" id="validationCustom07" required>
+                                                                    <option class="text-black" selected value>Seleccionar</option>
+                                                                    <option class="text-black" value="1">Activo</option>
+                                                                    <option class="text-black" value="0">Inactivo</option>
+                                                                </select>
+                                                                <div class="valid-feedback">
+                                                                    ¡Vamos bien!
+                                                                </div>
+                                                                <div class="invalid-feedback">
+                                                                    Selecciona una opción valida.
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        
+
+                                                    </div> 
+
+                                                    <div class="modal-footer">
+                                                        <!-- BOTÓN PARA GUARDAR LA INFORMACIÓN DIGITADA EN EL FORMULARIO DE LA COMPRA -->
+                                                        <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                                        <input class="btn btn-success" type="submit" name="form-nuevo-usuario" value="Modificar">
+                                                    </div>
+
+                                                </form>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>  
+                                
+<!-- Modal de ver compra -->
+
+<div class="modal fade" id="verCompra{{compra.pk}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-3" id="staticBackdropLabel"><b class="text-black" >Ver Compras</b></h1>
+            </div>
+            <div class="modal-body">
+                <!-- Formulario -->
+                {% if form.errors %}
+                    <p style="color: red">Por favor revisa este campo</p>
+                {% endif %}
+                <form  action="{% url 'compras_modificar' compra.pk %}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
+                
+                    {% csrf_token %}          
+                    <div class="modal-body text-start" id="form-nuevo-usuario"> 
+
+                    
+                
+                        <div class="d-inline-block w-100">
+                            <label for="basic-url" for="validationCustom01" class="form-label ps-2 text-black" style="font-size: 17;">Fecha</label>
+                            <div class="input-group mb-3 w-100">
+                                <input type="text" class="form-control"
+                                    name="fecha" id="id_fecha"
+                                    aria-describedby="basic-addon3" id="validationCustom01" required minlength="1"
+                                    maxlength="50" required value="{{compra.fecha|date:'d/m/Y'}}">
+                                        ¡Vamos bien!
+                                    </div>
+                                    <div class="invalid-feedback">
+                                    </div>
+                            </div>
+                        </div>
+                
+                        <div class="d-inline-block w-100">
+                            <label for="basic-url"  for="validationCustom02" class="form-label ps-2 text-black" style="font-size: 17;">Proveedor</label>
+                            <div class="input-group mb-3 w-100">
+                                <input type="number" class="form-control"
+                                    name="proveedor" id="id_proveedor"
+                                    aria-describedby="basic-addon3" id="validationCustom02" required minlength="1"
+                                    maxlength="50" required value="{{compra.proveedor}}">
+                                    <div class="valid-feedback">
+                                        ¡Vamos bien!
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        Completa la información.
+                                    </div>
+                            </div>
+                        </div>
+                
+                        <div class="d-inline-block w-100">
+                            <label for="basic-url" for="validationCustom03" class="form-label ps-2 text-black" style="font-size: 17;">Detalle Compra</label>
+                            <div class="input-group mb-3 w-100">
+                                <textarea type="text" class="form-control" name="detalleCompra"
+                                    id="id_detalleCompra"
+                                    aria-describedby="basic-addon3" id="validationCustom03" required minlength="1"
+                                    maxlength="250" required>{{compra.detalleCompra}}</textarea>
+                                    <div class="valid-feedback">
+                                        ¡Vamos bien!
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        Ingresa un número de dirección valido.
+                                    </div>
+                            </div>
+                        </div>
+                
+                        <div class="d-inline-block w-100">
+                            <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom04" style="font-size: 17;">Cantidad de Material</label>
+                            <div class="input-group mb-3 w-100">
+                                <input type="number" class="form-control" name="cantidadMaterial"
+                                id="id_cantidadMaterial" aria-describedby="basic-addon3" id="validationCustom04" required minlength="1"
+                                maxlength="100" required value="{{compra.cantidadMaterial}}">
+
+                                <div class="valid-feedback">
+                                    ¡Vamos bien!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Selecciona una opción valida.
+                                </div>
+                            </div>
+                        </div> 
+                
+                        
+                
+                        <div class="d-inline-block w-100">
+                            <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom05" style="font-size: 17;">Material</label>
+                            <div class="input-group mb-3 w-100">
+                                <select id="id_material" class="form-select" name="material"
+                                    aria-label="tipo-activo" id="validationCustom05" required>
+                                    <option class="text-black" selected value>Seleccionar</option>
+                                    <option class="text-black" value="mallas">Mallas</option>
+                                    <option class="text-black" value="tubos">Tubos en acero</option>
+                                    <option class="text-black" value="alambres">Alambres</option>
+                                    <option class="text-black" value="madera">Madera</option>>
+                                    <option class="text-black" value="canecas">Caneca en acero</option>
+
+                                </select>
+                                <div class="valid-feedback">
+                                    ¡Vamos bien!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Selecciona una opción valida.
+                                </div>
+                            </div>
+                        </div> 
+                        
+                        <div class="d-inline-block w-100">
+                            <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom06" style="font-size: 17;">Valor Total</label>
+                            <div class="input-group mb-3 w-100">
+                                <input type="number" class="form-control" name="valorTotal"
+                                aria-describedby="basic-addon3" id="validationCustom06" required minlength="1"
+                                maxlength="50" required value="{{compra.valorTotal}}">
+                            
+                                <div class="valid-feedback">
+                                    ¡Vamos bien!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Selecciona una opción valida.
+                                </div>
+                            </div>
+                        </div> 
+                        
+                        <div class="d-inline-block w-100">
+                            <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom07" style="font-size: 17;">Estado</label>
+                            <div class="input-group mb-3 w-100">
+                                <select id="id_estado" class="form-select" name="estado"
+                                    aria-label="tipo-activo" id="validationCustom07" required>
+                                    <option class="text-black" selected value>Seleccionar</option>
+                                    <option class="text-black" value="1">Activo</option>
+                                    <option class="text-black" value="0">Inactivo</option>
+                                </select>
+                                <div class="valid-feedback">
+                                    ¡Vamos bien!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Selecciona una opción valida.
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div> 
+
+                    <div class="modal-footer">
+                        <!-- BOTÓN PARA GUARDAR LA INFORMACIÓN DIGITADA EN EL FORMULARIO DE LA COMPRA-->
+                        <button type="reset" class="btn btn-success"
+                        data-bs-dismiss="modal">Regresar</button>
+                    </div>
+
+                </form>
+            </div>
+            
+        </div>
+    </div>
+</div>  
+
+
+                                <!-- Modal delete confirmation -->
+                                <div class="modal fade"
+                                id="deleteModal{{compra.pk}}"
+                                tabindex="-1"
+                                aria-labelledby="deleteModalLabel"
+                                aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header bg-danger">
+                                            <h5 class="modal-title "
+                                                id="deleteModalLabel"><i
+                                                    class="fas fa-trash-alt"></i>&nbsp;&nbsp; ELIMINAR COMPRA</h5>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="text-center
+                                                text-danger"><i class="far
+                                                    fa-times-circle fa-5x
+                                                    mb-4 mt-2"></i></div>
+                                            <div class="text-center
+                                                text-danger">
+                                                <span class="">¿Estás seguro de que deseas eliminar ésta compra?</span>
+                                                <div class="text-dark mt-3
+                                                    mb-2">Compra: <strong>{{compra.email}}</strong></div>
+                                            </div>
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <form method="post" action="{% url 'compras_eliminar' compra.pk %}">
+                                                {% csrf_token %}
+
+                                                <input type="submit"
+                                                    class="btn btn-danger"
+                                                    value="Eliminar">
+                                            </form>
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Cancelar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+
+
+                                {% endif %}
                                 {% endfor %}
+                            </tbody>
                             </table>
                         </div>
                         <!-- /.card-body -->
                     </div>
+                    <a href="{% url 'recuperar_compras' %}" class="btn btn-warning float-right mr-1 mb-3" title="Papelera"><i class="fas fa-trash-restore"></i>&nbsp; Restaurar </a>
                     <!-- /.card -->
                 </section>
                 <!-- /.content -->
@@ -105,23 +480,23 @@
             <script src="{% static 'AdminLTE/datatables-buttons/js/buttons.print.min.js' %}"></script>
             <script src="{% static 'AdminLTE/datatables-buttons/js/buttons.colVis.min.js' %}"></script>
             <script src="{% static 'AdminLTE/js/modal-status.js' %}"></script>
-            
-            <!--DataTable Compras-->
-            <script>
+
+        <!--DataTable Compras-->
+        <script>
                 $(function () {
                     $("#tabla-compras").DataTable({
                         dom: 'Bfrtip',  
                             language:{
                                 url: "{% static 'AdminLTE/datatables/datatables.spanish.json' %}"
                             },
-                        //dataTable configurations
+                         //dataTable configurations
                         "responsive": true, "paging": true, "lengthChange": false,
                         "searching": true, "ordering": true, "info": true,
                         "autoWidth": false, "pageLength": 8,
                         "buttons": ["copy", "csv", "excel", "pdf", "print"],
                     }
                     
-                    ).buttons().container().appendTo('#tabla-compras .col-md-6:eq(0)');
+                    ).buttons().container().appendTo('#tabla-compras_wrapper .col-md-6:eq(0)');
                 });
             </script>
             {% block javascript %}

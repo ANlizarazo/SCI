@@ -17,7 +17,7 @@
                     enctype="multipart/form-data" class="needs-validation"
                     novalidate>
                     {% csrf_token %}
-                    <div class="modal-body text-start" id="form-nuevo-tecnico">
+                    <div class="modal-body text-start" id="form-nuevo-cliente">
                         
 
                         <div class="d-inline-block w-100">
@@ -29,7 +29,7 @@
                                     name="nombreEmpresa" id="id_nombres"
                                     aria-describedby="basic-addon3" required
                                     minlength="1"
-                                    maxlength="50" id="validationCustom01"
+                                    maxlength="100" id="validationCustom01"
                                     required>
                                 <div class="valid-feedback">
                                     ¡Vamos bien!
@@ -46,11 +46,11 @@
                                 style="font-size: 17;">NIT</label>
                             <div class="input-group mb-3 w-100">
                                 <input type="number" class="form-control"
-                                    name="nit" id="id_apellidos"
+                                    name="nit" id="id_nit"
                                     aria-describedby="basic-addon3"
                                     id="validationCustom02" required
                                     minlength="1"
-                                    maxlength="50" required>
+                                    maxlength="20" required>
                                 <div class="valid-feedback">
                                     ¡Vamos bien!
                                 </div>
@@ -84,21 +84,21 @@
 
                         <div class="d-inline-block w-100">
                             <label for="basic-url" class="form-label ps-2
-                                text-black" for="validationCustom07"
+                                text-black" for="validationCustom04"
                                 style="font-size: 17;">Dirección</label>
                             <div class="input-group mb-3 w-100">
                                 <input type="text" class="form-control"
                                     name="direccion"
-                                    id="id_numeroDocumento"
+                                    id="id_direccion"
                                     aria-describedby="basic-addon3" required
                                     minlength="1"
-                                    maxlength="50" id="validationCustom07"
+                                    maxlength="50" id="validationCustom04"
                                     required>
                                 <div class="valid-feedback">
                                     ¡Vamos bien!
                                 </div>
                                 <div class="invalid-feedback">
-                                    Ingresa un número de documento valido.
+                                    Ingresa una dirección valida.
                                 </div>
                             </div>
                         </div>
@@ -106,21 +106,21 @@
 
                         <div class="d-inline-block w-100">
                             <label for="basic-url" class="form-label ps-2
-                                text-black" for="validationCustom07"
+                                text-black" for="validationCustom05"
                                 style="font-size: 17;">Email</label>
                             <div class="input-group mb-3 w-100">
                                 <input type="email" class="form-control"
                                     name="email"
-                                    id="id_numeroDocumento"
+                                    id="id_email"
                                     aria-describedby="basic-addon3" required
                                     minlength="1"
-                                    maxlength="50" id="validationCustom07"
+                                    maxlength="100" id="validationCustom05"
                                     required>
                                 <div class="valid-feedback">
                                     ¡Vamos bien!
                                 </div>
                                 <div class="invalid-feedback">
-                                    Ingresa un número de documento valido.
+                                    Ingresa un email valido.
                                 </div>
                             </div>
                         </div>
@@ -131,13 +131,13 @@
 
                         <div class="d-inline-block w-100">
                             <label for="basic-url" class="form-label ps-2
-                                text-black" for="validationCustom09"
+                                text-black" for="validationCustom06"
                                 style="font-size: 17;">Ciudad</label>
                             <div class="input-group mb-3 w-100">
-                                <select id="id_rol" class="form-select"
+                                <select id="id_ciudad" class="form-select"
                                     name="ciudad"
                                     aria-label="tipo-activo"
-                                    id="validationCustom09" required>
+                                    id="validationCustom06" required>
                                     <option class="text-black" selected disabled
                                         value>Seleccionar</option>
                                     <option class="text-black" value="Abejorral">Abejorral</option>
@@ -454,8 +454,8 @@
                                     <option class="text-black" value="Facatativá">Facatativá</option>
                                     <option class="text-black" value="Falan">Falan</option>
                                     <option class="text-black" value="Filadelfia">Filadelfia</option>
-                                    <option value="Filandia">Filandia</option>
-                                    <option value="Firavitoba">Firavitoba</option>
+                                    <option class="text-black" value="Filandia">Filandia</option>
+                                    <option class="text-black" value="Firavitoba">Firavitoba</option>
                                     <option class="text-black" value="Flandes">Flandes</option>
                                     <option class="text-black" value="Florencia">Florencia</option>
                                     <option class="text-black" value="Floresta">Floresta</option>
@@ -1190,13 +1190,13 @@
 
                         <div class="d-inline-block w-100">
                             <label for="basic-url" class="form-label ps-2
-                                text-black" for="validationCustom08"
+                                text-black" for="validationCustom07"
                                 style="font-size: 17;">Estado</label>
                             <div class="input-group mb-3 w-100">
-                                <select id="id_rol" class="form-select"
+                                <select id="id_estado" class="form-select"
                                     name="estado"
                                     aria-label="tipo-activo"
-                                    id="validationCustom08" required>
+                                    id="validationCustom07" required>
                                     <option class="text-black" selected disabled
                                         value>Seleccionar</option>
                                     <option class="text-black" value="1">Activo</option>
@@ -1215,9 +1215,9 @@
                         <div class="modal-footer">
                             <!-- BOTÓN PARA GUARDAR LA INFORMACIÓN DIGITADA EN EL FORMULARIO DEL USUARIO -->
                             <button type="reset" class="btn btn-secondary"
-                                data-bs-dismiss="modal">Cancelar</button>
+                                data-bs-dismiss="modal" title="Cancelar">Cancelar</button>
                             <input class="btn btn-success" type="submit"
-                                name="form-nuevo-usuario" value="Crear">
+                                name="form-nuevo-cliente" title="Crear" value="Crear">
                         </div>
 
 
