@@ -24,6 +24,7 @@ def inicio(request):
     cantidad_clientes= Cliente.objects.all().count()
     cantidad_ventas= Venta.objects.all().count()
     cantidad_compras= cantidad_compra.objects.all().count()
+    cantidad_proveedores= cantidad_compra.objects.all().count()
     labels_stock=[]
     data_stock=[]
     productos= Producto.objects.all().order_by('stock')
@@ -36,6 +37,7 @@ def inicio(request):
         'cantidad_productos':cantidad_productos,
         'cantidad_ventas':cantidad_ventas,
         'cantidad_compras':cantidad_compras,
+        'cantidad_proveedores':cantidad_proveedores,
         'labels_stock': labels_stock,
         'data_stock':data_stock,
     }

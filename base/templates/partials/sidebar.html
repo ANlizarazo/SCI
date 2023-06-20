@@ -65,6 +65,25 @@
                         Gestionar Productos
                     </p>
                 </a>
+
+                <ul class="nav nav-treeview">
+
+                    <li class="nav-item">
+                        <a href="http://127.0.0.1:8000/productos/" class="nav-link">
+                        <i class="nav-icon fas fa-user-plus"></i>
+                        <p>Productos</p>
+                        </a>
+                    </li>
+                    
+                    <li class="nav-item">
+                    <a href="{% url 'categorias' %}" class="nav-link">
+                        <i class="nav-icon fas fa-user-plus"></i>
+                        <p>Categorías</p>
+                    </a>
+                    </li>
+                    
+                </ul>
+
             </li>
             <!-- Modulo Proveedores-->
             <li class="nav-item menu-open">
@@ -92,7 +111,7 @@
             </li>
             <!-- Modulo Ventas-->
             <li class="nav-item menu-open">
-                <a href="http://127.0.0.1:8000/ventas/" class="nav-link active" title="Clientes"><i class="fas fa-circle-notch"></i>
+                <a href="http://127.0.0.1:8000/ventas/" class="nav-link active" title="Ventas"><i class="fas fa-circle-notch"></i>
                     <p>
                         Gestionar Ventas
                     </p>

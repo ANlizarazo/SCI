@@ -79,7 +79,7 @@ def clientes_eliminar(request, pk):
     cliente = Cliente.objects.filter(id = pk).update(
         estado = '0'
     )
-   
+
     return redirect('clientes') 
 
 

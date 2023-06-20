@@ -69,7 +69,7 @@
                                 </div>
                                 <!-- /.card-header -->
                                 <div class="card-body">
-                                    <!-- Datatable de tecnicos -->
+                                    <!-- Datatable de clientes -->
                                     <table id="tabla-tecnico" class="table table-bordered table-striped border-dark">
                                         <thead class="bg-gray">
                                             <tr>
@@ -79,7 +79,6 @@
                                                 <th class="border-dark">Dirección</th>
                                                 <th class="border-dark">Email</th>
                                                 <th class="border-dark">Ciudad</th>
-                                                <th class="border-dark">Estado</th>
                                                 <th class="border-dark">Acciones</th>
                                             </tr>
                                         </thead>
@@ -92,7 +91,6 @@
                                                 <td class="border-dark text-black">{{cliente.direccion}}</td>
                                                 <td class="border-dark text-black">{{cliente.email}}</td>
                                                 <td class="border-dark text-black">{{cliente.ciudad}}</td>
-                                                <td class="border-dark text-black">{{cliente.estado}}</td>
                                                 <td class="border-dark text-black">
                                                     <a href="{% url 'recuperar_cliente' cliente.id %}" class="btn btn-warning" title="Restaurar">
                                                         <i Class="fas fa-trash-restore"></i></a>
