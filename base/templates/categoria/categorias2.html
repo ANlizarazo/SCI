@@ -46,11 +46,7 @@
 
                         <!-- Datatable de productos -->
                         <table id="tabla-productos" class="table table-bordered
-<<<<<<< Updated upstream
-                            table-striped table-responsive-sm border-dark">
-=======
                             table-striped  border-dark">
->>>>>>> Stashed changes
                             <thead class="bg-success">
                                 <tr>
                                     <th class="border-dark">ID Categoría</th>
@@ -87,7 +83,7 @@
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h1 class="modal-title fs-3" id="staticBackdropLabel"><b class="text-black" >Editar Categorías</b></h1>
+                                                <h1 class="modal-title fs-3" id="staticBackdropLabel"><b class="text-black" >Modificar Categorías</b></h1>
                                             </div>
                                             <div class="modal-body">
                                                 <!-- Formulario -->
@@ -357,7 +353,7 @@
         <!--DataTable Productos-->
         <script>
                 $(function () {
-                    $("#tabla-productos").DataTable({
+                    $("#tabla-categorias").DataTable({
                         dom: 'Bfrtip',  
                             language:{
                                 url: "{% static 'AdminLTE/datatables/datatables.spanish.json' %}"
@@ -369,7 +365,7 @@
                         "buttons": ["copy", "csv", "excel", "pdf", "print"],
                     }
                     
-                    ).buttons().container().appendTo('#tabla-productos_wrapper .col-md-6:eq(0)');
+                    ).buttons().container().appendTo('#tabla-categorias_wrapper .col-md-6:eq(0)');
                 });
             </script>
         {% block javascript %}

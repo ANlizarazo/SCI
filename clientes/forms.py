@@ -8,7 +8,7 @@ class ClienteForm(ModelForm):
         """Meta definition for Clienteform."""
 
         model = Cliente        
-        fields = '__all__'
+        exclude=['estado']
 
 class ClienteUpdateForm(ModelForm):
     class Meta:
@@ -23,4 +23,4 @@ class CiudadForm(ModelForm):
         """Meta definition for Ciudadform."""
 
         model = Ciudad
-        fields = '__all__'
+        exclude=['estado']
