@@ -41,7 +41,7 @@
                         <!-- Modal de crear servicio-->
                         <c>{% include 'servicios/servicios-crear.html' %}</c>
                         <!-- Datatable de servicios -->
-                        <table id="tabla-servicios" class="table table-responsive-sm table-bordered
+                        <table id="tabla-servicios" class="table table-bordered
                             table-striped  border-dark">
                             <thead class="bg-success">
                                 <tr>
@@ -61,8 +61,8 @@
                                 <tr>
                                     <td class="border-dark text-black">{{servicio.id}}</td>
                                     <td class="border-dark text-black">{{servicio.observacion}}</td>
-                                    <td class="border-dark text-black">{{servicio.fechaInicio}}</td>
-                                    <td class="border-dark text-black">{{servicio.fechaEntrega}}</td>
+                                    <td class="border-dark text-black">{{servicio.fechaInicio|date:"d/m/Y"}}</td>
+                                    <td class="border-dark text-black">{{servicio.fechaEntrega|date:"d/m/Y"}}</td>
                                     <td class="border-dark text-black">{{servicio.precio}}</td>
                                     <td class="border-dark text-black">{{servicio.observacionFinal}}</td>
                                     <td class="border-dark text-black">{{servicio.tipoServicio}}</td>
@@ -103,7 +103,7 @@
                                                                 <textarea type="text" class="form-control"
                                                                     name="observacion" id="id_nombres"
                                                                     aria-describedby="basic-addon3" required minlength="1"
-                                                                    maxlength="250" id="" required value="{{servicio.observacion}}">
+                                                                    maxlength="250" id="" required value="{{servicio.observacion}}">{{servicio.observacion}}</textarea>
                                                                     <div class="valid-feedback">
                                                                         ¡Vamos bien!
                                                                     </div>
@@ -119,7 +119,7 @@
                                                                 <input type="text" class="form-control"
                                                                     name="fechaInicio" id="id_apellidos"
                                                                     aria-describedby="basic-addon3" id="validationCustom02" required minlength="1"
-                                                                    maxlength="50" required value="{{servicio.fechaInicio}}">
+                                                                    maxlength="50" required value="{{servicio.fechaInicio|date:'d/m/Y'}}">
                                                                     <div class="valid-feedback">
                                                                         ¡Vamos bien!
                                                                     </div>
@@ -136,7 +136,7 @@
                                                                 <input type="text" class="form-control" name="fechaEntrega"
                                                                     id="id_numeroTelefono"
                                                                     aria-describedby="basic-addon3" id="validationCustom03" required minlength="1"
-                                                                    maxlength="20" required value="{{servicio.fechaEntrega'}}" >
+                                                                    maxlength="20" required value="{{servicio.fechaEntrega|date:'d/m/Y'}}" >
                                                                     <div class="valid-feedback">
                                                                         ¡Vamos bien!
                                                                     </div>
@@ -169,7 +169,7 @@
                                                                 <textarea type="text" class="form-control" name="observacionFinal"
                                                                     id="id_direccionResidencia"
                                                                     aria-describedby="basic-addon3" id="validationCustom05" required minlength="1"
-                                                                    maxlength="100" required value="{{servicio.observacionFinal}}">
+                                                                    maxlength="100" required value="{{servicio.observacionFinal}}">{{servicio.observacionFinal}}</textarea>
                                                                     <div class="valid-feedback">
                                                                         ¡Vamos bien!
                                                                     </div>
