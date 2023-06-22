@@ -1,17 +1,15 @@
 from django.shortcuts import redirect, render
 from clientes.forms import ClienteForm, ClienteUpdateForm, CiudadForm
-
 from clientes.models import Cliente
 from clientes.models import Ciudad
+from django.contrib import messages
 
-# Create your views here.
-
-
+#Lista de clientes
 def clientes(request):
     
     clientes= Cliente.objects.all()
-    form = ClienteForm(request.POST)
-    formCiudad = CiudadForm(request.POST)
+    form = ClienteForm()
+    formCiudad = CiudadForm()
     
     context={
         "clientes":clientes,
@@ -20,6 +18,8 @@ def clientes(request):
     }
     return render(request,'clientes/clientes.html',context)
 
+
+#Funcion para VER clientes
 def clientes_ver(request):
 
     titulo = "Clientes - Ver"
@@ -36,28 +36,25 @@ def clientes_ver(request):
     return render(request, 'clientes/clientes-ver.html', context)
 
 
-
+#Función para CREAR clientes
 def clientes_crear(request):
     if request.method == 'POST':
         form = ClienteForm(request.POST)
         if form.is_valid():
             form.save()
-            print('Cliente creado correctamente')
-
+            messages.success('¡Cliente creado correctamente!')
             return redirect('clientes')
         else:
-            print('Cliente NO FUÉ CREADO')
+            messages.error(request, "¡Error al crear cliente!")
+        
+    context = {
+        'form': form,
+    }
 
-        context = {
-            'form': form
-        }
-
-        return render(request, 'clientes/clientes-crear.html', context)
-
-
+    return render(request, 'clientes/clientes-crear.html', context)
 
 
-#Function to EDIT cliente
+#Función para MODIFICAR clientes
 def clientes_modificar(request, pk):
     cliente = Cliente.objects.get(id = pk)
     if request.method == "POST":
@@ -74,14 +71,13 @@ def clientes_modificar(request, pk):
     return render(request, 'tecnico/tecnico.html', {'form': form})    
 
 
-
+#Función para ELIMINAR clientes
 def clientes_eliminar(request, pk):
     cliente = Cliente.objects.filter(id = pk).update(
         estado = '0'
     )
 
     return redirect('clientes') 
-
 
 
 #Function to RECUPERAR cliente

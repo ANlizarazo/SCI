@@ -10,12 +10,16 @@ from django.contrib.auth.models import User
 
 # Create your views here.
 
-def compras (request):
+def compras(request):
     
-    #importar los compras desde el modulo admin
     compras_list=Compra.objects.all()
+    form= CompraForm()
 
-    return render(request,'compras/compras.html',  {"compras": compras_list})
+    context= {
+        'compras_list': compras_list,
+        'form': form,
+    }
+    return render(request,'compras/compras.html', context)
 
 #Function to ADD compra
 def compras_crear(request):
@@ -25,14 +29,15 @@ def compras_crear(request):
             form.save()
             compra = Compra(request.POST['email'], request.POST['email'], '123')
             compra.save()
-            messages.success(request,"Compra creado satisfastoriamente!")
+            messages.success(request,"¡Compra creada correctamente!")
             return redirect('compras')
         else:
-            print('Error al crear la compra')
-    else:
-        form = CompraForm()
+            messages.error(request, "¡Error al crear compra!")
+    context= {
+        'form':form,
+    }
 
-    return render(request, 'compras/compras.html', {'form': form})
+    return render(request, 'compras/compras-crear.html', context)
         
 
 

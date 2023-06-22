@@ -13,9 +13,8 @@
             </div>
             <div class="modal-body">
                 <!-- Formulario -->
-                <form action="{% url 'clientes-crear' %}" method="POST"
-                    enctype="multipart/form-data" class="needs-validation"
-                    novalidate>
+                <form action="" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
+
                     {% csrf_token %}
                     
                     {{form|crispy}}
@@ -27,9 +26,6 @@
                             <input class="btn btn-success" type="submit"
                                 name="form-nuevo-cliente" title="Crear" value="Crear">
                         </div>
-
-
-                    </div>
 
                 </form>
             </div>
