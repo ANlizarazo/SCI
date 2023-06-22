@@ -8,14 +8,19 @@ from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User
 from usuarios.forms import UsuarioForm
 
-# Create your views here.
-
+# List to Usuario
 def usuarios (request):
     
     #importar los usuarios desde el modulo admin
-    usuarios_list=Usuario.objects.all()
+    usuarios=Usuario.objects.all()
+    form = UsuarioForm()
 
-    return render(request,'usuarios/usuarios.html',  {"usuarios": usuarios_list})
+    context = {
+        'usuarios': usuarios,
+        'form': form,
+    }
+
+    return render(request,'usuarios/usuarios.html', context)
 
 #Function to ADD usuario
 def usuario_crear(request):
@@ -25,59 +30,16 @@ def usuario_crear(request):
             form.save()
             user = User.objects.create_user(request.POST['email'], request.POST['email'], '123')
             user.save()
-            messages.success(request,"Usuario creado satisfastoriamente!")
+            messages.success('¡Creado creado correctamente!')
             return redirect('usuarios')
         else:
-            messages.error(request,"Ha ocurrido un error al crear usuario!")
-            print('Error al crear al usuario')
+            messages.error(request, "¡Error al crear usuario!")
     else:
         form = UsuarioForm()
 
-    return render(request, 'usuarios/usuarios.html', {'form': form})
+    return render(request, 'usuarios/usuarios-crear.html', {'form': form})
         
-
-"""
-#Function to ADD usuario
-def usuario_crear(request):
-    if request.method=="POST":
-        if request.POST.get('foto') \
-            and request.POST.get('nombres') \
-            and request.POST.get('apellidos') \
-            and request.POST.get('telefono') \
-            and request.POST.get('email') \
-            and request.POST.get('direccion') \
-            and request.POST.get('tipoDocumento') \
-            and request.POST.get('numDocumento') \
-            and request.POST.get('genero') \
-            and request.POST.get('rol') \
-            and request.POST.get('estado'):
-            usuario= Usuario()  
-            usuario.foto= request.POST.get('foto')
-            usuario.nombres= request.POST.get('nombres')
-            usuario.apellidos= request.POST.get('apellidos')
-            usuario.telefono= request.POST.get('telefono')
-            usuario.email= request.POST.get('email')
-            usuario.contraseña=make_password("@" + request.POST['nombres'][0] + request.POST['apellidos'][0] + request.POST['documento'][-4:])
-            usuario.direccion= request.POST.get('direccion')
-            usuario.tipoDocumento= request.POST.get('tipoDocumento')
-            usuario.numDocumento= request.POST.get('numDocumento')
-            usuario.genero= request.POST.get('genero')
-            usuario.estado= request.POST.get('estado')
-            usuario.save()
-            messages.success(request, " Usuario añadido con éxito!")
-            return redirect('usuarios')
-        else:
-            messages.error(request, "La creación del usuario ha fallido!")
-            return redirect('usuarios')"""
-
 #Function to View  usuario data individually
-"""def usuario_ver(request, usuario_id):
-    usuario = Usuario.objects.get( id = usuario_id) 
-    if usuario != None:
-        return render(request, "usuarios/usuarios-modificar.html", {'usuario':usuario} )
-    else:
-        return redirect('usuarios/usuarios-ver.html')"""
-    
 def usuario_ver(request, pk):
     usuario = Usuario.objects.get(id = pk)
     if request.method == 'POST':

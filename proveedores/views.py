@@ -1,49 +1,44 @@
 from django.shortcuts import redirect, render
 from proveedores.models import Proveedor
+from proveedores.forms import ProveedorForm
 from django.http import HttpResponseRedirect
 from django.contrib import messages
 
-# Create your views here.
 
+#List of proveedor
 def proveedores (request):
     
     #importar los proveedores desde el modulo admin
-    proveedores_list=Proveedor.objects.all()
+    proveedores=Proveedor.objects.all()
+    form = ProveedorForm()
 
-    return render(request,'proveedores/proveedores.html',  {"proveedores": proveedores_list})
+    context = {
+        "proveedores": proveedores,
+        'form': form,
+
+    }
+
+    return render(request,'proveedores/proveedores.html', context)
 
 #Function to ADD Proveedor
 def proveedor_crear(request):
     if request.method=="POST":
-        if request.POST.get('nombreEmpresa') \
-            and request.POST.get('email') \
-            and request.POST.get('telefono') \
-            and request.POST.get('direccion') \
-            and request.POST.get('modoPago') \
-            and request.POST.get('tiempoEntrega') \
-            and request.POST.get('transporteIncluido') \
-            and request.POST.get('estado') \
-            and request.POST.get('material') \
-            and request.POST.get('departamento'):
-            proveedor= Proveedor()  
-            proveedor.nombreEmpresa= request.POST.get('nombreEmpresa')
-            proveedor.email= request.POST.get('email')
-            proveedor.telefono= request.POST.get('telefono')
-            proveedor.direccion= request.POST.get('direccion')
-            proveedor.modoPago= request.POST.get('modoPago')
-            proveedor.tiempoEntrega= request.POST.get('tiempoEntrega')
-            proveedor.transporteIncluido= request.POST.get('transporteIncluido')
-            proveedor.estado= request.POST.get('estado')
-            proveedor.material= request.POST.get('material')
-            proveedor.departamento= request.POST.get('departamento')
-            proveedor.save()
-            messages.success(request, "Proveedor añadido con éxito!")
+        form = ProveedorForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "¡Proveedor creado correctamente!")
             return redirect('proveedores')
         else:
-            messages.error(request, "La creación del proveedor ha fallido!")
-            return redirect('proveedores')
+            messages.error(request, "¡Error al crear proveedor!")
+    
+    context = {
+            'form': form
+        }
 
-#Function to View  Proveedor data individually
+    return render(request, 'proveedores/proveedores-crear.html', context)
+    
+
+#Function to View  Proveedor 
 def proveedor_ver(request, proveedor_id):
     proveedor = Proveedor.objects.get( id = proveedor_id) 
     if proveedor != None:

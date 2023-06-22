@@ -8,13 +8,15 @@ def productos(request):
     
     productos= Producto.objects.all()
     categorias = Categoria.objects.all()
+    form = ProductoForm()
 
     for producto in productos:
         print(producto.categoria.pk)
 
     context={
         "productos": productos,
-        "categorias": categorias
+        "categorias": categorias,
+        'form': form,
         
     }
     return render(request,'productos/productos.html',context)
@@ -52,7 +54,7 @@ def productos_crear(request):
             return redirect('productos')
         else:
             print("El Producto NO se pudo guardar")
-       
+    
     else:
         form = ProductoForm()
     context = {
