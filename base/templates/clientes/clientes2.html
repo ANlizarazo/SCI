@@ -2566,8 +2566,6 @@
                                     </div>
                                 </div>
                             </div> 
-
-
                                 {% endif %}
                                 {% endfor %}
                             </tbody>
@@ -2583,37 +2581,34 @@
 </div>
 <footer>{% include 'partials/footer.html' %}</footer>
 <!-- /.content-wrapper -->
-
 {% endblock contenido %}
 
+<!-- jQuery -->
+<script src="{% static 'AdminLTE/jquery/jquery.min.js' %}"></script>
+<!-- Bootstrap -->
+<script src="{% static 'AdminLTE/js-copy/bootstrap.bundle.min.js' %}"></script>
+<!-- jQuery UI -->
+<script src="{% static 'AdminLTE/jquery-ui/jquery-ui.min.js' %}"></script>
+<!-- AdminLTE App -->
+<script src="{% static 'AdminLTE/js/adminlte.min.js' %}"></script>
+<!-- toastr alert -->
+<script type="application/json" src="{% static 'AdminLTE/toastr/toastr.js.map' %}"></script>
+<script type="text/javascript" src="{% static 'AdminLTE/toastr/toastr.min.js' %}"></script>
 
-{% block javascript %}
-    <!-- jQuery -->
-    <script src="{% static 'AdminLTE/jquery/jquery.min.js' %}"></script>
-    <!-- Bootstrap -->
-    <script src="{% static 'AdminLTE/js-copy/bootstrap.bundle.min.js' %}"></script>
-    <!-- jQuery UI -->
-    <script src="{% static 'AdminLTE/jquery-ui/jquery-ui.min.js' %}"></script>
-    <!-- AdminLTE App -->
-    <script src="{% static 'AdminLTE/js/adminlte.min.js' %}"></script>
-    <!-- toastr alert -->
-    <script type="application/json" src="{% static 'AdminLTE/toastr/toastr.js.map' %}"></script>
-    <script type="text/javascript" src="{% static 'AdminLTE/toastr/toastr.min.js' %}"></script>
-    
-    <!-- DataTables  & Plugins -->
-    <script src="{% static 'AdminLTE/datatables/jquery.dataTables.min.js' %}"></script>
-    <script src="{% static 'AdminLTE/datatables-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
-    <script src="{% static 'AdminLTE/datatables-responsive/js/dataTables.responsive.min.js' %}"></script>
-    <script src="{% static 'AdminLTE/datatables-responsive/js/responsive.bootstrap4.min.js' %}"></script>
-    <script src="{% static 'AdminLTE/datatables-buttons/js/dataTables.buttons.min.js' %}"></script>
-    <script src="{% static 'AdminLTE/datatables-buttons/js/buttons.bootstrap4.min.js' %}"></script>
-    <script src="{% static 'AdminLTE/jszip/jszip.min.js' %}"></script>
-    <script src="{% static 'AdminLTE/pdfmake/pdfmake.min.js' %}"></script>
-    <script src="{% static 'AdminLTE/pdfmake/vfs_fonts.js' %}"></script>
-    <script src="{% static 'AdminLTE/datatables-buttons/js/buttons.html5.min.js' %}"></script>
-    <script src="{% static 'AdminLTE/datatables-buttons/js/buttons.print.min.js' %}"></script>
-    <script src="{% static 'AdminLTE/datatables-buttons/js/buttons.colVis.min.js' %}"></script>
-    <script src="{% static 'AdminLTE/js/modal-status.js' %}"></script>
+<!-- DataTables  & Plugins -->
+<script src="{% static 'AdminLTE/datatables/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'AdminLTE/datatables-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+<script src="{% static 'AdminLTE/datatables-responsive/js/dataTables.responsive.min.js' %}"></script>
+<script src="{% static 'AdminLTE/datatables-responsive/js/responsive.bootstrap4.min.js' %}"></script>
+<script src="{% static 'AdminLTE/datatables-buttons/js/dataTables.buttons.min.js' %}"></script>
+<script src="{% static 'AdminLTE/datatables-buttons/js/buttons.bootstrap4.min.js' %}"></script>
+<script src="{% static 'AdminLTE/jszip/jszip.min.js' %}"></script>
+<script src="{% static 'AdminLTE/pdfmake/pdfmake.min.js' %}"></script>
+<script src="{% static 'AdminLTE/pdfmake/vfs_fonts.js' %}"></script>
+<script src="{% static 'AdminLTE/datatables-buttons/js/buttons.html5.min.js' %}"></script>
+<script src="{% static 'AdminLTE/datatables-buttons/js/buttons.print.min.js' %}"></script>
+<script src="{% static 'AdminLTE/datatables-buttons/js/buttons.colVis.min.js' %}"></script>
+<script src="{% static 'AdminLTE/js/modal-status.js' %}"></script>
 
             <!--DataTable clientes-->
             <script>
@@ -2633,4 +2628,5 @@
                     ).buttons().container().appendTo('#tabla-clientes_wrapper .col-md-6:eq(0)');
                 });
             </script>
-            {% endblock javascript %}
+        {% block javascript%}
+        {% endblock javascript %}
