@@ -24,10 +24,11 @@ def servicios_crear(request):
         form= ServicioForm(request.POST)
         if form.is_valid():
             form.save()
-            print("El servicio se guardó correctamente")
+            messages.success("El servicio ha sido creado correctamente!")
             return redirect('servicios')
         else:
             print("El servicio NO se guardó")
+            messages.error("Ha ocurrido un error, El servicio no ha sido creado correctamente!")
     else:
         form= ServicioForm()
     context={
