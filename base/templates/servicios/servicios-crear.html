@@ -11,8 +11,7 @@
             <div class="modal-body">
             <!-- Formulario -->
 
-                <form  action="{% url 'servicios-crear' %}" method="POST" enctype="multipart/form-data" 
-                    class="needs-validation" novalidate>
+                <form  action="{% url 'servicios-crear' %}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
                 
                     {% csrf_token %}          
                     
