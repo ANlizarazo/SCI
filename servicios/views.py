@@ -18,21 +18,18 @@ def servicios(request):
 
 
 def servicios_crear(request):
-
-    titulo="Servicios - Crear"
-    if request.method=="POST":
+    if request.method == "POST":
         form= ServicioForm(request.POST)
         if form.is_valid():
             form.save()
-            print("El servicio se guardó correctamente")
+            messages.success("El servicio ha sido creado correctamente!")
             return redirect('servicios')
         else:
             print("El servicio NO se guardó")
-    else:
-        form= ServicioForm()
+            messages.error("Ha ocurrido un error, El servicio no ha sido creado correctamente!")
+
     context={
-        'titulo':titulo,
-        "form":form
+        "form":form,
     }
     return render(request,'servicios/servicios-crear.html',context)
 

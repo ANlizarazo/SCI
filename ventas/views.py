@@ -12,39 +12,17 @@ from ventas.forms import VentaForm
 def ventas (request):
     
     #importar las ventas desde el modulo admin
-    ventas_list=Venta.objects.all()
+    ventas=Venta.objects.all()
+    form = VentaForm()
 
-    return render(request,'ventas/ventas.html',  {"ventas": ventas_list})
+    context = {
+        'ventas': ventas,
+        'form': form,
+    }
+
+    return render(request,'ventas/ventas.html', context)
 
 #Function to ADD Venta
-"""def venta_crear(request):
-    if request.method=="POST":
-        if request.POST.get('subtotalVenta') \
-            and request.POST.get('fecha') \
-            and request.POST.get('porcentajeIva') \
-            and request.POST.get('totalVenta') \
-            and request.POST.get('detalleVenta') \
-            and request.POST.get('cliente') \
-            and request.POST.get('usuario') \
-            and request.POST.get('servicio') \
-            and request.POST.get('estado'):
-            venta= Venta()  
-            venta.subtotalVenta= request.POST.get('subtotalVenta')
-            venta.fecha= request.POST.get('fecha')
-            venta.porcentajeIva= request.POST.get('porcentajeIva')
-            venta.totalVenta= request.POST.get('totalVenta')
-            venta.detalleVenta= request.POST.get('detalleVenta')
-            venta.cliente= Cliente.objects.get(id=int(request.POST['cliente']))
-            venta.usuario= Usuario.objects.get(id=int(request.POST['usuario']))
-            venta.servicio=Servicio.objects.get(id=int(request.POST['servicio']))
-            venta.estado= request.POST.get('estado')
-            venta.save()
-            messages.success(request, "La venta ha sido añadida con éxito!")
-            return redirect('ventas')
-        else:
-            messages.error(request, "La creación de la venta ha fallido!")
-            return redirect('ventas')"""
-
 def venta_crear(request):
     if request.method == 'POST':
         form = VentaForm(request.POST)
@@ -52,14 +30,15 @@ def venta_crear(request):
             form.save()
             venta = Venta.objects.create_user(request.POST['fecha'], request.POST['usuario'], '123')
             venta.save()
-            messages.success(request,"Venta creada satisfastoriamente!")
+            messages.success(request,"¡Venta creada correctamente!")
             return redirect('ventas')
         else:
-            print('Error al crear la venta')
-    else:
-        form = VentaForm()
+            messages.error(request, "¡Error al crear venta!")
+    context = {
+        'form': form,
+    }
 
-    return render(request, 'ventas/ventas.html', {'form': form})
+    return render(request, 'ventas/ventas-crear.html', context)
         
 
 

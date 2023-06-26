@@ -11,70 +11,11 @@
             </div>
             <div class="modal-body">
                 <!-- Formulario -->
-                <form  action="{% url 'categoria-crear-cat' %}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
+                <form  action="" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
                 
                     {% csrf_token %}          
-                    <div class="modal-body text-start" id="form-nuevo-usuario"> 
-
                     
-                
-                        <div class="d-inline-block w-100">
-                            <label for="basic-url" for="validationCustom01" class="form-label ps-2 text-black" style="font-size: 17;">Nombre</label>
-                            <div class="input-group mb-3 w-100">
-                                <input type="text" class="form-control"
-                                    name="nombrecat" id="id_nombres"
-                                    aria-describedby="basic-addon3" required minlength="1"
-                                    maxlength="50" id="validationCustom01" required>
-                                    <div class="valid-feedback">
-                                        ¡Vamos bien!
-                                    </div>
-                                    <div class="invalid-feedback">
-                                        Completa la información.
-                                    </div>
-                            </div>
-                        </div>
-                
-                        
-                
-                        <div class="d-inline-block w-100">
-                            <label for="basic-url" for="validationCustom02" class="form-label ps-2 text-black" style="font-size: 17;">Descripción</label>
-                            <div class="input-group mb-3 w-100">
-                                <textarea type="text" class="form-control" name="descripcioncat"
-                                    id="id_numeroTelefono"
-                                    aria-describedby="basic-addon3" id="validationCustom02" required minlength="1"
-                                    maxlength="250" required></textarea>
-                                    <div class="valid-feedback">
-                                        ¡Vamos bien!
-                                    </div>
-                                    <div class="invalid-feedback">
-                                        Ingresa un número de teléfono valido.
-                                    </div>
-                            </div>
-                        </div>
-                
-                        
-                                        
-
-                        <div class="d-inline-block w-100">
-                            <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom03" style="font-size: 17;">Estado</label>
-                            <div class="input-group mb-3 w-100">
-                                <select id="id_tipoDocumento" class="form-select" name="estadocat"
-                                    aria-label="tipo-activo" id="validationCustom03" required>
-                                    <option class="text-black" selected disabled value>Seleccionar</option>
-                                    <option class="text-black" value="1">Activo</option>
-                                    <option class="text-black" value="0">Inactivo</option>
-                                </select>
-                                <div class="valid-feedback">
-                                    ¡Vamos bien!
-                                </div>
-                                <div class="invalid-feedback">
-                                    Selecciona una opción valida.
-                                </div>
-                            </div>
-                        </div>    
-                        
-
-                    </div> 
+                    {{form|crispy}}
 
                     <div class="modal-footer">
                         <!-- BOTÓN PARA GUARDAR LA INFORMACIÓN DIGITADA EN EL FORMULARIO DE CATEGORÍA -->
@@ -88,3 +29,4 @@
         </div>
     </div>
 </div> 
+<script src="/static/js/funciones.js"></script>

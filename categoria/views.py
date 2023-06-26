@@ -7,35 +7,32 @@ from django.contrib import messages
 
 def categorias(request):
 
-    
     categorias = Categoria.objects.all()
+    form = CategoriaForm()
 
     for categoria in categorias:
         print(categoria.nombrecat)
 
     context={
 
-        "categorias": categorias
-        
+        "categorias": categorias,
+        'form': form,
     }
     return render(request,'categoria/categorias.html', context)
 
 
 
 def categoria_crear(request):
-
     titulo = "Categoría - Crear"
     if request.method == 'POST':
         form =  CategoriaForm(request.POST)
         if form.is_valid():
             form.save()
-            print("La categoría se guardó correctamente")
-            return redirect('productos')
+            messages.success('¡Categoría creada correctamente!')
+            return redirect('categoria')
         else:
-            print("La categoría NO se pudo guardar")
-    
-    else:
-        form = CategoriaForm()
+            messages.error(request, "¡Error al crear categoría!")
+        
     context = {
         'titulo': titulo,
         "form": form
