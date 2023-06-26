@@ -1,5 +1,6 @@
 {% load static %}
 {% block contenido %}
+
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -14,7 +15,7 @@
                         <li class="breadcrumb-item"><a
                                 href="http://127.0.0.1:8000/inicio/">
                                 <b class="text-success">Inicio </b></a></li>
-                        <li class="breadcrumb-item-active"><a href="#"
+                        <li class="breadcrumb-item-active"><a href="http://127.0.0.1:8000/servicios/"
                                 class="text-success">/ Servicios</a></li>
                     </ol>
                 </div>
@@ -38,8 +39,6 @@
                         <!-- Este botón llama el modal -->
                         <a class="btn btn-success float-right mr-0 mb-3" data-bs-toggle="modal"
                             data-bs-target="#crearServicio"> Crear Servicio</a>
-                        <!-- Modal de crear servicio-->
-                        <c>{% include 'servicios/servicios-crear.html' %}</c>
                         <!-- Datatable de servicios -->
                         <table id="tabla-servicios" class="table table-bordered
                             table-striped  border-dark">
@@ -116,10 +115,10 @@
                                                         <div class="d-inline-block w-100">
                                                             <label for="basic-url"  for="validationCustom02" class="form-label ps-2 text-black" style="font-size: 17;">Fecha de Inicio día/mes/año</label>
                                                             <div class="input-group mb-3 w-100">
-                                                                <input type="text" class="form-control"
+                                                                <input type="datetime-local" class="form-control"
                                                                     name="fechaInicio" id="id_apellidos"
                                                                     aria-describedby="basic-addon3" id="validationCustom02" required minlength="1"
-                                                                    maxlength="50" required value="{{servicio.fechaInicio|date:'d/m/Y'}}">
+                                                                    maxlength="50" required value="{{servicio.fechaInicio|date:'d/m/Y'}}">{{servicio.fechaInicio|date:'d/m/Y'}}</textarea>
                                                                     <div class="valid-feedback">
                                                                         ¡Vamos bien!
                                                                     </div>
@@ -133,10 +132,10 @@
                                                         <div class="d-inline-block w-100">
                                                             <label for="basic-url" for="validationCustom03" class="form-label ps-2 text-black" style="font-size: 17;">Fecha de Entrega día/mes/año</label>
                                                             <div class="input-group mb-3 w-100">
-                                                                <input type="text" class="form-control" name="fechaEntrega"
+                                                                <input type="datetime-local" class="form-control" name="fechaEntrega"
                                                                     id="id_numeroTelefono"
                                                                     aria-describedby="basic-addon3" id="validationCustom03" required minlength="1"
-                                                                    maxlength="20" required value="{{servicio.fechaEntrega|date:'d/m/Y'}}" >
+                                                                    maxlength="20" required value="{{servicio.fechaEntrega|date:'d/m/Y'}}" >{{servicio.fechaEntrega|date:'d/m/Y'}}</textarea>
                                                                     <div class="valid-feedback">
                                                                         ¡Vamos bien!
                                                                     </div>
@@ -386,20 +385,13 @@
                                                     </div>
                                 
                                                 </form>
-                                
-
-                                                
-
                                             </div>
-
                                         </div>
                                         
                                     </div>
                                 </div>   
                                 
                                 
-
-
                                 <!-- Modal delete confirmation -->
                                 <div class="modal fade"
                                     id="deleteModal{{servicio.pk}}"
