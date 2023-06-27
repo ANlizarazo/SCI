@@ -2,16 +2,14 @@
 
 <!-- Modal de crear tecnico -->
 
-<div class="modal fade" id="crear_Tecnico" data-bs-backdrop="static"
-    data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
-    aria-hidden="true">
+<div class="modal fade" id="crearTecnico" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-3" id="staticBackdropLabel"><b
-                        class="text-black">CREAR NUEVO TÉCNICO</b></h1>
+                <h1 class="modal-title fs-3" id="staticBackdropLabel"><b class="text-black">CREAR NUEVO TÉCNICO</b></h1>
             </div>
             <div class="modal-body">
+                
                 <!-- Formulario -->
                 <form action="{% url 'tecnico-crear' %}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
 
