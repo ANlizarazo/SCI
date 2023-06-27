@@ -42,10 +42,12 @@ def clientes_crear(request):
         form = ClienteForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success('¡Cliente creado correctamente!')
+            messages.success(request,'¡Cliente creado correctamente!')
             return redirect('clientes')
         else:
             messages.error(request, "¡Error al crear cliente!")
+    else:
+        form = ClienteForm()
         
     context = {
         'form': form,

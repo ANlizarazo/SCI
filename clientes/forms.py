@@ -8,7 +8,7 @@ class ClienteForm(ModelForm):
         """Meta definition for Clienteform."""
 
         model = Cliente        
-        fields = '__all__'
+        exclude=['estado']
 
 class ClienteUpdateForm(ModelForm):
     class Meta:
