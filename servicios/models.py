@@ -22,8 +22,8 @@ class TipoServicio(models.Model):
 
 class Servicio(models.Model):
     observacion= models.CharField(max_length=200, verbose_name="Observaciones")
-    fechaInicio= models.DateField(verbose_name="Fecha de Inicio",help_text= "DD/MM/AAA")
-    fechaEntrega= models.DateField(verbose_name="Fecha de Entrega",help_text= "DD/MM/AAAA")
+    fechaInicio= models.DateTimeField(verbose_name="Fecha de Inicio",help_text= "DD/MM/AAA")
+    fechaEntrega= models.DateTimeField(verbose_name="Fecha de Entrega",help_text= "DD/MM/AAAA")
     precio= models.PositiveIntegerField(validators=[MinValueValidator(0)], verbose_name="Precio")
     observacionFinal= models.CharField(max_length=250, verbose_name="Observación Final")
     class TipoServicio(models.TextChoices):
