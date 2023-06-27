@@ -9,7 +9,7 @@ from django.contrib import messages
 def tecnicos (request):
 
     tecnico_list= Tecnico.objects.all()
-    form = TecnicoForm
+    form = TecnicoForm()
 
     context= {
         'tecnico_list': tecnico_list,
@@ -23,11 +23,12 @@ def tecnico_crear(request):
         form = TecnicoForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success('¡Tecnico creado correctamente!')
+            messages.success(request,'¡Tecnico creado correctamente!')
             return redirect('tecnico')
         else:
             messages.error(request, "¡Error al crear tecnico!")
-        
+    else:
+        form = TecnicoForm()
     context = {
         'form': form,
     }
