@@ -39,8 +39,6 @@
                     <!-- /.card-header -->
                     <div class="card-body">
                         <!-- Este botón llama el modal -->
-
-
                         <a class="btn btn-success float-right mr-1 mb-3" data-bs-toggle="modal"
                             data-bs-target="#crearDepartamento"> Crear Departamento</a>    
 
@@ -60,34 +58,12 @@
                                     <td class="border-dark text-black">{{departamento.nombre}}</td>
                                     <td class="border-dark">
                                     
-                                    <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#verCategoria{{categoria.pk}}" title="Ver">
-                                        <i class="fas fa-eye"></i></button>     
-                                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modificarCategoria{{categoria.pk}}" title="Modificar">
-                                        <i class="fas fa-edit"></i></button>
                                     <button class="btn btn-danger"
                                         data-bs-toggle="modal"
                                         data-bs-target="#deleteModal{{categoria.pk}}" title="Eliminar">
                                         <i class="fas fa-trash-alt"></i></button>
                                     </td>
                                 </tr>
-
-                            
-                            
-
-                                                    <div class="modal-footer">
-                                                        
-                        
-                                                    
-                                                    </div>
-
-                                                </form>
-                                            </div>
-                                            
-                                        </div>
-                                    </div>
-                                </div>      
-
-
 
                                 <!-- Modal delete confirmation -->
                                 <div class="modal fade"
