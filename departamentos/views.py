@@ -41,7 +41,7 @@ def departamento_eliminar(request, pk):
     return redirect('departamentos') 
 
 #Function to RECUPERAR servicios
-def recuperar_departamento(request):
+def recuperar_departamentos(request):
     
     departamentos= Departamento.objects.all()
     departamentos_recuperables = []
