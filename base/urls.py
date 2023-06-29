@@ -33,6 +33,8 @@ urlpatterns = [
     path('error500/',error500,name='error500'),
     path('perfil/',perfil,name='perfil'),
     path('usuarios/',include('usuarios.urls')),
+    path('ciudad/',include('ciudad.urls')),
+    path('departamentos/',include('departamentos.urls')),
     path('ventas/',include('ventas.urls')),
     path('servicios/',include('servicios.urls')),
     path('proveedores/',include('proveedores.urls')),

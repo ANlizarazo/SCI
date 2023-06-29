@@ -1,7 +1,6 @@
 from django.shortcuts import redirect, render
-from clientes.forms import ClienteForm, ClienteUpdateForm, CiudadForm
+from clientes.forms import ClienteForm, ClienteUpdateForm
 from clientes.models import Cliente
-from clientes.models import Ciudad
 from django.contrib import messages
 
 #Lista de clientes
@@ -9,12 +8,11 @@ def clientes(request):
     
     clientes= Cliente.objects.all()
     form = ClienteForm()
-    formCiudad = CiudadForm()
+    
     
     context={
         "clientes":clientes,
         'form': form,
-        'formCiudad': formCiudad
     }
     return render(request,'clientes/clientes.html',context)
 
@@ -43,16 +41,15 @@ def clientes_crear(request):
         if form.is_valid():
             form.save()
             messages.success(request,'¡Cliente creado correctamente!')
-            return redirect('clientes')
+            return redirect(to='clientes')
         else:
             messages.error(request, "¡Error al crear cliente!")
+            return redirect(to='clientes')
     else:
         form = ClienteForm()
-        
     context = {
         'form': form,
     }
-
     return render(request, 'clientes/clientes-crear.html', context)
 
 
@@ -63,14 +60,18 @@ def clientes_modificar(request, pk):
         form = ClienteForm(request.POST, instance = cliente)
         if form.is_valid():
             form.save()
-            
+            messages.success(request,'¡Cliente guardado correctamente!')
             return redirect('clientes')
         else:
-            print('Error al editar al cliente')
+            print('Error al modificar cliente')
     else:
-        form = ClienteForm(instance = cliente)
+        form = ClienteForm( instance = cliente)
+    
+    context = {
+        'form': form,
+    }
 
-    return render(request, 'tecnico/tecnico.html', {'form': form})    
+    return render(request, 'clientes/clientes.html', context)    
 
 
 #Función para ELIMINAR clientes
