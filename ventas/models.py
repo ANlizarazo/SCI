@@ -11,6 +11,11 @@ class DetalleVenta(models.Model):
     cantidadProducto = models.BigIntegerField(validators = [ MinValueValidator ( 0 )], verbose_name="Cantidad Producto") 
     valorTotalProducto = models.PositiveIntegerField(validators = [ MinValueValidator ( 0 )], verbose_name="Valor Total Producto")
     producto = models.ForeignKey(Producto, on_delete=models.CASCADE, verbose_name="Producto",null=True)
+    class ModoPago(models.TextChoices):
+        EF='EF', _('Efectivo')
+        PV='PV', _('Pago Virtual')
+        PT='PT', _('Pago con Tarjeta')
+    modoPago=models.CharField(max_length=3, choices=ModoPago.choices, default=ModoPago.EF, verbose_name="Modo de Pago")
     
     def __str__(self)->str:
         return "%s %s %s %s" %(self.id,self.producto,self.cantidadProducto,self.valorTotalProducto)  
