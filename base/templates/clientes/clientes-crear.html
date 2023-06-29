@@ -13,20 +13,18 @@
             </div>
             <div class="modal-body">
                 <!-- Formulario -->
-                <form action="" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
+                <form action="{% url 'clientes-crear' %}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
 
                     {% csrf_token %}
                     
                     {{form|crispy}}
                     
                         <div class="modal-footer">
-                            <!-- BOTÓN PARA GUARDAR LA INFORMACIÓN DIGITADA EN EL FORMULARIO DEL USUARIO -->
+                            <!-- BOTÓN PARA GUARDAR LA INFORMACIÓN DIGITADA EN EL FORMULARIO DE CIUDAD -->
                             <button type="reset" class="btn btn-secondary"
                                 data-bs-dismiss="modal" title="Cancelar">Cancelar</button>
-                            <input class="btn btn-success" type="submit"
-                                name="form-nuevo-cliente" title="Crear" value="Crear">
+                            <input class="btn btn-success" type="submit" title="Crear" value="Crear">
                         </div>
-
                 </form>
             </div>
         </div>

@@ -28,11 +28,13 @@ def categoria_crear(request):
         form =  CategoriaForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success('¡Categoría creada correctamente!')
-            return redirect('categoria')
+            messages.success(request,'¡Categoría creada correctamente!')
+            return redirect(to='categorias')
         else:
             messages.error(request, "¡Error al crear categoría!")
-        
+            return redirect(to='categorias')
+    else:
+        form=CategoriaForm()
     context = {
         'titulo': titulo,
         "form": form
@@ -76,8 +78,12 @@ def categoria_modificar(request, pk):
             print('Error al editar la categoria')
     else:
         form = CategoriaForm(instance = categoria)
+    
+    context ={
+        'form': form,
+    }
 
-    return render(request, 'categoria/categorias.html', {'form': form})
+    return render(request, 'categoria/categorias.html', context)
 
 
 

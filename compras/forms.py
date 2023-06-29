@@ -8,7 +8,7 @@ class CompraForm(ModelForm):
         """Meta definition for Compraform."""
 
         model = Compra
-        fields = '__all__'
+        exclude=['estado']
 
 class CompraUpdateForm(ModelForm):
     class Meta:

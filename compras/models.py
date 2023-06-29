@@ -22,7 +22,7 @@ class DetalleCompra(models.Model):
 
 
 class Compra(models.Model):
-    fecha= models.DateField(verbose_name="Fecha",help_text= "DD/MM/AAA")
+    fecha= models.DateField(verbose_name="Fecha", auto_now_add=True, editable=False)
     detalleCompra = models.ForeignKey(DetalleCompra, on_delete=models.CASCADE, verbose_name="Detalle Compra",null=True)
     proveedor=models.ForeignKey(Proveedor, on_delete=models.CASCADE, verbose_name="Proveedor",null=True)
     class Estado(models.TextChoices):
