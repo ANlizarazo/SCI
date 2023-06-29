@@ -54,7 +54,6 @@
                                 <tr>
                                     <th class="border-dark">ID Producto</th>
                                     <th class="border-dark">Nombre</th>
-                                    <th class="border-dark">Precio</th>
                                     <th class="border-dark">Especificaciones</th>
                                     <th class="border-dark">Cantidad</th>
                                     <th class="border-dark">Categoría</th>
@@ -68,7 +67,6 @@
                                 <tr>
                                     <td class="border-dark text-black">{{producto.id}}</td>
                                     <td class="border-dark text-black">{{producto.nombre}}</td>
-                                    <td class="border-dark text-black">{{producto.precio}}</td>
                                     <td class="border-dark text-black">{{producto.especificaciones}}</td>
                                     <td class="border-dark text-black">{{producto.stock}}</td>
                                     <td class="border-dark text-black">{{producto.categoria}}</td>
@@ -173,7 +171,7 @@
                                                         <div class="d-inline-block w-100">
                                                             <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom06" style="font-size: 17;">Categoría</label>
                                                             <div class="input-group mb-3 w-100">
-                                                                <select id="id_tipoDocumento" class="form-select" name="categoria"
+                                                                <select id="id_categoria" class="form-select" name="categoria"
                                                                     aria-label="tipo-activo" id="validationCustom06" required>
                                                                     
                                                                     <option class="text-black" selected value="{{producto.categoria.pk}}">{{producto.categoria}}</option>
@@ -264,28 +262,12 @@
                                                         </div>
                                                 
                                                         <div class="d-inline-block w-100">
-                                                            <label for="basic-url"  for="validationCustom02" class="form-label ps-2 text-black" style="font-size: 17;">Precio</label>
-                                                            <div class="input-group mb-3 w-100">
-                                                                <input type="number" class="form-control"
-                                                                    name="precio" id="id_apellidos"
-                                                                    aria-describedby="basic-addon3" id="validationCustom02" required minlength="1"
-                                                                    maxlength="50" required value="{{producto.precio}}">
-                                                                    <div class="valid-feedback">
-                                                                        ¡Vamos bien!
-                                                                    </div>
-                                                                    <div class="invalid-feedback">
-                                                                        Completa la información.
-                                                                    </div>
-                                                            </div>
-                                                        </div>
-                                                
-                                                        <div class="d-inline-block w-100">
                                                             <label for="basic-url" for="validationCustom03" class="form-label ps-2 text-black" style="font-size: 17;">Especificaciones</label>
                                                             <div class="input-group mb-3 w-100">
-                                                                <textarea type="text" class="form-control" name="especificaciones"
+                                                                <input type="text" class="form-control" name="especificaciones"
                                                                     id="id_numeroTelefono"
                                                                     aria-describedby="basic-addon3" id="validationCustom03" required minlength="1"
-                                                                    maxlength="250" required>{{producto.especificaciones}}</textarea>
+                                                                    maxlength="250" required disabled value="{{producto.especificaciones}}">
                                                                     <div class="valid-feedback">
                                                                         ¡Vamos bien!
                                                                     </div>
@@ -301,7 +283,7 @@
                                                                 <input type="number" class="form-control" name="stock"
                                                                     id="id_correoElectronico"
                                                                     aria-describedby="basic-addon3" id="validationCustom04" required minlength="1"
-                                                                    maxlength="100" required value="{{producto.stock}}">
+                                                                    maxlength="100" required  disabled value="{{producto.stock}}">
                                                                     <div class="valid-feedback">
                                                                         ¡Vamos bien!
                                                                     </div>
@@ -316,12 +298,9 @@
                                                         <div class="d-inline-block w-100">
                                                             <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom06" style="font-size: 17;">Categoría</label>
                                                             <div class="input-group mb-3 w-100">
-                                                                <select id="id_tipoDocumento" class="form-select" name="categoria"
-                                                                    aria-label="tipo-activo" id="validationCustom06" required disabled>
-                                                                    <option class="text-black" selected value="{{producto.categoria}}">{{producto.categoria.id}}</option>
-                                                                
-
-                                                                </select>
+                                                                <input id="id_tipoDocumento" class="form-control" name="categoria"
+                                                                    aria-label="tipo-activo" id="validationCustom06" required disabled class="text-black" 
+                                                                    required disabled value="{{producto.categoria}}">
                                                                 <div class="valid-feedback">
                                                                     ¡Vamos bien!
                                                                 </div>
@@ -331,24 +310,7 @@
                                                             </div>
                                                         </div> 
                                                         
-                                                        <div class="d-inline-block w-100">
-                                                            <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom06" style="font-size: 17;">Estado</label>
-                                                            <div class="input-group mb-3 w-100">
-                                                                <select id="id_tipoDocumento" class="form-select" name="estado"
-                                                                    aria-label="tipo-activo" id="validationCustom06" required>
-                                                                    <option class="text-black" selected value="{{producto.estado}}">{{producto.estado}}</option>
-                                                                    <option class="text-black" value="1">Activo</option>
-                                                                    <option class="text-black" value="0">Inactivo</option>
-                                                                </select>
-                                                                <div class="valid-feedback">
-                                                                    ¡Vamos bien!
-                                                                </div>
-                                                                <div class="invalid-feedback">
-                                                                    Selecciona una opción valida.
-                                                                </div>
-                                                            </div>
-                                                        </div>    
-
+                                                        
                                                     </div> 
 
                                                     <div class="modal-footer">

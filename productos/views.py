@@ -21,8 +21,6 @@ def productos(request):
     }
     return render(request,'productos/productos.html',context)
 
-
-
     
 def productos_ver(request):
 
@@ -38,9 +36,6 @@ def productos_ver(request):
         "form": form
     }
     return render(request, 'productos/productos-ver.html', context)
-
-
-
 
 
 def productos_crear(request):

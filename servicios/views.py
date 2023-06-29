@@ -66,8 +66,10 @@ def servicios_modificar(request, pk):
             print('Error al modificar el servicio')
     else:
         form = ServicioForm(instance = servicio)
-
-    return render(request, 'servicios/servicios.html', {'form': form})
+    context={
+        "form": form
+    }
+    return render(request, 'servicios/servicios-modificar.html', context) 
 
 
 
