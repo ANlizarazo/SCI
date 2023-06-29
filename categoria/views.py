@@ -115,9 +115,9 @@ def recuperar_categoria(request):
 
 
 def recuperar_cat(request, pk):
-    titulo = 'Recuperar Categoría'
+    titulo = 'Recuperar Categoria'
     Categoria.objects.filter(id = pk).update(
-        estado = '1'
+        estadocat = '1'
     )
-    messages.success(request, "Categoría restaurada satisfactoriamente!")
+    
     return redirect('categorias')
