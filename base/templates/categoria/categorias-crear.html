@@ -3,7 +3,7 @@
 
 <!-- Modal de crear categoría -->
 
-<div class="modal fade" id="crearCategoria" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="#crearCategoria" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -11,7 +11,7 @@
             </div>
             <div class="modal-body">
                 <!-- Formulario -->
-                <form  action="{% url 'categorias-crear' %}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
+                <form  action="{% url 'categoria-crear' %}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
                 
                     {% csrf_token %}          
                     
