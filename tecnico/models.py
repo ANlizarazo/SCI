@@ -2,7 +2,7 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.core.validators import MinValueValidator
 
-from clientes.models import Ciudad
+from ciudad.models import Ciudad
 
 # Create your models here.
 

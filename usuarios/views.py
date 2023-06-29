@@ -129,7 +129,7 @@ def recuperar(request, pk):
     messages.success(request, "Usuario restaurado satisfactoriamente!")
     return redirect('usuarios')
 
-################################ EJEMPLO DE USUARIO ####################################
+################################ EJEMPLO ####################################
 
 """"
 def usuarios_crear(request):
