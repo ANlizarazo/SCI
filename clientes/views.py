@@ -1,17 +1,21 @@
 from django.shortcuts import redirect, render
 from clientes.forms import ClienteForm, ClienteUpdateForm
-from clientes.models import Cliente
+from clientes.models import Cliente, Ciudad
 from django.contrib import messages
 
 #Lista de clientes
 def clientes(request):
     
     clientes= Cliente.objects.all()
+    ciudades= Ciudad.objects.all()
     form = ClienteForm()
     
-    
+    for cliente in clientes:
+        print(cliente.ciudad.pk)
+
     context={
         "clientes":clientes,
+        "ciudades":ciudades,
         'form': form,
     }
     return render(request,'clientes/clientes.html',context)
@@ -64,6 +68,7 @@ def clientes_modificar(request, pk):
             return redirect('clientes')
         else:
             print('Error al modificar cliente')
+            messages.error(request, "¡Error al modificar el cliente!")
     else:
         form = ClienteForm( instance = cliente)
     
@@ -79,7 +84,7 @@ def clientes_eliminar(request, pk):
     cliente = Cliente.objects.filter(id = pk).update(
         estado = '0'
     )
-
+    messages.success(request, "¡Cliente eliminado correctamente!")
     return redirect('clientes') 
 
 
@@ -105,5 +110,5 @@ def recuperar_cliente(request, pk):
     Cliente.objects.filter(id = pk).update(
         estado = '1'
     )
-    
+    messages.success(request, "¡Cliente restaurado correctamente!")
     return redirect('clientes')

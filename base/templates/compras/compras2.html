@@ -96,7 +96,7 @@
                                                 <form  action="{% url 'compras_modificar' compra.pk %}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
                                                 
                                                     {% csrf_token %}          
-                                                    <div class="modal-body text-start" id="form-nuevo-usuario"> 
+                                                    <div class="modal-body text-start" id="form-nuevo-compra"> 
 
                                                     
                                                 
@@ -440,22 +440,7 @@
                                 {% endif %}
                                 {% endfor %}
                             </tbody>
-<<<<<<< Updated upstream
-                        </table>
-                    </div>   
-                        <a href="{% url 'recuperar_compras' %}" class="btn btn-warning float-right mr-1 mb-3" title="Papelera"><i class="fas fa-trash-restore"></i>&nbsp; Restaurar </a>
-                        <!-- /.card-body -->
-                    </div>
-                </div>
-                <!-- /.card -->
-            </section>
-            <!-- /.content -->
-        </div>
-        <footer>{% include 'partials/footer.html' %}</footer>
-        <!-- /.content-wrapper -->
 
-
-=======
                             </table>
                         </div>
                         <!-- /.card-body -->
@@ -467,7 +452,7 @@
             </div>
             <footer>{% include 'partials/footer.html' %}</footer>
             <!-- /.content-wrapper -->
->>>>>>> Stashed changes
+
             {% endblock contenido %}
 
 
