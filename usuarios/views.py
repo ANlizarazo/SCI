@@ -30,14 +30,19 @@ def usuario_crear(request):
             form.save()
             user = User.objects.create_user(request.POST['email'], request.POST['email'], '123')
             user.save()
-            messages.success('¡Creado creado correctamente!')
+            messages.success(request,'¡Creado creado correctamente!')
             return redirect('usuarios')
         else:
             messages.error(request, "¡Error al crear usuario!")
+            return redirect('usuarios')
     else:
         form = UsuarioForm()
 
-    return render(request, 'usuarios/usuarios-crear.html', {'form': form})
+    context={
+        'form': form,
+    }
+
+    return render(request, 'usuarios/usuarios-crear.html', context)
         
 #Function to View  usuario data individually
 def usuario_ver(request, pk):
