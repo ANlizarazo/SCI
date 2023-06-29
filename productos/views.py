@@ -40,9 +40,6 @@ def productos_ver(request):
     return render(request, 'productos/productos-ver.html', context)
 
 
-
-
-
 def productos_crear(request):
 
     titulo = "Productos - Crear"
