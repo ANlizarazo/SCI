@@ -8,9 +8,9 @@ class ProveedorForm(ModelForm):
         """Meta definition for Proveedoreform."""
 
         model = Proveedor
-        fields='__all__'
+        exclude=['estado']
 
 class ProveedorUpdateForm(ModelForm):
     class Meta:
         model= Proveedor
-        fields='__all__'
+        exclude=['estado']

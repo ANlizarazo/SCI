@@ -8,7 +8,7 @@ class VentaForm(ModelForm):
         """Meta definition for Ventaform."""
 
         model = Venta
-        fields = '__all__'
+        exclude=['estado']
 
 class VentaUpdateForm(ModelForm):
     class Meta:

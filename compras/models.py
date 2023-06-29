@@ -2,19 +2,18 @@ from django.db import models
 from django.core.validators import MinValueValidator
 from django.utils.formats import get_format
 from usuarios.models import Usuario
-from proveedores.models import Material, Proveedor
+from proveedores.models import Proveedor
 
 
 
 
 class DetalleCompra(models.Model):
-    cantidadMaterial = models.BigIntegerField(validators = [ MinValueValidator ( 0 )], verbose_name="Cantidad Material") 
     valorTotalMaterial = models.BigIntegerField(validators = [ MinValueValidator ( 0 )], verbose_name="Valor Total Material")
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE, verbose_name="Usuario",null=True)
-    material= models.ForeignKey(Material, on_delete=models.CASCADE, verbose_name="Material",null=True)
+   
     
     def _str_(self)->str:
-        return "%s %s %s %s" %(self.id,self.usuario,self.cantidadMaterial,self.valorTotalMaterial,self.material)  
+        return "%s %s %s %s" %(self.id,self.usuario,self.valorTotalMaterial,)  
 
     class Meta:
         verbose_name = 'Detalle Compra'
