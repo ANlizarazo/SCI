@@ -30,7 +30,7 @@ def usuario_crear(request):
             form.save()
             user = User.objects.create_user(request.POST['email'], request.POST['email'], '123')
             user.save()
-            messages.success('¡Creado creado correctamente!')
+            messages.success(request,'¡Creado creado correctamente!')
             return redirect('usuarios')
         else:
             messages.error(request, "¡Error al crear usuario!")

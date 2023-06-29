@@ -64,6 +64,7 @@ def clientes_modificar(request, pk):
             return redirect('clientes')
         else:
             print('Error al modificar cliente')
+            messages.error(request, "¡Error al modificar el cliente!")
     else:
         form = ClienteForm( instance = cliente)
     
@@ -79,7 +80,7 @@ def clientes_eliminar(request, pk):
     cliente = Cliente.objects.filter(id = pk).update(
         estado = '0'
     )
-
+    messages.success(request, "¡Cliente eliminado correctamente!")
     return redirect('clientes') 
 
 
@@ -105,5 +106,5 @@ def recuperar_cliente(request, pk):
     Cliente.objects.filter(id = pk).update(
         estado = '1'
     )
-    
+    messages.success(request, "¡Cliente restaurado correctamente!")
     return redirect('clientes')
