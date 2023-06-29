@@ -94,7 +94,7 @@
                                                 <td class="border-dark text-black">{{tecnico.numDocumento}}</td>
                                                 <td class="border-dark text-black">{{tecnico.ciudad}}</td>
                                                 <td class="border-dark text-black">
-                                                    <a href="{% url 'recuperar-tecnico' tecnico.id %}" class="btn btn-warning" title="Restaurar">
+                                                    <a href="{% url 'recuperar' tecnico.id %}" class="btn btn-warning" title="Restaurar">
                                                         <i Class="fas fa-trash-restore"></i></a>
                                                 </td>
                                             </tr>
@@ -150,7 +150,7 @@
                     "responsive": true, "paging": true, "lengthChange": false,
                     "searching": true, "autoWidth": false, "ordering": true,
                     "info": true, "pageLength": 8,
-                    "buttons": ["copy", "csv", "excel", "pdf", "print"],
+
                     }
                     
                     ).buttons().container().appendTo('#tabla-tecnico_wrapper .col-md-6:eq(0)');

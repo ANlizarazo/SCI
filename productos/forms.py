@@ -13,4 +13,4 @@ class ProductoForm(ModelForm):
 class ProductoUpdateForm(ModelForm):
     class Meta:
         model= Producto
-        fields = '__all__'
+        exclude=['estado']
