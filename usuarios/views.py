@@ -34,10 +34,15 @@ def usuario_crear(request):
             return redirect('usuarios')
         else:
             messages.error(request, "¡Error al crear usuario!")
+            return redirect('usuarios')
     else:
         form = UsuarioForm()
 
-    return render(request, 'usuarios/usuarios-crear.html', {'form': form})
+    context={
+        'form': form,
+    }
+
+    return render(request, 'usuarios/usuarios-crear.html', context)
         
 #Function to View  usuario data individually
 def usuario_ver(request, pk):

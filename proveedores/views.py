@@ -6,69 +6,106 @@ from django.contrib import messages
 
 
 #List of proveedor
-def proveedores (request):
+def proveedores(request):
     
-    #importar los proveedores desde el modulo admin
-    proveedores=Proveedor.objects.all()
+    clientes= Proveedor.objects.all()
     form = ProveedorForm()
-
-    context = {
-        "proveedores": proveedores,
+    
+    
+    context={
+        "proveedor":proveedores,
         'form': form,
-
     }
+    return render(request,'proveedores/proveedores.html',context)
 
-    return render(request,'proveedores/proveedores.html', context)
 
-#Function to ADD Proveedor
+#Funcion para VER proveedores
+def proveedor_ver(request):
+
+    titulo = "Proveedor - Ver"
+    if request.method == 'POST':
+        form = ProveedorForm(request.POST)
+        if form.is_valid():
+            return redirect('proveedores')
+    else:
+        form = ProveedorForm()
+    context = {
+        'titulo': titulo,
+        "form": form
+    }
+    return render(request, 'proveedor/proveedor-ver.html', context)
+
+
+#Función para CREAR clientes
 def proveedor_crear(request):
-    if request.method=="POST":
+    if request.method == 'POST':
         form = ProveedorForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, "¡Proveedor creado correctamente!")
-            return redirect('proveedores')
+            messages.success(request,'¡Cliente creado correctamente!')
+            return redirect(to='proveedores')
         else:
             messages.error(request, "¡Error al crear proveedor!")
+            return redirect(to='proveedores')
+    else:
+        form = ProveedorForm()
+    context = {
+        'form': form,
+    }
+    return render(request, 'proveedor/proveedor-crear.html', context)
+
+
+#Función para MODIFICAR proveedores
+def proveedor_modificar(request, pk):
+    proveedor = Proveedor.objects.get(id = pk)
+    if request.method == "POST":
+        form = ProveedorForm(request.POST, instance = proveedor)
+        if form.is_valid():
+            form.save()
+            messages.success(request,'¡Proveedor guardado correctamente!')
+            return redirect('proveedores')
+        else:
+            print('Error al modificar proveedor')
+    else:
+        form = ProveedorForm( instance = proveedor)
     
     context = {
-            'form': form
-        }
+        'form': form,
+    }
 
-    return render(request, 'proveedores/proveedores-crear.html', context)
+    return render(request, 'proveedor/proveedor.html', context)    
+
+
+#Función para ELIMINAR proveedores
+def proveedores_eliminar(request, pk):
+    proveedor= Proveedor.objects.filter(id = pk).update(
+        estado = '0'
+    )
+
+    return redirect('proveedores') 
+
+
+#Function to RECUPERAR proveedor
+def delete_proveedor(request):
     
+    proveedor= Proveedor.objects.all()
+    proveedor_recuperables = []
 
-#Function to View  Proveedor 
-def proveedor_ver(request, proveedor_id):
-    proveedor = Proveedor.objects.get( id = proveedor_id) 
-    if proveedor != None:
-        return render(request, "proveedores/proveedores-modificar.html", {'proveedor':proveedor} )
-    else:
-        return redirect('proveedores/proveedores-ver.html')
+    for proveedor in proveedores:
+        if proveedor.estado == '0':
+            proveedor_recuperables.append(proveedor)
 
-#Function to EDIT Proveedor
-def proveedor_modificar(request):
-    if request.method == "POST":
-        proveedor = Proveedor.objects.get(id = request.POST.get('id'))
-        if proveedor != None:
-            proveedor.nombreEmpresa= request.POST.get('nombreEmpresa')
-            proveedor.email= request.POST.get('email')
-            proveedor.telefono= request.POST.get('telefono')
-            proveedor.direccion= request.POST.get('direccion')
-            proveedor.modoPago= request.POST.get('modoPago')
-            proveedor.tiempoEntrega= request.POST.get('tiempoEntrega')
-            proveedor.transporteIncluido= request.POST.get('transporteIncluido')
-            proveedor.estado= request.POST.get('estado')
-            proveedor.material= request.POST.get('material')
-            proveedor.departamento= request.POST.get('departamento')
-            proveedor.save()
-            messages.success(request, "Proveedor Actualizado con éxito!")
-            return HttpResponseRedirect("proveedores/")
+    context={
+        "proveedores":proveedor_recuperables
+    }
+    return render(request,'proveedor/proveedor-recuperar.html',context)
 
-#Function to DELETE Proveedor
-def delete_proveedor(request, proveedor_id):
-    if request.method == "POST":
-        proveedor = Proveedor.objects.get(id= proveedor_id)
-        proveedor.delete()
-        messages.success(request, "Proveedor eliminado satisfactoriamente!")
-        return redirect("proveedores")
+
+
+def recuperar_proveedore(request, pk):
+    titulo = 'Recuperar Proveedor'
+    Proveedor.objects.filter(id = pk).update(
+        estado = '1'
+    )
+    
+    return redirect('proveedores')

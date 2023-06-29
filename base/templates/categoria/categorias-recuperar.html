@@ -48,7 +48,7 @@
                                             href="http://127.0.0.1:8000/inicio/">
                                             <b class="text-success">Inicio </b></a></li>
                                     <li class="breadcrumb-item-active"><a
-                                            href="http://127.0.0.1:8000/categoria/"
+                                            href="http://127.0.0.1:8000/productos/"
                                             class="text-success">/ Categorias</a></li>
                                 </ol>
                             </div>
@@ -70,7 +70,7 @@
                                 <!-- /.card-header -->
                                 <div class="card-body">
                                     <!-- Datatable de recuperar categoría -->
-                                    <table id="tabla-categoria" class="table table-bordered table-striped border-dark">
+                                    <table id="tabla-tecnico" class="table table-bordered table-striped border-dark">
                                         <thead class="bg-gray">
                                             <tr>
                                                 <th class="border-dark">ID Categoría</th>
@@ -85,7 +85,7 @@
                                                 <td class="border-dark text-black">{{categoria.id}}</td>
                                                 <td class="border-dark text-black">{{categoria.nombrecat}}</td>
                                                 <td class="border-dark text-black">{{categoria.descripcioncat}}</td>  
-  
+
                                                 <td class="border-dark text-black">
                                                     <a href="{% url 'recuperar_cat' categoria.id %}" class="btn btn-warning" title="Restaurar">
                                                         <i Class="fas fa-trash-restore"></i></a>

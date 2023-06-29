@@ -1,17 +1,21 @@
 from django.shortcuts import redirect, render
 from clientes.forms import ClienteForm, ClienteUpdateForm
-from clientes.models import Cliente
+from clientes.models import Cliente, Ciudad
 from django.contrib import messages
 
 #Lista de clientes
 def clientes(request):
     
     clientes= Cliente.objects.all()
+    ciudades= Ciudad.objects.all()
     form = ClienteForm()
     
-    
+    for cliente in clientes:
+        print(cliente.ciudad.pk)
+
     context={
         "clientes":clientes,
+        "ciudades":ciudades,
         'form': form,
     }
     return render(request,'clientes/clientes.html',context)
