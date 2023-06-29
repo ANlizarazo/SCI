@@ -21,8 +21,6 @@ def productos(request):
     }
     return render(request,'productos/productos.html',context)
 
-
-
     
 def productos_ver(request):
 

@@ -11,7 +11,7 @@ def clientes(request):
     form = ClienteForm()
     
     for cliente in clientes:
-        print(cliente.ciudad.pk)
+        print(cliente.ciudad.id)
 
     context={
         "clientes":clientes,
