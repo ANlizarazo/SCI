@@ -68,7 +68,7 @@
                                 <!-- /.card-header -->
                                 <div class="card-body">
                                     <!-- Datatable de usuarios -->
-                                    <table id="tabla-usuarios" class="table table-bordered table-striped border-dark" style="font-size: 14px;">
+                                    <table id="tabla-productos" class="table table-bordered table-striped border-dark" style="font-size: 14px;">
                                         <thead class="bg-gray">
                                             <tr>
                                                 <th class="border-dark">ID Producto</th>
@@ -83,7 +83,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {% for usuario in usuarios %}
+                                            {% for producto in productos %}
                                             <tr>
                                                 <td class="border-dark text-black">{{producto.id}}</td>
                                                 <td class="border-dark text-black">{{producto.nombre}}</td>
