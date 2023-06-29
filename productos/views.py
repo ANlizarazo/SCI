@@ -11,7 +11,7 @@ def productos(request):
     form = ProductoForm()
 
     for producto in productos:
-        print(producto.categoria.pk)
+        print(producto.categoria.id)
 
     context={
         "productos": productos,
