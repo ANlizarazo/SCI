@@ -1,5 +1,6 @@
 from django.urls import path
-from usuarios.views import recuperar, recuperar_usuarios, usuario_crear, usuario_modificar, usuario_ver, usuarios, usuarios_eliminar
+from usuarios.views import recuperar, recuperar_usuarios, usuario_crear, usuario_modificar, usuario_ver, usuarios, \
+    usuarios_eliminar
 
 urlpatterns = [
     path('',usuarios,name="usuarios"),

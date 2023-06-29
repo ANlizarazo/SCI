@@ -1,5 +1,5 @@
 from django.contrib import admin
-from proveedores.models import Proveedor,Material,Departamento
+from proveedores.models import Proveedor,Material
 # Register your models here.
 
 class ProveedorAdmin (admin.ModelAdmin):
@@ -10,4 +10,3 @@ class ProveedorAdmin (admin.ModelAdmin):
 
 admin.site.register(Proveedor)
 admin.site.register(Material)
-admin.site.register(Departamento)

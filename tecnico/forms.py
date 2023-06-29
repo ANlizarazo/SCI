@@ -8,9 +8,10 @@ class TecnicoForm(ModelForm):
         """Meta definition for Tecnicoform."""
 
         model = Tecnico
-        exclude=['estado']
+        exclude=['estado','ciudad']
 
 class TecnicoUpdateForm(ModelForm):
+    #Formulario para modificar
     class Meta:
         model= Tecnico
         exclude=['numDocumento']

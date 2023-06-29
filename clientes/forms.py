@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from clientes.models import Cliente, Ciudad
+from clientes.models import Cliente
 
 class ClienteForm(ModelForm):
     """Form definition for Cliente."""
@@ -14,13 +14,3 @@ class ClienteUpdateForm(ModelForm):
     class Meta:
         model= Cliente
         exclude=['numDocumento']
-
-
-class CiudadForm(ModelForm):
-    """Form definition for Ciudad."""
-
-    class Meta:
-        """Meta definition for Ciudadform."""
-
-        model = Ciudad
-        exclude=['estado']
