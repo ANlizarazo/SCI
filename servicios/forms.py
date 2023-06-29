@@ -8,7 +8,7 @@ class ServicioForm(ModelForm):
         """Meta definition for Servicioform."""
 
         model = Servicio
-        fields = '__all__'
+        exclude=['estado']
 
 class TipoServicioForm(ModelForm):
     """Form definition for Servicio."""
@@ -22,4 +22,4 @@ class TipoServicioForm(ModelForm):
 class ServicioUpdateForm(ModelForm):
     class Meta:
         model= Servicio
-        fields = '__all__'
+        exclude=['estado']
