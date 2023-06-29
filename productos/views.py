@@ -11,7 +11,7 @@ def productos(request):
     form = ProductoForm()
 
     for producto in productos:
-        print(producto.categoria.pk)
+        print(producto.categoria.id)
 
     context={
         "productos": productos,
@@ -20,8 +20,6 @@ def productos(request):
         
     }
     return render(request,'productos/productos.html',context)
-
-
 
     
 def productos_ver(request):
@@ -38,9 +36,6 @@ def productos_ver(request):
         "form": form
     }
     return render(request, 'productos/productos-ver.html', context)
-
-
-
 
 
 def productos_crear(request):

@@ -22,11 +22,11 @@ def servicios_crear(request):
         form= ServicioForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success("El servicio ha sido creado correctamente!")
+            messages.success(request,'¡Servicio creado correctamente!')
             return redirect('servicios')
         else:
             print("El servicio NO se guardó")
-            messages.error("Ha ocurrido un error, El servicio no ha sido creado correctamente!")
+            messages.error("¡Error al crear servicio!")
 
     context={
         "form":form,
@@ -59,22 +59,25 @@ def servicios_modificar(request, pk):
         form = ServicioForm(request.POST, instance = servicio)
         if form.is_valid():
             form.save()
-            
+            messages.success(request, "¡Servicio modificado correctamente!")
             return redirect('servicios')
         else:
-            print('Error al editar el servicio')
+            messages.error(request, "¡Error al modificar el servicio!")
+            print('Error al modificar el servicio')
     else:
         form = ServicioForm(instance = servicio)
-
-    return render(request, 'servicios/servicios.html', {'form': form})
+    context={
+        "form": form
+    }
+    return render(request, 'servicios/servicios-modificar.html', context) 
 
 
 
 def servicios_eliminar(request, pk):
     servicio = Servicio.objects.filter(id = pk).update(
-        estado = 'Inactivo'
+        estado = '0'
     )
-    messages.success(request, "Servicio eliminado satisfactoriamente!")
+    messages.success(request, "¡Servicio eliminado correctamente!")
     return redirect('servicios') 
 
 
@@ -99,7 +102,7 @@ def recuperar_servicios(request):
 def recuperar_ser(request, pk):
     titulo = 'Recuperar Servicio'
     Servicio.objects.filter(id = pk).update(
-        estado = 'Activo'
+        estado = '1'
     )
-    messages.success(request, "Servicio restaurado satisfactoriamente!")
+    messages.success(request, "¡Servicio restaurado correctamente!")
     return redirect('servicios')

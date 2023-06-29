@@ -61,90 +61,12 @@
                                     <td class="border-dark text-black">{{ciudad.nombre}}</td>
                                     <td class="border-dark text-black">{{ciudad.departamento}}</td>
                                     <td class="border-dark">
-                                    
-                                    <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#verCategoria{{categoria.pk}}" title="Ver">
-                                        <i class="fas fa-eye"></i></button>     
-                                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modificarCategoria{{categoria.pk}}" title="Modificar">
-                                        <i class="fas fa-edit"></i></button>
                                     <button class="btn btn-danger"
                                         data-bs-toggle="modal"
-                                        data-bs-target="#deleteModal{{categoria.pk}}" title="Eliminar">
+                                        data-bs-target="#deleteModal{{ciudad.pk}}" title="Eliminar">
                                         <i class="fas fa-trash-alt"></i></button>
                                     </td>
                                 </tr>
-
-                                <!-- Modal de editar categoría -->
-
-                                <div class="modal fade" id="modificarCategoria{{categoria.pk}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h1 class="modal-title fs-3" id="staticBackdropLabel"><b class="text-black" >Editar Categorías</b></h1>
-                                            </div>
-                                            <div class="modal-body">
-                                                <!-- Formulario -->
-                                                {% if form.errors %}
-                                                    <p style="color: red">Por favor revisa este campo</p>
-                                                {% endif %}
-                                                <form  action="{% url 'categoria_modificar' categoria.pk %}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
-                                                
-                                                    {% csrf_token %}          
-                                                    <div class="modal-body text-start" id="form-nuevo-usuario"> 
-
-                                                    
-                                                
-                                                        <div class="d-inline-block w-100">
-                                                            <label for="basic-url" for="validationCustom01" class="form-label ps-2 text-black" style="font-size: 17;">Nombre</label>
-                                                            <div class="input-group mb-3 w-100">
-                                                                <input type="text" class="form-control"
-                                                                    name="nombrecat" id="id_nombres"
-                                                                    aria-describedby="basic-addon3" required minlength="1"
-                                                                    maxlength="50" id="validationCustom01" required value="{{categoria.nombrecat}}">
-                                                                    <div class="valid-feedback">
-                                                                        ¡Vamos bien!
-                                                                    </div>
-                                                                    <div class="invalid-feedback">
-                                                                        Completa la información.
-                                                                    </div>
-                                                            </div>
-                                                        </div>
-                                                
-                                                        
-                                                
-                                                        <div class="d-inline-block w-100">
-                                                            <label for="basic-url" for="validationCustom02" class="form-label ps-2 text-black" style="font-size: 17;">Descripción</label>
-                                                            <div class="input-group mb-3 w-100">
-                                                                <textarea type="text" class="form-control" name="descripcioncat"
-                                                                    id="id_numeroTelefono"
-                                                                    aria-describedby="basic-addon3" id="validationCustom02" required minlength="1"
-                                                                    maxlength="250" required>{{categoria.descripcioncat}}</textarea>
-                                                                    <div class="valid-feedback">
-                                                                        ¡Vamos bien!
-                                                                    </div>
-                                                                    <div class="invalid-feedback">
-                                                                        Ingresa un dato válido.
-                                                                    </div>
-                                                            </div>
-                                                        </div>
-                                                
-                                                        
-                                                        
-                                                        <div class="d-inline-block w-100">
-                                                            <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom03" style="font-size: 17;">Estado</label>
-                                                            <div class="input-group mb-3 w-100">
-                                                                <select id="id_estadocat" class="form-select" name="estadocat"
-                                                                    aria-label="tipo-activo" id="validationCustom03" required>
-                                                                    <option class="text-black" selected value="{{categoria.estadocat}}">{{categoria.estadocat}}</option>
-                                                                    <option class="text-black" value="1">Activo</option>
-                                                                    <option class="text-black" value="0">Inactivo</option>
-                                                                </select>
-                                                                <div class="valid-feedback">
-                                                                    ¡Vamos bien!
-                                                                </div>
-                                                                <div class="invalid-feedback">
-                                                                    Selecciona una opción valida.
-                                                                </div>
-                                                            </div>
                                                         </div>    
 
                                                     </div> 
@@ -190,7 +112,7 @@
                                                                 <input type="text" class="form-control"
                                                                     name="nombrecat" id="id_nombres"
                                                                     aria-describedby="basic-addon3" required minlength="1"
-                                                                    maxlength="50" id="validationCustom01" required value="{{categoria.nombrecat}}" disabled>
+                                                                    maxlength="50" id="validationCustom01" required value="{{ciudad.nombre}}" disabled>
                                                                     <div class="valid-feedback">
                                                                         ¡Vamos bien!
                                                                     </div>
