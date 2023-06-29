@@ -9,8 +9,8 @@ def ciudad(request):
     departamentos = Departamento.objects.all()
     form = CiudadForm()
 
-    #for ciudad in ciudad:
-        #print(ciudad.departamento.pk)
+    for ciudad in ciudades:
+        print(ciudad.nombre)
 
     context = {
         'ciudades':ciudades,
