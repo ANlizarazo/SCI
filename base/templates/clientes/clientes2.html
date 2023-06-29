@@ -206,11 +206,14 @@
                                                             text-black" for="validationCustom06"
                                                             style="font-size: 17;">Ciudad</label>
                                                         <div class="input-group mb-3 w-100">
-                                                            <select id="id_ciudad" class="select form-select"
-                                                                name="ciudad"
-                                                                aria-label="tipo-activo"
+                                                            <select id="id_ciudad" class="form-select" name="ciudad"aria-label="tipo-activo"
                                                                 id="validationCustom06" required>
-                                                                <option class="text-black" value="{{ciudad.nombre}}">{{ciudad.nombre}}</option>
+                                                                <option class="text-black" select value="{{cliente.ciudad.pk}}">{{cliente.ciudad}}</option>
+                                                            
+                                                                {% for ciudad in ciudad %}
+                                                                    <option class="text-black" value="{{ciudad.id}}">{{ciudad.nombre}}</option>
+                                                                {% endfor %}
+                                                            
                                                             </select>
                                                             <div class="valid-feedback">
                                                                 ¡Vamos bien!
@@ -364,11 +367,14 @@
                                                             text-black" for="validationCustom06"
                                                             style="font-size: 17;">Ciudad</label>
                                                         <div class="input-group mb-3 w-100">
-                                                            <select id="id_ciudad" class="form-select"
-                                                                name="ciudad"
-                                                                aria-label="tipo-activo"
-                                                                id="validationCustom09" required disabled>
-                                                                <option class="text-black" selected value="{{ciudad.nombre}}">{{ciudad.nombre}}</option>                                              
+                                                            <select id="id_ciudad" class="form-select" name="ciudad"aria-label="tipo-activo"
+                                                                id="validationCustom06" required>
+                                                                <option class="text-black" select value="{{cliente.ciudad.pk}}">{{cliente.ciudad}}</option>
+                                                            
+                                                                {% for ciudad in ciudad %}
+                                                                    <option class="text-black" value="{{ciudad.id}}">{{ciudad.nombre}}</option>
+                                                                {% endfor %}
+                                                            
                                                             </select>
                                                             <div class="valid-feedback">
                                                                 ¡Vamos bien!
