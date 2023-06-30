@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'tecnico',
     'categoria',
     'ciudad',
+    'tipodeservicio',
     'departamentos',
 ]
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"

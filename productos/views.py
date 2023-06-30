@@ -6,12 +6,12 @@ from productos.models import Producto, Categoria
 # Create your views here.
 def productos(request):
     
-    productos= Producto.objects.all()
+    productos = Producto.objects.all()
     categorias = Categoria.objects.all()
     form = ProductoForm()
 
     for producto in productos:
-        print(producto.categoria.id)
+        print(producto.categoria)
 
     context={
         "productos": productos,

@@ -16,7 +16,7 @@
                                 href="http://127.0.0.1:8000/inicio/">
                                 <b class="text-success">Inicio </b></a></li>
                         <li class="breadcrumb-item-active"><a
-                                href="http://127.0.0.1:8000/categoria/"
+                                href="http://127.0.0.1:8000/productos/"
                                 class="text-success">/ Categorías</a></li>
                     </ol>
                 </div>
@@ -44,8 +44,8 @@
                         <a class="btn btn-success float-right mr-1 mb-3" data-bs-toggle="modal"
                             data-bs-target="#crearCategoria"> Crear Categoría</a>    
 
-                        <!-- Datatable de productos -->
-                        <table id="tabla-productos" class="table table-bordered
+                        <!-- Datatable de categorias -->
+                        <table id="tabla-categorias" class="table table-bordered
                             table-striped  border-dark">
                             <thead class="bg-success">
                                 <tr>
@@ -75,19 +75,16 @@
                                     </td>
                                 </tr>
 
-                                <!-- Modal de editar categoría -->
+                                <!-- Modal de modificar categoría -->
 
                                 <div class="modal fade" id="modificarCategoria{{categoria.pk}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h1 class="modal-title fs-3" id="staticBackdropLabel"><b class="text-black" >Modificar Categorías</b></h1>
+                                                <h1 class="modal-title fs-3" id="staticBackdropLabel"><b class="text-black" >MODIFICAR CATEGORÍA</b></h1>
                                             </div>
                                             <div class="modal-body">
                                                 <!-- Formulario -->
-                                                {% if form.errors %}
-                                                    <p style="color: red">Por favor revisa este campo</p>
-                                                {% endif %}
                                                 <form  action="{% url 'categoria_modificar' categoria.pk %}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
                                                 
                                                     {% csrf_token %}          
@@ -128,10 +125,6 @@
                                                                     </div>
                                                             </div>
                                                         </div>
-                                                
-                                                        
-                                                        
-                                                    
 
                                                     </div> 
 
@@ -156,13 +149,10 @@
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h1 class="modal-title fs-3" id="staticBackdropLabel"><b class="text-black" >Ver Categorías</b></h1>
+                                                <h1 class="modal-title fs-3" id="staticBackdropLabel"><b class="text-black" >VER CATEGORÍA</b></h1>
                                             </div>
                                             <div class="modal-body">
                                                 <!-- Formulario -->
-                                                {% if form.errors %}
-                                                    <p style="color: red">Por favor revisa este campo</p>
-                                                {% endif %}
                                                 <form  action="#" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
                                                 
                                                     {% csrf_token %}          
@@ -203,14 +193,12 @@
                                                                     </div>
                                                             </div>
                                                         </div>
-                                                
-                                                                                            
 
                                                     </div> 
 
                                                     <div class="modal-footer">
                                                         
-                                                        <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Regresar</button>
+                                                        <button type="reset" class="btn btn-success" data-bs-dismiss="modal">Regresar</button>
                                                     
                                                     </div>
 
@@ -245,7 +233,7 @@
                                                 text-danger">
                                                 <span class="">¿Estás seguro de que deseas eliminar esta categoría?</span>
                                                 <div class="text-dark mt-3
-                                                    mb-2">Categoría: <strong>{{categoria.nombrecat}}</strong></div>
+                                                    mb-2">Categoría: <strong>{{categoria.id}} {{categoria.nombrecat}}</strong></div>
                                             </div>
                                         </div>
 
@@ -263,27 +251,21 @@
                                     </div>
                                 </div>
                                 </div>
-
-
                                 {% endif %}
                                 {% endfor %}
                             </tbody>
-                            </table>
-                        </div>
-                        <!-- /.card-body -->
+                        </table>
                     </div>
                     <a href="{% url 'recuperar_categoria' %}" class="btn btn-warning float-right mr-1 mb-3" title="Papelera"><i class="fas fa-trash-restore"></i>&nbsp; Restaurar </a>
                     <!-- /.card -->
-
-
-                
-
-
-                </section>
-                <!-- /.content -->
-            </div>
-            <footer>{% include 'partials/footer.html' %}</footer>
-            <!-- /.content-wrapper -->
+                </div>
+            </div>            
+            <!-- /.card -->
+    </section>
+    <!-- /.content -->
+</div>
+<footer>{% include 'partials/footer.html' %}</footer>
+<!-- /.content-wrapper -->
             {% endblock contenido %}
 
             <!-- jQuery -->

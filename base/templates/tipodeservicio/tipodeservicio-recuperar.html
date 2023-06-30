@@ -1,0 +1,189 @@
+{% block contenido %}
+{% load static %}
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+        <!-- Ionicons -->
+        <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+        <!-- Google Font: Source Sans Pro -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="{% static 'AdminLTE/fontawesome-free/css/all.min.css' %}">
+        <!-- flag-icon-css -->
+        <link rel="stylesheet" href="{% static 'AdminLTE/flag-icon-css/css/flag-icon.min.css' %}">
+        <!-- Theme style -->
+        <link rel="stylesheet" href="{% static 'AdminLTE/css/adminlte.min.css' %}">
+        <!-- overlayScrollbars -->
+        <link rel="stylesheet" href="{% static 'AdminLTE/overlayScrollbars/css/OverlayScrollbars.min.css' %}">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="/static/img/logoMallas.ico" type="image/x-icon">
+        <title>PAPELERA TIPOS DE SERVICIOS</title>
+    </head>
+    <body class="hold-transition sidebar-mini layout-fixed">
+        <div class="wrapper">
+            {% include 'partials/navbar.html' %}
+            {% include 'partials/sidebar.html' %}
+            <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper">
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                    <div class="container-fluid">
+                        <div class="row mb-2">
+                            <div class="col-sm-6">
+                                <h1 class="m-0 text-black"><tr><b
+                                            class="text-black">TIPOS DE SERVICIOS</b></tr></h1>
+                            </div>
+                            <div class="col-sm-6">
+                                <ol class="breadcrumb float-sm-right">
+                                    <li class="breadcrumb-item"><a
+                                            href="http://127.0.0.1:8000/inicio/">
+                                            <b class="text-success">Inicio </b></a></li>
+                                    <li class="breadcrumb-item-active"><a
+                                            href="http://127.0.0.1:8000/tiposdeservicios/"
+                                            class="text-success">/ Tipos de Servicios</a></li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.container-fluid -->
+                </section>
+
+                <!-- Main content -->
+                <section class="content">
+                    <div class="container-fluid ">
+                        <div class="row">
+                            <!-- Card -->
+                            <div class="card ">
+                                <div class="card-header">
+                                    <h3 class="card-title text-success"><a href="{% url 'tiposdeservicios' %}"  title="Volver"><i Class="fas fa-reply text-green" ></i></a><tr><b
+                                                class="text-success">&nbsp;&nbsp; Papelera Tipos de Servicios</b></tr></h3>
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body">
+                                    <!-- Datatable de tipos de servicios -->
+                                    <table id="tabla-tiposdeservicios" class="table table-bordered table-striped border-dark" style="font-size: 14px;">
+                                        <thead class="bg-gray">
+                                            <tr>
+                                                <th class="border-dark">ID Tipo de Servicio</th>
+                                                <th class="border-dark">Nombre Servicio</th>
+                                                <th class="border-dark">Descripción</th>                          
+                                                <th class="border-dark">Restaurar</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for tipodeservicio in tiposdeservicios %}
+                                            <tr>
+                                                <td class="border-dark text-black">{{tipodeservicio.id}}</td>
+                                                <td class="border-dark text-black">{{tipodeservicio.nombreServicio}}</td>
+                                                <td class="border-dark text-black">{{tipodeservicio.descripcion}}</td>
+                                                <td class="border-dark text-black">
+                                                    <buttom data-bs-toggle="modal" data-bs-target="#recuperarModal{{tipodeservicio.pk}}" class="btn btn-warning" title="Restaurar"><i Class="fas fa-trash-restore"></i></buttom>
+                                                </td>
+                                            </tr>
+                                            
+                                    <!-- Modal recuperar confirmation -->
+                                    <div class="modal fade"
+                                    id="recuperarModal{{tipodeservicio.pk}}"
+                                    tabindex="-1"
+                                    aria-labelledby="deleteModalLabel"
+                                    aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header bg-warning">
+                                                <h5 class="modal-title "
+                                                    id="deleteModalLabel"><i
+                                                        class="fas fa-trash-restore"></i>&nbsp;&nbsp; <b>RESTAURAR TIPO DE SERVICIO</b></h5>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="text-center
+                                                    text-black">
+                                                    <span class="">¿Estás seguro de que deseas recuperar este tipo de servicio?</span>
+                                                    <div class="text-dark mt-3
+                                                        mb-2">Tipo de Servicio: <strong>{{tipodeservicio.id}} {{tipodeservicio.nombreServicio}}</strong></div>
+                                                </div>
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                <form method="post" action="{% url 'recuperar_tipodeservicio' tipodeservicio.id %}">
+                                                    {% csrf_token %}
+
+                                                    <input type="submit"
+                                                        class="btn btn-warning"
+                                                        value="Recuperar">
+                                                </form>
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Cancelar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+<!--Fin del modal-->
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                            <!-- /.card -->
+                        </section>
+                        <!-- /.content -->
+                    </div>
+                    <footer>{% include 'partials/footer.html' %}</footer>
+                    <!-- /.content-wrapper -->
+                    {% endblock contenido %}
+            <!-- jQuery -->
+            <script src="{% static 'AdminLTE/jquery/jquery.min.js' %}"></script>
+            <!-- Bootstrap -->
+            <script src="{% static 'AdminLTE/js-copy/bootstrap.bundle.min.js' %}"></script>
+            <!-- jQuery UI -->
+            <script src="{% static 'AdminLTE/jquery-ui/jquery-ui.min.js' %}"></script>
+            <!-- AdminLTE App -->
+            <script src="{% static 'AdminLTE/js/adminlte.min.js' %}"></script>
+            <!-- toastr alert -->
+            <script type="application/json" src="{% static 'AdminLTE/toastr/toastr.js.map' %}"></script>
+            <script type="text/javascript" src="{% static 'AdminLTE/toastr/toastr.min.js' %}"></script>
+            
+            <!-- DataTables  & Plugins -->
+            <script src="{% static 'AdminLTE/datatables/jquery.dataTables.min.js' %}"></script>
+            <script src="{% static 'AdminLTE/datatables-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+            <script src="{% static 'AdminLTE/datatables-responsive/js/dataTables.responsive.min.js' %}"></script>
+            <script src="{% static 'AdminLTE/datatables-responsive/js/responsive.bootstrap4.min.js' %}"></script>
+            <script src="{% static 'AdminLTE/datatables-buttons/js/dataTables.buttons.min.js' %}"></script>
+            <script src="{% static 'AdminLTE/datatables-buttons/js/buttons.bootstrap4.min.js' %}"></script>
+            <script src="{% static 'AdminLTE/jszip/jszip.min.js' %}"></script>
+            <script src="{% static 'AdminLTE/pdfmake/pdfmake.min.js' %}"></script>
+            <script src="{% static 'AdminLTE/pdfmake/vfs_fonts.js' %}"></script>
+            <script src="{% static 'AdminLTE/datatables-buttons/js/buttons.html5.min.js' %}"></script>
+            <script src="{% static 'AdminLTE/datatables-buttons/js/buttons.print.min.js' %}"></script>
+            <script src="{% static 'AdminLTE/datatables-buttons/js/buttons.colVis.min.js' %}"></script>
+            <script src="{% static 'AdminLTE/js/modal-status.js' %}"></script>
+
+                    <!--DataTable usuarios-->
+                    <script>
+                $(function () {
+                    $("#tabla-tiposdeservicios").DataTable({
+                        dom: 'frtip',
+                        language:{
+                            url: "/static/AdminLTE/datatables/datatables.spanish.json"
+                        },
+                    //dataTable configurations
+                    "responsive": true, "paging": true, "lengthChange": false,
+                    "searching": true, "autoWidth": false, "ordering": true,
+                    "info": true, "pageLength": 8,
+                    "buttons": ["copy", "csv", "excel", "pdf", "print"],
+                    }
+                    
+                    ).buttons().container().appendTo('#tabla-tiposdeservicios_wrapper .col-md-6:eq(0)');
+                });
+            </script>
+        {% block javascript %}
+        {% endblock javascript %}
+    </body>
+</html>
