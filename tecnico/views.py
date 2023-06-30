@@ -90,7 +90,7 @@ def recuperar_tecnicos(request):
     }
     return render(request,'tecnico/tecnico-recuperar.html',context)
 
-def recuperar(request, pk):
+def recuperar_tecnico(request, pk):
     titulo = 'Recuperar Tecnico'
     Tecnico.objects.filter(id = pk).update(
         estado = '1'
