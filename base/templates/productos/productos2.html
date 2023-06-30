@@ -14,10 +14,10 @@
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a
                                 href="http://127.0.0.1:8000/inicio/">
-                                <b class="text-success">Inicio </b></a></li>
+                                <b class="text-success" title="Inicio">Inicio </b></a></li>
                         <li class="breadcrumb-item-active"><a
                                 href="http://127.0.0.1:8000/productos/"
-                                class="text-success">/ Productos</a></li>
+                                class="text-success" title="Productos">/ Productos</a></li>
                     </ol>
                 </div>
             </div>
@@ -55,7 +55,7 @@
                                     <th class="border-dark">ID Producto</th>
                                     <th class="border-dark">Nombre</th>
                                     <th class="border-dark">Especificaciones</th>
-                                    <th class="border-dark">Cantidad</th>
+                                    <th class="border-dark">Stock</th>
                                     <th class="border-dark">Categoría</th>                             
                                     <th class="border-dark">Acciones</th>
                                 </tr>
@@ -107,22 +107,6 @@
                                                                     name="nombre" id="id_nombres"
                                                                     aria-describedby="basic-addon3" required minlength="1"
                                                                     maxlength="50" id="validationCustom01" required value="{{producto.nombre}}">
-                                                                    <div class="valid-feedback">
-                                                                        ¡Vamos bien!
-                                                                    </div>
-                                                                    <div class="invalid-feedback">
-                                                                        Completa la información.
-                                                                    </div>
-                                                            </div>
-                                                        </div>
-                                                
-                                                        <div class="d-inline-block w-100">
-                                                            <label for="basic-url"  for="validationCustom02" class="form-label ps-2 text-black" style="font-size: 17;">Precio</label>
-                                                            <div class="input-group mb-3 w-100">
-                                                                <input type="number" class="form-control"
-                                                                    name="precio" id="id_apellidos"
-                                                                    aria-describedby="basic-addon3" id="validationCustom02" required minlength="1"
-                                                                    maxlength="50" required value="{{producto.precio}}">
                                                                     <div class="valid-feedback">
                                                                         ¡Vamos bien!
                                                                     </div>
@@ -191,8 +175,8 @@
 
                                                     <div class="modal-footer">
                                                         <!-- BOTÓN PARA GUARDAR LA INFORMACIÓN DIGITADA EN EL FORMULARIO DEL PRODUCTO -->
-                                                        <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                                        <input class="btn btn-success" type="submit" name="form-nuevo-usuario" value="Modificar">
+                                                        <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal" title="Cancelar">Cancelar</button>
+                                                        <input class="btn btn-success" type="submit" name="form-nuevo-usuario" title="Modificar" value="Modificar">
                                                     </div>
 
                                                 </form>
@@ -294,7 +278,7 @@
 
                                                     <div class="modal-footer">
                                                         
-                                                        <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Regresar</button>
+                                                        <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal" title="Regresar">Regresar</button>
                                                     
                                                     </div>
 
@@ -338,11 +322,11 @@
                                                 {% csrf_token %}
 
                                                 <input type="submit"
-                                                    class="btn btn-danger"
+                                                    class="btn btn-danger" title="Eliminar"
                                                     value="Eliminar">
                                             </form>
                                             <button type="button" class="btn btn-secondary"
-                                                data-bs-dismiss="modal">Cancelar</button>
+                                                data-bs-dismiss="modal" title="Cancelar">Cancelar</button>
                                             </div>
                                         </div>
                                     </div>
