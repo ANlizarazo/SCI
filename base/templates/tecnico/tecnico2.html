@@ -73,6 +73,238 @@
                                             <i class="fas fa-trash-alt"></i></button>
                                     </td>
                                 </tr>
+
+
+                                
+                                <!-- Modal de editar producto -->
+
+                                <div class="modal fade" id="modificarProducto{{producto.pk}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-3" id="staticBackdropLabel"><b class="text-black" >Modificar Productos</b></h1>
+                                            </div>
+                                            <div class="modal-body">
+                                                <!-- Formulario -->
+                                                <form  action="{% url 'productos_modificar' producto.pk %}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
+                                                
+                                                    {% csrf_token %}          
+                                                    <div class="modal-body text-start" id="form-nuevo-usuario"> 
+
+                                                    
+                                                
+                                                        <div class="d-inline-block w-100">
+                                                            <label for="basic-url" for="validationCustom01" class="form-label ps-2 text-black" style="font-size: 17;">Nombre</label>
+                                                            <div class="input-group mb-3 w-100">
+                                                                <input type="text" class="form-control"
+                                                                    name="nombre" id="id_nombres"
+                                                                    aria-describedby="basic-addon3" required minlength="1"
+                                                                    maxlength="50" id="validationCustom01" required value="{{producto.nombre}}">
+                                                                    <div class="valid-feedback">
+                                                                        ¡Vamos bien!
+                                                                    </div>
+                                                                    <div class="invalid-feedback">
+                                                                        Completa la información.
+                                                                    </div>
+                                                            </div>
+                                                        </div>
+                                                
+                
+                                                
+                                                        <div class="d-inline-block w-100">
+                                                            <label for="basic-url" for="validationCustom02" class="form-label ps-2 text-black" style="font-size: 17;">Especificaciones</label>
+                                                            <div class="input-group mb-3 w-100">
+                                                                <textarea type="text" class="form-control" name="especificaciones"
+                                                                    id="id_numeroTelefono"
+                                                                    aria-describedby="basic-addon3" id="validationCustom02" required minlength="1"
+                                                                    maxlength="250" required>{{producto.especificaciones}}</textarea>
+                                                                    <div class="valid-feedback">
+                                                                        ¡Vamos bien!
+                                                                    </div>
+                                                                    <div class="invalid-feedback">
+                                                                        Ingresa un número de teléfono valido.
+                                                                    </div>
+                                                            </div>
+                                                        </div>
+                                                
+                                                        <div class="d-inline-block w-100">
+                                                            <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom03" style="font-size: 17;">Cantidad</label>
+                                                            <div class="input-group mb-3 w-100">
+                                                                <input type="number" class="form-control" name="stock"
+                                                                    id="id_correoElectronico"
+                                                                    aria-describedby="basic-addon3" id="validationCustom03" required minlength="1"
+                                                                    maxlength="100" required value="{{producto.stock}}">
+                                                                    <div class="valid-feedback">
+                                                                        ¡Vamos bien!
+                                                                    </div>
+                                                                    <div class="invalid-feedback">
+                                                                        Ingresa un correo electrónico valido.
+                                                                    </div>
+                                                            </div>
+                                                        </div>
+                                                
+                                                    
+                                                
+                                                        <div class="d-inline-block w-100">
+                                                            <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom04" style="font-size: 17;">Categoría</label>
+                                                            <div class="input-group mb-3 w-100">
+                                                                <select id="id_categoria" class="form-select" name="categoria"
+                                                                    aria-label="tipo-activo" id="validationCustom04" required>
+                                                                    
+                                                                    <option class="text-black" selected value="{{producto.categoria.pk}}">{{producto.categoria}}</option>
+                                                                    
+                                                                    {% for categoria in categorias %}
+                                                                    <option class="text-black" value="{{categoria.id}}">{{categoria.nombrecat}}</option>
+                                                                    {% endfor %}
+
+                                                                </select>
+                                                                <div class="valid-feedback">
+                                                                    ¡Vamos bien!
+                                                                </div>
+                                                                <div class="invalid-feedback">
+                                                                    Selecciona una opción valida.
+                                                                </div>
+                                                            </div>
+                                                        </div> 
+                                                        
+                                                            
+
+                                                    </div> 
+
+                                                    <div class="modal-footer">
+                                                        <!-- BOTÓN PARA GUARDAR LA INFORMACIÓN DIGITADA EN EL FORMULARIO DEL PRODUCTO -->
+                                                        <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                                        <input class="btn btn-success" type="submit" name="form-nuevo-usuario" value="Modificar">
+                                                    </div>
+
+                                                </form>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>      
+
+
+                                <!-- Modal de ver tecnico -->
+                                
+                                <div class="modal fade" id="verTecnico{{tecnico.pk}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-3" id="staticBackdropLabel"><b class="text-black" >VER TÉCNICO</b></h1>
+                                            </div>
+                                            <div class="modal-body">
+                                                <!-- Formulario -->
+                                                <form  action="{% url 'tecnicos_modificar' tecnico.pk %}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
+                                                
+                                                    {% csrf_token %}          
+                                                    <div class="modal-body text-start" id="form-nuevo-tecnico"> 
+
+                                                    
+                                                
+                                                        <div class="d-inline-block w-100">
+                                                            <label for="basic-url" for="validationCustom01" class="form-label ps-2 text-black" style="font-size: 17;">Nombres</label>
+                                                            <div class="input-group mb-3 w-100">
+                                                                <input type="text" class="form-control"
+                                                                    name="nombres" id="id_nombres"
+                                                                    aria-describedby="basic-addon3" required minlength="1"
+                                                                    maxlength="50" id="validationCustom01" required value="{{tecnico.nombres}}" disabled>
+                                                                    <div class="valid-feedback">
+                                                                        ¡Vamos bien!
+                                                                    </div>
+                                                                    <div class="invalid-feedback">
+                                                                        Completa la información.
+                                                                    </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="d-inline-block w-100">
+                                                            <label for="basic-url" for="validationCustom01" class="form-label ps-2 text-black" style="font-size: 17;">Apellidos</label>
+                                                            <div class="input-group mb-3 w-100">
+                                                                <input type="text" class="form-control"
+                                                                    name="apellidos" id="id_apellidos"
+                                                                    aria-describedby="basic-addon3" required minlength="1"
+                                                                    maxlength="50" id="validationCustom01" required value="{{tecnico.apellidos}}" disabled>
+                                                                    <div class="valid-feedback">
+                                                                        ¡Vamos bien!
+                                                                    </div>
+                                                                    <div class="invalid-feedback">
+                                                                        Completa la información.
+                                                                    </div>
+                                                            </div>
+                                                        </div>
+                                                
+                                                        <div class="d-inline-block w-100">
+                                                            <label for="basic-url" for="validationCustom02" class="form-label ps-2 text-black" style="font-size: 17;">Teléfono</label>
+                                                            <div class="input-group mb-3 w-100">
+                                                                <textarea type="number" class="form-control" name="especificaciones"
+                                                                    id="id_numeroTelefono"
+                                                                    aria-describedby="basic-addon3" id="validationCustom02" required minlength="1"
+                                                                    maxlength="250" required disabled>{{tecnico.telefono}}</textarea>
+                                                                    <div class="valid-feedback">
+                                                                        ¡Vamos bien!
+                                                                    </div>
+                                                                    <div class="invalid-feedback">
+                                                                        Ingresa un número de teléfono valido.
+                                                                    </div>
+                                                            </div>
+                                                        </div>
+                                                
+                                                        <div class="d-inline-block w-100">
+                                                            <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom03" style="font-size: 17;">Cantidad</label>
+                                                            <div class="input-group mb-3 w-100">
+                                                                <input type="number" class="form-control" name="stock"
+                                                                    id="id_correoElectronico"
+                                                                    aria-describedby="basic-addon3" id="validationCustom03" required minlength="1"
+                                                                    maxlength="100" required value="{{producto.stock}}" disabled>
+                                                                    <div class="valid-feedback">
+                                                                        ¡Vamos bien!
+                                                                    </div>
+                                                                    <div class="invalid-feedback">
+                                                                        Ingresa un correo electrónico valido.
+                                                                    </div>
+                                                            </div>
+                                                        </div>
+                                                
+                                                        <div class="d-inline-block w-100">
+                                                            <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom04" style="font-size: 17;">Categoría</label>
+                                                            <div class="input-group mb-3 w-100">
+                                                                <select id="id_categoria" class="form-select" name="categoria"
+                                                                    aria-label="tipo-activo" id="validationCustom04" required disabled>
+                                                                    
+                                                                    <option class="text-black" selected value="{{producto.categoria.pk}}">{{producto.categoria}}</option>
+                                                                
+
+                                                                </select>
+                                                                <div class="valid-feedback">
+                                                                    ¡Vamos bien!
+                                                                </div>
+                                                                <div class="invalid-feedback">
+                                                                    Selecciona una opción valida.
+                                                                </div>
+                                                            </div>
+                                                        </div> 
+                                                        
+                                                        
+
+                                                    </div> 
+
+                                                    <div class="modal-footer">
+                                                        
+                                                        <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Regresar</button>
+                                                    
+                                                    </div>
+
+                                                </form>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>      
+
+
+
+
                                 <!-- Modal delete confirmation -->
                                 <div class="modal fade"
                                     id="deleteModal{{tecnico.pk}}"

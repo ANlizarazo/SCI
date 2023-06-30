@@ -86,13 +86,10 @@
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h1 class="modal-title fs-3" id="staticBackdropLabel"><b class="text-black" >Modificar Productos</b></h1>
+                                                <h1 class="modal-title fs-3" id="staticBackdropLabel"><b class="text-black" >MODIFICAR PRODUCTO</b></h1>
                                             </div>
                                             <div class="modal-body">
                                                 <!-- Formulario -->
-                                                {% if form.errors %}
-                                                    <p style="color: red">Por favor revisa este campo</p>
-                                                {% endif %}
                                                 <form  action="{% url 'productos_modificar' producto.pk %}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
                                                 
                                                     {% csrf_token %}          
@@ -199,13 +196,10 @@
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h1 class="modal-title fs-3" id="staticBackdropLabel"><b class="text-black" >Ver Productos</b></h1>
+                                                <h1 class="modal-title fs-3" id="staticBackdropLabel"><b class="text-black" >VER PRODUCTO</b></h1>
                                             </div>
                                             <div class="modal-body">
                                                 <!-- Formulario -->
-                                                {% if form.errors %}
-                                                    <p style="color: red">Por favor revisa este campo</p>
-                                                {% endif %}
                                                 <form  action="{% url 'productos_modificar' producto.pk %}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
                                                 
                                                     {% csrf_token %}          
@@ -228,8 +222,6 @@
                                                                     </div>
                                                             </div>
                                                         </div>
-                                                
-                                                       
                                                 
                                                         <div class="d-inline-block w-100">
                                                             <label for="basic-url" for="validationCustom02" class="form-label ps-2 text-black" style="font-size: 17;">Especificaciones</label>

@@ -1,7 +1,6 @@
 from django.shortcuts import redirect, render
 from tecnico.models import Tecnico
 from tecnico.forms import TecnicoForm
-from django.http import HttpResponseRedirect
 from django.contrib import messages
 
 # Create your views here.
@@ -23,10 +22,11 @@ def tecnico_crear(request):
         form = TecnicoForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request,'¡Tecnico creado correctamente!')
+            messages.success(request,'¡Técnico creado correctamente!')
             return redirect('tecnico')
         else:
-            messages.error(request, "¡Error al crear tecnico!")
+            messages.error(request, "¡Error al crear técnico!")
+            return redirect('tecnico')
     else:
         form = TecnicoForm()
     context = {
@@ -36,15 +36,35 @@ def tecnico_crear(request):
     return render(request, 'tecnico/tecnico-crear.html', context)
 
 #Function to View tecnico data individually
-def tecnico_ver(request, tecnico_id):
+"""def tecnico_ver(request, tecnico_id):
     tecnico = Tecnico.objects.get( id = tecnico_id) 
     if tecnico != None:
         return render(request, "tecnico/tecnico-modificar.html", {'tecnico':tecnico})
     else:
-        return redirect('tecnico/tecnico-ver.html')
+        return redirect('tecnico/tecnico.html')"""
 
-#Function to EDIT tecnico
-def tecnico_modificar(request):
+#Function to modificar tecnico
+def tecnico_modificar(request, pk):
+    tecnico = Tecnico.objects.get(id = pk)
+    if request.method == "POST":
+        form = TecnicoForm(request.POST, instance = tecnico)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "¡Técnico modificado correctamente!")
+            return redirect('tecnicos')
+        else:
+            messages.success(request, "¡Error al modificar técnico!")
+            return redirect('tecnicos')
+    else:
+        form = TecnicoForm(instance = tecnico)
+    
+    context ={
+        'form': form,
+    }
+
+    return render(request, 'tecnico/tecnico.html', context)
+
+"""def tecnico_modificar(request):
     if request.method == "POST":
         tecnico = Tecnico.objects.get(id = request.POST.get('id'))
         if tecnico != None: 
@@ -58,7 +78,7 @@ def tecnico_modificar(request):
             tecnico.estado= request.POST.get('ciudad')
             tecnico.save()
             messages.success(request, "Técnico Actualizado con éxito!")
-            return HttpResponseRedirect("tecnico/")
+            return HttpResponseRedirect("tecnico/")"""
 
 #Function to DELETE tecnico
 """def delete_tecnico(request, tecnico_id):
