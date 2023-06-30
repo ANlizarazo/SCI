@@ -44,10 +44,10 @@
                                 <ol class="breadcrumb float-sm-right">
                                     <li class="breadcrumb-item"><a
                                             href="http://127.0.0.1:8000/inicio/">
-                                            <b class="text-success">Inicio </b></a></li>
+                                            <b class="text-success" title="Inicio">Inicio </b></a></li>
                                     <li class="breadcrumb-item-active"><a
                                             href="http://127.0.0.1:8000/compras/"
-                                            class="text-success">/ Compras</a></li>
+                                            class="text-success" title="Compras">/ Compras</a></li>
                                 </ol>
                             </div>
                         </div>
@@ -93,7 +93,8 @@
                                                 <td class="border-dark text-black">{{compra.iva}}</td>
                                                 <td class="border-dark text-black">{{compra.totalCompra}}</td>
                                                 <td class="border-dark text-black">
-                                                    <buttom data-bs-toggle="modal" data-bs-target="#recuperarModal{{compra.pk}}" class="btn btn-warning" title="Restaurar"><i Class="fas fa-trash-restore"></i></buttom>
+                                                    <buttom data-bs-toggle="modal" data-bs-target="#recuperarModal{{compra.pk}}" class="btn btn-warning" 
+                                                    title="Restaurar"><i Class="fas fa-trash-restore"></i></buttom>
                                                 </td>
                                             </tr>
                                             
