@@ -46,10 +46,12 @@ def productos_crear(request):
         form =  ProductoForm(request.POST)
         if form.is_valid():
             form.save()
-            print("El Producto se guardó correctamente")
+            messages.success(request,'¡Producto creado correctamente!')
             return redirect('productos')
         else:
             print("El Producto NO se pudo guardar")
+            messages.error(request,'¡Error al crear producto!')
+            return redirect('productos')
     
     else:
         form = ProductoForm()
@@ -67,10 +69,13 @@ def productos_modificar(request, pk):
         form = ProductoForm(request.POST, instance = producto)
         if form.is_valid():
             form.save()
-            
+            messages.success(request, "¡Producto modificado correctamente!")
             return redirect('productos')
         else:
             print('Error al editar el producto')
+            messages.error(request, "¡Error al modificar el producto!")
+            return redirect('productos')
+
     else:
         form = ProductoForm(instance = producto)
 

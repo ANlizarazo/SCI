@@ -151,10 +151,10 @@
                                                         <div class="d-inline-block w-100">
                                                             <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom04" style="font-size: 17;">Categoría</label>
                                                             <div class="input-group mb-3 w-100">
-                                                                <select id="id_tipoDocumento" class="form-select" name="categoria"
+                                                                <select id="id_categoria" class="form-select" name="categoria"
                                                                     aria-label="tipo-activo" id="validationCustom04" required>
                                                                     
-                                                                    <option class="text-black" selected hidden="{{producto.categoria.pk}}" value>{{producto.categoria}}</option>
+                                                                    <option class="text-black" selected hidden value="{{producto.categoria.pk}}" disabled>{{producto.categoria}}</option>
                                                                     {% for categoria in categorias %}
                                                                     <option class="text-black" value="{{categoria.id}}">{{categoria.nombrecat}}</option>
                                                                     {% endfor %}
@@ -176,7 +176,7 @@
                                                     <div class="modal-footer">
                                                         <!-- BOTÓN PARA GUARDAR LA INFORMACIÓN DIGITADA EN EL FORMULARIO DEL PRODUCTO -->
                                                         <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                                        <input class="btn btn-success" type="submit" name="form-nuevo-usuario" value="Modificar">
+                                                        <input class="btn btn-success" type="submit" name="form-nuevo-producto" value="Modificar">
                                                     </div>
 
                                                 </form>

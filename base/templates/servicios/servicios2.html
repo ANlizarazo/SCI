@@ -124,9 +124,8 @@
                                                                     aria-label="tipo-activo" id="validationCustom03" required>
                                                                     
                                                                     <option class="text-black" selected hidden="{{servicio.tipoServicio.pk}}" value>{{servicio.tipoServicio}}</option>
-                                                                    
                                                                     {% for tipodeservicio in tiposdeservicios %}
-                                                                    <option class="text-black" value="{{tipoServicio.nombreServicio}}">{{tipoServicio.nombreServicio}}</option>
+                                                                    <option class="text-black" value="{{tipoServicio.id}}">{{tipoServicio.nombreServicio}}</option>
                                                                     {% endfor %}
 
                                                                 </select>
