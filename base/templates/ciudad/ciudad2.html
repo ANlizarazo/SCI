@@ -8,7 +8,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-black"><tr><b class="text-black">CIUDAD</b></tr></h1>
+                    <h1 class="m-0 text-black"><tr><b class="text-black">CIUDADES</b></tr></h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -16,8 +16,8 @@
                                 href="http://127.0.0.1:8000/inicio/">
                                 <b class="text-success">Inicio </b></a></li>
                         <li class="breadcrumb-item-active"><a
-                                href="http://127.0.0.1:8000/ciudad/"
-                                class="text-success">/ Ciudad</a></li>
+                                href="http://127.0.0.1:8000/ciudades/"
+                                class="text-success">/ Ciudades</a></li>
                     </ol>
                 </div>
             </div>
@@ -32,19 +32,15 @@
                 <!-- Card -->
                 <div class="card ">
                     <div class="card-header">
-                        <h3 class="card-title text-success"><tr><b
-                                    class="text-success">Reporte de
-                                    Ciudad</b></tr></h3>
+                        <h3 class="card-title text-success"><tr><b class="text-success">Reporte de Ciudades</b></tr></h3>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
                         <!-- Este botón llama el modal -->
-                        <a class="btn btn-success float-right mr-1 mb-3" data-bs-toggle="modal"
-                            data-bs-target="#crearCiudad"> Crear Ciudad</a>    
+                        <a class="btn btn-success float-right mr-1 mb-3" data-bs-toggle="modal" data-bs-target="#crearCiudad"> Crear Ciudad</a>    
 
-                        <!-- Datatable de ciudad -->
-                        <table id="tablaCiudad" class="table table-bordered
-                            table-striped table-responsive-sm border-dark">
+                        <!-- Datatable de ciudades -->
+                        <table id="tabla-ciudades" class="table table-responsive-md table-bordered table-striped border-dark">
                             <thead class="bg-success">
                                 <tr>
                                     <th class="border-dark">Nombre</th>
@@ -53,129 +49,22 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {% for ciudad in ciudad %}
+                                {% for ciudad in ciudades %}
                                 {% if ciudad.estado == '1' %}
                                 <tr>
                                     <td class="border-dark text-black">{{ciudad.nombre}}</td>
                                     <td class="border-dark text-black">{{ciudad.departamento}}</td>
                                     <td class="border-dark">
-                                    <button class="btn btn-danger"
-                                        data-bs-toggle="modal"
-                                        data-bs-target="#deleteModal{{ciudad.pk}}" title="Eliminar">
+                                    <button class="btn btn-danger"data-bs-toggle="modal" data-bs-target="#deleteModal{{ciudad.pk}}" title="Eliminar">
                                         <i class="fas fa-trash-alt"></i></button>
                                     </td>
                                 </tr>
                         </div>    
 
-                                                    </div> 
-
-                                                    <div class="modal-footer">
-                                                        <!-- BOTÓN PARA GUARDAR LA INFORMACIÓN DIGITADA EN EL FORMULARIO DE LA CATEGORÍA -->
-                                                        <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                                        <input class="btn btn-success" type="submit" name="form-nuevo-usuario" value="Modificar">
-                                                    </div>
-
-                                                </form>
-                                            </div>
-                                            
-                                        </div>
-                                    </div>
-                                </div>      
-
-
-
-                                <!-- Modal de ver categoría -->
-
-                                <div class="modal fade" id="verCategoria{{categoria.pk}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h1 class="modal-title fs-3" id="staticBackdropLabel"><b class="text-black" >Ver Categorías</b></h1>
-                                            </div>
-                                            <div class="modal-body">
-                                                <!-- Formulario -->
-                                                <form  action="#" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
-                                                
-                                                    {% csrf_token %}          
-                                                    <div class="modal-body text-start" id="form-nuevo-usuario"> 
-
-                                                    
-                                                
-                                                        <div class="d-inline-block w-100">
-                                                            <label for="basic-url" for="validationCustom01" class="form-label ps-2 text-black" style="font-size: 17;">Nombre</label>
-                                                            <div class="input-group mb-3 w-100">
-                                                                <input type="text" class="form-control"
-                                                                    name="nombrecat" id="id_nombres"
-                                                                    aria-describedby="basic-addon3" required minlength="1"
-                                                                    maxlength="50" id="validationCustom01" required value="{{ciudad.nombre}}" disabled>
-                                                                    <div class="valid-feedback">
-                                                                        ¡Vamos bien!
-                                                                    </div>
-                                                                    <div class="invalid-feedback">
-                                                                        Completa la información.
-                                                                    </div>
-                                                            </div>
-                                                        </div>
-                                                
-                                                    
-                                                
-                                                        <div class="d-inline-block w-100">
-                                                            <label for="basic-url" for="validationCustom02" class="form-label ps-2 text-black" style="font-size: 17;">Descripción</label>
-                                                            <div class="input-group mb-3 w-100">
-                                                                <textarea type="text" class="form-control" name="descripcioncat"
-                                                                    id="id_numeroTelefono"
-                                                                    aria-describedby="basic-addon3" id="validationCustom02" required minlength="1"
-                                                                    maxlength="250" required disabled>{{categoria.descripcioncat}}</textarea>
-                                                                    <div class="valid-feedback">
-                                                                        ¡Vamos bien!
-                                                                    </div>
-                                                                    <div class="invalid-feedback">
-                                                                        Ingresa un número de teléfono valido.
-                                                                    </div>
-                                                            </div>
-                                                        </div>
-                                                
-                                                                                                
-                                                    
-                                                        
-                                                        <div class="d-inline-block w-100">
-                                                            <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom03" style="font-size: 17;">Estado</label>
-                                                            <div class="input-group mb-3 w-100">
-                                                                <select id="id_tipoDocumento" class="form-select" name="estadocat"
-                                                                    aria-label="tipo-activo" id="validationCustom03" required disabled>
-                                                                    <option class="text-black" selected value="{{producto.estado}}">{{categoria.estadocat}}</option>
-                                                                    <option class="text-black" value="1">Activo</option>
-                                                                    <option class="text-black" value="0">Inactivo</option>
-                                                                </select>
-                                                                <div class="valid-feedback">
-                                                                    ¡Vamos bien!
-                                                                </div>
-                                                                <div class="invalid-feedback">
-                                                                    Selecciona una opción valida.
-                                                                </div>
-                                                            </div>
-                                                        </div>    
-
-                                                    </div> 
-
-                                                    <div class="modal-footer">
-                                                        
-                                                        <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Regresar</button>
-                                                    
-                                                    </div>
-
-                                                </form>
-                                            </div>
-                                            
-                                        </div>
-                                    </div>
-                                </div>      
-
-
 
                                 <!-- Modal delete confirmation -->
                                 <div class="modal fade"
-                                id="deleteModal{{categoria.pk}}"
+                                id="deleteModal{{ciudad.pk}}"
                                 tabindex="-1"
                                 aria-labelledby="deleteModalLabel"
                                 aria-hidden="true">
@@ -184,7 +73,7 @@
                                         <div class="modal-header bg-danger">
                                             <h5 class="modal-title "
                                                 id="deleteModalLabel"><i
-                                                    class="fas fa-trash-alt"></i>&nbsp;&nbsp; ELIMINAR CATEGORÍA</h5>
+                                                    class="fas fa-trash-alt"></i>&nbsp;&nbsp; ELIMINAR CIUDAD</h5>
                                         </div>
                                         <div class="modal-body">
                                             <div class="text-center
@@ -193,14 +82,14 @@
                                                     mb-4 mt-2"></i></div>
                                             <div class="text-center
                                                 text-danger">
-                                                <span class="">¿Estás seguro de que deseas eliminar esta categoría?</span>
+                                                <span class="">¿Estás seguro de que deseas eliminar esta ciudad?</span>
                                                 <div class="text-dark mt-3
-                                                    mb-2">Categoría: <strong>{{categoria.nombre}}</strong></div>
+                                                    mb-2">Ciudad: <strong>{{ciudad.nombre}}</strong></div>
                                             </div>
                                         </div>
 
                                         <div class="modal-footer">
-                                            <form method="post" action="{% url 'categoria_eliminar' categoria.pk %}">
+                                            <form method="post" action="{% url 'ciudad_eliminar' ciudad.pk %}">
                                                 {% csrf_token %}
 
                                                 <input type="submit"
@@ -213,26 +102,20 @@
                                     </div>
                                 </div>
                                 </div>
-
-
                                 {% endif %}
                                 {% endfor %}
                             </tbody>
                             </table>
                         </div>
                         <!-- /.card-body -->
-                    </div>
-                    <a href="{% url 'recuperar_categoria' %}" class="btn btn-warning float-right mr-1 mb-3" title="Papelera"><i class="fas fa-trash-restore"></i>&nbsp; Restaurar </a>
-                    <!-- /.card -->
-
-
-                
-
-
+                    <a href="{% url 'recuperar_ciudades' %}" class="btn btn-warning float-right mr-1 mb-3" title="Papelera"><i class="fas fa-trash-restore"></i>&nbsp; Restaurar </a>
+                    <!-- /.card -->       
+                </div>
+            </div>
     </section>
                 <!-- /.content -->
-            </div>
-            <footer>{% include 'partials/footer.html' %}</footer>
+    </div>
+    <footer>{% include 'partials/footer.html' %}</footer>
             <!-- /.content-wrapper -->
             {% endblock contenido %}
 
@@ -263,10 +146,10 @@
             <script src="{% static 'AdminLTE/datatables-buttons/js/buttons.colVis.min.js' %}"></script>
             <script src="{% static 'AdminLTE/js/modal-status.js' %}"></script>
 
-        <!--DataTable Productos-->
+        <!--DataTable ciudades-->
         <script>
                 $(function () {
-                    $("#tablaCiudad").DataTable({
+                    $("#tabla-ciudades").DataTable({
                         dom: 'Bfrtip',  
                             language:{
                                 url: "{% static 'AdminLTE/datatables/datatables.spanish.json' %}"
@@ -278,7 +161,7 @@
                         "buttons": ["copy", "csv", "excel", "pdf", "print"],
                     }
                     
-                    ).buttons().container().appendTo('#tablaCiudad_wrapper .col-md-6:eq(0)');
+                    ).buttons().container().appendTo('#tabla-ciudades_wrapper .col-md-6:eq(0)');
                 });
             </script>
         {% block javascript %}

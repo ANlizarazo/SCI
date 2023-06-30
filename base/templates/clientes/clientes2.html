@@ -207,7 +207,7 @@
                                                             <select id="id_ciudad" class="form-select" name="ciudad"aria-label="tipo-activo"
                                                                 id="validationCustom06" required>
 
-                                                                <option class="text-black" select value="{{cliente.ciudad.pk}}">{{cliente.ciudad}}</option>
+                                                                <option class="text-black" selected hidden="{{cliente.ciudad.pk}}" value>{{cliente.ciudad}}</option>
                                                             
                                                                 {% for ciudad in ciudades %}
                                                                     <option class="text-black" value="{{ciudad.id}}">{{ciudad.nombre}}</option>
