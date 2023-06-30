@@ -92,7 +92,8 @@
                                                 <td class="border-dark text-black">{{cliente.email}}</td>
                                                 <td class="border-dark text-black">{{cliente.ciudad}}</td>
                                                 <td class="border-dark text-black">
-                                                    <buttom data-bs-toggle="modal" data-bs-target="#recuperarModal{{cliente.pk}}" class="btn btn-warning" title="Restaurar"><i Class="fas fa-trash-restore"></i></buttom>
+                                                    <a href="{% url 'recuperar_cliente' cliente.id %}" class="btn btn-warning" title="Restaurar">
+                                                        <i Class="fas fa-trash-restore"></i></a>
                                                 </td>
                                             </tr>
 
