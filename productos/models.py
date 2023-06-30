@@ -7,7 +7,7 @@ from categoria.models import Categoria
 
 class Producto(models.Model):
     nombre = models.CharField(max_length=50, verbose_name="Nombre Producto") 
-    precio = models.PositiveIntegerField(validators = [MinValueValidator ( 1 )], verbose_name="Precio")   
+    #precio = models.PositiveIntegerField(validators = [MinValueValidator ( 1 )], verbose_name="Precio")   
     especificaciones = models.TextField(max_length=300, verbose_name="Especificaciones")
     # class Categoria(models.TextChoices):
     #     PARQUES = 'Parques', _('Parques')

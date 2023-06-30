@@ -1,50 +1,65 @@
 from django.shortcuts import redirect, render
-import compras
-from compras.forms import CompraForm,CompraUpdateForm
+from compras.models import Compra, DetalleCompra
+from proveedores.models import Proveedor
+from compras.forms import CompraForm,CompraUpdateForm, DetalleCompraForm
 from django.contrib import messages
-from compras.models import Compra
 
-# se incluyen las siguientes importaciones
-from django.contrib.auth.models import User
 
 
 # Create your views here.
 
-def compras(request):
-    
-    compras_list=Compra.objects.all()
-    form= CompraForm()
 
-    context= {
-        'compras_list': compras_list,
+def compras(request):
+        
+    compras = Compra.objects.all()
+    proveedores = Proveedor.objects.all() 
+    detalleCompra = DetalleCompra.objects.all()
+    form= CompraForm()
+    form= DetalleCompraForm()
+
+    for compra in compras:
+        print(compra.categoria.id)
+    
+    context={
+        'detalleCompra':detalleCompra,
         'form': form,
+        "compras": compras,
+        'proveedores': proveedores,
+        
     }
     return render(request,'compras/compras.html', context)
 
 #Function to ADD compra
 def compras_crear(request):
     if request.method == 'POST':
-        form =CompraForm(request.POST)
+        form = CompraForm(request.POST)
         if form.is_valid():
             form.save()
-            compra = Compra(request.POST['email'], request.POST['email'], '123')
-            compra.save()
-            messages.success(request,"¡Compra creada correctamente!")
-            return redirect('compras')
+            messages.success(request,'¡Compra creada correctamente!')
+            return redirect(to='compras')
         else:
             messages.error(request, "¡Error al crear compra!")
-    context= {
-        'form':form,
+            return redirect(to='compras')
+    else:
+        form = CompraForm()
+
+    if request.method == 'POST':
+        form = DetalleCompraForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect(to='compras')
+        else:
+            return redirect(to='compras')
+    else:
+        form = DetalleCompra()
+
+    context = {
+        'form': form,
     }
-
     return render(request, 'compras/compras-crear.html', context)
-        
-
-
 
 #Function to View  compra data individually
 
-    
 def compras_ver(request, pk):
     compra = Compra.objects.get(id = pk)
     if request.method == 'POST':
@@ -57,27 +72,32 @@ def compras_ver(request, pk):
             print("Error al editar la compra")
     else: 
         form = CompraForm(instance = compra)
-
-    return render(request)
+        context = {
+        'form': form,
+    }
+    return render(request, 'compras/compras-ver.html', context)  
 
 #Function to EDIT compra
 
 def compras_modificar(request, pk):
     compra = Compra.objects.get(id = pk)
     if request.method == "POST":
-        form = CompraForm(request.POST, instance = compras)
+        form = CompraForm(request.POST, instance = compra)
         if form.is_valid():
             form.save()
-            messages.success(request, "Compra Actualizado con éxito!")
-            return redirect('Compras')
+            messages.success(request,'¡Compra guardada correctamente!')
+            return redirect('compras')
         else:
-            messages.error(request, "Compra No Actualizado, hubo un error!")
-            return redirect('Compras')
+            print('Error al modificar compra')
+            messages.error(request, "¡Error al modificar la compra!")
     else:
-        form = CompraForm(instance = compras)
+        form = CompraForm( instance = compra)
+    
+    context = {
+        'form': form,
+    }
 
-    return render(request, 'compras/compras.html', {'form': form})
-
+    return render(request, 'compras/compras-modificar.html', context)    
 
 #Function to DELETE compra
 
@@ -85,8 +105,10 @@ def compras_eliminar(request, pk):
     compra = Compra.objects.filter(id = pk).update(
         estado = '0'
     )
-    messages.success(request, "Compra eliminado satisfactoriamente!")
+    messages.success(request, "¡Compra eliminada correctamente!")
     return redirect('compras') 
+
+
 
 #Function to RECUPERAR compras
 def recuperar_compras(request):
@@ -94,21 +116,22 @@ def recuperar_compras(request):
     compras= Compra.objects.all()
     compras_recuperables = []
 
-    for compra in compras:
+    for compras in compras:
         if compra.estado == '0':
-            compras_recuperables.append(compra)
+            compras_recuperables.append(compras)
 
     context={
         "compras":compras_recuperables
     }
     return render(request,'compras/compras-recuperar.html',context)
 
-def recuperar(request, pk):
+def recuperar_compra(request, pk):
     titulo = 'Recuperar Compra'
     Compra.objects.filter(id = pk).update(
         estado = '1'
     )
-    messages.success(request, "Compra restaurado satisfactoriamente!")
+    messages.success(request, "¡Compra restaurada correctamente!")
     return redirect('compras')
+
 
 
