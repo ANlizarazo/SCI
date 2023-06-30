@@ -1,5 +1,5 @@
 from django.shortcuts import redirect, render
-from proveedores.models import Proveedor
+from proveedores.models import Proveedor, Ciudad
 from proveedores.forms import ProveedorForm
 from django.http import HttpResponseRedirect
 from django.contrib import messages
@@ -8,19 +8,21 @@ from django.contrib import messages
 #List of proveedor
 def proveedores(request):
     
-    clientes= Proveedor.objects.all()
+    proveedores= Proveedor.objects.all()
+    ciudades= Ciudad.objects.all()
     form = ProveedorForm()
     
     
     context={
         "proveedor":proveedores,
+        "ciudad":ciudades,
         'form': form,
     }
     return render(request,'proveedores/proveedores.html',context)
 
 
 #Funcion para VER proveedores
-def proveedor_ver(request):
+def proveedores_ver(request):
 
     titulo = "Proveedor - Ver"
     if request.method == 'POST':
@@ -33,16 +35,16 @@ def proveedor_ver(request):
         'titulo': titulo,
         "form": form
     }
-    return render(request, 'proveedor/proveedor-ver.html', context)
+    return render(request, 'proveedores/proveedores-ver.html', context)
 
 
 #Función para CREAR clientes
-def proveedor_crear(request):
+def proveedores_crear(request):
     if request.method == 'POST':
         form = ProveedorForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request,'¡Cliente creado correctamente!')
+            messages.success(request,'¡Proveedor creado correctamente!')
             return redirect(to='proveedores')
         else:
             messages.error(request, "¡Error al crear proveedor!")
@@ -52,11 +54,11 @@ def proveedor_crear(request):
     context = {
         'form': form,
     }
-    return render(request, 'proveedor/proveedor-crear.html', context)
+    return render(request, 'proveedores/proveedores-crear.html', context)
 
 
 #Función para MODIFICAR proveedores
-def proveedor_modificar(request, pk):
+def proveedores_modificar(request, pk):
     proveedor = Proveedor.objects.get(id = pk)
     if request.method == "POST":
         form = ProveedorForm(request.POST, instance = proveedor)
@@ -65,7 +67,8 @@ def proveedor_modificar(request, pk):
             messages.success(request,'¡Proveedor guardado correctamente!')
             return redirect('proveedores')
         else:
-            print('Error al modificar proveedor')
+            messages.success(request,'Error al modificar proveedor')
+            messages.error('proveedores')
     else:
         form = ProveedorForm( instance = proveedor)
     
@@ -73,7 +76,7 @@ def proveedor_modificar(request, pk):
         'form': form,
     }
 
-    return render(request, 'proveedor/proveedor.html', context)    
+    return render(request, 'proveedores/proveedores.html', context)    
 
 
 #Función para ELIMINAR proveedores
@@ -86,23 +89,23 @@ def proveedores_eliminar(request, pk):
 
 
 #Function to RECUPERAR proveedor
-def delete_proveedor(request):
+def recuperar_proveedores(request):
     
-    proveedor= Proveedor.objects.all()
-    proveedor_recuperables = []
+    proveedores= Proveedor.objects.all()
+    proveedores_recuperables = []
 
     for proveedor in proveedores:
         if proveedor.estado == '0':
-            proveedor_recuperables.append(proveedor)
+            proveedores_recuperables.append(proveedor)
 
     context={
-        "proveedores":proveedor_recuperables
+        "proveedores":proveedores_recuperables
     }
-    return render(request,'proveedor/proveedor-recuperar.html',context)
+    return render(request,'proveedores/proveedores-recuperar.html',context)
 
 
 
-def recuperar_proveedore(request, pk):
+def recuperar_proveedor(request, pk):
     titulo = 'Recuperar Proveedor'
     Proveedor.objects.filter(id = pk).update(
         estado = '1'
