@@ -1,16 +1,21 @@
 from django.shortcuts import redirect, render
-from servicios.forms import ServicioForm, ServicioUpdateForm
+from servicios.forms import ServicioForm
 from django.contrib import messages
-
-from servicios.models import Servicio
+from servicios.models import Servicio, TipoServicio
 
 # Create your views here.
 def servicios(request):
 
     servicios= Servicio.objects.all()
+    tiposdeservicios= TipoServicio.objects.all()
     form = ServicioForm()
+
+    for servicio in servicios:
+        print(servicio.tipoServicio)
+
     context={
         "servicios": servicios,
+        "tiposdeservicios": tiposdeservicios,
         "form": form,
     }
     return render(request,'servicios/servicios.html',context)
@@ -26,8 +31,10 @@ def servicios_crear(request):
             return redirect('servicios')
         else:
             print("El servicio NO se guardó")
-            messages.error("¡Error al crear servicio!")
-
+            messages.error(request,'¡Error al crear servicio!')
+            return redirect('servicios')
+    else:
+        form = ServicioForm()
     context={
         "form":form,
     }
@@ -41,18 +48,18 @@ def servicios_ver(request):
     if request.method == 'POST':
         form = ServicioForm(request.POST)
         if form.is_valid():
-            return redirect('tecnicos')
+            return redirect('servicios')
     else:
         form = ServicioForm()
     context = {
         'titulo': titulo,
         "form": form
     }
-    return render(request, 'servicios/servicios-ver.html', context)
+    return render(request, 'servicios/servicios.html', context)
 
 
 
-#Function to EDIT usuario
+#Function to modificar servicios
 def servicios_modificar(request, pk):
     servicio = Servicio.objects.get(id = pk)
     if request.method == "POST":
@@ -69,7 +76,7 @@ def servicios_modificar(request, pk):
     context={
         "form": form
     }
-    return render(request, 'servicios/servicios-modificar.html', context) 
+    return render(request, 'servicios/servicios.html', context) 
 
 
 
@@ -89,7 +96,7 @@ def recuperar_servicios(request):
     servicios_recuperables = []
 
     for servicio in servicios:
-        if servicio.estado != 'Activo':
+        if servicio.estado == '0':
             servicios_recuperables.append(servicio)
 
     context={
@@ -99,7 +106,7 @@ def recuperar_servicios(request):
 
 
 
-def recuperar_ser(request, pk):
+def recuperar_servicio(request, pk):
     titulo = 'Recuperar Servicio'
     Servicio.objects.filter(id = pk).update(
         estado = '1'

@@ -70,14 +70,14 @@
 
                     <li class="nav-item">
                         <a href="http://127.0.0.1:8000/productos/" class="nav-link">
-                        <i class="nav-icon fas fa-object-group"></i>
+                        <i class="nav-icon fas fa-shopping-bag"></i>
                         <p>Productos</p>
                         </a>
                     </li>
                     
                     <li class="nav-item">
                     <a href="{% url 'categorias' %}" class="nav-link">
-                        <i class="nav-icon fas fa-user-plus"></i>
+                        <i class="nav-icon fas fa-icons"></i>
                         <p>Categorías</p>
                     </a>
                     </li>
@@ -94,12 +94,27 @@
                 </a>
             </li>
             <!-- Modulo Servicios-->
-            <li class="nav-item menu-open">
+            <li class="nav-item menu-close">
                 <a href="http://127.0.0.1:8000/servicios/" class="nav-link active" title="Servicios"><i class="fas fa-circle-notch"></i>
                     <p>
                         Gestionar Servicios
                     </p>
                 </a>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="http://127.0.0.1:8000/servicios/" class="nav-link">
+                        <i class="nav-icon fas fa-shopping-cart"></i>
+                        <p>Servicios</p>
+                        </a>
+                    </li>
+                    
+                    <li class="nav-item">
+                    <a href="{% url 'tiposdeservicios' %}" class="nav-link">
+                        <i class="nav-icon fas fa-shopping-basket"></i>
+                        <p>Tipo de Servicio</p>
+                    </a>
+                    </li>
+                </ul>
             </li>
             <!-- Modulo Usuarios-->
             <li class="nav-item menu-open">

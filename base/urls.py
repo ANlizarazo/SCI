@@ -43,6 +43,7 @@ urlpatterns = [
     path('clientes/',include('clientes.urls')),
     path('tecnicos/',include('tecnico.urls')),
     path('categoria/',include('categoria.urls')),
+    path('tipodeservicio/',include('tipodeservicio.urls')),
     # --------------------------------------LOGIN--------------------------------------------
     path('logout/',LogoutView.as_view(),name="logout"),
     path('',auth_views.LoginView.as_view(), name='login_view'),

@@ -76,9 +76,7 @@
                                                 <th class="border-dark">Precio</th>
                                                 <th class="border-dark">Especificaciones</th>
                                                 <th class="border-dark">Cantidad</th>
-                                                <th class="border-dark">Categoría</th>
-                                                <th class="border-dark">Estado</th>                                  
-                                                <th class="border-dark">Acciones</th>
+                                                <th class="border-dark">Categoría</th>                             
                                                 <th class="border-dark">Restaurar</th>
                                             </tr>
                                         </thead>
@@ -91,12 +89,10 @@
                                                 <td class="border-dark text-black">{{producto.especificaciones}}</td>
                                                 <td class="border-dark text-black">{{producto.stock}}</td>
                                                 <td class="border-dark text-black">{{producto.categoria}}</td>
-                                                <td class="border-dark text-black">{{producto.estado}}</td>
-                                                <td class="border-dark">
-                                                    <td class="border-dark text-black">
-                                                        <a href="{% url 'recuperar_pro' producto.id %}" class="btn btn-warning" title="Restaurar">
-                                                            <i Class="fas fa-trash-restore"></i></a>
-                                                    </td>
+                                                <td class="border-dark text-black">
+                                                    <a href="{% url 'recuperar_pro' producto.id %}" class="btn btn-warning" title="Restaurar">
+                                                        <i Class="fas fa-trash-restore"></i></a>
+                                                </td>
                                             </tr>
                                             
                                     <!-- Modal recuperar confirmation -->

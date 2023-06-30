@@ -4,7 +4,6 @@
 {% bootstrap_css %}
 {% bootstrap_javascript %}
 
-
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -21,11 +20,10 @@
         <!-- Theme style -->
         <link rel="stylesheet" href="{% static 'AdminLTE/css/adminlte.min.css' %}">
         <!-- overlayScrollbars -->
-        <link rel="stylesheet" href="{% static 'AdminLTE\overlayScrollbars\css\OverlayScrollbars.min.css' %}">
+        <link rel="stylesheet" href="{% static 'AdminLTE/overlayScrollbars/css/OverlayScrollbars.min.css' %}">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="shortcut icon" href="/static/img/logoMallas.ico"
-            type="image/x-icon">
+        <link rel="shortcut icon" href="/static/img/logoMallas.ico" type="image/x-icon">
         <title>PAPELERA SERVICIOS</title>
     </head>
     <body class="hold-transition sidebar-mini layout-fixed">
@@ -64,23 +62,20 @@
                             <!-- Card -->
                             <div class="card ">
                                 <div class="card-header">
-                                    <h3 class="card-title text-success"><a href="{% url 'servicios' %}" title="Volver"><i Class="fas fa-reply text-green"></i>
-                                        </a><tr><b class="text-success">&nbsp;&nbsp; Papelera Servicios</b></tr></h3>
+                                    <h3 class="card-title text-success"><a href="{% url 'servicios' %}"  title="Volver"><i Class="fas fa-reply text-green" ></i></a><tr><b
+                                                class="text-success">&nbsp;&nbsp; Papelera Servicios</b></tr></h3>
                                 </div>
                                 <!-- /.card-header -->
                                 <div class="card-body">
-                                    <!-- Datatable de tecnicos -->
-                                    <table id="tabla-tecnico" class="table table-bordered table-striped border-dark">
+                                    <!-- Datatable de servicios -->
+                                    <table id="tabla-servicios" class="table table-bordered table-striped border-dark" style="font-size: 14px;">
                                         <thead class="bg-gray">
                                             <tr>
                                                 <th class="border-dark">ID Servicio</th>
                                                 <th class="border-dark">Observación</th>
-                                                <th class="border-dark">Fecha de Inicio</th>
-                                                <th class="border-dark">Fecha de Entrega</th>
-                                                <th class="border-dark">Precio</th>
                                                 <th class="border-dark">Observación Final</th>
                                                 <th class="border-dark">Tipo de Servicio</th>
-                                                <th class="border-dark">Acciones</th>
+                                                <th class="border-dark">Restaurar</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -88,9 +83,6 @@
                                             <tr>
                                                 <td class="border-dark text-black">{{servicio.id}}</td>
                                                 <td class="border-dark text-black">{{servicio.observacion}}</td>
-                                                <td class="border-dark text-black">{{servicio.fechaInicio}}</td>
-                                                <td class="border-dark text-black">{{servicio.fechaEntrega}}</td>
-                                                <td class="border-dark text-black">{{servicio.precio}}</td>
                                                 <td class="border-dark text-black">{{servicio.observacionFinal}}</td>
                                                 <td class="border-dark text-black">{{servicio.tipoServicio}}</td>
                                                 <td class="border-dark text-black">
@@ -116,9 +108,10 @@
                                                     text-black">
                                                     <span class="">¿Estás seguro de que deseas recuperar este servicio?</span>
                                                     <div class="text-dark mt-3
-                                                        mb-2">Servicio: <strong>{{servicio.id}} {{servicio.tipoServicio}}</strong></div>
+                                                        mb-2">Servicio: <strong>{{servicio.id}}</strong></div>
                                                 </div>
                                             </div>
+
 
                                             <div class="modal-footer">
                                                 <form method="post" action="{% url 'recuperar_servicio' servicio.id %}">
@@ -134,6 +127,7 @@
                                         </div>
                                     </div>
                                 </div>
+<!--Fin del modal-->
                                             {% endfor %}
                                         </tbody>
                                     </table>
@@ -147,37 +141,37 @@
                     <footer>{% include 'partials/footer.html' %}</footer>
                     <!-- /.content-wrapper -->
                     {% endblock contenido %}
-                    <!-- jQuery -->
-                    <script src="{% static 'AdminLTE/jquery/jquery.min.js' %}"></script>
-                    <!-- Bootstrap -->
-                    <script src="{% static 'AdminLTE/js-copy/bootstrap.bundle.min.js' %}"></script>
-                    <!-- jQuery UI -->
-                    <script src="{% static 'AdminLTE/jquery-ui/jquery-ui.min.js' %}"></script>
-                    <!-- AdminLTE App -->
-                    <script src="{% static 'AdminLTE/js/adminlte.min.js' %}"></script>
-                    <!-- toastr alert -->
-                    <script type="application/json" src="{% static 'AdminLTE/toastr/toastr.js.map' %}"></script>
-                    <script type="text/javascript" src="{% static 'AdminLTE/toastr/toastr.min.js' %}"></script>
+            <!-- jQuery -->
+            <script src="{% static 'AdminLTE/jquery/jquery.min.js' %}"></script>
+            <!-- Bootstrap -->
+            <script src="{% static 'AdminLTE/js-copy/bootstrap.bundle.min.js' %}"></script>
+            <!-- jQuery UI -->
+            <script src="{% static 'AdminLTE/jquery-ui/jquery-ui.min.js' %}"></script>
+            <!-- AdminLTE App -->
+            <script src="{% static 'AdminLTE/js/adminlte.min.js' %}"></script>
+            <!-- toastr alert -->
+            <script type="application/json" src="{% static 'AdminLTE/toastr/toastr.js.map' %}"></script>
+            <script type="text/javascript" src="{% static 'AdminLTE/toastr/toastr.min.js' %}"></script>
+            
+            <!-- DataTables  & Plugins -->
+            <script src="{% static 'AdminLTE/datatables/jquery.dataTables.min.js' %}"></script>
+            <script src="{% static 'AdminLTE/datatables-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+            <script src="{% static 'AdminLTE/datatables-responsive/js/dataTables.responsive.min.js' %}"></script>
+            <script src="{% static 'AdminLTE/datatables-responsive/js/responsive.bootstrap4.min.js' %}"></script>
+            <script src="{% static 'AdminLTE/datatables-buttons/js/dataTables.buttons.min.js' %}"></script>
+            <script src="{% static 'AdminLTE/datatables-buttons/js/buttons.bootstrap4.min.js' %}"></script>
+            <script src="{% static 'AdminLTE/jszip/jszip.min.js' %}"></script>
+            <script src="{% static 'AdminLTE/pdfmake/pdfmake.min.js' %}"></script>
+            <script src="{% static 'AdminLTE/pdfmake/vfs_fonts.js' %}"></script>
+            <script src="{% static 'AdminLTE/datatables-buttons/js/buttons.html5.min.js' %}"></script>
+            <script src="{% static 'AdminLTE/datatables-buttons/js/buttons.print.min.js' %}"></script>
+            <script src="{% static 'AdminLTE/datatables-buttons/js/buttons.colVis.min.js' %}"></script>
+            <script src="{% static 'AdminLTE/js/modal-status.js' %}"></script>
 
-                    <!-- DataTables  & Plugins -->
-                    <script src="{% static 'AdminLTE/datatables/jquery.dataTables.min.js' %}"></script>
-                    <script src="{% static 'AdminLTE/datatables-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
-                    <script src="{% static 'AdminLTE/datatables-responsive/js/dataTables.responsive.min.js' %}"></script>
-                    <script src="{% static 'AdminLTE/datatables-responsive/js/responsive.bootstrap4.min.js' %}"></script>
-                    <script src="{% static 'AdminLTE/datatables-buttons/js/dataTables.buttons.min.js' %}"></script>
-                    <script src="{% static 'AdminLTE/datatables-buttons/js/buttons.bootstrap4.min.js' %}"></script>
-                    <script src="{% static 'AdminLTE/jszip/jszip.min.js' %}"></script>
-                    <script src="{% static 'AdminLTE/pdfmake/pdfmake.min.js' %}"></script>
-                    <script src="{% static 'AdminLTE/pdfmake/vfs_fonts.js' %}"></script>
-                    <script src="{% static 'AdminLTE/datatables-buttons/js/buttons.html5.min.js' %}"></script>
-                    <script src="{% static 'AdminLTE/datatables-buttons/js/buttons.print.min.js' %}"></script>
-                    <script src="{% static 'AdminLTE/datatables-buttons/js/buttons.colVis.min.js' %}"></script>
-                    <script src="{% static 'AdminLTE/js/modal-status.js' %}"></script>
-
-                    <!--DataTable tecnicos-->
+                    <!--DataTable servicios-->
                     <script>
                 $(function () {
-                    $("#tabla-servicio").DataTable({
+                    $("#tabla-servicios").DataTable({
                         dom: 'frtip',
                         language:{
                             url: "/static/AdminLTE/datatables/datatables.spanish.json"
@@ -189,10 +183,10 @@
                     "buttons": ["copy", "csv", "excel", "pdf", "print"],
                     }
                     
-                    ).buttons().container().appendTo('#tabla-servicio_wrapper .col-md-6:eq(0)');
+                    ).buttons().container().appendTo('#tabla-servicios_wrapper .col-md-6:eq(0)');
                 });
             </script>
-                    {% block javascript %}
-                    {% endblock javascript %}
-                </body>
-            </html>
+        {% block javascript %}
+        {% endblock javascript %}
+    </body>
+</html>

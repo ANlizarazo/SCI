@@ -248,9 +248,6 @@
             </div>
             <div class="modal-body">
                 <!-- Formulario -->
-                {% if form.errors %}
-                    <p style="color: red">Por favor revisa este campo</p>
-                {% endif %}
                 <form  action="{% url 'compras_modificar' compra.pk %}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
                 
                     {% csrf_token %}          
