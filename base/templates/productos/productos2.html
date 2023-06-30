@@ -70,17 +70,16 @@
                                     <td class="border-dark text-black">{{producto.stock}}</td>
                                     <td class="border-dark text-black">{{producto.categoria}}</td>
                                     <td class="border-dark">
-                                    
-                                    <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#verProducto{{producto.pk}}" title="Ver">
-                                        <i class="fas fa-eye"></i></button>      
-                                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modificarProducto{{producto.pk}}" title="Modificar">
-                                        <i class="fas fa-edit"></i></button>
-                                    <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal{{producto.pk}}" title="Eliminar">
-                                        <i class="fas fa-trash-alt"></i></button>
+                                        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#verProducto{{producto.pk}}" title="Ver">
+                                            <i class="fas fa-eye"></i></button>      
+                                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modificarProducto{{producto.pk}}" title="Modificar">
+                                            <i class="fas fa-edit"></i></button>
+                                        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal{{producto.pk}}" title="Eliminar">
+                                            <i class="fas fa-trash-alt"></i></button>
                                     </td>
                                 </tr>
 
-                                <!-- Modal de editar producto -->
+                                <!-- Modal de modificar producto -->
 
                                 <div class="modal fade" id="modificarProducto{{producto.pk}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                     <div class="modal-dialog">
@@ -90,9 +89,6 @@
                                             </div>
                                             <div class="modal-body">
                                                 <!-- Formulario -->
-                                                {% if form.errors %}
-                                                    <p style="color: red">Por favor revisa este campo</p>
-                                                {% endif %}
                                                 <form  action="{% url 'productos_modificar' producto.pk %}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
                                                 
                                                     {% csrf_token %}          
@@ -158,8 +154,7 @@
                                                                 <select id="id_tipoDocumento" class="form-select" name="categoria"
                                                                     aria-label="tipo-activo" id="validationCustom04" required>
                                                                     
-                                                                    <option class="text-black" selected value="{{producto.categoria.pk}}">{{producto.categoria}}</option>
-                                                                    
+                                                                    <option class="text-black" selected hidden="{{producto.categoria.pk}}" value>{{producto.categoria}}</option>
                                                                     {% for categoria in categorias %}
                                                                     <option class="text-black" value="{{categoria.id}}">{{categoria.nombrecat}}</option>
                                                                     {% endfor %}
@@ -199,13 +194,10 @@
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h1 class="modal-title fs-3" id="staticBackdropLabel"><b class="text-black" >Ver Productos</b></h1>
+                                                <h1 class="modal-title fs-3" id="staticBackdropLabel"><b class="text-black" >VER PRODUCTOS</b></h1>
                                             </div>
                                             <div class="modal-body">
                                                 <!-- Formulario -->
-                                                {% if form.errors %}
-                                                    <p style="color: red">Por favor revisa este campo</p>
-                                                {% endif %}
                                                 <form  action="{% url 'productos_modificar' producto.pk %}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
                                                 
                                                     {% csrf_token %}          
@@ -237,7 +229,7 @@
                                                                 <textarea type="text" class="form-control" name="especificaciones"
                                                                     id="id_numeroTelefono"
                                                                     aria-describedby="basic-addon3" id="validationCustom02" required minlength="1"
-                                                                    maxlength="250" required>{{producto.especificaciones}}</textarea>
+                                                                    maxlength="250" required disabled>{{producto.especificaciones}}</textarea>
                                                                     <div class="valid-feedback">
                                                                         ¡Vamos bien!
                                                                     </div>
@@ -253,7 +245,7 @@
                                                                 <input type="number" class="form-control" name="stock"
                                                                     id="id_correoElectronico"
                                                                     aria-describedby="basic-addon3" id="validationCustom03" required minlength="1"
-                                                                    maxlength="100" required value="{{producto.stock}}">
+                                                                    maxlength="100" required value="{{producto.stock}}" disabled>
                                                                     <div class="valid-feedback">
                                                                         ¡Vamos bien!
                                                                     </div>
@@ -268,7 +260,7 @@
                                                             <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom04" style="font-size: 17;">Categoría</label>
                                                             <div class="input-group mb-3 w-100">
                                                                 <select id="id_categoria" class="form-select" name="categoria"
-                                                                    aria-label="tipo-activo" id="validationCustom04" required>
+                                                                    aria-label="tipo-activo" id="validationCustom04" required disabled>
                                                                     
                                                                     <option class="text-black" selected value="{{producto.categoria.pk}}">{{producto.categoria}}</option>
                                                                     
@@ -288,7 +280,7 @@
 
                                                     <div class="modal-footer">
                                                         
-                                                        <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Regresar</button>
+                                                        <button type="reset" class="btn btn-success" data-bs-dismiss="modal">Regresar</button>
                                                     
                                                     </div>
 
@@ -298,8 +290,6 @@
                                         </div>
                                     </div>
                                 </div>      
-
-
 
                                 <!-- Modal delete confirmation -->
                                 <div class="modal fade"

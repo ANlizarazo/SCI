@@ -29,10 +29,10 @@ def categoria_crear(request):
         if form.is_valid():
             form.save()
             messages.success(request,'¡Categoría creada correctamente!')
-            return redirect(to='categorias')
+            return redirect('categorias')
         else:
             messages.error(request, "¡Error al crear categoría!")
-            return redirect(to='categorias')
+            return redirect('categorias')
     else:
         form=CategoriaForm()
     context = {
@@ -42,40 +42,17 @@ def categoria_crear(request):
     return render(request, 'productos/categoria-crear.html', context)
 
 
-
-def categoria_crear_cat(request):
-
-    titulo = "Categoría - Crear"
-    if request.method == 'POST':
-        form =  CategoriaForm(request.POST)
-        if form.is_valid():
-            form.save()
-            print("La categoría se guardó correctamente")
-            return redirect('categorias')
-        else:
-            print("La categoría NO se pudo guardar")
-    
-    else:
-        form = CategoriaForm()
-    context = {
-        'titulo': titulo,
-        "form": form
-    }
-    return render(request, 'productos/categoria-crear.html', context)
-
-
-
-
 def categoria_modificar(request, pk):
     categoria = Categoria.objects.get(id = pk)
     if request.method == "POST":
         form = CategoriaForm(request.POST, instance = categoria)
         if form.is_valid():
             form.save()
-            
+            messages.success(request,'¡Categoría modificada correctamente!')
             return redirect('categorias')
         else:
-            print('Error al editar la categoria')
+            messages.error(request, "¡Error al modificar categoría!")
+            return redirect('categorias')
     else:
         form = CategoriaForm(instance = categoria)
     
@@ -87,12 +64,11 @@ def categoria_modificar(request, pk):
 
 
 
-
 def categoria_eliminar(request, pk):
     categoria = Categoria.objects.filter(id = pk).update(
         estadocat = '0'
     )
-    messages.success(request, "Categoría eliminada satisfactoriamente!")
+    messages.success(request, "¡Categoría eliminada satisfactoriamente!")
     return redirect('categorias') 
 
 
@@ -119,5 +95,5 @@ def recuperar_cat(request, pk):
     Categoria.objects.filter(id = pk).update(
         estadocat = '1'
     )
-    
+    messages.success(request, "¡Categoría restaurada correctamente!")
     return redirect('categorias')

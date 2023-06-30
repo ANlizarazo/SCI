@@ -44,10 +44,10 @@
                                 <ol class="breadcrumb float-sm-right">
                                     <li class="breadcrumb-item"><a
                                             href="http://127.0.0.1:8000/inicio/">
-                                            <b class="text-success" title="Inicio">Inicio </b></a></li>
+                                            <b class="text-success">Inicio </b></a></li>
                                     <li class="breadcrumb-item-active"><a
                                             href="http://127.0.0.1:8000/productos/"
-                                            class="text-success" title="Productos">/ Productos</a></li>
+                                            class="text-success">/ Productos</a></li>
                                 </ol>
                             </div>
                         </div>
@@ -73,9 +73,10 @@
                                             <tr>
                                                 <th class="border-dark">ID Producto</th>
                                                 <th class="border-dark">Nombre</th>
+                                                <th class="border-dark">Precio</th>
                                                 <th class="border-dark">Especificaciones</th>
-                                                <th class="border-dark">Stock</th>
-                                                <th class="border-dark">Categoría</th>  
+                                                <th class="border-dark">Cantidad</th>
+                                                <th class="border-dark">Categoría</th>                             
                                                 <th class="border-dark">Restaurar</th>
                                             </tr>
                                         </thead>
@@ -84,14 +85,14 @@
                                             <tr>
                                                 <td class="border-dark text-black">{{producto.id}}</td>
                                                 <td class="border-dark text-black">{{producto.nombre}}</td>
+                                                <td class="border-dark text-black">{{producto.precio}}</td>
                                                 <td class="border-dark text-black">{{producto.especificaciones}}</td>
                                                 <td class="border-dark text-black">{{producto.stock}}</td>
                                                 <td class="border-dark text-black">{{producto.categoria}}</td>
-                                                
-                                                    <td class="border-dark text-black">
-                                                        <a href="{% url 'recuperar_pro' producto.id %}" class="btn btn-warning" title="Restaurar">
-                                                            <i Class="fas fa-trash-restore"></i></a>
-                                                    </td>
+                                                <td class="border-dark text-black">
+                                                    <a href="{% url 'recuperar_pro' producto.id %}" class="btn btn-warning" title="Restaurar">
+                                                        <i Class="fas fa-trash-restore"></i></a>
+                                                </td>
                                             </tr>
                                             
                                     <!-- Modal recuperar confirmation -->
