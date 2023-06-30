@@ -14,10 +14,10 @@
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a
                                 href="http://127.0.0.1:8000/inicio/">
-                                <b class="text-success" title="Inicio">Inicio </b></a></li>
+                                <b class="text-success">Inicio </b></a></li>
                         <li class="breadcrumb-item-active"><a
                                 href="http://127.0.0.1:8000/categoria/"
-                                class="text-success" title="Categorías">/ Categorías</a></li>
+                                class="text-success">/ Categorías</a></li>
                     </ol>
                 </div>
             </div>
@@ -42,7 +42,7 @@
 
 
                         <a class="btn btn-success float-right mr-1 mb-3" data-bs-toggle="modal"
-                            data-bs-target="#crearCategoria" title="Crear"> Crear Categoría</a>    
+                            data-bs-target="#crearCategoria"> Crear Categoría</a>    
 
                         <!-- Datatable de productos -->
                         <table id="tabla-productos" class="table table-bordered
@@ -129,12 +129,16 @@
                                                             </div>
                                                         </div>
                                                 
+                                                        
+                                                        
+                                                    
+
                                                     </div> 
 
                                                     <div class="modal-footer">
                                                         <!-- BOTÓN PARA GUARDAR LA INFORMACIÓN DIGITADA EN EL FORMULARIO DE LA CATEGORÍA -->
-                                                        <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal" title="Cancelar">Cancelar</button>
-                                                        <input class="btn btn-success" type="submit" name="form-nuevo-usuario" value="Modificar" title="Modificar">
+                                                        <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                                        <input class="btn btn-success" type="submit" name="form-nuevo-usuario" value="Modificar">
                                                     </div>
 
                                                 </form>
@@ -199,12 +203,14 @@
                                                                     </div>
                                                             </div>
                                                         </div>
-                                    
+                                                
+                                                                                            
+
                                                     </div> 
 
                                                     <div class="modal-footer">
                                                         
-                                                        <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal" title="Regresar">Regresar</button>
+                                                        <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Regresar</button>
                                                     
                                                     </div>
 
@@ -248,11 +254,11 @@
                                                 {% csrf_token %}
 
                                                 <input type="submit"
-                                                    class="btn btn-danger" title="Eliminar"
+                                                    class="btn btn-danger"
                                                     value="Eliminar">
                                             </form>
                                             <button type="button" class="btn btn-secondary"
-                                                data-bs-dismiss="modal" title="Cancelar">Cancelar</button>
+                                                data-bs-dismiss="modal">Cancelar</button>
                                         </div>
                                     </div>
                                 </div>

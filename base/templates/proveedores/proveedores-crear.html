@@ -2,32 +2,32 @@
 
 <!-- Modal de crear proveedor -->
 
-<div class="modal fade" {% block modal-id %}  id="crear_Proveedor" {% endblock modal-id %} data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-labelledby="addModalLabel" aria-hidden="true">
+<div class="modal fade" id="proveedor_crear" data-bs-backdrop="static"
+    data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+    aria-hidden="true">
     <div class="modal-dialog">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h1 class="modal-title fs-3" id="staticBackdropLabel"><b class="text-black">&nbsp;&nbsp; CREAR NUEVO PROVEEDOR</b></h1>
-        </div>
-        <div class="modal-body">
-            <!-- Formulario -->
-            <form  action="{% url 'proveedores-crear' %}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
-            
-                {% csrf_token %}          
-                
-                {{form|crispy}}
-
-                    <div class="modal-footer">
-                        <!-- BOTÓN PARA GUARDAR LA INFORMACIÓN DIGITADA EN EL FORMULARIO DEL USUARIO -->
-                        <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                        <input class="btn btn-success" type="submit" name="form-nuevo-usuario" value="Crear">
-                        
-                    </div>
-                </form>
-                
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-3" id="staticBackdropLabel"><b
+                        class="text-black">CREAR PROVEEDOR</b></h1>
             </div>
-            
-            
+            <div class="modal-body">
+                <!-- Formulario -->
+                <form action="{% url 'proveedores-crear' %}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
+
+                    {% csrf_token %}
+                    
+                    {{form|crispy}}
+                    
+                        <div class="modal-footer">
+                            <!-- BOTÓN PARA GUARDAR LA INFORMACIÓN DIGITADA EN EL FORMULARIO DE CIUDAD -->
+                            <button type="reset" class="btn btn-secondary"
+                                data-bs-dismiss="modal" title="Cancelar">Cancelar</button>
+                            <input class="btn btn-success" type="submit" title="Crear" value="Crear">
+                        </div>
+                </form>
+            </div>
         </div>
-    </div>   
-    
-    <script src="/static/js/funciones.js"></script>
+    </div>
+</div>
+<script src="/static/js/funciones.js"></script>

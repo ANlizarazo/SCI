@@ -63,7 +63,7 @@ def servicios_modificar(request, pk):
             return redirect('servicios')
         else:
             messages.error(request, "¡Error al modificar el servicio!")
-            print('Error al modificar el servicio')
+            return redirect('servicios')
     else:
         form = ServicioForm(instance = servicio)
     context={
