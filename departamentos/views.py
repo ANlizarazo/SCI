@@ -1,4 +1,3 @@
-from django.urls import reverse
 from django.shortcuts import render, redirect
 from departamentos.models import Departamento
 from departamentos.forms import DepartamentoForm
@@ -35,9 +34,9 @@ def departamento_crear(request):
 
 def departamento_eliminar(request, pk):
     departamento = Departamento.objects.filter(id = pk).update(
-        estado = 'Inactivo'
+        estado = '0'
     )
-    messages.success(request, "Departamento eliminado satisfactoriamente!")
+    messages.success(request, "¡Departamento eliminado satisfactoriamente!")
     return redirect('departamentos') 
 
 #Function to RECUPERAR servicios
@@ -47,7 +46,7 @@ def recuperar_departamentos(request):
     departamentos_recuperables = []
 
     for departamento in departamentos:
-        if departamento.estado != 'Activo':
+        if departamento.estado == '0':
             departamentos_recuperables.append(departamento)
 
     context={
@@ -60,7 +59,7 @@ def recuperar_departamentos(request):
 def recuperar_departamento(request, pk):
     titulo = 'Recuperar departamento'
     Departamento.objects.filter(id = pk).update(
-        estado = 'Activo'
+        estado = '1'
     )
     messages.success(request, "Departamento restaurado satisfactoriamente!")
     return redirect('departamentos')

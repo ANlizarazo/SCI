@@ -7,7 +7,7 @@ urlpatterns = [
     path('departamento-crear',departamento_crear,name="departamento-crear"),
     #Path to Delete
     path('departamento_eliminar/<int:pk>/', departamento_eliminar, name="departamento_eliminar"),
-    #Path to RESTORE Clientes
+    #Path to RESTORE C
     path('departamentos_recuperar/', recuperar_departamentos, name="recuperar_departamentos"),
-    path('recuperar/<int:pk>/', recuperar_departamento, name='recuperar_departamento'),
+    path('recuperar_departamento/<int:pk>/', recuperar_departamento, name='recuperar_departamento'),
 ]

@@ -8,7 +8,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-black"><tr><b class="text-black">DEPARTAMENTO</b></tr></h1>
+                    <h1 class="m-0 text-black"><tr><b class="text-black">DEPARTAMENTOS</b></tr></h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -17,7 +17,7 @@
                                 <b class="text-success">Inicio </b></a></li>
                         <li class="breadcrumb-item-active"><a
                                 href="http://127.0.0.1:8000/departamentos/"
-                                class="text-success">/ Departamento</a></li>
+                                class="text-success">/ Departamentos</a></li>
                     </ol>
                 </div>
             </div>
@@ -34,7 +34,7 @@
                     <div class="card-header">
                         <h3 class="card-title text-success"><tr><b
                                     class="text-success">Reporte de
-                                    Departamento</b></tr></h3>
+                                    Departamentos</b></tr></h3>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
@@ -42,8 +42,8 @@
                         <a class="btn btn-success float-right mr-1 mb-3" data-bs-toggle="modal"
                             data-bs-target="#crearDepartamento"> Crear Departamento</a>    
 
-                        <!-- Datatable de productos -->
-                        <table id="tabla-productos" class="table table-bordered
+                        <!-- Datatable de Departamentos -->
+                        <table id="tabla-departamentos" class="table table-bordered
                             table-striped table-responsive-sm border-dark">
                             <thead class="bg-success">
                                 <tr>
@@ -60,14 +60,14 @@
                                     
                                     <button class="btn btn-danger"
                                         data-bs-toggle="modal"
-                                        data-bs-target="#deleteModal{{categoria.pk}}" title="Eliminar">
+                                        data-bs-target="#deleteModal{{departamento.pk}}" title="Eliminar">
                                         <i class="fas fa-trash-alt"></i></button>
                                     </td>
                                 </tr>
 
                                 <!-- Modal delete confirmation -->
                                 <div class="modal fade"
-                                id="deleteModal{{categoria.pk}}"
+                                id="deleteModal{{departamento.pk}}"
                                 tabindex="-1"
                                 aria-labelledby="deleteModalLabel"
                                 aria-hidden="true">
@@ -85,14 +85,14 @@
                                                     mb-4 mt-2"></i></div>
                                             <div class="text-center
                                                 text-danger">
-                                                <span class="">¿Estás seguro de que deseas eliminar esta categoría?</span>
+                                                <span class="">¿Estás seguro de que deseas eliminar este departamento?</span>
                                                 <div class="text-dark mt-3
-                                                    mb-2">Categoría: <strong>{{categoria.nombre}}</strong></div>
+                                                    mb-2">Departamento: <strong>{{departamento.nombre}}</strong></div>
                                             </div>
                                         </div>
 
                                         <div class="modal-footer">
-                                            <form method="post" action="">
+                                            <form method="post" action="{% url 'departamento_eliminar' departamento.pk %}">
                                                 {% csrf_token %}
 
                                                 <input type="submit"
@@ -105,26 +105,20 @@
                                     </div>
                                 </div>
                                 </div>
-
-
                                 {% endif %}
                                 {% endfor %}
                             </tbody>
                             </table>
                         </div>
                         <!-- /.card-body -->
-                    </div>
-                    <a href="{% url 'recuperar_categoria' %}" class="btn btn-warning float-right mr-1 mb-3" title="Papelera"><i class="fas fa-trash-restore"></i>&nbsp; Restaurar </a>
+                    <a href="{% url 'recuperar_departamentos' %}" class="btn btn-warning float-right mr-1 mb-3" title="Papelera"><i class="fas fa-trash-restore"></i>&nbsp; Restaurar </a>
                     <!-- /.card -->
-
-
-                
-
-
-                </section>
-                <!-- /.content -->
+                </div>
             </div>
-            <footer>{% include 'partials/footer.html' %}</footer>
+    </section>
+    <!-- /.content -->
+    </div>
+    <footer>{% include 'partials/footer.html' %}</footer>
             <!-- /.content-wrapper -->
             {% endblock contenido %}
 
@@ -155,10 +149,10 @@
             <script src="{% static 'AdminLTE/datatables-buttons/js/buttons.colVis.min.js' %}"></script>
             <script src="{% static 'AdminLTE/js/modal-status.js' %}"></script>
 
-        <!--DataTable Productos-->
+        <!--DataTable Departamentos-->
         <script>
                 $(function () {
-                    $("#tabla-productos").DataTable({
+                    $("#tabla-departamentos").DataTable({
                         dom: 'Bfrtip',  
                             language:{
                                 url: "{% static 'AdminLTE/datatables/datatables.spanish.json' %}"
@@ -170,7 +164,7 @@
                         "buttons": ["copy", "csv", "excel", "pdf", "print"],
                     }
                     
-                    ).buttons().container().appendTo('#tabla-productos_wrapper .col-md-6:eq(0)');
+                    ).buttons().container().appendTo('#tabla-departamentos_wrapper .col-md-6:eq(0)');
                 });
             </script>
         {% block javascript %}

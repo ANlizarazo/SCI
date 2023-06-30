@@ -1,5 +1,5 @@
 from django.urls import path
-from tecnico.views import tecnicos, recuperar_tecnicos, tecnico_crear, tecnico_modificar, tecnico_ver, tecnicos, tecnicos_eliminar,recuperar
+from tecnico.views import tecnicos, recuperar_tecnicos, tecnico_crear, tecnico_modificar, tecnico_ver, tecnicos, tecnicos_eliminar,recuperar_tecnico
 
 urlpatterns = [
     path('',tecnicos,name="tecnico"),
@@ -13,5 +13,5 @@ urlpatterns = [
     path('tecnicos_eliminar/<int:pk>/', tecnicos_eliminar, name="tecnicos_eliminar"),
     #Path to Recuperar tecnicos
     path('tecnicos_recuperar/', recuperar_tecnicos, name="recuperar_tecnicos"),
-    path('recuperar-tecnico/<int:pk>/', recuperar, name='recuperar-tecnico'),
+    path('recuperar_tecnico/<int:pk>/', recuperar_tecnico, name='recuperar_tecnico'),
 ]
