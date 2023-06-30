@@ -7,8 +7,8 @@ from tipodeservicio.models import TipoServicio
 
 
 class Servicio(models.Model):
-    observacion= models.CharField(max_length=200, verbose_name="Observación")
-    observacionFinal= models.CharField(max_length=250, verbose_name="Observación Final")
+    observacion= models.CharField(max_length=200, verbose_name="Observación",null=True)
+    observacionFinal= models.CharField(max_length=250, verbose_name="Observación Final",null=True)
     class Estado(models.TextChoices):
         ACTIVO='1', _('Activo')
         INACTIVO='0', _('Inactivo')   
