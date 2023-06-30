@@ -16,6 +16,9 @@ def compras(request):
     detalleCompra = DetalleCompra.objects.all()
     form= CompraForm()
     form= DetalleCompraForm()
+
+    for compra in compras:
+        print(compra.categoria.id)
     
     context={
         'detalleCompra':detalleCompra,
@@ -39,6 +42,17 @@ def compras_crear(request):
             return redirect(to='compras')
     else:
         form = CompraForm()
+
+    if request.method == 'POST':
+        form = DetalleCompraForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect(to='compras')
+        else:
+            return redirect(to='compras')
+    else:
+        form = DetalleCompra()
+
     context = {
         'form': form,
     }

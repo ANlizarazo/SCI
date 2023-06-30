@@ -15,7 +15,7 @@ class DetalleCompra(models.Model):
         GR='19', _('General')    
         EX='0', _('Exento')
     porcentajeIva=models.CharField(max_length=3, choices=Iva.choices, default=Iva.GR, verbose_name="IVA") 
-    totalCompra= models.PositiveIntegerField(validators = [ MinValueValidator ( 0 )], verbose_name="Total Compra", default=1, blank=True, null=True)
+    totalCompra= models.PositiveIntegerField(validators = [ MinValueValidator ( 0 )], verbose_name="Total Compra", blank=True, null=True)
     valorTotalProducto = models.PositiveIntegerField(validators = [ MinValueValidator ( 0 )], verbose_name="Valor Total Producto")
     proveedor = models.ForeignKey(Proveedor, on_delete=models.CASCADE, verbose_name="Proveedor",blank=True, null=True)
     
@@ -29,6 +29,7 @@ class DetalleCompra(models.Model):
 
 class Compra(models.Model):
     fecha= models.DateField(verbose_name="Fecha", auto_now_add=True, editable=False)
+    detallecompra = models.ForeignKey(DetalleCompra, on_delete=models.CASCADE, verbose_name="Detalle Compra")
     
     class Estado(models.TextChoices):
         ACTIVO='1', _('Activo')
