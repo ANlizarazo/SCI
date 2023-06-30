@@ -13,4 +13,4 @@ class ProveedorForm(ModelForm):
 class ProveedorUpdateForm(ModelForm):
     class Meta:
         model= Proveedor
-        exclude=['estado']
+        exclude=['numDocumento']
