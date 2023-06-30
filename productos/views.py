@@ -12,6 +12,7 @@ def productos(request):
 
     for producto in productos:
         print(producto.categoria)
+        print(producto.nombre)
 
     context={
         "productos": productos,
