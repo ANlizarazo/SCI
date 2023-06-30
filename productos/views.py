@@ -59,9 +59,7 @@ def productos_crear(request):
     return render(request, 'productos/productos-crear.html', context)
 
 
-
-
-#Function to EDIT Producto
+#Function to modificar Producto
 def productos_modificar(request, pk):
     producto = Producto.objects.get(id = pk)
     if request.method == "POST":
@@ -97,7 +95,7 @@ def recuperar_productos(request):
     productos_recuperables = []
 
     for producto in productos:
-        if producto.estado != '1':
+        if producto.estado == '0':
             productos_recuperables.append(producto)
 
     context={

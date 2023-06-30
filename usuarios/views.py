@@ -30,7 +30,7 @@ def usuario_crear(request):
             form.save()
             user = User.objects.create_user(request.POST['email'], request.POST['email'], '123')
             user.save()
-            messages.success(request,'¡Creado creado correctamente!')
+            messages.success(request,'¡Usuario creado correctamente!')
             return redirect('usuarios')
         else:
             messages.error(request, "¡Error al crear usuario!")
@@ -51,9 +51,9 @@ def usuario_ver(request, pk):
         form = UsuarioForm(request.POST, instance = usuario)
         if form.is_valid():
             form.save()
-            messages.success(request, "usuario modificado")
             return redirect('usuarios')
         else:
+            messages.error(request,'¡Error al ver usuario!')
             print("Error al editar usuario")
     else: 
         form = UsuarioForm(instance = usuario)
@@ -85,10 +85,10 @@ def usuario_modificar(request, pk):
         form = UsuarioForm(request.POST, instance = usuario)
         if form.is_valid():
             form.save()
-            messages.success(request, "Usuario Actualizado con éxito!")
+            messages.success(request,'¡Usuario modificado correctamente!')
             return redirect('usuarios')
         else:
-            messages.error(request, "Usuario No Actualizado, hubo un error!")
+            messages.error(request, "¡Error al modificar usuario!")
             return redirect('usuarios')
     else:
         form = UsuarioForm(instance = usuario)

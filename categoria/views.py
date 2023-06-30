@@ -64,12 +64,11 @@ def categoria_modificar(request, pk):
 
 
 
-
 def categoria_eliminar(request, pk):
     categoria = Categoria.objects.filter(id = pk).update(
         estadocat = '0'
     )
-    messages.success(request, "Categoría eliminada satisfactoriamente!")
+    messages.success(request, "¡Categoría eliminada satisfactoriamente!")
     return redirect('categorias') 
 
 
