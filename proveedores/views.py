@@ -12,6 +12,8 @@ def proveedores(request):
     ciudades= Ciudad.objects.all()
     form = ProveedorForm()
     
+    for proveedor in proveedores:
+        print(proveedor.nombreEmpresa)
     
     context={
         "proveedor":proveedores,

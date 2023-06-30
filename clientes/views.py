@@ -35,7 +35,7 @@ def clientes_ver(request):
         'titulo': titulo,
         "form": form
     }
-    return render(request, 'clientes/clientes-ver.html', context)
+    return render(request, 'clientes/clientes.html', context)
 
 
 #Función para CREAR clientes
@@ -45,10 +45,10 @@ def clientes_crear(request):
         if form.is_valid():
             form.save()
             messages.success(request,'¡Cliente creado correctamente!')
-            return redirect(to='clientes')
+            return redirect('clientes')
         else:
             messages.error(request, "¡Error al crear cliente!")
-            return redirect(to='clientes')
+            return redirect('clientes')
     else:
         form = ClienteForm()
     context = {
@@ -64,7 +64,7 @@ def clientes_modificar(request, pk):
         form = ClienteForm(request.POST, instance = cliente)
         if form.is_valid():
             form.save()
-            messages.success(request,'¡Cliente guardado correctamente!')
+            messages.success(request,'¡Cliente modificado correctamente!')
             return redirect('clientes')
         else:
             print('Error al modificar cliente')

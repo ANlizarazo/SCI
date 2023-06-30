@@ -1,31 +1,46 @@
 from django.shortcuts import redirect, render
-from compras.models import Compra, DetalleCompra
-from proveedores.models import Proveedor
+from compras.models import Compra, DetalleCompra, Proveedor, Producto
 from compras.forms import CompraForm,CompraUpdateForm, DetalleCompraForm
 from django.contrib import messages
 
-
-
 # Create your views here.
-
-
 def compras(request):
         
     compras = Compra.objects.all()
-    proveedores = Proveedor.objects.all() 
     detalleCompra = DetalleCompra.objects.all()
     form= CompraForm()
     form= DetalleCompraForm()
-
+    
     for compra in compras:
-        print(compra.categoria.id)
+        print(compra.detallecompra)
     
     context={
         'detalleCompra':detalleCompra,
-        'form': form,
         "compras": compras,
+        'form': form,
+    }
+    return render(request,'compras/compras.html', context)
+
+def detalle(request):
+    detalleCompra = DetalleCompra.objects.all()
+    productos = Producto.objects.all()
+    proveedores = Proveedor.objects.all()
+    form= DetalleCompraForm()
+
+    for detallecompra in detalleCompra:
+        print(detallecompra.cantidadProducto)
+        print(detallecompra.subtotalCompra) 
+        print(detallecompra.porcentajeIva)
+        print(detallecompra.totalCompra)
+        print(detallecompra.valorTotalProducto)
+        print(detallecompra.producto)
+        print(detallecompra.proveedor)
+
+    context={
+        'detalleCompra':detalleCompra,
+        'productos': productos,
         'proveedores': proveedores,
-        
+        'form': form,
     }
     return render(request,'compras/compras.html', context)
 
@@ -42,21 +57,28 @@ def compras_crear(request):
             return redirect(to='compras')
     else:
         form = CompraForm()
-
-    if request.method == 'POST':
-        form = DetalleCompraForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect(to='compras')
-        else:
-            return redirect(to='compras')
-    else:
-        form = DetalleCompra()
-
     context = {
         'form': form,
     }
     return render(request, 'compras/compras-crear.html', context)
+
+def detalle_crear(request):
+    if request.method == 'POST':
+        form = DetalleCompraForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request,'¡Detalle creado correctamente!')
+            return redirect(to='compras')
+        else:
+            messages.error(request, "¡Error al crear detalle!")
+            return redirect(to='compras')
+    else:
+        form = DetalleCompraForm()
+    context = {
+        'form': form,
+    }
+    return render(request, 'compras/compras-detalle.html', context)
+
 
 #Function to View  compra data individually
 
@@ -117,7 +139,7 @@ def recuperar_compras(request):
     compras_recuperables = []
 
     for compras in compras:
-        if compra.estado == '0':
+        if compras.estado == '0':
             compras_recuperables.append(compras)
 
     context={
