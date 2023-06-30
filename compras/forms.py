@@ -13,7 +13,7 @@ class CompraForm(ModelForm):
 class CompraUpdateForm(ModelForm):
     class Meta:
         model= Compra
-        exclude=['fecha']
+        exclude=['estado']
 
 class DetalleCompraForm(ModelForm):
     class Meta:

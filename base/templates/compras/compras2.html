@@ -67,19 +67,18 @@
                             <tbody>
 
                                 {% for compra in compras %}
-                                {% for detallecompra in detallecompra %}
                                 {% if compra.estado == '1' %}
-                                {% if detallecompra.estado == '1' %}
+
                                 <td>     
                                     <td class="border-dark text-black">{{compra.id}}</td>      
                                     <td class="border-dark text-black">{{compra.fecha}}</td>
-                                    <td class="border-dark text-black">{{compra.proveedor}}</td>
-                                    <td class="border-dark text-black">{{detallecompra.cantidadProducto}}%</td>
+                                    <td class="border-dark text-black">{{compra.detallecompra.proveedor}}</td>
+                                    <td class="border-dark text-black">{{compra.detallecompra.cantidadProducto}}%</td>
                                     <td class="border-dark text-black">{{compra.detalleCompra}}</td>
-                                    <td class="border-dark text-black">${{compra.producto}}</td>                                    
-                                    <td class="border-dark text-black">{{compra.subTotal}}</td>
-                                    <td class="border-dark text-black">{{compra.iva}}</td>
-                                    <td class="border-dark text-black">{{compra.totalCompra}}</td>
+                                    <td class="border-dark text-black">${{compra.detallecompra.producto}}</td>                                    
+                                    <td class="border-dark text-black">{{compra.detallecompra.subTotal}}</td>
+                                    <td class="border-dark text-black">{{compra.detallecompra.iva}}</td>
+                                    <td class="border-dark text-black">{{compra.detallecompra.totalCompra}}</td>
                                     <td class="border-dark text-black">
                                         <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#verCompra{{compra.id}}" title="Ver">
                                             <i class="fas fa-eye"></i></button>   
@@ -509,9 +508,6 @@
                                 </div>
 
                                 {% endif %}
-                                {% endif %}
-
-                                {% endfor %}
                                 {% endfor %}
                             </tbody>
 
