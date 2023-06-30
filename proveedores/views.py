@@ -1,6 +1,7 @@
 from django.shortcuts import redirect, render
 from proveedores.models import Proveedor, Ciudad
 from proveedores.forms import ProveedorForm
+from django.http import HttpResponseRedirect
 from django.contrib import messages
 
 
@@ -12,7 +13,7 @@ def proveedores(request):
     form = ProveedorForm()
     
     for proveedor in proveedores:
-        print(proveedor.ciudad)
+        print(proveedor.nombreEmpresa)
     
     context={
         "proveedor":proveedores,
@@ -36,20 +37,20 @@ def proveedores_ver(request):
         'titulo': titulo,
         "form": form
     }
-    return render(request, 'proveedores/proveedores.html', context)
+    return render(request, 'proveedores/proveedores-ver.html', context)
 
 
-#Función para CREAR proveedores
+#Función para CREAR clientes
 def proveedores_crear(request):
     if request.method == 'POST':
         form = ProveedorForm(request.POST)
         if form.is_valid():
             form.save()
             messages.success(request,'¡Proveedor creado correctamente!')
-            return redirect('proveedores')
+            return redirect(to='proveedores')
         else:
             messages.error(request, "¡Error al crear proveedor!")
-            return redirect('proveedores')
+            return redirect(to='proveedores')
     else:
         form = ProveedorForm()
     context = {
@@ -85,7 +86,7 @@ def proveedores_eliminar(request, pk):
     proveedor= Proveedor.objects.filter(id = pk).update(
         estado = '0'
     )
-    messages.success(request, "¡Proveedor eliminado correctamente!")
+
     return redirect('proveedores') 
 
 
@@ -111,5 +112,5 @@ def recuperar_proveedor(request, pk):
     Proveedor.objects.filter(id = pk).update(
         estado = '1'
     )
-    messages.success(request, "¡Proveedor restaurado correctamente!")
+    
     return redirect('proveedores')
