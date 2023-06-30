@@ -1,7 +1,6 @@
 {% load static %}
 {% block contenido %}
 
-
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -15,10 +14,10 @@
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a
                                 href="http://127.0.0.1:8000/inicio/">
-                                <b class="text-success">Inicio </b></a></li>
+                                <b class="text-success" title = "Inicio">Inicio </b></a></li>
                         <li class="breadcrumb-item-active"><a
-                                href="http://127.0.0.1:8000/producto/"
-                                class="text-success">/ Proveedor</a></li>
+                                href="http://127.0.0.1:8000/proveedores/"
+                                class="text-success" title = "Proveedores">/ Proveedores</a></li>
                     </ol>
                 </div>
             </div>
@@ -31,26 +30,22 @@
         <div class="container-fluid ">
             <div class="row">
                 <!-- Card -->
-                <div class="card ">
+                <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title text-success"><tr><b
-                                    class="text-success">Reporte de
-                                    Proveedor</b></tr></h3>
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <h3 class="card-title text-success"><tr><b
+                                    class="text-success">Reporte de Proveedores</b></tr></h3>
+                            </div>
+                        </div>
                     </div>
-                    <!-- /.card-header -->
+                    <!-- /.card-body -->
                     <div class="card-body">
                         <!-- Este botón llama el modal -->
-
-                        <button type="button" class="btn btn-success float-right mr-0 mb-3"
-                        name="form-crear-proveedor"
-                        data-bs-toggle="modal"
-                        data-bs-target="#crear_Proveedor" title="Crear"> Crear Proveedor</button>
-
-                    
-
-                        <!-- Datatable de productos -->
-                        <table id="tabla-proveedores" class="table table-responsive-md table-bordered
-                            table-striped  border-dark">
+                        <a class="btn btn-success float-right mr-0 mb-3" data-bs-toggle="modal"
+                            data-bs-target="#crearProveedor" title="Crear"> Crear Proveedor</a>
+                        <!-- Datatable de clientes -->
+                        <table id="tabla-proveedores" class="table table-responsive-md table-bordered table-striped border-dark">
                             <thead class="bg-success">
                                 <tr>
                                     <th class="border-dark">Nombre Empresa</th>
@@ -75,29 +70,27 @@
                                     <td class="border-dark text-black">
                                         <button class="btn btn-success" data-bs-toggle="modal" title = "Ver" data-bs-target="#verProveedor{{proveedor.pk}}">
                                             <i class="fas fa-eye"></i></button>
-                                        <button class="btn btn-primary" data-bs-toggle="modal" title = "Modificar" data-bs-target="#editar_proveedor{{proveedor.pk}}">
+                                        <button class="btn btn-primary" data-bs-toggle="modal" title = "Modificar" data-bs-target="#modificarProveedor{{proveedor.pk}}">
                                             <i class="fas fa-edit"></i></button>
-                                        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#borrar_proveedor{{proveedor.pk}}" title="Eliminar">
+                                        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal{{proveedor.pk}}" title="Eliminar">
                                             <i class="fas fa-trash-alt"></i></button>
                                     </td>
                                 </tr>
 
-                                <!-- Modal de modificar cliente -->
+                                <!-- Modal de modificar proveedor -->
 
-                                <div class="modal fade" id="editar_proveedor{{proveedor.pk}}" data-bs-backdrop="static"
+                                <div class="modal fade" id="modificarProveedor{{proveedor.pk}}" data-bs-backdrop="static"
                                 data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
                                 aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h1 class="modal-title fs-3" id="staticBackdropLabel"><b
-                                                    class="text-black">MODIFICAR PROVEEDOR</b></h1>
+                                                    class="text-black">MODIFICAR PROVEEDORES</b></h1>
                                         </div>
                                         <div class="modal-body">
                                             <!-- Formulario -->
-                                            <form action= "{% url 'proveedores-modificar' proveedor.pk %}" method="POST"
-                                                enctype="multipart/form-data" class="needs-validation"
-                                                novalidate>
+                                            <form action= "{% url 'proveedores-modificar' proveedor.pk %}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
                                                 
                                                 <div class="modal-body text-start" id="form-nuevo-proveedor">
                                                 {% csrf_token %}
@@ -212,7 +205,7 @@
                                                             <select id="id_ciudad" class="form-select" name="ciudad"aria-label="tipo-activo"
                                                                 id="validationCustom06" required>
 
-                                                                <option class="text-black" select value="{{proveedor.ciudad.pk}}">{{proveedor.ciudad}}</option>
+                                                                <option class="text-black" select disabled="{{proveedor.ciudad.pk}}"value>{{proveedor.ciudad}}</option>
                                                             
                                                                 {% for ciudad in ciudades %}
                                                                     <option class="text-black" value="{{ciudad.id}}">{{ciudad.nombre}}</option>
@@ -231,9 +224,9 @@
                                                     <div class="modal-footer">
                                                         <!-- BOTÓN PARA GUARDAR LA INFORMACIÓN MODIFICADA EN EL FORMULARIO -->
                                                         <button type="reset" class="btn btn-secondary"
-                                                            data-bs-dismiss="modal" title="Cancelar">Cancelar</button>
+                                                            data-bs-dismiss="modal">Cancelar</button>
                                                         <input class="btn btn-success" type="submit"
-                                                            name="form-nuevo-proveedor" title="Modificar" value="Modificar">
+                                                            name="form-nuevo-proveedor" value="Modificar">
                                                     </div>
                                                 </div>
                                             </form>
@@ -243,7 +236,7 @@
                                 </div>
 
 
-                                <!-- Modal de Ver proveedor -->
+                                <!-- Modal de Ver cliente -->
                                 <div class="modal fade" id="verProveedor{{proveedor.pk}}" data-bs-backdrop="static"
                                 data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
                                 aria-hidden="true">
@@ -261,7 +254,7 @@
 
                                                 {% csrf_token %}
                                                 <div class="modal-body text-start" id="form-nuevo-proveedor">
-
+ 
                                                     <div class="d-inline-block w-100">
                                                         <label for="basic-url" for="validationCustom01"
                                                             class="form-label ps-2 text-black"
@@ -281,7 +274,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-
+ 
                                                     <div class="d-inline-block w-100">
                                                         <label for="basic-url" for="validationCustom02"
                                                             class="form-label ps-2 text-black"
@@ -301,7 +294,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-
+ 
                                                     <div class="d-inline-block w-100">
                                                         <label for="basic-url" for="validationCustom03"
                                                             class="form-label ps-2 text-black"
@@ -343,8 +336,8 @@
                                                             </div>
                                                         </div>
                                                     </div>
-
-
+ 
+ 
                                                     <div class="d-inline-block w-100">
                                                         <label for="basic-url" class="form-label ps-2
                                                             text-black" for="validationCustom05"
@@ -372,7 +365,7 @@
                                                             style="font-size: 17;">Ciudad</label>
                                                         <div class="input-group mb-3 w-100">
                                                             <input id="id_ciudad" class="form-control" name="ciudad" aria-describedby="basic-addon3"
-                                                                id="validationCustom06" class="text-black" required disabled value="{{proveedor.ciudad.nombre}}">
+                                                                id="validationCustom06" required class="text-black" required disabled value="{{proveedor.ciudad.nombre}}">
                                                         </div>
                                                             <div class="valid-feedback">
                                                                 ¡Vamos bien!
@@ -384,9 +377,9 @@
                                                     </div>
 
                                                     <div class="modal-footer">
-                                                        <!-- BOTÓN PARA GUARDAR LA INFORMACIÓN DIGITADA EN EL FORMULARIO DEL USUARIO -->
+                                                        <!-- BOTÓN PARA GUARDAR LA INFORMACIÓN DIGITADA EN EL FORMULARIO DEL PROVEEDOR -->
                                                         <button type="reset" class="btn btn-success"
-                                                            data-bs-dismiss="modal" title="Regresar">Regresar</button>    
+                                                            data-bs-dismiss="modal">Regresar</button>    
                                                     </div>
                                                 </div>
 
@@ -399,7 +392,7 @@
 
                                 <!-- Modal delete client -->
                                 <div class="modal fade"
-                                id="borrar_proveedor{{proveedor.pk}}"
+                                id="deleteModal{{proveedor.pk}}"
                                 tabindex="-1"
                                 aria-labelledby="deleteModalLabel"
                                 aria-hidden="true">
@@ -419,7 +412,7 @@
                                                 text-danger">
                                                 <span class="">¿Estás seguro de que deseas eliminar este proveedor?</span>
                                                 <div class="text-dark mt-3
-                                                    mb-2">Proveedor: <strong>{{proveedor.nombreEmpresa}}</strong></div>
+                                                    mb-2">Proveedor: <strong>{{proveedornombreEmpresa}}</strong></div>
                                             </div>
                                         </div>
 
@@ -428,11 +421,11 @@
                                                 {% csrf_token %}
 
                                                 <input type="submit"
-                                                    class="btn btn-danger" title="Eliminar"
+                                                    class="btn btn-danger"
                                                     value="Eliminar">
                                             </form>
                                             <button type="button" class="btn btn-secondary"
-                                                data-bs-dismiss="modal" title="Cancelar">Cancelar</button>
+                                                data-bs-dismiss="modal">Cancelar</button>
                                         </div>
                                     </div>
                                 </div>
@@ -444,49 +437,50 @@
                     </div>        
                     <a href="{% url 'recuperar_proveedores' %}" class="btn btn-warning float-right mr-1 mb-3" title="Papelera"><i class="fas fa-trash-restore"></i>&nbsp; Restaurar </a>
                         <!-- /.card-body -->  
-                    </div>
-            </div>   
-        </div>            
+                </div>
+            </div>            
             <!-- /.card -->
     </section>
     <!-- /.content -->
 </div>
 <footer>{% include 'partials/footer.html' %}</footer>
 <!-- /.content-wrapper -->
+
 {% endblock contenido %}
 
 
-<!-- jQuery -->
-<script src="{% static 'AdminLTE/jquery/jquery.min.js' %}"></script>
-<!-- Bootstrap -->
-<script src="{% static 'AdminLTE/js-copy/bootstrap.bundle.min.js' %}"></script>
-<!-- jQuery UI -->
-<script src="{% static 'AdminLTE/jquery-ui/jquery-ui.min.js' %}"></script>
-<!-- AdminLTE App -->
-<script src="{% static 'AdminLTE/js/adminlte.min.js' %}"></script>
-<!-- toastr alert -->
-<script type="application/json" src="{% static 'AdminLTE/toastr/toastr.js.map' %}"></script>
-<script type="text/javascript" src="{% static 'AdminLTE/toastr/toastr.min.js' %}"></script>
-
-<!-- DataTables  & Plugins -->
-<script src="{% static 'AdminLTE/datatables/jquery.dataTables.min.js' %}"></script>
-<script src="{% static 'AdminLTE/datatables-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
-<script src="{% static 'AdminLTE/datatables-responsive/js/dataTables.responsive.min.js' %}"></script>
-<script src="{% static 'AdminLTE/datatables-responsive/js/responsive.bootstrap4.min.js' %}"></script>
-<script src="{% static 'AdminLTE/datatables-buttons/js/dataTables.buttons.min.js' %}"></script>
-<script src="{% static 'AdminLTE/datatables-buttons/js/buttons.bootstrap4.min.js' %}"></script>
-<script src="{% static 'AdminLTE/jszip/jszip.min.js' %}"></script>
-<script src="{% static 'AdminLTE/pdfmake/pdfmake.min.js' %}"></script>
-<script src="{% static 'AdminLTE/pdfmake/vfs_fonts.js' %}"></script>
-<script src="{% static 'AdminLTE/datatables-buttons/js/buttons.html5.min.js' %}"></script>
-<script src="{% static 'AdminLTE/datatables-buttons/js/buttons.print.min.js' %}"></script>
-<script src="{% static 'AdminLTE/datatables-buttons/js/buttons.colVis.min.js' %}"></script>
-<script src="{% static 'AdminLTE/js/modal-status.js' %}"></script>
+{% block javascript %}
+    <!-- jQuery -->
+    <script src="{% static 'AdminLTE/jquery/jquery.min.js' %}"></script>
+    <!-- Bootstrap -->
+    <script src="{% static 'AdminLTE/js-copy/bootstrap.bundle.min.js' %}"></script>
+    <!-- jQuery UI -->
+    <script src="{% static 'AdminLTE/jquery-ui/jquery-ui.min.js' %}"></script>
+    <!-- AdminLTE App -->
+    <script src="{% static 'AdminLTE/js/adminlte.min.js' %}"></script>
+    <!-- toastr alert -->
+    <script type="application/json" src="{% static 'AdminLTE/toastr/toastr.js.map' %}"></script>
+    <script type="text/javascript" src="{% static 'AdminLTE/toastr/toastr.min.js' %}"></script>
+    
+    <!-- DataTables  & Plugins -->
+    <script src="{% static 'AdminLTE/datatables/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'AdminLTE/datatables-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+    <script src="{% static 'AdminLTE/datatables-responsive/js/dataTables.responsive.min.js' %}"></script>
+    <script src="{% static 'AdminLTE/datatables-responsive/js/responsive.bootstrap4.min.js' %}"></script>
+    <script src="{% static 'AdminLTE/datatables-buttons/js/dataTables.buttons.min.js' %}"></script>
+    <script src="{% static 'AdminLTE/datatables-buttons/js/buttons.bootstrap4.min.js' %}"></script>
+    <script src="{% static 'AdminLTE/jszip/jszip.min.js' %}"></script>
+    <script src="{% static 'AdminLTE/pdfmake/pdfmake.min.js' %}"></script>
+    <script src="{% static 'AdminLTE/pdfmake/vfs_fonts.js' %}"></script>
+    <script src="{% static 'AdminLTE/datatables-buttons/js/buttons.html5.min.js' %}"></script>
+    <script src="{% static 'AdminLTE/datatables-buttons/js/buttons.print.min.js' %}"></script>
+    <script src="{% static 'AdminLTE/datatables-buttons/js/buttons.colVis.min.js' %}"></script>
+    <script src="{% static 'AdminLTE/js/modal-status.js' %}"></script>
 
             <!--DataTable proveedores-->
             <script>
                 $(function () {
-                    $("#tabla-proveedor").DataTable({
+                    $("#tabla-proveedores").DataTable({
                         dom: 'Bfrtip',  
                             language:{
                                 url: "{% static 'AdminLTE/datatables/datatables.spanish.json' %}"
@@ -501,6 +495,4 @@
                     ).buttons().container().appendTo('#tabla-proveedores_wrapper .col-md-6:eq(0)');
                 });
             </script>
-            
-        {% block javascript%}
         {% endblock javascript %}

@@ -1,3 +1,9 @@
+{% block contenido %}
+{% load static %}
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -62,8 +68,8 @@
                                 </div>
                                 <!-- /.card-header -->
                                 <div class="card-body">
-                                    <!-- Datatable de clientes -->
-                                    <table id="tabla-proveedor" class="table table-bordered table-striped border-dark">
+                                    <!-- Datatable de proveedores -->
+                                    <table id="tabla-proveedores" class="table table-bordered table-striped border-dark">
                                         <thead class="bg-gray">
                                             <tr>
                                                 <th class="border-dark">Nombre Empresa</th>
@@ -72,7 +78,7 @@
                                                 <th class="border-dark">Dirección</th>
                                                 <th class="border-dark">Email</th>
                                                 <th class="border-dark">Ciudad</th>
-                                                <th class="border-dark">Acciones</th>
+                                                <th class="border-dark">Restaurar</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -85,9 +91,7 @@
                                                 <td class="border-dark text-black">{{proveedor.email}}</td>
                                                 <td class="border-dark text-black">{{proveedor.ciudad}}</td>
                                                 <td class="border-dark text-black">
-                                                <td class="border-dark text-black">
-                                                    <a href="{% url 'delete_proveedor' proveedor.id %}" class="btn btn-warning" title="Restaurar">
-                                                        <i Class="fas fa-trash-restore"></i></a>
+                                                    <buttom data-bs-toggle="modal" data-bs-target="#recuperarModal{{proveedor.pk}}" class="btn btn-warning" title="Restaurar"><i Class="fas fa-trash-restore"></i></buttom>
                                                 </td>
                                             </tr>
 
@@ -109,12 +113,12 @@
                                                     text-black">
                                                     <span class="">¿Estás seguro de que deseas recuperar este proveedor?</span>
                                                     <div class="text-dark mt-3
-                                                        mb-2">Proveedor: <strong>{{proveedor.nombreEmpresa}} {{proveedor.nit}}</strong></div>
+                                                        mb-2">Proveedor: <strong>{{proveedor.nombreEmpresa}}</strong></div>
                                                 </div>
                                             </div>
 
                                             <div class="modal-footer">
-                                                <form method="post" action="{% url 'delete_proveedor' proveedor.id %}">
+                                                <form method="post" action="{% url 'recuperar_proveedor' proveedor.id %}">
                                                     {% csrf_token %}
 
                                                     <input type="submit"
@@ -168,10 +172,10 @@
                     <script src="{% static 'AdminLTE/datatables-buttons/js/buttons.colVis.min.js' %}"></script>
                     <script src="{% static 'AdminLTE/js/modal-status.js' %}"></script>
 
-                    <!--DataTable tecnicos-->
+                    <!--DataTable proveedores-->
                     <script>
                 $(function () {
-                    $("#tabla-proveedor").DataTable({
+                    $("#tabla-proveedores").DataTable({
                         dom: 'frtip',
                         language:{
                             url: "/static/AdminLTE/datatables/datatables.spanish.json"
@@ -183,7 +187,7 @@
                     "buttons": ["copy", "csv", "excel", "pdf", "print"],
                     }
                     
-                    ).buttons().container().appendTo('#tabla-proveedor_wrapper .col-md-6:eq(0)');
+                    ).buttons().container().appendTo('#tabla-proveedores_wrapper .col-md-6:eq(0)');
                 });
             </script>
                     {% block javascript %}
