@@ -8,18 +8,36 @@ def compras(request):
         
     compras = Compra.objects.all()
     detalleCompra = DetalleCompra.objects.all()
-    productos = Producto.objects.all()
-    proveedores = Proveedor.objects.all()
-
     form= CompraForm()
     form= DetalleCompraForm()
-
+    
     for compra in compras:
         print(compra.detallecompra)
     
     context={
         'detalleCompra':detalleCompra,
         "compras": compras,
+        'form': form,
+    }
+    return render(request,'compras/compras.html', context)
+
+def detalle(request):
+    detalleCompra = DetalleCompra.objects.all()
+    productos = Producto.objects.all()
+    proveedores = Proveedor.objects.all()
+    form= DetalleCompraForm()
+
+    for detallecompra in detalleCompra:
+        print(detallecompra.cantidadProducto)
+        print(detallecompra.subtotalCompra) 
+        print(detallecompra.porcentajeIva)
+        print(detallecompra.totalCompra)
+        print(detallecompra.valorTotalProducto)
+        print(detallecompra.producto)
+        print(detallecompra.proveedor)
+
+    context={
+        'detalleCompra':detalleCompra,
         'productos': productos,
         'proveedores': proveedores,
         'form': form,
@@ -43,6 +61,24 @@ def compras_crear(request):
         'form': form,
     }
     return render(request, 'compras/compras-crear.html', context)
+
+def detalle_crear(request):
+    if request.method == 'POST':
+        form = DetalleCompraForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request,'¡Detalle creado correctamente!')
+            return redirect(to='compras')
+        else:
+            messages.error(request, "¡Error al crear detalle!")
+            return redirect(to='compras')
+    else:
+        form = DetalleCompraForm()
+    context = {
+        'form': form,
+    }
+    return render(request, 'compras/compras-detalle.html', context)
+
 
 #Function to View  compra data individually
 
