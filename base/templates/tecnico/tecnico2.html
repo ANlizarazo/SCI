@@ -38,7 +38,7 @@
                     <!-- /.card-header -->
                     <div class="card-body">
                         <!-- Este botón llama el modal -->
-                        <button type="button" class="btn btn-success float-right mr-0 mb-3" data-bs-toggle="modal" data-bs-target="#crear_Tecnico{{tecnico.pk}}" title="Crear"> Crear Técnico</button>
+                        <button type="button" class="btn btn-success float-right mr-0 mb-3" data-bs-toggle="modal" data-bs-target="#crearTecnico" title="Crear"> Crear Técnico</button>
                         <!-- Datatable de tecnicos -->
                         <table id="tabla-tecnicos" class="table table-bordered table-striped table-responsive-sm border-dark">
                             <thead class="bg-success">
@@ -54,7 +54,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {% for tecnico in tecnico %}
+                                {% for tecnico in tecnico_list %}
                                 {% if tecnico.estado == '1' %}
                                 <tr>
                                     <td class="border-dark text-black">{{tecnico.nombres}}</td>
@@ -66,9 +66,9 @@
                                     <td class="border-dark text-black">{{tecnico.ciudad}}</td>
                                     <td class="border-dark text-black">
                                         <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#verTecnico" title="Ver">
-                                            <i class="fas fa-eye"></i></button><c>{% include 'tecnico/tecnico-ver.html' %}</c>        
+                                            <i class="fas fa-eye"></i></button>        
                                         <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modificarTecnico" title="Modificar">
-                                            <i class="fas fa-edit"></i></button><c>{% include 'tecnico/tecnico-modificar.html' %}</c>
+                                            <i class="fas fa-edit"></i></button>
                                             <button class="btn btn-danger"
                                             data-bs-toggle="modal"
                                             data-bs-target="#deleteModal{{tecnico.pk}}" title="Eliminar">

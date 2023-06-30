@@ -10,7 +10,7 @@ from proveedores.models import Proveedor
 class DetalleCompra(models.Model):
     valorTotalMaterial = models.BigIntegerField(validators = [ MinValueValidator ( 0 )], verbose_name="Valor Total Material")
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE, verbose_name="Usuario",null=True)
-   
+
     
     def _str_(self)->str:
         return "%s %s %s %s" %(self.id,self.usuario,self.valorTotalMaterial,)  
