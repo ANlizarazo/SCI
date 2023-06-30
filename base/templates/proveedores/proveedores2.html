@@ -1,6 +1,7 @@
 {% load static %}
 {% block contenido %}
 
+
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -14,10 +15,10 @@
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a
                                 href="http://127.0.0.1:8000/inicio/">
-                                <b class="text-success" title = "Inicio">Inicio </b></a></li>
+                                <b class="text-success">Inicio </b></a></li>
                         <li class="breadcrumb-item-active"><a
-                                href="http://127.0.0.1:8000/proveedores/"
-                                class="text-success" title = "Proveedores">/ Proveedores</a></li>
+                                href="http://127.0.0.1:8000/producto/"
+                                class="text-success">/ Proveedor</a></li>
                     </ol>
                 </div>
             </div>
@@ -30,22 +31,26 @@
         <div class="container-fluid ">
             <div class="row">
                 <!-- Card -->
-                <div class="card">
+                <div class="card ">
                     <div class="card-header">
-                        <div class="d-flex justify-content-between">
-                            <div>
-                                <h3 class="card-title text-success"><tr><b
-                                    class="text-success">Reporte de Proveedores</b></tr></h3>
-                            </div>
-                        </div>
+                        <h3 class="card-title text-success"><tr><b
+                                    class="text-success">Reporte de
+                                    Proveedor</b></tr></h3>
                     </div>
-                    <!-- /.card-body -->
+                    <!-- /.card-header -->
                     <div class="card-body">
                         <!-- Este botón llama el modal -->
-                        <a class="btn btn-success float-right mr-0 mb-3" data-bs-toggle="modal"
-                            data-bs-target="#crear_proveedor" title="Crear"> Crear Proveedor</a>
-                        <!-- Datatable de clientes -->
-                        <table id="tabla-proveedores" class="table table-responsive-md table-bordered table-striped border-dark">
+
+                        <button type="button" class="btn btn-success float-right mr-0 mb-3"
+                        name="form-crear-proveedor"
+                        data-bs-toggle="modal"
+                        data-bs-target="#crear_Proveedor" title="Crear"> Crear Proveedor</button>
+
+                    
+
+                        <!-- Datatable de productos -->
+                        <table id="tabla-proveedores" class="table table-responsive-md table-bordered
+                            table-striped  border-dark">
                             <thead class="bg-success">
                                 <tr>
                                     <th class="border-dark">Nombre Empresa</th>
@@ -450,6 +455,7 @@
 <!-- /.content-wrapper -->
 {% endblock contenido %}
 
+
 <!-- jQuery -->
 <script src="{% static 'AdminLTE/jquery/jquery.min.js' %}"></script>
 <!-- Bootstrap -->
@@ -495,5 +501,6 @@
                     ).buttons().container().appendTo('#tabla-proveedores_wrapper .col-md-6:eq(0)');
                 });
             </script>
+            
         {% block javascript%}
         {% endblock javascript %}
