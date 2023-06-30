@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from compras.models import Compra
+from compras.models import Compra, DetalleCompra
 
 class CompraForm(ModelForm):
     """Form definition for Compra."""
@@ -14,3 +14,8 @@ class CompraUpdateForm(ModelForm):
     class Meta:
         model= Compra
         exclude=['fecha']
+
+class DetalleCompraForm(ModelForm):
+    class Meta:
+        model= DetalleCompra
+        exclude=['estado']
