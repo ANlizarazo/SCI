@@ -1,31 +1,28 @@
 from django.shortcuts import redirect, render
-from compras.models import Compra, DetalleCompra
-from proveedores.models import Proveedor
+from compras.models import Compra, DetalleCompra, Proveedor, Producto
 from compras.forms import CompraForm,CompraUpdateForm, DetalleCompraForm
 from django.contrib import messages
 
-
-
 # Create your views here.
-
-
 def compras(request):
         
     compras = Compra.objects.all()
-    proveedores = Proveedor.objects.all() 
     detalleCompra = DetalleCompra.objects.all()
+    productos = Producto.objects.all()
+    proveedores = Proveedor.objects.all()
+
     form= CompraForm()
     form= DetalleCompraForm()
 
     for compra in compras:
-        print(compra.categoria.id)
+        print(compra.detallecompra)
     
     context={
         'detalleCompra':detalleCompra,
-        'form': form,
         "compras": compras,
+        'productos': productos,
         'proveedores': proveedores,
-        
+        'form': form,
     }
     return render(request,'compras/compras.html', context)
 
@@ -42,17 +39,6 @@ def compras_crear(request):
             return redirect(to='compras')
     else:
         form = CompraForm()
-
-    if request.method == 'POST':
-        form = DetalleCompraForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect(to='compras')
-        else:
-            return redirect(to='compras')
-    else:
-        form = DetalleCompra()
-
     context = {
         'form': form,
     }
@@ -117,7 +103,7 @@ def recuperar_compras(request):
     compras_recuperables = []
 
     for compras in compras:
-        if compra.estado == '0':
+        if compras.estado == '0':
             compras_recuperables.append(compras)
 
     context={
