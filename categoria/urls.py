@@ -4,8 +4,8 @@ from categoria.views import categorias, categoria_crear, categoria_modificar, ca
 urlpatterns = [
     path('', categorias ,name="categorias"),    
     path('categoria-modificar/<int:pk>/', categoria_modificar, name="categoria_modificar"),
-    path('categoria/<int:pk>/', categoria_eliminar, name="categoria_eliminar"),
-    path('categoria/', recuperar_categoria, name="recuperar_categoria"),
+    path('categoria_eliminar/<int:pk>/', categoria_eliminar, name="categoria_eliminar"),
+    path('categoria-recuperar/', recuperar_categoria, name="recuperar_categoria"),
     path('recuperar-cat/<int:pk>/', recuperar_cat, name='recuperar_cat'),
     path('categoria-crear/', categoria_crear, name="categoria-crear"),
     path('categoria-crear-cat/', categoria_crear_cat, name="categoria-crear-cat"),

@@ -1,0 +1,33 @@
+{% load crispy_forms_tags %}
+
+<!-- Modal de crear ciudad -->
+
+<div class="modal fade" id="crearCiudad" data-bs-backdrop="static"
+    data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-3" id="staticBackdropLabel"><b
+                        class="text-black">CREAR CIUDAD</b></h1>
+            </div>
+            <div class="modal-body">
+                <!-- Formulario -->
+                <form action="{% url 'ciudad-crear' %}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
+
+                    {% csrf_token %}
+                    
+                    {{form|crispy}}
+                    
+                        <div class="modal-footer">
+                            <!-- BOTÓN PARA GUARDAR LA INFORMACIÓN DIGITADA EN EL FORMULARIO DE CIUDAD -->
+                            <button type="reset" class="btn btn-secondary"
+                                data-bs-dismiss="modal" title="Cancelar">Cancelar</button>
+                            <input class="btn btn-success" type="submit" title="Crear" value="Crear">
+                        </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/static/js/funciones.js"></script>

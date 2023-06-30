@@ -14,130 +14,8 @@
                 class="needs-validation" novalidate>
                 
                     {% csrf_token %}          
-                    <div class="modal-body text-start" id="form-crear-compra"> 
-
-                        <div class="d-inline-block w-100">
-                            <label for="basic-url"  for="validationCustom01" class="form-label ps-2 text-black" style="font-size: 17;">Fecha</label>
-                            <div class="input-group mb-3 w-100">
-                                <input type="date" class="form-control"
-                                    name="fecha" id="id_fecha"
-                                    aria-describedby="basic-addon3"  required minlength="1"
-                                    maxlength="50" required>
-                                    <div class="valid-feedback">
-                                        ¡Vamos bien!
-                                    </div>
-                                    <div class="invalid-feedback">
-                                        Completa la información.
-                                    </div>
-                            </div>
-                        </div>
-                
-                        <div class="d-inline-block w-100">
-                            <label for="basic-url"  for="validationCustom02" class="form-label ps-2 text-black" style="font-size: 17;">Proveedor</label>
-                            <div class="input-group mb-3 w-100">
-                                <input type="text" class="form-control"
-                                    name="proveedor" id="id_proveedor"
-                                    aria-describedby="basic-addon3"  required minlength="1"
-                                    maxlength="50" required value="{{compra.proveedor}}">
-                                    <div class="valid-feedback">
-                                        ¡Vamos bien!
-                                    </div>
-                                    <div class="invalid-feedback">
-                                        Completa la información.
-                                    </div>
-                            </div>
-                        </div>
-                
-                        <div class="d-inline-block w-100">
-                            <label for="basic-url" for="validationCustom03" class="form-label ps-2 text-black" style="font-size: 17;">Detalle Compra</label>
-                            <div class="input-group mb-3 w-100">
-                                <textarea type="text" class="form-control" name="detalleCompra"
-                                    id="id_detalleCompra"
-                                    aria-describedby="basic-addon3"  required minlength="1"
-                                    maxlength="250" required>{{compra.detalleCompra}}</textarea>
-                                    <div class="valid-feedback">
-                                        ¡Vamos bien!
-                                    </div>
-                                    <div class="invalid-feedback">
-                                        Ingresa un número de dirección valido.
-                                    </div>
-                            </div>
-                        </div>
-                
-                        <div class="d-inline-block w-100">
-                            <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom04" style="font-size: 17;">Cantidad de Material</label>
-                            <div class="input-group mb-3 w-100">
-                                <input type="number" class="form-control" name="cantidadMaterial"
-                                id="id_cantidadMaterial"
-                                aria-describedby="basic-addon3"  required minlength="1"
-                                maxlength="100" required value="{{compra.cantidadMaterial}}">
-                                <div class="valid-feedback">
-                                    ¡Vamos bien!
-                                </div>
-                                <div class="invalid-feedback">
-                                    Ingresa un correo electrónico valido.
-                                </div>
-                            </div>
-                        </div>
-                
-                        
-                
-                        <div class="d-inline-block w-100">
-                            <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom05" style="font-size: 17;">Material</label>
-                            <div class="input-group mb-3 w-100">
-                                <select id="id_material" class="form-select" name="material"
-                                    aria-label="tipo-activo"  require {% block Value-material %}{% endblock Value-material %}>
-                                    <option class="text-black" selected value>Seleccionar</option>
-                                    <option class="text-black" value="mallas">Mallas</option>
-                                    <option class="text-black" value="tubos">Tubos en acero</option>
-                                    <option class="text-black" value="alambres">Alambres</option>
-                                    <option class="text-black" value="madera">Madera</option>>
-                                    <option class="text-black" value="canecas">Caneca en acero</option>
-
-                                </select>
-                                <div class="valid-feedback">
-                                    ¡Vamos bien!
-                                </div>
-                                <div class="invalid-feedback">
-                                    Selecciona una opción valida.
-                                </div>
-                            </div>
-                        </div> 
-                        
-                        <div class="d-inline-block w-100">
-                            <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom06" style="font-size: 17;">Valor Total</label>
-                            <div class="input-group mb-3 w-100">
-                                <input type="number" class="form-control" name="valorTotal"
-                                aria-describedby="basic-addon3"  required minlength="1"
-                                maxlength="50" required value="{{compra.valorTotal}}">
-                                <div class="valid-feedback">
-                                    ¡Vamos bien!
-                                </div>
-                                <div class="invalid-feedback">
-                                    Selecciona una opción valida.
-                                </div>
-                            </div>
-                        </div>   
-                        
-                        <div class="d-inline-block w-100">
-                            <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom07" style="font-size: 17;">Estado</label>
-                            <div class="input-group mb-3 w-100">
-                                <select id="id_estado" class="form-select" name="estado"
-                                    aria-label="tipo-activo"  required>
-                                    <option class="text-black" selected value>Seleccionar</option>
-                                    <option class="text-black" value="1">Activo</option>
-                                    <option class="text-black" value="0">Inactivo</option>
-                                </select>
-                                <div class="valid-feedback">
-                                    ¡Vamos bien!
-                                </div>
-                                <div class="invalid-feedback">
-                                    Selecciona una opción valida.
-                                </div>
-                            </div>
-                        </div>
-
-                    </div> 
+                    
+                    {{ form|crispy}}
 
                     <div class="modal-footer">
                         <!-- BOTÓN PARA GUARDAR LA INFORMACIÓN DIGITADA EN EL FORMULARIO DE LA COMPRA-->
@@ -146,11 +24,8 @@
                     </div>
 
                 </form>
-
-
             </div>
-        
         </div>
     </div>
 </div>       
-
+<script src="/static/js/funciones.js"></script>

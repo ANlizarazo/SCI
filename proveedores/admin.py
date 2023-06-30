@@ -1,13 +1,12 @@
 from django.contrib import admin
-from proveedores.models import Proveedor,Material,Departamento
+from proveedores.models import Proveedor
 # Register your models here.
 
 class ProveedorAdmin (admin.ModelAdmin):
-    list_display=("id", "nombreEmpresa","telefono","email","material")
+    list_display=("id", "nombreEmpresa","telefono","email")
     search_fields=("nombreEmpresa", "email")
-    list_filter=("material",)
+    list_filter=("nombreEmpresa",)
     list_per_page = 8
 
 admin.site.register(Proveedor)
-admin.site.register(Material)
-admin.site.register(Departamento)
+

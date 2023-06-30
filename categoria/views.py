@@ -7,35 +7,34 @@ from django.contrib import messages
 
 def categorias(request):
 
-    
     categorias = Categoria.objects.all()
+    form = CategoriaForm()
 
     for categoria in categorias:
         print(categoria.nombrecat)
 
     context={
 
-        "categorias": categorias
-        
+        "categorias": categorias,
+        'form': form,
     }
     return render(request,'categoria/categorias.html', context)
 
 
 
 def categoria_crear(request):
-
     titulo = "Categoría - Crear"
     if request.method == 'POST':
         form =  CategoriaForm(request.POST)
         if form.is_valid():
             form.save()
-            print("La categoría se guardó correctamente")
-            return redirect('productos')
+            messages.success(request,'¡Categoría creada correctamente!')
+            return redirect(to='categorias')
         else:
-            print("La categoría NO se pudo guardar")
-    
+            messages.error(request, "¡Error al crear categoría!")
+            return redirect(to='categorias')
     else:
-        form = CategoriaForm()
+        form=CategoriaForm()
     context = {
         'titulo': titulo,
         "form": form
@@ -79,15 +78,19 @@ def categoria_modificar(request, pk):
             print('Error al editar la categoria')
     else:
         form = CategoriaForm(instance = categoria)
+    
+    context ={
+        'form': form,
+    }
 
-    return render(request, 'categoria/categorias.html', {'form': form})
+    return render(request, 'categoria/categorias.html', context)
 
 
 
 
 def categoria_eliminar(request, pk):
     categoria = Categoria.objects.filter(id = pk).update(
-        estado = '0'
+        estadocat = '0'
     )
     messages.success(request, "Categoría eliminada satisfactoriamente!")
     return redirect('categorias') 
@@ -101,7 +104,7 @@ def recuperar_categoria(request):
     categorias_recuperables = []
 
     for categoria in categorias:
-        if categoria.estado != '1':
+        if categoria.estadocat != '1':
             categorias_recuperables.append(categoria)
 
     context={
@@ -112,9 +115,9 @@ def recuperar_categoria(request):
 
 
 def recuperar_cat(request, pk):
-    titulo = 'Recuperar Categoría'
+    titulo = 'Recuperar Categoria'
     Categoria.objects.filter(id = pk).update(
-        estado = '1'
+        estadocat = '1'
     )
-    messages.success(request, "Categoría restaurada satisfactoriamente!")
+    
     return redirect('categorias')

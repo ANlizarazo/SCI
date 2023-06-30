@@ -3,7 +3,7 @@
 {% load bootstrap5 %}
 {% bootstrap_css %}
 {% bootstrap_javascript %}
-{% bootstrap_messages %}
+
 
 <!DOCTYPE html>
 <html lang="es">
@@ -46,10 +46,10 @@
                                 <ol class="breadcrumb float-sm-right">
                                     <li class="breadcrumb-item"><a
                                             href="http://127.0.0.1:8000/inicio/">
-                                            <b class="text-success">Inicio </b></a></li>
+                                            <b class="text-success" title = "Inicio">Inicio </b></a></li>
                                     <li class="breadcrumb-item-active"><a
                                             href="http://127.0.0.1:8000/clientes/"
-                                            class="text-success">/ Clientes</a></li>
+                                            class="text-success" title = "Clientes">/ Clientes</a></li>
                                 </ol>
                             </div>
                         </div>
@@ -92,10 +92,47 @@
                                                 <td class="border-dark text-black">{{cliente.email}}</td>
                                                 <td class="border-dark text-black">{{cliente.ciudad}}</td>
                                                 <td class="border-dark text-black">
-                                                    <a href="{% url 'recuperar_cliente' cliente.id %}" class="btn btn-warning" title="Restaurar">
-                                                        <i Class="fas fa-trash-restore"></i></a>
+                                                    <buttom data-bs-toggle="modal" data-bs-target="#recuperarModal{{cliente.pk}}" class="btn btn-warning" title="Restaurar"><i Class="fas fa-trash-restore"></i></buttom>
                                                 </td>
                                             </tr>
+
+                                    <!-- Modal recuperar confirmation -->
+                                    <div class="modal fade"
+                                    id="recuperarModal{{cliente.pk}}"
+                                    tabindex="-1"
+                                    aria-labelledby="deleteModalLabel"
+                                    aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header bg-warning">
+                                                <h5 class="modal-title "
+                                                    id="deleteModalLabel"><i
+                                                        class="fas fa-trash-restore"></i>&nbsp;&nbsp; <b>RESTAURAR CLIENTE</b></h5>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="text-center
+                                                    text-black">
+                                                    <span class="">¿Estás seguro de que deseas recuperar este cliente?</span>
+                                                    <div class="text-dark mt-3
+                                                        mb-2">Cliente: <strong>{{cliente.nombreEmpresa}} {{cliente.nit}}</strong></div>
+                                                </div>
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                <form method="post" action="{% url 'recuperar_cliente' cliente.id %}">
+                                                    {% csrf_token %}
+
+                                                    <input type="submit"
+                                                        class="btn btn-warning"
+                                                        value="Recuperar">
+                                                </form>
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Cancelar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+<!--Fin del modal-->
                                             {% endfor %}
                                         </tbody>
                                     </table>
@@ -148,7 +185,7 @@
                     "responsive": true, "paging": true, "lengthChange": false,
                     "searching": true, "autoWidth": false, "ordering": true,
                     "info": true, "pageLength": 8,
-
+                    "buttons": ["copy", "csv", "excel", "pdf", "print"],
                     }
                     
                     ).buttons().container().appendTo('#tabla-tecnico_wrapper .col-md-6:eq(0)');

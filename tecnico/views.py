@@ -1,43 +1,39 @@
 from django.shortcuts import redirect, render
 from tecnico.models import Tecnico
+from tecnico.forms import TecnicoForm
 from django.http import HttpResponseRedirect
 from django.contrib import messages
 
 # Create your views here.
 
 def tecnicos (request):
-    
-    #importar los tecnicos desde el modulo admin
-    tecnicos_list= Tecnico.objects.all()
 
-    return render(request,'tecnico/tecnico.html',  {"tecnico": tecnicos_list})
+    tecnico_list= Tecnico.objects.all()
+    form = TecnicoForm()
+
+    context= {
+        'tecnico_list': tecnico_list,
+        'form': form,
+    }
+    return render(request,'tecnico/tecnico.html', context)
 
 #Function to ADD tecnico
 def tecnico_crear(request):
-    if request.method=="POST":
-        if request.POST.get('nombres') \
-            and request.POST.get('apellidos') \
-            and request.POST.get('telefono') \
-            and request.POST.get('genero') \
-            and request.POST.get('tipoDocumento') \
-            and request.POST.get('numDocumento') \
-            and request.POST.get('estado') \
-            and request.POST.get('ciudad'):
-            tecnico= Tecnico()  
-            tecnico.nombres= request.POST.get('nombres')
-            tecnico.apellidos= request.POST.get('apellidos')
-            tecnico.telefono= request.POST.get('telefono')
-            tecnico.genero= request.POST.get('genero')
-            tecnico.tipoDocumento= request.POST.get('tipoDocumento')
-            tecnico.numDocumento= request.POST.get('numDocumento')
-            tecnico.estado= request.POST.get('estado')
-            tecnico.estado= request.POST.get('ciudad')
-            tecnico.save()
-            messages.success(request, "Tecnico añadido con éxito!")
-            return redirect('tecnicos')
-        else:
-            messages.error(request, "La creación del tecnico ha fallido!")
+    if request.method == 'POST':
+        form = TecnicoForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request,'¡Tecnico creado correctamente!')
             return redirect('tecnico')
+        else:
+            messages.error(request, "¡Error al crear tecnico!")
+    else:
+        form = TecnicoForm()
+    context = {
+        'form': form,
+    }
+
+    return render(request, 'tecnico/tecnico-crear.html', context)
 
 #Function to View tecnico data individually
 def tecnico_ver(request, tecnico_id):

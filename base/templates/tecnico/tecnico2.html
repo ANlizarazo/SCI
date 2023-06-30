@@ -40,7 +40,7 @@
                         <!-- Este botón llama el modal -->
                         <button type="button" class="btn btn-success float-right mr-0 mb-3" data-bs-toggle="modal" data-bs-target="#crear_Tecnico{{tecnico.pk}}" title="Crear"> Crear Técnico</button>
                         <!-- Datatable de tecnicos -->
-                        <table id="tabla-tecnicos" class="table table-bordered table-striped border-dark">
+                        <table id="tabla-tecnicos" class="table table-bordered table-striped table-responsive-sm border-dark">
                             <thead class="bg-success">
                                 <tr>
                                     <th class="border-dark">Nombres</th>
@@ -95,7 +95,7 @@
                                                         mb-4 mt-2"></i></div>
                                                 <div class="text-center
                                                     text-danger">
-                                                    <span class="">¿Estás seguro de que deseas eliminar este usuario?</span>
+                                                    <span class="">¿Estás seguro de que deseas eliminar este tecnico?</span>
                                                     <div class="text-dark mt-3
                                                         mb-2">Técnico: <strong>{{tecnico.nombres}} {{tecnico.apellidos}}</strong></div>
                                                 </div>

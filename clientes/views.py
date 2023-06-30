@@ -1,25 +1,27 @@
 from django.shortcuts import redirect, render
-from clientes.forms import ClienteForm, ClienteUpdateForm, CiudadForm
+from clientes.forms import ClienteForm, ClienteUpdateForm
+from clientes.models import Cliente, Ciudad
+from django.contrib import messages
 
-from clientes.models import Cliente
-from clientes.models import Ciudad
-
-# Create your views here.
-
-
+#Lista de clientes
 def clientes(request):
     
     clientes= Cliente.objects.all()
-    form = ClienteForm(request.POST)
-    formCiudad = CiudadForm(request.POST)
+    ciudades= Ciudad.objects.all()
+    form = ClienteForm()
     
+    for cliente in clientes:
+        print(cliente.ciudad.id)
+
     context={
         "clientes":clientes,
+        "ciudades":ciudades,
         'form': form,
-        'formCiudad': formCiudad
     }
     return render(request,'clientes/clientes.html',context)
 
+
+#Funcion para VER clientes
 def clientes_ver(request):
 
     titulo = "Clientes - Ver"
@@ -36,52 +38,54 @@ def clientes_ver(request):
     return render(request, 'clientes/clientes-ver.html', context)
 
 
-
+#Función para CREAR clientes
 def clientes_crear(request):
     if request.method == 'POST':
         form = ClienteForm(request.POST)
         if form.is_valid():
             form.save()
-            print('Cliente creado correctamente')
-
-            return redirect('clientes')
+            messages.success(request,'¡Cliente creado correctamente!')
+            return redirect(to='clientes')
         else:
-            print('Cliente NO FUÉ CREADO')
+            messages.error(request, "¡Error al crear cliente!")
+            return redirect(to='clientes')
+    else:
+        form = ClienteForm()
+    context = {
+        'form': form,
+    }
+    return render(request, 'clientes/clientes-crear.html', context)
 
-        context = {
-            'form': form
-        }
 
-        return render(request, 'clientes/clientes.html', context)
-
-
-
-
-#Function to EDIT cliente
+#Función para MODIFICAR clientes
 def clientes_modificar(request, pk):
     cliente = Cliente.objects.get(id = pk)
     if request.method == "POST":
         form = ClienteForm(request.POST, instance = cliente)
         if form.is_valid():
             form.save()
-            
+            messages.success(request,'¡Cliente guardado correctamente!')
             return redirect('clientes')
         else:
-            print('Error al editar al cliente')
+            print('Error al modificar cliente')
+            messages.error(request, "¡Error al modificar el cliente!")
     else:
-        form = ClienteForm(instance = cliente)
+        form = ClienteForm( instance = cliente)
+    
+    context = {
+        'form': form,
+    }
 
-    return render(request, 'tecnico/tecnico.html', {'form': form})    
+    return render(request, 'clientes/clientes.html', context)    
 
 
-
+#Función para ELIMINAR clientes
 def clientes_eliminar(request, pk):
     cliente = Cliente.objects.filter(id = pk).update(
         estado = '0'
     )
-
+    messages.success(request, "¡Cliente eliminado correctamente!")
     return redirect('clientes') 
-
 
 
 #Function to RECUPERAR cliente
@@ -106,5 +110,5 @@ def recuperar_cliente(request, pk):
     Cliente.objects.filter(id = pk).update(
         estado = '1'
     )
-    
+    messages.success(request, "¡Cliente restaurado correctamente!")
     return redirect('clientes')

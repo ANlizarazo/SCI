@@ -5,211 +5,29 @@
 <div class="modal fade" {% block modal-id %}  id="crear_Proveedor" {% endblock modal-id %} data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-labelledby="addModalLabel" aria-hidden="true">
     <div class="modal-dialog">
     <div class="modal-content">
-        {% block title-color %} <div class="modal-header bg-success">{% endblock title-color %}
-            <h1 class="modal-title fs-3" id="addModalLabel" id="staticBackdropLabel">
-                {% block modal-title %}<b class="text-white fas fa-plus">&nbsp;&nbsp; CREAR NUEVO PROVEEDOR</b></h1>{% endblock modal-title %}
+        <div class="modal-header">
+            <h1 class="modal-title fs-3" id="staticBackdropLabel"><b class="text-black">&nbsp;&nbsp; CREAR NUEVO PROVEEDOR</b></h1>
         </div>
         <div class="modal-body">
             <!-- Formulario -->
-            <form id="f_proveedor" method="POST" {% block action %} action="/proveedor_crear" {% endblock action %} autocomplete="off" class="needs-validation" enctype="multipart/form-data" novalidate>
-                    {% csrf_token %}
-                <div class="modal-body text-start" id="form-nuevo-proveedor">
-                <!--======= Block Id (root) ======== -->
-                
-                {% block Value_id %}{% endblock Value_id %}
-                    <div class="d-inline-block w-100">
-                        <label for="basic-url" for="validationCustom01" class="form-label ps-2 text-black" style="font-size: 17;">Nombre Empresa</label>
-                        <div class="input-group mb-3 w-100">
-                            <input type="text" class="form-control"
-                                name="NombreEmpresa" id="id_nombreEmpresa"
-                                aria-describedby="basic-addon3" required minlength="1"
-                                maxlength="50" id="validationCustom01" required {% block Value-nombreEmpresa %}{% endblock Value-nombreEmpresa %}>
-                                <div class="valid-feedback">
-                                    ¡Vamos bien!
-                                </div>
-                                <div class="invalid-feedback">
-                                    Completa la información.
-                                </div>
-                        </div>
-                    </div>
-                
-                    <div class="d-inline-block w-100">
-                        <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom04" style="font-size: 17;">Correo Electrónico</label>
-                        <div class="input-group mb-3 w-100">
-                            <input type="email" class="form-control" name="email"
-                                id="id_email"
-                                aria-describedby="basic-addon3" id="validationCustom04" required minlength="1"
-                                maxlength="100" required {% block Value-email %}{% endblock Value-email %}>
-                                <div class="valid-feedback">
-                                    ¡Vamos bien!
-                                </div>
-                                <div class="invalid-feedback">
-                                    Ingresa un correo electrónico valido.
-                                </div>
-                        </div>
-                    </div>
+            <form  action="{% url 'proveedores-crear' %}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
             
-                    <div class="d-inline-block w-100">
-                        <label for="basic-url" for="validationCustom03" class="form-label ps-2 text-black" style="font-size: 17;">Número de Teléfono</label>
-                        <div class="input-group mb-3 w-100">
-                            <input type="number" class="form-control" name="numeroTelefono"
-                                id="id_numeroTelefono"
-                                aria-describedby="basic-addon3" id="validationCustom03" required minlength="1"
-                                maxlength="20" required {% block Value-telefono %}{% endblock Value-telefono %}>
-                                <div class="valid-feedback">
-                                    ¡Vamos bien!
-                                </div>
-                                <div class="invalid-feedback">
-                                    Ingresa un número de teléfono valido.
-                                </div>
-                        </div>
-                    </div>
+                {% csrf_token %}          
+                
+                {{form|crispy}}
 
-                    <div class="d-inline-block w-100">
-                        <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom05" style="font-size: 17;">Dirección</label>
-                        <div class="input-group mb-3 w-100">
-                            <input type="text" class="form-control" name="direccionResidencia"
-                                id="id_direccionResidencia"
-                                aria-describedby="basic-addon3" id="validationCustom05" required minlength="1"
-                                maxlength="100" required {% block Value-direccion %}{% endblock Value-direccion %}>
-                                <div class="valid-feedback">
-                                    ¡Vamos bien!
-                                </div>
-                                <div class="invalid-feedback">
-                                    Ingresa un dirección valida.
-                                </div>
-                        </div>
+                    <div class="modal-footer">
+                        <!-- BOTÓN PARA GUARDAR LA INFORMACIÓN DIGITADA EN EL FORMULARIO DEL USUARIO -->
+                        <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <input class="btn btn-success" type="submit" name="form-nuevo-usuario" value="Crear">
+                        
                     </div>
+                </form>
+                
+            </div>
             
-                    <div class="d-inline-block w-100">
-                        <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom06" style="font-size: 17;">Modo de Pago</label>
-                        <div class="input-group mb-3 w-100">
-                            <select id="id_modoPago" class="form-select" name="modoPago"
-                                aria-label="tipo-activo" id="validationCustom06" required {% block Value-modoPago %}{% endblock Value-modoPago %}>
-                                {% block option %}
-                                <option class="text-black" selected disabled value hidden>Seleccionar</option>
-                                {% endblock option %}
-                                <option class="text-black" value="EF">Efectivo</option>
-                                <option class="text-black" value="PV">Pago Virtual</option>
-                                <option class="text-black" value="PT">Pago con Tarjeta</option>
-                            </select>
-                            <div class="valid-feedback">
-                                ¡Vamos bien!
-                            </div>
-                            <div class="invalid-feedback">
-                                Selecciona una opción valida.
-                            </div>
-                        </div>
-                    </div>
             
-                    <div class="d-inline-block w-100">
-                        <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom07" style="font-size: 17;">Tiempo de Entrega</label>
-                        <div class="input-group mb-3 w-100">
-                            <input type="number" class="form-control" name="tiempoEntrega"
-                                id="id_tiempoEntrega"
-                                aria-describedby="basic-addon3" required minlength="1"
-                                maxlength="200" id="validationCustom07" required {% block Value-tiempoEntrega %}{% endblock Value-tiempoEntrega %}>
-                                <div class="valid-feedback">
-                                    ¡Vamos bien!
-                                </div>
-                                <div class="invalid-feedback">
-                                    Ingresa un número valido.
-                                </div>
-                        </div>
-                    </div>
-            
-                    <div class="d-inline-block w-100">
-                        <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom08" style="font-size: 17;">Transporte Incluido</label>
-                        <div class="input-group mb-3 w-100">
-                            <select id="id_transporteIncluido" class="form-select" name="transporteIncluido"
-                                aria-label="tipo-activo" id="validationCustom08" required {% block Value-transporteIncluido %}{% endblock Value-transporteIncluido %}>
-                                {% block option2 %}
-                                <option class="text-black" selected disabled value hidden >Seleccionar</option>
-                                {% endblock option2 %}
-                                <option class="text-black" value="Si">Sí</option>
-                                <option class="text-black" value="No">No</option>
-                            </select>
-                            <div class="valid-feedback">
-                                ¡Vamos bien!
-                            </div>
-                            <div class="invalid-feedback">
-                                Selecciona una opción valida.
-                            </div>
-                        </div>
-                    </div>
-            
-                    <div class="d-inline-block w-100">
-                        <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom05" style="font-size: 17;">Material</label>
-                        <div class="input-group mb-3 w-100">
-                            <input type="text" class="form-control" name="material"
-                                id="id_material"
-                                aria-describedby="basic-addon3" id="validationCustom05" required minlength="1"
-                                maxlength="100" required {% block Value-material %}{% endblock Value-material %}>
-                                <div class="valid-feedback">
-                                    ¡Vamos bien!
-                                </div>
-                                <div class="invalid-feedback">
-                                    Ingresa un material valido.
-                                </div>
-                        </div>
-                    </div>
-            
-                    <div class="d-inline-block w-100">
-                        <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom09" style="font-size: 17;">Departamento</label>
-                        <div class="input-group mb-3 w-100">
-                            <select id="id_departamento" class="form-select" name="departamento"
-                                aria-label="tipo-activo" id="validationCustom09" required {% block Value-departamento %}{% endblock Value-departamento %}>
-                                {% block option3 %}
-                                <option class="text-black" selected disabled value>Seleccionar</option>
-                                {% endblock option3 %}
-                                <option class="text-black" value = "Amazonas">Amazonas</option>
-                                <option class="text-black" value = "Antioquia">Antioquia</option>
-                                <option class="text-black" value = "Arauca">Arauca</option>
-                                <option class="text-black" value = "Atlántico">Atlántico</option>
-                                <option class="text-black" value = "Bolívar">Bolívar</option>
-                                <option class="text-black" value = "Boyacá">Boyacá</option>
-                                <option class="text-black" value = "Caldas">Caldas</option>
-                                <option class="text-black" value = "Caquetá">Caquetá</option>
-                                <option class="text-black" value = "Casanare">Casanare</option>
-                                <option class="text-black" value = "Cauca">Cauca</option>
-                                <option class="text-black" value = "Cesar">Cesar</option>
-                                <option class="text-black" value = "Chocó">Chocó</option>		            
-                                <option class="text-black" value = "Córdoba">Córdoba</option>
-                                <option class="text-black" value = "Cundinamarca">Cundinamarca</option>
-                                <option class="text-black" value = "Guainía">Guainía</option>
-                                <option class="text-black" value = "Guaviare">Guaviare</option>
-                                <option class="text-black" value = "Huila">Huila</option>
-                                <option class="text-black" value = "La Guajira">La Guajira</option>
-                                <option class="text-black" value = "Magdalena">Magdalena</option>
-                                <option class="text-black" value = "Meta">Meta</option>
-                                <option class="text-black" value = "Nariño">Nariño</option>
-                                <option class="text-black" value = "Norte de Santander">Norte de Santander</option>
-                                <option class="text-black" value = "Putumayo">Putumayo</option>                
-                                <option class="text-black" value = "Quindío">Quindío</option>  
-                                <option class="text-black" value = "Risaralda">Risaralda</option>
-                                <option class="text-black" value = "San Andrés y Providencia">San Andrés y Providencia</option>
-                                <option class="text-black" value = "Santander">Santander</option>
-                                <option class="text-black" value = "Sucre">Sucre</option>
-                                <option class="text-black" value = "Tolima">Tolima</option>
-                                <option class="text-black" value = "Valle del Cauca">Valle del Cauca</option>
-                                <option class="text-black" value = "Vaupés">Vaupés</option>
-                                <option class="text-black" value = "Vichada">Vichada</option>
-                            </select>   
-                            <div class="valid-feedback">
-                                ¡Vamos bien!
-                            </div>
-                            <div class="invalid-feedback">
-                                Selecciona una opción valida.
-                            </div>
-                        </div>
-                    </div>
-        <script src="/static/js/funciones.js"></script>
-        <div class="modal-footer">
-        <!-- BOTÓN PARA GUARDAR LA INFORMACIÓN DIGITADA EN EL FORMULARIO DEL USUARIO -->
-        <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <button type="submit"  class="{% block btn-color %} btn btn-success {% endblock btn-color %}" name="form-nuevo-proveedor"  value="Crear"> 
-            {% block btn-action %}<i class="fas fa-plus"></i>&nbsp; Crear {% endblock btn-action %}</button>
         </div>
-    </div>
-    </div>
-</div>   
+    </div>   
+    
+    <script src="/static/js/funciones.js"></script>

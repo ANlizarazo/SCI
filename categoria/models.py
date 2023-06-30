@@ -10,7 +10,7 @@ class Categoria(models.Model):
     class Estado(models.TextChoices):
         ACTIVO='1', _('Activo')
         INACTIVO='0', _('Inactivo')
-    estadocat=models.CharField(max_length=1, choices=Estado.choices, default=Estado.ACTIVO, verbose_name="Estado")
+    estadocat=models.CharField(max_length=1, choices=Estado.choices, default=Estado.ACTIVO, verbose_name="Estado", null=True, blank=True)
 
     def __str__(self)->str:
         return "%s" %(self.nombrecat)  

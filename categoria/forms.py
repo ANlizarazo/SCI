@@ -6,4 +6,4 @@ from categoria.models import Categoria
 class CategoriaForm(ModelForm):
     class Meta:
         model = Categoria
-        fields = '__all__'
+        exclude = ['estadocat']
