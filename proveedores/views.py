@@ -15,7 +15,7 @@ def proveedores(request):
     
     context={
         "proveedor":proveedores,
-        "ciudades":ciudades,
+        "ciudad":ciudades,
         'form': form,
     }
     return render(request,'proveedores/proveedores.html',context)
