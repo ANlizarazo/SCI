@@ -42,7 +42,7 @@
                         <button type="button" class="btn btn-success float-right mr-0 mb-3"
                             name="form-crear-compra"
                             data-bs-toggle="modal"
-                            data-bs-target="#crearCompra" title="Crear Compra"> Crear Compra</button>
+                            data-bs-target="#crearCompra" title="Crear"> Crear Compra</button>
                         <!-- Datatable de compras -->
                         <table id="tabla-compras" class="table table-responsive-md table-bordered
                             table-striped  border-dark">
@@ -227,8 +227,8 @@
 
                                                     <div class="modal-footer">
                                                         <!-- BOTÓN PARA GUARDAR LA INFORMACIÓN DIGITADA EN EL FORMULARIO DE LA COMPRA -->
-                                                        <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                                        <input class="btn btn-success" type="submit" name="form-nuevo-usuario" value="Modificar">
+                                                        <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal" title="Cancelar">Cancelar</button>
+                                                        <input class="btn btn-success" type="submit" name="form-nuevo-usuario" title="Modificar" value="Modificar">
                                                     </div>
 
                                                 </form>
@@ -383,7 +383,7 @@
 
                     <div class="modal-footer">
                         <!-- BOTÓN PARA GUARDAR LA INFORMACIÓN DIGITADA EN EL FORMULARIO DE LA COMPRA-->
-                        <button type="reset" class="btn btn-success"
+                        <button type="reset" class="btn btn-success" title="Regresar"
                         data-bs-dismiss="modal">Regresar</button>
                     </div>
 
@@ -426,11 +426,11 @@
                                                 {% csrf_token %}
 
                                                 <input type="submit"
-                                                    class="btn btn-danger"
+                                                    class="btn btn-danger" title="Eliminar"
                                                     value="Eliminar">
                                             </form>
                                             <button type="button" class="btn btn-secondary"
-                                                data-bs-dismiss="modal">Cancelar</button>
+                                                data-bs-dismiss="modal" title="Cancelar">Cancelar</button>
                                         </div>
                                     </div>
                                 </div>
