@@ -8,7 +8,7 @@ from proveedores.models import Proveedor
 
 class DetalleCompra(models.Model):
     cantidadProducto = models.BigIntegerField(validators = [ MinValueValidator ( 0 )], default=0, verbose_name="Cantidad Producto") 
-    producto = models.ForeignKey(Producto, on_delete=models.CASCADE, verbose_name="Producto",null=True)
+    producto = models.ForeignKey(Producto, on_delete=models.CASCADE, verbose_name="Producto",blank=True, null=True)
     subtotalCompra= models.PositiveIntegerField(validators = [ MinValueValidator ( 0 )], default=0, verbose_name="Subtotal Compra")
     class Iva(models.TextChoices):
         BYS='5', _('Bienes y Servicios')
@@ -17,7 +17,7 @@ class DetalleCompra(models.Model):
     porcentajeIva=models.CharField(max_length=3, choices=Iva.choices, default=Iva.GR, verbose_name="IVA") 
     totalCompra= models.PositiveIntegerField(validators = [ MinValueValidator ( 0 )], verbose_name="Total Compra", default=1, blank=True, null=True)
     valorTotalProducto = models.PositiveIntegerField(validators = [ MinValueValidator ( 0 )], verbose_name="Valor Total Producto")
-    proveedor = models.ForeignKey(Proveedor, on_delete=models.CASCADE, verbose_name="Proveedor",null=True)
+    proveedor = models.ForeignKey(Proveedor, on_delete=models.CASCADE, verbose_name="Proveedor",blank=True, null=True)
     
     def __str__(self)->str:
         return "%s %s %s %s" %(self.id,self.producto,self.cantidadProducto,self.valorTotalProducto)  
