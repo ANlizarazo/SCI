@@ -162,21 +162,7 @@
                                                         {% csrf_token %}          
                                                         <div class="modal-body text-start" id="form-nuevo-usuario"> 
                                                     
-                                                            <div class="d-inline-block w-100">
-                                                                <label for="basic-url" for="validationCustom01" class="form-label ps-2 text-black" style="font-size: 17;">Fecha</label>
-                                                                <div class="input-group mb-3 w-100">
-                                                                    <input type="datetime" class="form-control"
-                                                                        name="fecha" id="id_fecha"
-                                                                        aria-describedby="basic-addon3" required minlength="1"
-                                                                        maxlength="50" id="validationCustom01" required disabled value="{{venta.fecha}}">
-                                                                        <div class="valid-feedback">
-                                                                            ¡Vamos bien!
-                                                                        </div>
-                                                                        <div class="invalid-feedback">
-                                                                            Completa la información.
-                                                                        </div>
-                                                                </div>
-                                                            </div>
+                                                            
                                                     
                                                             <div class="d-inline-block w-100">
                                                                 <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom02" style="font-size: 17;">Usuario</label>
@@ -203,7 +189,7 @@
                                                             <div class="d-inline-block w-100">
                                                                 <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom03" style="font-size: 17;">Ciente</label>
                                                                 <div class="input-group mb-3 w-100">
-                                                                    <select id="id_cliente" class="form-select" name="cliente"aria-label="tipo-activo"
+                                                                    <select id="id_cliente" class="select form-select" name="cliente"aria-label="tipo-activo"
                                                                         id="validationCustom03" required>
                                                                     
                                                                         <option class="text-black" select value="{{venta.cliente.pk}}">{{venta.cliente}}</option>
