@@ -1,4 +1,3 @@
-
 from django.db import models
 from django.core.validators import MinValueValidator
 from django.utils.translation import gettext_lazy as _
@@ -10,7 +9,7 @@ from proveedores.models import Proveedor
 class DetalleCompra(models.Model):
     fecha= models.DateField(verbose_name="Fecha", auto_now_add=True, editable=False)
     cantidadProducto = models.BigIntegerField(validators = [ MinValueValidator ( 0 )],  verbose_name="Cantidad Producto") 
-    producto = models.ForeignKey(Producto, on_delete=models.CASCADE, verbose_name="Producto",blank=True, null=True)
+    producto= models.ForeignKey(Producto, on_delete=models.CASCADE, verbose_name="Producto",blank=True, null=True)
     class Iva(models.TextChoices):
         BYS='5', _('Bienes y Servicios')
         GR='19', _('General')    
