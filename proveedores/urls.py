@@ -11,7 +11,7 @@ urlpatterns = [
     #Path to View Clientes data individually
     path('proveedores-ver/<str:cliente_id>',proveedores_ver,name="proveedores-ver"),
     #Path to DELETE Clientes
-    path('proveedores_eliminar/<int:pk>/', proveedores_eliminar, name="proveedores-eliminar"),
+    path('proveedores_eliminar/<int:pk>/', proveedores_eliminar, name="proveedores_eliminar"),
     #Path to RESTORE Clientes
     path('proveedores_recuperar/', recuperar_proveedores, name="recuperar_proveedores"),
     path('recuperar/<int:pk>/', recuperar_proveedor, name='recuperar_proveedor'),
