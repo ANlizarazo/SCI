@@ -79,6 +79,7 @@ def servicios_modificar(request, pk):
     return render(request, 'servicios/servicios.html', context) 
 
 
+#Function to eliminar servicios
 
 def servicios_eliminar(request, pk):
     servicio = Servicio.objects.filter(id = pk).update(

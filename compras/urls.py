@@ -1,6 +1,5 @@
 from django.urls import path
-from compras.views import compras, compras_modificar,compras_ver, compras_eliminar, recuperar_compras, \
-    recuperar_compra, detalle_crear
+from compras.views import compras, compras_modificar,compras_ver, compras_eliminar, recuperar_compras, recuperar_compra, detalle_crear
 
 
 urlpatterns = [
@@ -15,6 +14,6 @@ urlpatterns = [
     path('compras_eliminar/<int:pk>/', compras_eliminar, name="compras_eliminar"),
     #Path to RESTORE Clientes
     path('compras_recuperar/', recuperar_compras, name="recuperar_compras"),
-    path('recuperar/<int:pk>/', recuperar_compra, name='recuperar_compra'),
+    path('recuperar_compra/<int:pk>/', recuperar_compra, name='recuperar_compra'),
 ]
 
