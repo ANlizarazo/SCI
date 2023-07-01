@@ -295,27 +295,30 @@
                                                                 <input type="text" class="form-control"
                                                                     name="fecha" id="id_fecha"
                                                                     aria-describedby="basic-addon3" id="validationCustom01" required minlength="1"
-                                                                    maxlength="50" required disabled value="{{compra.fecha|date:'d/m/Y'}}">
-                                                                        ¡Vamos bien!
-                                                                    </div>
-                                                                    <div class="invalid-feedback">
-                                                                    </div>
-                                                            </div>
-                                                        </div>
-                                                
-                                                        <div class="d-inline-block w-100">
-                                                            <label for="basic-url"  for="validationCustom02" class="form-label ps-2 text-black" style="font-size: 17;">Proveedor</label>
-                                                            <div class="input-group mb-3 w-100">
-                                                                <input type="number" class="form-control"
-                                                                    name="proveedor" id="id_proveedor"
-                                                                    aria-describedby="basic-addon3" id="validationCustom02" required minlength="1"
-                                                                    maxlength="50" required disabled value="{{compra.proveedor}}">
+                                                                    maxlength="50" required disabled value="{{detallecompra.fecha}}">
                                                                     <div class="valid-feedback">
                                                                         ¡Vamos bien!
                                                                     </div>
                                                                     <div class="invalid-feedback">
                                                                         Completa la información.
                                                                     </div>
+                                                            </div>
+                                                        </div>
+                                                
+                                                        <div class="d-inline-block w-100">
+                                                            <label for="basic-url" class="form-label ps-2
+                                                                text-black" for="validationCustom02"
+                                                                style="font-size: 17;">Proveedor</label>
+                                                            <div class="input-group mb-3 w-100">
+                                                                <input id="id_proveedor" class="form-control" name="proveedor" aria-describedby="basic-addon3"
+                                                                    id="validationCustom02" class="text-black" required disabled value="{{detallecompra.proveedor.nombreEmpresa}}">
+                                                            </div>
+                                                                <div class="valid-feedback">
+                                                                    ¡Vamos bien!
+                                                                </div>
+                                                                <div class="invalid-feedback">
+                                                                    Selecciona una opción valida.
+                                                                </div>
                                                             </div>
                                                         </div>
                                                 

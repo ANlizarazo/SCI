@@ -79,12 +79,15 @@
 
                                 <!-- Modal de modificar cliente -->
 
-                                <div class="modal fade" id="editar_cliente{{cliente.pk}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h1 class="modal-title fs-3" id="staticBackdropLabel"><b class="text-black" >Modificar Clientes</b></h1>
-                                            </div>
+                                <div class="modal fade" id="editar_cliente{{cliente.pk}}" data-bs-backdrop="static"
+                                data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+                                aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-3" id="staticBackdropLabel"><b
+                                                    class="text-black">MODIFICAR CLIENTE</b></h1>
+                                        </div>
                                         <div class="modal-body">
                                             <!-- Formulario -->
                                             <form action= "{% url 'clientes-modificar' cliente.pk %}" method="POST"
@@ -93,7 +96,6 @@
                                                 
                                                 <div class="modal-body text-start" id="form-nuevo-tecnico">
                                                 {% csrf_token %}
-
                                                     <div class="d-inline-block w-100">
                                                         <label for="basic-url" for="validationCustom01"
                                                             class="form-label ps-2 text-black"
@@ -205,7 +207,7 @@
                                                             <select id="id_ciudad" class="form-select" name="ciudad"aria-label="tipo-activo"
                                                                 id="validationCustom06" required>
 
-                                                                <option class="text-black" selected hidden="{{cliente.ciudad.pk}}" value>{{cliente.ciudad}}</option>
+                                                                <option class="text-black" select value="{{cliente.ciudad.pk}}">{{cliente.ciudad}}</option>
                                                             
                                                                 {% for ciudad in ciudades %}
                                                                     <option class="text-black" value="{{ciudad.id}}">{{ciudad.nombre}}</option>
@@ -224,9 +226,9 @@
                                                     <div class="modal-footer">
                                                         <!-- BOTÓN PARA GUARDAR LA INFORMACIÓN MODIFICADA EN EL FORMULARIO -->
                                                         <button type="reset" class="btn btn-secondary"
-                                                        data-bs-dismiss="modal" title="Cancelar">Cancelar</button>
+                                                            data-bs-dismiss="modal">Cancelar</button>
                                                         <input class="btn btn-success" type="submit"
-                                                        name="form-nuevo-cliente" title="Modificar" value="Modificar">
+                                                            name="form-nuevo-cliente" value="Modificar">
                                                     </div>
                                                 </div>
                                             </form>
@@ -365,7 +367,7 @@
                                                             style="font-size: 17;">Ciudad</label>
                                                         <div class="input-group mb-3 w-100">
                                                             <input id="id_ciudad" class="form-control" name="ciudad" aria-describedby="basic-addon3"
-                                                                id="validationCustom06" class="text-black" required disabled value="{{cliente.ciudad.nombre}}">
+                                                                id="validationCustom06" required class="text-black" required disabled value="{{cliente.ciudad.nombre}}">
                                                         </div>
                                                             <div class="valid-feedback">
                                                                 ¡Vamos bien!
@@ -379,7 +381,7 @@
                                                     <div class="modal-footer">
                                                         <!-- BOTÓN PARA GUARDAR LA INFORMACIÓN DIGITADA EN EL FORMULARIO DEL USUARIO -->
                                                         <button type="reset" class="btn btn-success"
-                                                            data-bs-dismiss="modal" title="Regresar">Regresar</button>    
+                                                            data-bs-dismiss="modal">Regresar</button>    
                                                     </div>
                                                 </div>
 
@@ -421,11 +423,11 @@
                                                 {% csrf_token %}
 
                                                 <input type="submit"
-                                                    class="btn btn-danger" title="Eliminar"
+                                                    class="btn btn-danger"
                                                     value="Eliminar">
                                             </form>
                                             <button type="button" class="btn btn-secondary"
-                                                data-bs-dismiss="modal" title="Cancelar">Cancelar</button>
+                                                data-bs-dismiss="modal">Cancelar</button>
                                         </div>
                                     </div>
                                 </div>
