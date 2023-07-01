@@ -19,7 +19,7 @@ class DetalleCompra(models.Model):
         INACTIVO='0', _('Inactivo')    
     estado=models.CharField(max_length=1, choices=Estado.choices, default=Estado.ACTIVO, verbose_name="Estado")
     totalCompra= models.PositiveIntegerField(validators = [ MinValueValidator ( 0 )], verbose_name="Valor Total", blank=True, null=True)
-    valorUnidad = models.PositiveIntegerField(validators = [ MinValueValidator ( 0 )], verbose_name="Valor Producto Unidad")
+    valorUnidad = models.PositiveIntegerField(validators = [ MinValueValidator ( 0 )], verbose_name="Valor Unidad")
     proveedor = models.ForeignKey(Proveedor, on_delete=models.CASCADE, verbose_name="Proveedor",blank=True, null=True)
 
     def __str__(self)->str:
