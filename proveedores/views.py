@@ -65,19 +65,17 @@ def proveedores_modificar(request, pk):
         form = ProveedorForm(request.POST, instance = proveedor)
         if form.is_valid():
             form.save()
-            messages.success(request,'¡Proveedor guardado correctamente!')
+            messages.success(request, "¡Proveedor modificado correctamente!")
             return redirect('proveedores')
         else:
-            messages.success(request,'Error al modificar proveedor')
-            messages.error('proveedores')
-    else:
-        form = ProveedorForm( instance = proveedor)
-    
-    context = {
-        'form': form,
-    }
+            print('Error al editar el proveedor')
+            messages.error(request, "¡Error al modificar el proveedor!")
+            return redirect('proveedores')
 
-    return render(request, 'proveedores/proveedores.html', context)    
+    else:
+        form = ProveedorForm(instance = proveedor)
+
+    return render(request, 'proveedores/proveedores.modificar.html', {'form': form})  
 
 
 #Función para ELIMINAR proveedores
