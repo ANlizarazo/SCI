@@ -24,23 +24,6 @@ def compras(request):
     return render(request,'compras/compras.html', context)
 
 #Function to ADD compra
-def compras_crear(request):
-    if request.method == 'POST':
-        form = DetalleCompraForm(request.POST)
-        if form.is_valid():
-            form.save()
-            messages.success(request,'¡Compra creada correctamente!')
-            return redirect(to='compras')
-        else:
-            messages.error(request, "¡Error al crear compra!")
-            return redirect(to='compras')
-    else:
-        form = DetalleCompraForm()
-    context = {
-        'form': form,
-    }
-    return render(request, 'compras/compras-detalle.html', context)
-
 def detalle_crear(request):
     if request.method == 'POST':
         form = DetalleCompraForm(request.POST)
@@ -73,7 +56,8 @@ def compras_ver(request, pk):
             print("Error al editar la compra")
     else: 
         form = DetalleCompraForm(instance = compra)
-        context = {
+
+    context = {
         'form': form,
     }
     return render(request, 'compras/compras-ver.html', context)  
