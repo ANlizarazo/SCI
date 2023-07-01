@@ -209,7 +209,10 @@
                                                                     aria-label="tipo-activo" id="validationCustom03" required disabled class="text-black" 
                                                                     required disabled>
                                                                 
-                                                                    <option class="text-black" selected value="{{servicio.tipodeservicio.pk}}">{{servicio.tipodeservicio}}</option>
+                                                                    <option class="text-black" disabled value>Seleccionar</option>
+                                                                    {% for tipodeservicio in tiposdeservicios %}
+                                                                    <option class="text-black" value="{{tipodeservicio.id}}">{{tipodeservicio.nombreServicio}}</option>
+                                                                    {% endfor %}
                                                                 
                                                                 </select>
                                                                     <div class="valid-feedback">
@@ -259,7 +262,7 @@
                                                     text-danger">
                                                     <span class="">¿Estás seguro de que deseas eliminar este servicio?</span>
                                                     <div class="text-dark mt-3
-                                                        mb-2">Servicio: <strong>{{servicio.id}}</strong></div>
+                                                        mb-2">Servicio: <strong>{{servicio.id}}{{servicio.tipoServicio}}</strong></div>
                                                 </div>
                                             </div>
 
