@@ -1,0 +1,153 @@
+
+{% load static %}
+{% load humanize %}
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+        <!-- Alert -->
+        <link rel="stylesheet" href="{% static 'css/jquery.toast.css' %}">
+        <!-- Ionicons -->
+        <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+        <!-- Google Font: Source Sans Pro -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="{% static 'AdminLTE/fontawesome-free/css/all.min.css' %}">
+        <!-- flag-icon-css -->
+        <link rel="stylesheet" href="{% static 'AdminLTE/flag-icon-css/css/flag-icon.min.css' %}">
+        <!-- Theme style -->
+        <link rel="stylesheet" href="{% static 'AdminLTE/css/adminlte.min.css' %}">
+        <!-- overlayScrollbars -->
+        <link rel="stylesheet" href="{% static 'AdminLTE\overlayScrollbars\css\OverlayScrollbars.min.css' %}">
+        
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="/static/img/logoMallas.ico" type="image/x-icon">
+        <title>CONTACTO</title>
+    </head>
+    <body class="hold-transition sidebar-mini layout-fixed">
+
+        {% include 'partials/navbar.html' %}
+        {% include 'partials/sidebar.html' %}
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-black"><tr><b class="text-black">CONTACTO</b></tr></h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a
+                                href="http://127.0.0.1:8000/inicio/">
+                                <b class="text-success">Contacto </b></a></li>
+                        <li class="breadcrumb-item-active"><a
+                                href="http://127.0.0.1:8000/contacto/"
+                                class="text-success">/ Contacto</a></li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <!-- /.container-fluid -->
+    
+
+    
+    </section>
+
+    <section class="container pt-5">
+        <div class="row mt-3 w-100">
+            <div class="col">
+                <h2><p class="text-center">Somos un equipo de desarrolladores que brinda experiencias de servicio para la transformación tecnológica,creando soluciones de alto impacto al servicio de las empresas.  Cualquier inquietud contactarnos por medio de los siguientes datos. </p></h2>
+            </div>
+        </div>
+        <div class="divider"></div>
+        <div class="row mt-3">
+        </div>
+        <div class="row mt-3">
+            <div class="col text-center">
+                <img src="{% static 'img/Alcira.jpg' %}" class="bd-placeholder-img rounded-circle" widht="140" height="140">
+                <h2>Alcira Rodríguez Velásquez</h2>
+                <p>Desarrolladora</p>
+                <p>Celular: 3124933171</p>
+                <p>Email: alcirarodriguez80@.com</p>
+            </div>
+
+            <div class="col text-center">
+                <img src="{% static 'img/Edison.jpeg' %}" class="bd-placeholder-img rounded-circle" widht="140" height="140">
+                <h2>Edison Castaño Dussan</h2>
+                <p>Desarrollador</p>
+                <p>Celular: 3004000720</p>
+                <p>Email: edison30cd@gmail.com</p>
+            </div>
+            
+            <div class="col text-center">
+                <img src="{% static 'img/MichellKlinger.jpeg' %}" class="bd-placeholder-img rounded-circle" widht="140" height="140">
+                <h2>Michell Klinger Giraldo</h2>
+                <p>Desarrolladora</p>
+                <p>Celular: 3014062595</p>
+                <p>michellklinger@gmail.com</p>
+            </div>
+
+            <div class="col text-center">
+                <img src="{% static 'img/Nathaly.jpg' %}" class="bd-placeholder-img rounded-circle" widht="140" height="140">
+                <h2>Angie Nathaly Lizarazo Rueda</h2>
+                <p>Desarrolladora</p>
+                <p>Celular: 3162068198</p>
+                <p>Email: angienathalylizarazorueda57@gmail.com</p>
+            </div>
+
+            <div class="col text-center">
+                <img src="{% static 'img//Angela.jpg' %}" class="bd-placeholder-img rounded-circle" widht="140" height="140">
+                <h2>Angela Vásquez Acosta</h2>
+                <p>Desarrolladora</p>
+                <p>Celular: 3106016438</p>
+                <p>Email: Ang.24vasquez@gmail.com</p>
+            </div>
+
+    </section>
+    <!-- /.content -->
+</div>
+<footer>{% include 'partials/footer.html' %}</footer>
+<!-- /.content-wrapper -->
+        
+
+            <!-- jQuery -->
+            <script src="{% static 'AdminLTE/jquery/jquery.min.js' %}"></script>
+            <!-- Bootstrap -->
+            <script src="{% static 'AdminLTE/js-copy/bootstrap.bundle.min.js' %}"></script>
+            <!-- jQuery UI -->
+            <script src="{% static 'AdminLTE/jquery-ui/jquery-ui.min.js' %}"></script>
+            <!-- AdminLTE App -->
+            <script src="{% static 'AdminLTE/js/adminlte.min.js' %}"></script>
+            <!-- toastr alert -->
+            <script type="application/json" src="{% static 'AdminLTE/toastr/toastr.js.map' %}"></script>
+            <script type="text/javascript" src="{% static 'AdminLTE/toastr/toastr.min.js' %}"></script>
+            
+            <!-- DataTables  & Plugins -->
+            <script src="{% static 'AdminLTE/datatables/jquery.dataTables.min.js' %}"></script>
+            <script src="{% static 'AdminLTE/datatables-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+            <script src="{% static 'AdminLTE/datatables-responsive/js/dataTables.responsive.min.js' %}"></script>
+            <script src="{% static 'AdminLTE/datatables-responsive/js/responsive.bootstrap4.min.js' %}"></script>
+            <script src="{% static 'AdminLTE/datatables-buttons/js/dataTables.buttons.min.js' %}"></script>
+            <script src="{% static 'AdminLTE/datatables-buttons/js/buttons.bootstrap4.min.js' %}"></script>
+            <script src="{% static 'AdminLTE/jszip/jszip.min.js' %}"></script>
+            <script src="{% static 'AdminLTE/pdfmake/pdfmake.min.js' %}"></script>
+            <script src="{% static 'AdminLTE/pdfmake/vfs_fonts.js' %}"></script>
+            <script src="{% static 'AdminLTE/datatables-buttons/js/buttons.html5.min.js' %}"></script>
+            <script src="{% static 'AdminLTE/datatables-buttons/js/buttons.print.min.js' %}"></script>
+            <script src="{% static 'AdminLTE/datatables-buttons/js/buttons.colVis.min.js' %}"></script>
+            <script src="{% static 'AdminLTE/js/modal-status.js' %}"></script>
+
+        
+        {% block javascript %}
+        {% endblock javascript %}
+    </body>
+</html>
