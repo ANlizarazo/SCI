@@ -73,30 +73,8 @@ def tecnico_modificar(request, pk):
 
     return render(request, 'tecnico/tecnico.html', context)
 
-"""def tecnico_modificar(request):
-    if request.method == "POST":
-        tecnico = Tecnico.objects.get(id = request.POST.get('id'))
-        if tecnico != None: 
-            tecnico.nombres= request.POST.get('nombres')
-            tecnico.apellidos= request.POST.get('apellidos')
-            tecnico.telefono= request.POST.get('telefono')
-            tecnico.genero= request.POST.get('genero')
-            tecnico.tipoDocumento= request.POST.get('tipoDocumento')
-            tecnico.numDocumento= request.POST.get('numDocumento')
-            tecnico.estado= request.POST.get('estado')
-            tecnico.estado= request.POST.get('ciudad')
-            tecnico.save()
-            messages.success(request, "Técnico Actualizado con éxito!")
-            return HttpResponseRedirect("tecnico/")"""
+#Function to eliminar tecnico
 
-#Function to DELETE tecnico
-"""def delete_tecnico(request, tecnico_id):
-    if request.method == "POST":
-        tecnico = Tecnico.objects.get(id= tecnico_id)
-        tecnico.delete()
-        messages.success(request, "Técnico eliminado satisfactoriamente!")
-        return redirect("tecnico")
-"""
 def tecnicos_eliminar(request, pk):
     tecnico = Tecnico.objects.filter(id = pk).update(
         estado = '0'

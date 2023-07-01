@@ -47,6 +47,7 @@ urlpatterns = [
     path('tipodeservicio/',include('tipodeservicio.urls')),
     path('contacto/',contacto,name='contacto'),
     path('contacto/',contacto,name='contacto'),
+    path('basedatos/', include('basedatos.urls')),
     # --------------------------------------LOGIN--------------------------------------------
     path('logout/',LogoutView.as_view(),name="logout"),
     path('',auth_views.LoginView.as_view(), name='login_view'),
