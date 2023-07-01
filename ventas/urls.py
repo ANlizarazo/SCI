@@ -6,7 +6,7 @@ urlpatterns = [
     #Path to ADD Venta
     path('venta_crear', venta_crear,name="venta_crear"),
     #Path to EDIT Venta
-    path('venta_modificar', venta_modificar,name="venta_modificar"),
+    path('venta_modificar/<int:pk>', venta_modificar,name="venta_modificar"),
     #Path to View Venta data individually
     path('ventas/venta_ver/<str:venta_id>',venta_ver,name="venta_ver"),
     #Path to DELETE Venta

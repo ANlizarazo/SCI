@@ -98,8 +98,9 @@
                                                 method="POST" enctype="multipart/form-data" 
                                                 class="needs-validation" novalidate>
                                                 
+                                                {% csrf_token %}  
                                                 <div class="modal-body text-start" id="form-nuevo-compra"> 
-                                                {% csrf_token %}   
+                                                
                                                 <div class="d-inline-block w-100">
                                                     <label for="basic-url" for="validationCustom01" 
                                                         class="form-label ps-2 text-black" 
@@ -144,7 +145,7 @@
                                                 <div class="d-inline-block w-100">
                                                     <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom03" style="font-size: 17;">Producto</label>
                                                     <div class="input-group mb-3 w-100">
-                                                        <select id="id_ciudad" class="form-select" name="proveedor"aria-label="tipo-activo"
+                                                        <select id="id_producto" class="form-select" name="proveedor"aria-label="tipo-activo"
                                                             id="validationCustom03" required>   
                                                             
                                                             
@@ -285,7 +286,7 @@
                                                                 style="font-size: 17;">Producto</label>
                                                             <div class="input-group mb-3 w-100">
                                                                 <input id="id_producto" class="form-control" name="producto" aria-describedby="basic-addon3"
-                                                                    id="validationCustom03" required class="text-black" required disabled value="{{producto.id}}">
+                                                                    id="validationCustom03" required class="text-black" required disabled value="{{detallecompra.producto.nombre}}">
                                                             </div>
                                                                 <div class="valid-feedback">
                                                                     ¡Vamos bien!
@@ -457,9 +458,9 @@
                                                     mb-4 mt-2"></i></div>
                                             <div class="text-center
                                                 text-danger">
-                                                <span class="">¿Estás seguro de que deseas eliminar ésta compra?</span>
+                                                <span class="">¿Estás seguro de que deseas eliminar esta compra?</span>
                                                 <div class="text-dark mt-3
-                                                    mb-2">Compra: <strong>{{compra.email}}</strong></div>
+                                                    mb-2">Compra: <strong>{{detallecompra.id}}-{{detallecompra.fecha}}</strong></div>
                                             </div>
                                         </div>
 
@@ -476,20 +477,22 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                                </div>
+
                                 {% endif %}
                                 {% endfor %}
                             </tbody>
-                        </table>
+
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
                     </div>
                     <a href="{% url 'recuperar_compras' %}" class="btn btn-warning float-right mr-1 mb-3" title="Papelera"><i class="fas fa-trash-restore"></i>&nbsp; Restaurar </a>
                     <!-- /.card -->
-                </div>
-            </div> 
-        </section>
-        <!-- /.content -->
-        </div>
-        <footer>{% include 'partials/footer.html' %}</footer>
+                </section>
+                <!-- /.content -->
+            </div>
+            <footer>{% include 'partials/footer.html' %}</footer>
             <!-- /.content-wrapper -->
 
             {% endblock contenido %}

@@ -72,9 +72,14 @@
                                         <thead class="bg-gray">
                                             <tr>
                                                 <th class="border-dark">ID Servicio</th>
+                                                <th class="border-dark">Fecha</th>
                                                 <th class="border-dark">Observación</th>
                                                 <th class="border-dark">Observación Final</th>
                                                 <th class="border-dark">Tipo de Servicio</th>
+                                                <th class="border-dark">Ciudad</th>
+                                                <th class="border-dark">Técnico</th>
+                                                <th class="border-dark">IVA</th>
+                                                <th class="border-dark">Valor Total</th>
                                                 <th class="border-dark">Restaurar</th>
                                             </tr>
                                         </thead>
@@ -82,9 +87,14 @@
                                             {% for servicio in servicios %}
                                             <tr>
                                                 <td class="border-dark text-black">{{servicio.id}}</td>
+                                                <td class="border-dark text-black">{{servicio.fecha}}</td>
                                                 <td class="border-dark text-black">{{servicio.observacion}}</td>
                                                 <td class="border-dark text-black">{{servicio.observacionFinal}}</td>
                                                 <td class="border-dark text-black">{{servicio.tipoServicio}}</td>
+                                                <td class="border-dark text-black">{{servicio.ciudad}}</td>
+                                                <td class="border-dark text-black">{{servicio.tecnico}}</td>
+                                                <td class="border-dark text-black">{{servicio.porcentajeIva}}</td>
+                                                <td class="border-dark text-black">{{servicio.valorTotal}}</td>
                                                 <td class="border-dark text-black">
                                                     <buttom data-bs-toggle="modal" data-bs-target="#recuperarModal{{servicio.pk}}" class="btn btn-warning" title="Restaurar"><i Class="fas fa-trash-restore"></i></buttom>
                                                 </td>
@@ -108,7 +118,7 @@
                                                     text-black">
                                                     <span class="">¿Estás seguro de que deseas recuperar este servicio?</span>
                                                     <div class="text-dark mt-3
-                                                        mb-2">Servicio: <strong>{{servicio.id}}</strong></div>
+                                                        mb-2">Servicio: <strong>{{servicio.id}} ID {{servicio.fecha}} {{servicio.tipoServicio}}</strong></div>
                                                 </div>
                                             </div>
 
