@@ -42,8 +42,8 @@
                 <!-- /.card-body -->
                 <div class="card-body">
                     <!-- Este botón llama el modal -->
-                    <a class="btn btn-success float-right mr-0 mb-3" data-bs-toggle="modal"
-                        data-bs-target="#crearCompra" title="Crear"> Crear Compra</a>
+                    <button class="btn btn-success float-right " data-bs-toggle="modal"
+                    data-bs-target="#crearDetalle" title="Crear"> Crear Compra</button>
                         <!-- Datatable de compras -->
 
                         <table id="tabla-compras" class="table table-responsive-md table-bordered
@@ -53,26 +53,24 @@
                                     <th class="border-dark">ID Compra</th>
                                     <th class="border-dark">Fecha</th>
                                     <th class="border-dark">Proveedor</th>
-                                    <th class="border-dark">Cantidad producto</th>
                                     <th class="border-dark">Producto</th>
-                                    <th class="border-dark">Subtotal</th>
-                                    <th class="border-dark">IVA</th>
-                                    <th class="border-dark">Total Compra</th>                                   
+                                    <th class="border-dark">Cantidad producto</th>
+                                    <th class="border-dark">Valor unidad</th>
+                                    <th class="border-dark">Valor Total</th>                                   
                                     <th class="border-dark">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {% for compra in compras %}
-                                {% if compra.estado == '1' %}
+                                {% for detallecompra in detalleCompra %}
+                                {% if detallecompra.estado == '1' %}
                                 <tr>     
-                                    <td class="border-dark text-black">{{compra.id}}</td>      
-                                    <td class="border-dark text-black">{{compra.fecha}}</td>
-                                    <td class="border-dark text-black">{{compra.detallecompra.proveedor}}</td>
-                                    <td class="border-dark text-black">{{compra.detallecompra.cantidadProducto}}</td>
-                                    <td class="border-dark text-black">{{compra.detallecompra.producto}}</td>                                    
-                                    <td class="border-dark text-black">{{compra.detallecompra.subTotal}}</td>
-                                    <td class="border-dark text-black">{{compra.detallecompra.iva}}</td>
-                                    <td class="border-dark text-black">{{compra.detallecompra.totalCompra}}</td>
+                                    <td class="border-dark text-black">{{detallecompra.id}}</td>      
+                                    <td class="border-dark text-black">{{detallecompra.fecha}}</td>
+                                    <td class="border-dark text-black">{{detallecompra.proveedor}}</td>
+                                    <td class="border-dark text-black">{{detallecompra.producto}}</td>
+                                    <td class="border-dark text-black">{{detallecompra.cantidadProducto}}</td>                                    
+                                    <td class="border-dark text-black">{{detallecompra.valorUnidad}}</td>
+                                    <td class="border-dark text-black">{{detallecompra.totalCompra}}</td>
                                     <td class="border-dark text-black">
                                         <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#verCompra{{compra.id}}" title="Ver">
                                             <i class="fas fa-eye"></i></button>   
@@ -96,7 +94,7 @@
                                                 {% if form.errors %}
                                                     <p style="color: red">Por favor revisa este campo</p>
                                                 {% endif %}
-                                                <form  action="{% url 'compras-modificar' compra.pk %}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
+                                                <form action="{% url 'compras-modificar' detallecompra.pk %}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
                                                 
                                                     {% csrf_token %}          
                                                     <div class="modal-body text-start" id="form-nuevo-compra"> 
@@ -284,7 +282,7 @@
                                                 {% if form.errors %}
                                                     <p style="color: red">Por favor revisa este campo</p>
                                                 {% endif %}
-                                                <form  action="{% url 'compras-ver' compra.pk %}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
+                                                <form  action="{% url 'compras-ver' detallecompra.pk %}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
                                                 
                                                     {% csrf_token %}          
                                                     <div class="modal-body text-start" id="form-nuevo-usuario"> 
@@ -297,10 +295,12 @@
                                                                 <input type="text" class="form-control"
                                                                     name="fecha" id="id_fecha"
                                                                     aria-describedby="basic-addon3" id="validationCustom01" required minlength="1"
-                                                                    maxlength="50" required disabled value="{{compra.fecha|date:'d/m/Y'}}">
+                                                                    maxlength="50" required disabled value="{{detallecompra.fecha}}">
+                                                                    <div class="valid-feedback">
                                                                         ¡Vamos bien!
                                                                     </div>
                                                                     <div class="invalid-feedback">
+                                                                        Completa la información.
                                                                     </div>
                                                             </div>
                                                         </div>
@@ -311,7 +311,7 @@
                                                                 <input type="number" class="form-control"
                                                                     name="proveedor" id="id_proveedor"
                                                                     aria-describedby="basic-addon3" id="validationCustom02" required minlength="1"
-                                                                    maxlength="50" required disabled value="{{compra.proveedor}}">
+                                                                    maxlength="50" required disabled value="{{detallecompra.proveedor.nombreEmpresa}}">
                                                                     <div class="valid-feedback">
                                                                         ¡Vamos bien!
                                                                     </div>
@@ -484,7 +484,7 @@
                                         </div>
 
                                         <div class="modal-footer">
-                                            <form method="post" action="{% url 'compras_eliminar' compra.pk %}">
+                                            <form method="post" action="{% url 'compras_eliminar' detallecompra.pk %}">
                                                 {% csrf_token %}
 
                                                 <input type="submit"
