@@ -88,7 +88,64 @@
 
                                 
                                     <!-- Modal ver venta -->
+                                    <div class="modal fade" id="verVenta{{venta.id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-3" id="staticBackdropLabel"><b class="text-black">&nbsp;&nbsp;VER DETALLE</b></h1>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <!-- Formulario -->
+                                                    <form  action="{% url 'venta_ver' venta.id %}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
+                                                    
+                                                        {% csrf_token %}          
+                                                        <div class="modal-body text-start" id="form-ver-venta"> 
 
+                                                            <div class="d-inline-block w-100">                                                            
+                                                                <label class="form-label ps-2 text-black" style="font-size: 17;">Fecha</label>
+                                                                <input type="datetime" name="fecha" class="form-control input-group mb-3 w-100" value="{{venta.fecha}}" required disabled/>
+                                                            </div>
+                                                            <div class="d-inline-block w-100">
+                                                                <label class="form-label ps-2 text-black" style="font-size: 17;">Usuario</label>
+                                                                <input type="text" name="usuario" class="form-control input-group mb-3 w-100" value="{{venta.usuario}}" required disabled/>
+                                                            </div>
+                                                            <div class="d-inline-block w-100">
+                                                                <label class="form-label ps-2 text-black" style="font-size: 17;">Cliente</label>
+                                                                <input type="text" name="cliente" class="form-control input-group mb-3 w-100" value="{{venta.cliente}}" required disabled/>
+                                                            </div>
+                                                            <div class="d-inline-block w-100">
+                                                                <label class="form-label ps-2 text-black" style="font-size: 17;">Producto</label>
+                                                                <input type="text" name="producto" class="form-control input-group mb-3 w-100" value="{{venta.producto}}" required disabled/>
+                                                            </div>
+                                                            <div class="d-inline-block w-100">
+                                                                <label class="form-label ps-2 text-black" style="font-size: 17;">Cantidad Producto</label>
+                                                                <input type="number" name="cantidadProducto" class="form-control input-group mb-3 w-100" value="{{venta.cantidadProducto}}" required disabled/>
+                                                            </div>
+                                                            <div class="d-inline-block w-100">
+                                                                <label class="form-label ps-2 text-black" style="font-size: 17;">Modo Pago</label>
+                                                                <input type="text" name="modoPago" class="form-control input-group mb-3 w-100" value="{{venta.modoPago}}" required disabled/>
+                                                            </div>
+                                                            <div class="d-inline-block w-100">
+                                                                <label class="form-label ps-2 text-black" style="font-size: 17;">Porcentaje IVA</label>
+                                                                <input type="text" name="porcentajeIva" class="form-control input-group mb-3 w-100" value="{{venta.porcentajeIva}}" required disabled/>
+                                                            </div>
+                                                            <div class="d-inline-block w-100">
+                                                                <label class="form-label ps-2 text-black" style="font-size: 17;">Valor Total</label>
+                                                                <input type="number" name="totalVenta" class="form-control input-group mb-3 w-100" value="{{venta.valorTotal}}" required disabled/>
+                                                            </div>
+                                                            
+                                                        </div>
+
+                                                        <div class="modal-footer">
+                                                            <!-- BOTÓN PARA VER LA INFORMACIÓN DIGITADA EN EL FORMULARIO DEL DETALLE VENTA -->
+                                                            <button type="reset" class="btn btn-success" data-bs-dismiss="modal">Regresar</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>   
+                                <!-- Fin Modal -->
                                     
                                     <!-- Modal de modificar Detalle -->
 
@@ -104,8 +161,6 @@
                                                     
                                                         {% csrf_token %}          
                                                         <div class="modal-body text-start" id="form-nuevo-usuario"> 
-
-                                                        
                                                     
                                                             <div class="d-inline-block w-100">
                                                                 <label for="basic-url" for="validationCustom01" class="form-label ps-2 text-black" style="font-size: 17;">Fecha</label>
@@ -129,6 +184,7 @@
                                                                     <select id="id_usuario" class="form-select" name="usuario"aria-label="tipo-activo"
                                                                         id="validationCustom02" required>
                                                                     
+                                                                        <option class="text-black" select value="{{venta.usuario.pk}}">{{venta.usuario}}</option>
             
                                                                         {% for usuario in usuarios %}
                                                                             <option class="text-black" value="{{usuario.id}}">{{usuario.nombres}} {{usuario.apellidos}}</option>
@@ -150,6 +206,7 @@
                                                                     <select id="id_cliente" class="form-select" name="cliente"aria-label="tipo-activo"
                                                                         id="validationCustom03" required>
                                                                     
+                                                                        <option class="text-black" select value="{{venta.cliente.pk}}">{{venta.cliente}}</option>
             
                                                                         {% for cliente in clientes %}
                                                                             <option class="text-black" value="{{cliente.id}}">{{cliente.nombreEmpresa}}</option>
@@ -171,6 +228,7 @@
                                                                     <select id="id_producto" class="form-select" name="producto"aria-label="tipo-activo"
                                                                         id="validationCustom04" required>
                                                                     
+                                                                        <option class="text-black" select value="{{venta.producto.pk}}">{{venta.producto}}</option>
             
                                                                         {% for producto in productos %}
                                                                             <option class="text-black" value="{{producto.id}}">{{producto.nombre}}</option>
@@ -263,14 +321,11 @@
                                                             <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                                                             <input class="btn btn-success" type="submit" name="form-nuevo-usuario" value="Modificar">
                                                         </div>
-
                                                     </form>
                                                 </div>
-                                                
                                             </div>
                                         </div>
-                                    </div>      
-
+                                    </div>
 
                                 <!-- Modal delete confirmation -->
                                 <div class="modal fade"
