@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.views import LoginView, LogoutView
-from base.views import error_404,error_500, inicio, perfil
+from base.views import error_404,error_500, inicio, perfil, contacto
 
 ####### Importes para subir imágenes #######
 from django.conf import settings
@@ -45,6 +45,8 @@ urlpatterns = [
     path('tecnicos/',include('tecnico.urls')),
     path('categoria/',include('categoria.urls')),
     path('tipodeservicio/',include('tipodeservicio.urls')),
+    path('contacto/',contacto,name='contacto'),
+    path('contacto/',contacto,name='contacto'),
     # --------------------------------------LOGIN--------------------------------------------
     path('logout/',LogoutView.as_view(),name="logout"),
     path('',auth_views.LoginView.as_view(), name='login_view'),

@@ -12,8 +12,8 @@ def compras(request):
     form= DetalleCompraForm()
     
     for detallecompra in detalleCompra:
-        print(detallecompra.producto.nombre)
-        print(detallecompra.proveedor.nombreEmpresa)
+        print(detallecompra.producto)
+        print(detallecompra.proveedor)
     
     context={
         'detalleCompra':detalleCompra,
@@ -70,7 +70,7 @@ def compras_modificar(request, pk):
         form = DetalleCompraForm(request.POST, instance = compra)
         if form.is_valid():
             form.save()
-            messages.success(request,'¡Compra guardada correctamente!')
+            messages.success(request,'¡Compra modificada correctamente!')
             return redirect('compras')
         else:
             print('Error al modificar compra')
