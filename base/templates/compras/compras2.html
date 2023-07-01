@@ -282,7 +282,7 @@
                                                                 style="font-size: 17;">Producto</label>
                                                             <div class="input-group mb-3 w-100">
                                                                 <input id="id_producto" class="form-control" name="producto" aria-describedby="basic-addon3"
-                                                                    id="validationCustom03" required class="text-black" required disabled value="{{producto.id}}">
+                                                                    id="validationCustom03" required class="text-black" required disabled value="{{detallecompra.producto.nombre}}">
                                                             </div>
                                                                 <div class="valid-feedback">
                                                                     ¡Vamos bien!
@@ -473,20 +473,22 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                                </div>
+
                                 {% endif %}
                                 {% endfor %}
                             </tbody>
-                        </table>
+
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
                     </div>
                     <a href="{% url 'recuperar_compras' %}" class="btn btn-warning float-right mr-1 mb-3" title="Papelera"><i class="fas fa-trash-restore"></i>&nbsp; Restaurar </a>
                     <!-- /.card -->
-                </div>
-            </div> 
-        </section>
-        <!-- /.content -->
-        </div>
-        <footer>{% include 'partials/footer.html' %}</footer>
+                </section>
+                <!-- /.content -->
+            </div>
+            <footer>{% include 'partials/footer.html' %}</footer>
             <!-- /.content-wrapper -->
 
             {% endblock contenido %}
