@@ -26,7 +26,7 @@ class DetalleCompra(models.Model):
         return "%s %s %s" %(self.id,self.producto,self.fecha)  
     class Meta:
         ordering = ['id']
-        verbose_name = 'Compra'
-        verbose_name_plural = 'Compras'
+        verbose_name = 'Detalle Compra'
+        verbose_name_plural = 'Detalles de Compras'
 
 

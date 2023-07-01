@@ -12,8 +12,8 @@ def compras(request):
     form= DetalleCompraForm()
     
     for detallecompra in detalleCompra:
-        print(detallecompra.producto)
-        print(detallecompra.proveedor)
+        print(detallecompra.producto.nombre)
+        print(detallecompra.proveedor.nombreEmpresa)
     
     context={
         'detalleCompra':detalleCompra,

@@ -98,8 +98,9 @@
                                                 method="POST" enctype="multipart/form-data" 
                                                 class="needs-validation" novalidate>
                                                 
+                                                {% csrf_token %}  
                                                 <div class="modal-body text-start" id="form-nuevo-compra"> 
-                                                {% csrf_token %}   
+                                                
                                                 <div class="d-inline-block w-100">
                                                     <label for="basic-url" for="validationCustom01" 
                                                         class="form-label ps-2 text-black" 
@@ -144,7 +145,7 @@
                                                 <div class="d-inline-block w-100">
                                                     <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom03" style="font-size: 17;">Producto</label>
                                                     <div class="input-group mb-3 w-100">
-                                                        <select id="id_ciudad" class="form-select" name="proveedor"aria-label="tipo-activo"
+                                                        <select id="id_producto" class="form-select" name="proveedor"aria-label="tipo-activo"
                                                             id="validationCustom03" required>   
                                                             
                                                             
