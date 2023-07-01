@@ -63,13 +63,11 @@
                                     <td class="border-dark text-black">{{tecnico.tipoDocumento}}</td>
                                     <td class="border-dark text-black">{{tecnico.numDocumento}}</td>
                                     <td class="border-dark text-black">
-                                        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#verTecnico" title="Ver">
-                                            <i class="fas fa-eye"></i></button>        
-                                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modificarTecnico" title="Modificar">
+                                        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#verTecnico{{tecnico.pk}}" title="Ver">
+                                            <i class="fas fa-eye"></i></button>      
+                                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modificarTecnico{{tecnico.pk}}" title="Modificar">
                                             <i class="fas fa-edit"></i></button>
-                                            <button class="btn btn-danger"
-                                            data-bs-toggle="modal"
-                                            data-bs-target="#deleteModal{{tecnico.pk}}" title="Eliminar">
+                                        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal{{tecnico.pk}}" title="Eliminar">
                                             <i class="fas fa-trash-alt"></i></button>
                                     </td>
                                 </tr>

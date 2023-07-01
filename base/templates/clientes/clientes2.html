@@ -79,15 +79,12 @@
 
                                 <!-- Modal de modificar cliente -->
 
-                                <div class="modal fade" id="editar_cliente{{cliente.pk}}" data-bs-backdrop="static"
-                                data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
-                                aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h1 class="modal-title fs-3" id="staticBackdropLabel"><b
-                                                    class="text-black">MODIFICAR CLIENTE</b></h1>
-                                        </div>
+                                <div class="modal fade" id="editar_cliente{{cliente.pk}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-3" id="staticBackdropLabel"><b class="text-black" >Modificar Clientes</b></h1>
+                                            </div>
                                         <div class="modal-body">
                                             <!-- Formulario -->
                                             <form action= "{% url 'clientes-modificar' cliente.pk %}" method="POST"
@@ -96,6 +93,7 @@
                                                 
                                                 <div class="modal-body text-start" id="form-nuevo-tecnico">
                                                 {% csrf_token %}
+
                                                     <div class="d-inline-block w-100">
                                                         <label for="basic-url" for="validationCustom01"
                                                             class="form-label ps-2 text-black"
@@ -226,9 +224,9 @@
                                                     <div class="modal-footer">
                                                         <!-- BOTÓN PARA GUARDAR LA INFORMACIÓN MODIFICADA EN EL FORMULARIO -->
                                                         <button type="reset" class="btn btn-secondary"
-                                                            data-bs-dismiss="modal" title="Cancelar">Cancelar</button>
+                                                        data-bs-dismiss="modal" title="Cancelar">Cancelar</button>
                                                         <input class="btn btn-success" type="submit"
-                                                            name="form-nuevo-cliente" title="Modificar" value="Modificar">
+                                                        name="form-nuevo-cliente" title="Modificar" value="Modificar">
                                                     </div>
                                                 </div>
                                             </form>
