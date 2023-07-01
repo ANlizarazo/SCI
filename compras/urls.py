@@ -1,12 +1,11 @@
 from django.urls import path
-from compras.views import compras,compras_crear,compras_modificar,compras_ver, compras_eliminar, recuperar_compras, \
+from compras.views import compras, compras_modificar,compras_ver, compras_eliminar, recuperar_compras, \
     recuperar_compra, detalle_crear
 
 
 urlpatterns = [
     path('',compras,name="compras"),
     #Path to ADD Clientes
-    path('compras-crear/',compras_crear,name="compras-crear"),
     path('detalle-crear/',detalle_crear,name="detalle-crear"),
     #Path to EDIT Clientes
     path('compras-modificar/<int:pk>',compras_modificar,name="compras-modificar"),
