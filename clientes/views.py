@@ -68,10 +68,8 @@ def clientes_modificar(request, pk):
             messages.success(request, "¡Cliente modificado correctamente!")
             return redirect('clientes')
         else:
-            print('Error al editar el cliente')
             messages.error(request, "¡Error al modificar el cliente!")
             return redirect('clientes')
-
     else:
         form = ClienteForm(instance = cliente)
     
