@@ -72,14 +72,17 @@ def productos_modificar(request, pk):
             messages.success(request, "¡Producto modificado correctamente!")
             return redirect('productos')
         else:
-            print('Error al editar el producto')
             messages.error(request, "¡Error al modificar el producto!")
             return redirect('productos')
 
     else:
         form = ProductoForm(instance = producto)
 
-    return render(request, 'productos/productos.html', {'form': form})
+    context ={
+        'form': form
+    }
+
+    return render(request, 'productos/productos.html', context)
 
 
 
