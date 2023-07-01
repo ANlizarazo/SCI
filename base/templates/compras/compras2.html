@@ -228,20 +228,23 @@
 
                                 <!-- Modal de ver compra -->
 
-                                <div class="modal fade" id="verCompra{{compra.pk}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h1 class="modal-title fs-3" id="staticBackdropLabel"><b class="text-black" >Ver Compras</b></h1>
-                                            </div>
-                                            <div class="modal-body">
-                                                <!-- Formulario -->
-                                                <form  action="{% url 'compras-ver' detallecompra.pk %}" method="POST" 
-                                                    enctype="multipart/form-data" class="needs-validation" 
-                                                    novalidate>
-                                                    
-                                                    <div class="modal-body text-start" id="form-nuevo-compra"> 
-                                                    {% csrf_token %}          
+                                <div class="modal fade" id="verCompra{{compra.pk}}" data-bs-backdrop="static"
+                                data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+                                aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-3" id="staticBackdropLabel"><b
+                                                    class="text-black">Ver Compra</b></h1>
+                                        </div>
+                                        <div class="modal-body">
+                                            <!-- Formulario -->
+                                            <form action="" method="POST"
+                                                enctype="multipart/form-data" class="needs-validation"
+                                                novalidate>
+
+                                                {% csrf_token %}
+                                                <div class="modal-body text-start" id="form-nuevo-compra">         
                                                         <div class="d-inline-block w-100">
                                                             <label for="basic-url" for="validationCustom01" 
                                                                 class="form-label ps-2 text-black" 
