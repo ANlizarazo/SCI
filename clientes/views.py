@@ -35,7 +35,7 @@ def clientes_ver(request):
         'titulo': titulo,
         "form": form
     }
-    return render(request, 'clientes/clientes.html', context)
+    return render(request, 'clientes/clientes-ver.html', context)
 
 
 #Función para CREAR clientes
@@ -52,7 +52,8 @@ def clientes_crear(request):
     else:
         form = ClienteForm()
     context = {
-        'form': form,
+        'titulo': titulo,
+        "form": form
     }
     return render(request, 'clientes/clientes-crear.html', context)
 
@@ -64,19 +65,19 @@ def clientes_modificar(request, pk):
         form = ClienteForm(request.POST, instance = cliente)
         if form.is_valid():
             form.save()
-            messages.success(request,'¡Cliente modificado correctamente!')
+            messages.success(request, "¡Cliente modificado correctamente!")
             return redirect('clientes')
         else:
-            print('Error al modificar cliente')
+            print('Error al editar el cliente')
             messages.error(request, "¡Error al modificar el cliente!")
-    else:
-        form = ClienteForm( instance = cliente)
-    
-    context = {
-        'form': form,
-    }
+            return redirect('clientes')
 
-    return render(request, 'clientes/clientes.html', context)    
+    else:
+        form = ClienteForm(instance = cliente)
+
+    return render(request, 'clientes/clientes.modificar.html', {'form': form})
+
+
 
 
 #Función para ELIMINAR clientes

@@ -70,7 +70,7 @@
                                 <!-- /.card-header -->
                                 <div class="card-body">
                                     <!-- Datatable de clientes -->
-                                    <table id="tabla-clientes" class="table table-bordered table-striped border-dark">
+                                    <table id="tabla-tecnico" class="table table-bordered table-striped border-dark">
                                         <thead class="bg-gray">
                                             <tr>
                                                 <th class="border-dark">Nombre Empresa</th>
@@ -92,8 +92,7 @@
                                                 <td class="border-dark text-black">{{cliente.email}}</td>
                                                 <td class="border-dark text-black">{{cliente.ciudad}}</td>
                                                 <td class="border-dark text-black">
-                                                    <a href="{% url 'recuperar_cliente' cliente.id %}" class="btn btn-warning" title="Restaurar">
-                                                        <i Class="fas fa-trash-restore"></i></a>
+                                                    <buttom data-bs-toggle="modal" data-bs-target="#recuperarModal{{cliente.pk}}" class="btn btn-warning" title="Restaurar"><i Class="fas fa-trash-restore"></i></buttom>
                                                 </td>
                                             </tr>
 
@@ -115,7 +114,7 @@
                                                     text-black">
                                                     <span class="">¿Estás seguro de que deseas recuperar este cliente?</span>
                                                     <div class="text-dark mt-3
-                                                        mb-2">Cliente: <strong>{{cliente.nombreEmpresa}}</strong></div>
+                                                        mb-2">Cliente: <strong>{{cliente.nombreEmpresa}} {{cliente.nit}}</strong></div>
                                                 </div>
                                             </div>
 
@@ -174,10 +173,10 @@
                     <script src="{% static 'AdminLTE/datatables-buttons/js/buttons.colVis.min.js' %}"></script>
                     <script src="{% static 'AdminLTE/js/modal-status.js' %}"></script>
 
-                    <!--DataTable clientes-->
+                    <!--DataTable tecnicos-->
                     <script>
                 $(function () {
-                    $("#tabla-clientes").DataTable({
+                    $("#tabla-tecnico").DataTable({
                         dom: 'frtip',
                         language:{
                             url: "/static/AdminLTE/datatables/datatables.spanish.json"
@@ -189,7 +188,7 @@
                     "buttons": ["copy", "csv", "excel", "pdf", "print"],
                     }
                     
-                    ).buttons().container().appendTo('#tabla-clientes_wrapper .col-md-6:eq(0)');
+                    ).buttons().container().appendTo('#tabla-tecnico_wrapper .col-md-6:eq(0)');
                 });
             </script>
                     {% block javascript %}
