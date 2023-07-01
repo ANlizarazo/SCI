@@ -96,6 +96,22 @@
                                                     <div class="modal-body text-start" id="form-nuevo-servicio"> 
                                                 
                                                         <div class="d-inline-block w-100">
+                                                            <label for="basic-url"  for="validationCustom06" class="form-label ps-2 text-black" style="font-size: 17;">Fecha</label>
+                                                            <div class="input-group mb-3 w-100">
+                                                                <input type="datetime" class="form-control"
+                                                                    name="fecha" id="id_fecha"
+                                                                    aria-describedby="basic-addon3" id="validationCustom06" required minlength="1"
+                                                                    maxlength="50" required value="{{servicio.fecha}}" disabled>
+                                                                    <div class="valid-feedback">
+                                                                        ¡Vamos bien!
+                                                                    </div>
+                                                                    <div class="invalid-feedback">
+                                                                        Completa la información.
+                                                                    </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="d-inline-block w-100">
                                                             <label for="basic-url" for="validationCustom01" class="form-label ps-2 text-black" style="font-size: 17;">Observación</label>
                                                             <div class="input-group mb-3 w-100">
                                                                 <input type="text" class="form-control"
