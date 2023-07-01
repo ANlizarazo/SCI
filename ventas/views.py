@@ -1,22 +1,31 @@
 from django.shortcuts import redirect, render
 from django.http import HttpResponseRedirect
-from ventas.models import Venta
+from ventas.models import Venta,Usuario, Producto, Cliente
 from django.contrib import messages
 
 # se incluyen las siguientes importaciones
-from django.contrib.auth.models import User
 from ventas.forms import VentaForm
 
 # Create your views here.   
 
 def ventas (request):
-    
     #importar las ventas desde el modulo admin
     ventas=Venta.objects.all()
+    usuarios = Usuario.objects.all()
+    clientes = Cliente.objects.all()
+    productos = Producto.objects.all()
     form = VentaForm()
+    
+    for venta in ventas:
+        print(venta.usuario)
+        print(venta.cliente)
+        print(venta.producto)
 
     context = {
         'ventas': ventas,
+        'usuarios': usuarios,
+        'clientes': clientes,
+        'productos': productos,
         'form': form,
     }
 
@@ -28,8 +37,6 @@ def venta_crear(request):
         form = VentaForm(request.POST)
         if form.is_valid():
             form.save()
-            venta = Venta.objects.create_user(request.POST['fecha'], request.POST['usuario'], '123')
-            venta.save()
             messages.success(request,"¡Venta creada correctamente!")
             return redirect('ventas')
         else:
@@ -69,22 +76,26 @@ def venta_ver(request, pk):
 
 
 #Function to EDIT Venta
-def venta_modificar(request):
+def venta_modificar(request, pk):
+    venta = Venta.objects.get(id = pk)
     if request.method == "POST":
-        venta = Venta.objects.get(id = request.POST.get('id'))
-        if venta != None:
-            venta.subtotalVenta= request.POST.get('subtotalVenta')
-            venta.fecha= request.POST.get('fecha')
-            venta.porcentajeIva= request.POST.get('porcentajeIva')
-            venta.totalVenta= request.POST.get('totalVenta')
-            venta.detalleVenta= request.POST.get('detalleVenta')
-            venta.cliente= request.POST.get('cliente')
-            venta.usuario= request.POST.get('usuario')
-            venta.servicio= request.POST.get('servicio')
-            venta.estado= request.POST.get('estado')
-            venta.save()
-            messages.success(request, "La venta ha sido actualizada con éxito!")
-            return HttpResponseRedirect('ventas/')
+        form = VentaForm(request.POST, instance = venta)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "¡Venta modificada correctamente!")
+            return redirect('ventas')
+        else:
+            messages.error(request, "¡Error al modificar venta!")
+            return redirect('ventas')
+
+    else:
+        form = VentaForm(instance = venta)
+
+    context ={
+        'form': form
+    }
+
+    return render(request, 'ventas/ventas.html', context)
 
 #Function to DELETE Venta
 """def delete_venta(request, venta_id):

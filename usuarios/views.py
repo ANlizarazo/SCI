@@ -15,6 +15,9 @@ def usuarios (request):
     usuarios=Usuario.objects.all()
     form = UsuarioForm()
 
+    for usuario in usuarios:
+        print(usuario.nombres)
+
     context = {
         'usuarios': usuarios,
         'form': form,

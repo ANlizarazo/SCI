@@ -98,8 +98,9 @@
                                                 method="POST" enctype="multipart/form-data" 
                                                 class="needs-validation" novalidate>
                                                 
+                                                {% csrf_token %}  
                                                 <div class="modal-body text-start" id="form-nuevo-compra"> 
-                                                {% csrf_token %}   
+                                                
                                                 <div class="d-inline-block w-100">
                                                     <label for="basic-url" for="validationCustom01" 
                                                         class="form-label ps-2 text-black" 
@@ -144,7 +145,7 @@
                                                 <div class="d-inline-block w-100">
                                                     <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom03" style="font-size: 17;">Producto</label>
                                                     <div class="input-group mb-3 w-100">
-                                                        <select id="id_ciudad" class="form-select" name="proveedor"aria-label="tipo-activo"
+                                                        <select id="id_producto" class="form-select" name="proveedor"aria-label="tipo-activo"
                                                             id="validationCustom03" required>   
                                                             
                                                             
@@ -227,20 +228,23 @@
 
                                 <!-- Modal de ver compra -->
 
-                                <div class="modal fade" id="verCompra{{compra.pk}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h1 class="modal-title fs-3" id="staticBackdropLabel"><b class="text-black" >Ver Compras</b></h1>
-                                            </div>
-                                            <div class="modal-body">
-                                                <!-- Formulario -->
-                                                <form  action="{% url 'compras-ver' detallecompra.pk %}" method="POST" 
-                                                    enctype="multipart/form-data" class="needs-validation" 
-                                                    novalidate>
-                                                    
-                                                    <div class="modal-body text-start" id="form-nuevo-compra"> 
-                                                    {% csrf_token %}          
+                                <div class="modal fade" id="verCompra{{compra.pk}}" data-bs-backdrop="static"
+                                data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+                                aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-3" id="staticBackdropLabel"><b
+                                                    class="text-black">Ver Compra</b></h1>
+                                        </div>
+                                        <div class="modal-body">
+                                            <!-- Formulario -->
+                                            <form action="" method="POST"
+                                                enctype="multipart/form-data" class="needs-validation"
+                                                novalidate>
+
+                                                {% csrf_token %}
+                                                <div class="modal-body text-start" id="form-nuevo-compra">         
                                                         <div class="d-inline-block w-100">
                                                             <label for="basic-url" for="validationCustom01" 
                                                                 class="form-label ps-2 text-black" 
@@ -454,9 +458,9 @@
                                                     mb-4 mt-2"></i></div>
                                             <div class="text-center
                                                 text-danger">
-                                                <span class="">¿Estás seguro de que deseas eliminar ésta compra?</span>
+                                                <span class="">¿Estás seguro de que deseas eliminar esta compra?</span>
                                                 <div class="text-dark mt-3
-                                                    mb-2">Compra: <strong>{{compra.email}}</strong></div>
+                                                    mb-2">Compra: <strong>{{detallecompra.id}}-{{detallecompra.fecha}}</strong></div>
                                             </div>
                                         </div>
 

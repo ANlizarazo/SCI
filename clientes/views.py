@@ -12,6 +12,7 @@ def clientes(request):
     
     for cliente in clientes:
         print(cliente.ciudad)
+        print(cliente.nombreEmpresa)
 
     context={
         "clientes":clientes,
@@ -73,8 +74,12 @@ def clientes_modificar(request, pk):
 
     else:
         form = ClienteForm(instance = cliente)
+    
+    context ={
+        'form': form,
+    }
 
-    return render(request, 'clientes/clientes.modificar.html', {'form': form})
+    return render(request, 'clientes/clientes.html', context)
 
 
 
