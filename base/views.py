@@ -45,7 +45,11 @@ def inicio(request):
 """
 def error_404(request,exception):
     context = {}
-    return render(request,'error404.html',context)    
+    return render(request,'error404.html',context) 
+
+def contacto(request):
+    context = {}
+    return render(request,'partials/contacto.html',context)
 
 def error_500(request,):
     context={

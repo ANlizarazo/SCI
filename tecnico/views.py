@@ -63,13 +63,13 @@ def tecnico_modificar(request, pk):
             messages.success(request, "¡Técnico modificado correctamente!")
             return redirect('tecnico')
         else:
+            print('Error al editar el técnico')
             messages.error(request, "¡Error al modificar técnico!")
             return redirect('tecnico')
     else:
         form = TecnicoForm(instance = tecnico)
-    
-    context ={
-        'form': form,
+    context={
+        'form': form
     }
 
     return render(request, 'tecnico/tecnico.html', context)

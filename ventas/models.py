@@ -8,7 +8,7 @@ from usuarios.models import Usuario
 # Create your models here.
 class Venta(models.Model):
     fecha= models.DateField(verbose_name="Fecha", auto_now_add=True, editable=False)
-    usuario=models.ForeignKey(Usuario, on_delete=models.CASCADE, verbose_name="Usuario",blank= True, null=True)
+    usuario=models.ForeignKey(Usuario, on_delete=models.CASCADE, verbose_name="Usuario")
     cliente=models.ForeignKey(Cliente, on_delete=models.CASCADE, verbose_name="Cliente", blank=True, null=True)
     producto = models.ForeignKey(Producto, on_delete=models.CASCADE, verbose_name="Producto")
     cantidadProducto = models.BigIntegerField(validators = [ MinValueValidator ( 0 )], verbose_name="Cantidad Producto") 
