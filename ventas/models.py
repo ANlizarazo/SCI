@@ -9,15 +9,30 @@ from tecnico.models import Tecnico
 
 # Create your models here.
 class DetalleVenta(models.Model):
+    fecha= models.DateField(verbose_name="Fecha", auto_now_add=True, editable=False)
+    usuario=models.ForeignKey(Usuario, on_delete=models.CASCADE, verbose_name="Usuario",blank= True, null=True)
+    cliente=models.ForeignKey(Cliente, on_delete=models.CASCADE, verbose_name="Cliente", blank=True, null=True)
+    producto = models.ForeignKey(Producto, on_delete=models.CASCADE, verbose_name="Producto")
     cantidadProducto = models.BigIntegerField(validators = [ MinValueValidator ( 0 )], verbose_name="Cantidad Producto") 
-    valorTotalProducto = models.PositiveIntegerField(validators = [ MinValueValidator ( 0 )], verbose_name="Valor Total Producto")
-    producto = models.ForeignKey(Producto, on_delete=models.CASCADE, verbose_name="Producto",null=True)
+    valorUnidad = models.PositiveIntegerField(validators = [ MinValueValidator ( 0 )], verbose_name="Valor Unidad")
+    
     class ModoPago(models.TextChoices):
         EF='EF', _('Efectivo')
         PV='PV', _('Pago Virtual')
         PT='PT', _('Pago con Tarjeta')
+    class Estado(models.TextChoices):
+        ACTIVO='1', _('Activo')
+        INACTIVO='0', _('Inactivo')
+    class Iva(models.TextChoices):
+        BYS='5', _('Bienes y Servicios')
+        GR='19', _('General')    
+        EX='0', _('Exento')
     modoPago=models.CharField(max_length=3, choices=ModoPago.choices, default=ModoPago.EF, verbose_name="Modo de Pago")
+    estado=models.CharField(max_length=1, choices=Estado.choices, default=Estado.ACTIVO, verbose_name="Estado")
+    porcentajeIva=models.CharField(max_length=3, choices=Iva.choices, default=Iva.GR, verbose_name="IVA")
+    valorTotal= models.PositiveIntegerField(validators = [ MinValueValidator ( 0 )], verbose_name="Valor Total")
     
+
     def __str__(self)->str:
         return "%s %s %s %s" %(self.id,self.producto,self.cantidadProducto,self.valorTotalProducto)  
     class Meta:
@@ -26,19 +41,17 @@ class DetalleVenta(models.Model):
 
 
 class Venta(models.Model):
-    subtotalVenta= models.PositiveIntegerField(validators = [ MinValueValidator ( 0 )], verbose_name="Subtotal Venta", null = True)
-    fecha= models.DateField(verbose_name="Fecha", auto_now_add=True, editable=False)
+    
+    fecha= models.DateTimeField(verbose_name="Fecha Venta",help_text= "MM/DD/AAAA")
     porcentajeIva=models.DecimalField(validators=[MinValueValidator(0.0)],decimal_places=1,max_digits=20, verbose_name="Porcentaje IVA")
     totalVenta= models.PositiveIntegerField(validators = [ MinValueValidator ( 0 )], verbose_name="Total Venta")
     detalleVenta= models.ForeignKey(DetalleVenta, on_delete=models.CASCADE, verbose_name="Detalle Venta",null=True)
-    cliente=models.ForeignKey(Cliente, on_delete=models.CASCADE, verbose_name="Cliente",null=True, blank=True)
-    usuario=models.ForeignKey(Usuario, on_delete=models.CASCADE, verbose_name="Usuario",null=True)
+    
+    
     servicio=models.ForeignKey(Servicio, on_delete=models.CASCADE, verbose_name="Servicio",null=True, blank=True)
     tecnico= models.ForeignKey(Tecnico, on_delete=models.CASCADE, verbose_name="Técnico", null=True, blank=True)
-    class Estado(models.TextChoices):
-        ACTIVO='1', _('Activo')
-        INACTIVO='0', _('Inactivo')    
-    estado=models.CharField(max_length=1, choices=Estado.choices, default=Estado.ACTIVO, verbose_name="Estado")
+      
+    
 
     def __str__(self)->str:
         return "%s %s" %(self.id,self.fecha)  
