@@ -73,25 +73,24 @@
                                             <tr>
                                                 <th class="border-dark">ID Compra</th>
                                                 <th class="border-dark">Fecha</th>
-                                                <th class="border-dark">Cantidad</th>
-                                                <th class="border-dark">Detalle Compra</th>
+                                                <th class="border-dark">Proveedor</th>
                                                 <th class="border-dark">Producto</th>
-                                                <th class="border-dark">Subtotal</th>
-                                                <th class="border-dark">IVA</th>
-                                                <th class="border-dark">Total Compra</th>                                    
+                                                <th class="border-dark">Cantidad producto</th>
+                                                <th class="border-dark">Valor unidad</th>
+                                                <th class="border-dark">Valor Total</th>                                   
                                                 <th class="border-dark">Acciones</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {% for usuario in usuarios %}
-                                            <tr>
-                                                <td class="border-dark text-black">{{compra.fecha}}</td>
-                                                <td class="border-dark text-black">{{compra.cantidadProducto}}%</td>
-                                                <td class="border-dark text-black">{{compra.detalleCompra}}</td>
-                                                <td class="border-dark text-black">${{compra.producto}}</td>                                    
-                                                <td class="border-dark text-black">{{compra.subTotal}}</td>
-                                                <td class="border-dark text-black">{{compra.iva}}</td>
-                                                <td class="border-dark text-black">{{compra.totalCompra}}</td>
+                                            {% for detallecompra in compras %}
+                                            <tr>     
+                                                <td class="border-dark text-black">{{detallecompra.id}}</td>      
+                                                <td class="border-dark text-black">{{detallecompra.fecha}}</td>
+                                                <td class="border-dark text-black">{{detallecompra.proveedor}}</td>
+                                                <td class="border-dark text-black">{{detallecompra.producto}}</td>
+                                                <td class="border-dark text-black">{{detallecompra.cantidadProducto}}</td>                                    
+                                                <td class="border-dark text-black">{{detallecompra.valorUnidad}}</td>
+                                                <td class="border-dark text-black">{{detallecompra.totalCompra}}</td>
                                                 <td class="border-dark text-black">
                                                     <buttom data-bs-toggle="modal" data-bs-target="#recuperarModal{{compra.pk}}" class="btn btn-warning" title="Restaurar"><i Class="fas fa-trash-restore"></i></buttom>
                                                 </td>
@@ -133,8 +132,8 @@
                                         </div>
                                     </div>
                                 </div>
-<!--Fin del modal-->
-                                            {% endfor %}
+                                <!--Fin del modal-->             
+                            {% endfor %}
                                         </tbody>
                                     </table>
                                 </div>
