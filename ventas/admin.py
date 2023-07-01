@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Venta,DetalleVenta
+from .models import Venta
 # Register your models here.
 class VentaAdmin (admin.ModelAdmin):
     list_display=("id", "detalleVenta","fecha","cliente","usuario","estado")
@@ -9,4 +9,3 @@ class VentaAdmin (admin.ModelAdmin):
 
 
 admin.site.register(Venta)
-admin.site.register(DetalleVenta)

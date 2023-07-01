@@ -23,7 +23,7 @@ class DetalleCompra(models.Model):
     proveedor = models.ForeignKey(Proveedor, on_delete=models.CASCADE, verbose_name="Proveedor",blank=True, null=True)
 
     def __str__(self)->str:
-        return "%s %s %s %s" %(self.id,self.producto,self.fecha)  
+        return "%s %s %s" %(self.id,self.producto,self.fecha)  
     class Meta:
         ordering = ['id']
         verbose_name = 'Compra'
