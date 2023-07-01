@@ -36,12 +36,22 @@ def tecnico_crear(request):
     return render(request, 'tecnico/tecnico-crear.html', context)
 
 #Function to View tecnico data individually
-"""def tecnico_ver(request, tecnico_id):
-    tecnico = Tecnico.objects.get( id = tecnico_id) 
-    if tecnico != None:
-        return render(request, "tecnico/tecnico-modificar.html", {'tecnico':tecnico})
+def tecnico_ver(request):
+
+    titulo = "Técnico - Ver"
+    if request.method == 'POST':
+        form = TecnicoForm(request.POST)
+        if form.is_valid():
+            return redirect('tecnicos')
     else:
-        return redirect('tecnico/tecnico.html')"""
+        form = TecnicoForm()
+    context = {
+        'titulo': titulo,
+        "form": form
+    }
+    return render(request, 'tecnico/tecnico.html', context)
+
+
 
 #Function to modificar tecnico
 def tecnico_modificar(request, pk):
@@ -51,10 +61,10 @@ def tecnico_modificar(request, pk):
         if form.is_valid():
             form.save()
             messages.success(request, "¡Técnico modificado correctamente!")
-            return redirect('tecnicos')
+            return redirect('tecnico')
         else:
-            messages.success(request, "¡Error al modificar técnico!")
-            return redirect('tecnicos')
+            messages.error(request, "¡Error al modificar técnico!")
+            return redirect('tecnico')
     else:
         form = TecnicoForm(instance = tecnico)
     
