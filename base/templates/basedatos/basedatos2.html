@@ -33,15 +33,14 @@
                 <div class="card ">
                     <div class="card-header">
                         <h3 class="card-title text-success"><tr><b
-                                    class="text-success">Reporte de
+                                    class="text-success">Recuperación de
                                     Base de Datos</b></tr></h3>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
                         <!-- Este botón llama el modal -->
 
-
-                        <a class="btn btn-success float-right mr-1 mb-3" data-bs-toggle="modal"
+                        <a class="btn btn-success float-left mr-1 mb-3" data-bs-toggle="modal"
                             data-bs-target="#recuperar"> Recuperar Base de Datos</a> 
 
 
@@ -50,7 +49,7 @@
 
                         
                     </div>
-                       
+                    
                 </div>
             </div> 
 
@@ -67,7 +66,7 @@
                     </div>
                     <div class="modal-body">
                         <p>¿Desea RESPALDAR la Base de Datos?</p>
-                       
+                    
                     </div>             
                             
                         
@@ -87,9 +86,9 @@
 
 
 
-         <!-- Modal de recuperar base de datos -->
+        <!-- Modal de recuperar base de datos -->
 
-         <div class="modal fade" id="recuperar" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal fade" id="recuperar" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -97,7 +96,7 @@
                     </div>
                     <div class="modal-body">
                         <p>¿Desea RECUPERAR la Base de Datos?</p>
-                       
+                    
                     </div>             
                             
                         
@@ -108,16 +107,9 @@
                         <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                         <a href="{% url 'recuperarBaseDatos' %}"  class="btn btn-success">RECUPERAR</a>
                     </div>
-
-                     
-                    
-                    
                 </div>
-            </div>
-        </div>        
-
-
-    </section>
+    </section> 
+    </div>  
     <script src="/static/js/funciones.js"></script>
                 <!-- /.content -->
             
