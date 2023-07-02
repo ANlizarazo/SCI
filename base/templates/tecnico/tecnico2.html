@@ -90,7 +90,6 @@
                                                 
                                                     {% csrf_token %}          
                                                     <div class="modal-body text-start" id="form-nuevo-tecnico"> 
-                                                    
 
                                                         <div class="d-inline-block w-100">
                                                             <label for="basic-url" for="validationCustom01" class="form-label ps-2 text-black" style="font-size: 17;">Nombres</label>
@@ -99,12 +98,12 @@
                                                                     name="nombres" id="id_nombres"
                                                                     aria-describedby="basic-addon3" required minlength="1"
                                                                     maxlength="50" id="validationCustom01" required value="{{tecnico.nombres}}">
-                                                                    <div class="valid-feedback">
-                                                                        ¡Vamos bien!
-                                                                    </div>
-                                                                    <div class="invalid-feedback">
-                                                                        Completa la información.
-                                                                    </div>
+                                                                <div class="valid-feedback">
+                                                                    ¡Vamos bien!
+                                                                </div>
+                                                                <div class="invalid-feedback">
+                                                                    Completa la información.
+                                                                </div>
                                                             </div>
                                                         </div>
 
@@ -449,5 +448,6 @@
                     ).buttons().container().appendTo('#tabla-tecnicos_wrapper .col-md-6:eq(0)');
                 });
             </script>
+            <script class="mx-2">(function(d){var s = d.createElement("script");s.setAttribute("data-account", "tkCHtUA3Ge");s.setAttribute("src", "https://cdn.userway.org/widget.js");(d.body || d.head).appendChild(s);})(document)</script><noscript>Please ensure Javascript is enabled for purposes of <a href="https://userway.org">website accessibility</a></noscript>
         {% block javascript %}
         {% endblock javascript %}

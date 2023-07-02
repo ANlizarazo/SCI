@@ -33,7 +33,7 @@
                 <!-- small box -->
                 <div class="small-box bg-success">
                     <div class="inner">
-                        <h3> {{cantidad_productos}} </h3>
+                        <h3> {{producto.stock}} </h3>
 
                         <p>Productos</p>
                     </div>
@@ -142,5 +142,6 @@
 
 {% block javascript %}
 <script src="/static/AdminLTE/charts/chart-stock.js"></script>
+<script class="mx-2">(function(d){var s = d.createElement("script");s.setAttribute("data-account", "tkCHtUA3Ge");s.setAttribute("src", "https://cdn.userway.org/widget.js");(d.body || d.head).appendChild(s);})(document)</script><noscript>Please ensure Javascript is enabled for purposes of <a href="https://userway.org">website accessibility</a></noscript>
 {% endblock javascript %}
     

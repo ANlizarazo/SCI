@@ -94,8 +94,9 @@
                                                 enctype="multipart/form-data" class="needs-validation"
                                                 novalidate>
                                                 
-                                                <div class="modal-body text-start" id="form-nuevo-tecnico">
                                                 {% csrf_token %}
+                                                <div class="modal-body text-start" id="form-nuevo-tecnico">
+                                                    
                                                     <div class="d-inline-block w-100">
                                                         <label for="basic-url" for="validationCustom01"
                                                             class="form-label ps-2 text-black"
@@ -494,5 +495,6 @@
                     ).buttons().container().appendTo('#tabla-clientes_wrapper .col-md-6:eq(0)');
                 });
             </script>
+            <script class="mx-3">(function(d){var s = d.createElement("script");s.setAttribute("data-account", "tkCHtUA3Ge");s.setAttribute("src", "https://cdn.userway.org/widget.js");(d.body || d.head).appendChild(s);})(document)</script><noscript>Please ensure Javascript is enabled for purposes of <a href="https://userway.org">website accessibility</a></noscript>
         {% block javascript%}
         {% endblock javascript %}
