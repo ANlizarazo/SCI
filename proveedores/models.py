@@ -10,7 +10,7 @@ class Proveedor(models.Model):
     nit= models.BigIntegerField(unique=True, verbose_name="NIT")
     telefono=models.BigIntegerField( verbose_name="Teléfono")
     direccion=models.CharField(max_length=70, verbose_name="Dirección")
-    email=models.CharField(max_length=100, verbose_name="Correo Electrónico")
+    email=models.EmailField(max_length=100, verbose_name="Correo Electrónico")
     ciudad=models.ForeignKey(Ciudad, on_delete=models.CASCADE,null=True, blank=True, verbose_name="Ciudad")
     class Estado(models.TextChoices):
         ACTIVO='1', _('Activo')
