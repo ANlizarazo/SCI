@@ -13,7 +13,7 @@ class Ciudad(models.Model):
 
     
     def __str__(self)->str:
-        return "%s" %(self.nombre)  
+        return "%s - %s" %(self.nombre, self.departamento)  
     
     class Meta:
         ordering = ['nombre']
