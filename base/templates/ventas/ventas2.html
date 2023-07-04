@@ -43,8 +43,7 @@
                             data-bs-toggle="modal"
                             data-bs-target="#crear_Venta" title="Crear"> Crear Detalle</a>
                         <!-- Datatable de ventas -->
-                        <table id="tabla-ventas" class="table table-bordered
-                            table-striped table-responsive-sm border-dark">
+                        <table id="tabla-ventas" class="table table-bordered table-striped dataTable dtr-inline border-dark">
                             <thead class="bg-success">
                                 <tr>
                                     <th class="border-dark">ID Venta</th>
@@ -79,9 +78,7 @@
                                             <i class="fas fa-eye"></i></button>       
                                         <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modificar_Venta" title="Modificar">
                                             <i class="fas fa-edit"></i></button>
-                                            <button class="btn btn-danger"
-                                            data-bs-toggle="modal"
-                                            data-bs-target="#deleteModal{{venta.pk}}" title="Eliminar">
+                                        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal{{venta.pk}}" title="Eliminar">
                                             <i class="fas fa-trash-alt"></i></button>
                                     </td>
                                 </tr>
