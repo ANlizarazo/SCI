@@ -45,7 +45,7 @@
                         <a class="btn btn-success float-right mr-0 mb-3" data-bs-toggle="modal"
                             data-bs-target="#crear_cliente" title="Crear"> Crear Cliente</a>
                         <!-- Datatable de clientes -->
-                        <table id="tabla-clientes" class="table table-responsive-md table-bordered table-striped border-dark">
+                        <table id="tabla-clientes" class="table table-bordered table-striped dataTable dtr-inline border-dark">
                             <thead class="bg-success">
                                 <tr>
                                     <th class="border-dark">Nombre Empresa</th>
@@ -90,9 +90,7 @@
                                         </div>
                                         <div class="modal-body">
                                             <!-- Formulario -->
-                                            <form action= "{% url 'clientes-modificar' cliente.pk %}" method="POST"
-                                                enctype="multipart/form-data" class="needs-validation"
-                                                novalidate>
+                                            <form action= "{% url 'clientes-modificar' cliente.pk %}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
                                                 
                                                 {% csrf_token %}
                                                 {% if form.errors %}
@@ -101,16 +99,11 @@
                                                 <div class="modal-body text-start" id="form-nuevo-tecnico">
                                                     
                                                     <div class="d-inline-block w-100">
-                                                        <label for="basic-url" for="validationCustom01"
+                                                        <label for="basic-url" 
                                                             class="form-label ps-2 text-black"
-                                                            style="font-size: 17;">Nombre Empresa</label>
+                                                            style="font-size: 17;" for="validationDefault" >Nombre Empresa</label>
                                                         <div class="input-group mb-3 w-100">
-                                                            <input type="text" class="form-control"
-                                                                name="nombreEmpresa" id="id_nombres"
-                                                                aria-describedby="basic-addon3" required
-                                                                minlength="1"
-                                                                maxlength="100" id="validationCustom01"
-                                                                required value="{{cliente.nombreEmpresa}}">
+                                                            <input type="text" class="form-control" name="nombreEmpresa" id="id_nombres" aria-describedby="basic-addon3" minlength="1" maxlength="100" id="validationDefault" required value="{{cliente.nombreEmpresa}}">
                                                             <div class="valid-feedback">
                                                                 ¡Vamos bien!
                                                             </div>
