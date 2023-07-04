@@ -33,17 +33,15 @@
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title"><tr><b 
-                            class="text-success">Reporte de Usuarios</b></tr></h3>
+                                class="text-success">Reporte de Usuarios</b></tr></h3>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
                         <!-- Este botón llama el modal -->
-                        <button type="button" class="btn btn-success float-right mr-0 mb-3"
-                            name="form-crear-usuario"
-                            data-bs-toggle="modal"
-                            data-bs-target="#crear_Usuario" title="Crear"> Crear Usuario</button>
+                        <a class="btn btn-success float-right mr-0 mb-3" name="form-crear-usuario" 
+                            data-bs-toggle="modal" data-bs-target="#crear_Usuario" title="Crear"> Crear Usuario</a>
                         <!-- Datatable de usuarios -->
-                            <table id="tabla-usuarios" class="table table-bordered table-striped table-responsive-sm border-dark" style="font-size: 14px;">
+                            <table id="tabla-usuarios" class="table table-bordered table-striped dataTable dtr-inline border-dark">
                                 <thead class="bg-success">
                                     <tr>
                                         <th class="border-dark">Foto</th>
@@ -136,25 +134,18 @@
                                                             </div>
                                                         </div>
 
-                                                        </div> 
+                                                    </div> 
 
                                                         <div class="modal-footer">
                                                             <!-- BOTÓN PARA GUARDAR LA INFORMACIÓN DIGITADA EN EL FORMULARIO DEL USUARIO -->
                                                             <button type="reset" class="btn btn-success" data-bs-dismiss="modal">Regresar</button>
                                                         </div>
-
                                                     </form>
-
-                                                    
-
                                                 </div>
-
                                             </div>
-                                            
                                         </div>
                                     </div>   
-
-<!-- Fin Modal -->
+                        <!-- Fin Modal -->
 
                                     <!-- Modal de modificar usuario -->
 
@@ -528,7 +519,7 @@
                                 url: "{% static 'AdminLTE/datatables/datatables.spanish.json' %}"
                             },
                         //dataTable configurations
-                        "responsive": false, "paging": true, "lengthChange": true,
+                        "responsive": true, "paging": true, "lengthChange": false,
                         "searching": true, "ordering": true, "info": true,
                         "autoWidth": false, "pageLength": 8,
                         "buttons": ["copy", "csv", "excel", "pdf", "print"],
