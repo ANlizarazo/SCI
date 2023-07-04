@@ -13,12 +13,9 @@
             </div>
             <div class="modal-body">
                 <!-- Formulario -->
-                <form action="{% url 'clientes-crear' %}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
-
+                <form action="{% url 'clientes-crear' %}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate >
+                    {{form|crispy}}                                
                     {% csrf_token %}
-                    
-                    {{form|crispy}}
-                    
                         <div class="modal-footer">
                             <!-- BOTÓN PARA GUARDAR LA INFORMACIÓN DIGITADA EN EL FORMULARIO DE CIUDAD -->
                             <button type="reset" class="btn btn-secondary"
