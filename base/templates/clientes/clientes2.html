@@ -204,7 +204,7 @@
                                                                 <option class="text-black" select value="{{cliente.ciudad.pk}}" selected hidden>{{cliente.ciudad}}</option>
                                                             
                                                                 {% for ciudad in ciudades %}
-                                                                    <option class="text-black" value="{{ciudad.id}}">{{ciudad.nombre}}</option>
+                                                                    <option class="text-black" value="{{ciudad.id}}">{{ciudad.nombre}} - {{ciudad.departamento}}</option>
                                                                 {% endfor %}
                                                             
                                                             </select>
@@ -361,7 +361,7 @@
                                                             style="font-size: 17;">Ciudad</label>
                                                         <div class="input-group mb-3 w-100">
                                                             <input id="id_ciudad" class="form-control" name="ciudad" aria-describedby="basic-addon3"
-                                                                id="validationCustom06" required class="text-black" required disabled value="{{cliente.ciudad.nombre}}">
+                                                                id="validationCustom06" required class="text-black" required disabled value="{{cliente.ciudad.nombre}} - {{cliente.ciudad.departamento}}">
                                                         </div>
                                                             <div class="valid-feedback">
                                                                 ¡Vamos bien!
