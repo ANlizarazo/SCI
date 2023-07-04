@@ -7,7 +7,9 @@ from django.contrib import messages
 def departamento(request):
     departamentos = Departamento.objects.all()
     form = DepartamentoForm()
-
+    for departamento in departamentos:
+        print(departamento.nombre)
+        
     context = {
         'departamentos':departamentos,
         'form':form,

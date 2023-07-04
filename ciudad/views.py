@@ -11,6 +11,7 @@ def ciudades(request):
 
     for ciudad in ciudades:
         print(ciudad.nombre)
+        print(ciudad.departamento)
 
     context = {
         'ciudades':ciudades,
