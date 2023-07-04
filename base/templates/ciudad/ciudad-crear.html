@@ -1,10 +1,9 @@
 {% load crispy_forms_tags %}
 
+
 <!-- Modal de crear ciudad -->
 
-<div class="modal fade" id="crearCiudad" data-bs-backdrop="static"
-    data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
-    aria-hidden="true">
+<div class="modal fade" id="crearCiudad" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -16,18 +15,57 @@
                 <form action="{% url 'ciudad-crear' %}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
 
                     {% csrf_token %}
-                    
-                    {{form|crispy}}
-                    
-                        <div class="modal-footer">
-                            <!-- BOTÓN PARA GUARDAR LA INFORMACIÓN DIGITADA EN EL FORMULARIO DE CIUDAD -->
-                            <button type="reset" class="btn btn-secondary"
-                                data-bs-dismiss="modal" title="Cancelar">Cancelar</button>
-                            <input class="btn btn-success" type="submit" title="Crear" value="Crear">
+
+
+
+                    <div class="d-inline-block w-100">
+                        <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom01" style="font-size: 17;">Ciudad</label>
+                        <div class="input-group mb-3 w-100">
+                            <input type="text" class="form-control" name="nombre"
+                                id="id_nombre"
+                                aria-describedby="basic-addon3" id="validationCustom01" required minlength="1"
+                                maxlength="100" required value="{{ciudad.nombre}}">
+                                <div class="valid-feedback">
+                                    ¡Vamos bien!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Ingresa la información  validá.
+                                </div>
                         </div>
+                    </div>
+
+
+                    <div class="d-inline-block w-100">
+                        <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom02" style="font-size: 17;">Departamento</label>
+                            <div class="input-group mb-3 w-100">
+                                <select id="id_departamento" class="form-select" name="departamento"aria-label="tipo-activo"
+                                    id="validationCustom02" required>
+
+                                    <option class="text-black" select value="{{ciudad.departamento.pk}}" selected hidden>{{ciudad.departamento}}</option>
+                                
+                                    {% for departamento in departamentos %}
+                                        <option class="text-black" value="{{departamento.id}}">{{departamento.nombre}} </option>
+                                    {% endfor %}
+                                
+                                </select>
+                                <div class="valid-feedback">
+                                    ¡Vamos bien!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Selecciona una opción valida.
+                                </div>
+                            </div>
+                        </div>
+                    
+                    <div class="modal-footer">
+                        <!-- BOTÓN PARA GUARDAR LA INFORMACIÓN DIGITADA EN EL FORMULARIO DE CIUDAD -->
+                        <button type="reset" class="btn btn-secondary"
+                            data-bs-dismiss="modal" title="Cancelar">Cancelar</button>
+                        <input class="btn btn-success" type="submit" title="Crear" value="Crear">
+                    </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
-<script src="/static/js/funciones.js"></script>
+<script src="/static/js/funciones.js"></script> 
