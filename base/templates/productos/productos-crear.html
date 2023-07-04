@@ -14,17 +14,95 @@
                 
                     {% csrf_token %}          
                     
-                    {{form|crispy}}
+
+                    <div class="d-inline-block w-100">
+                        <label for="basic-url" for="validationCustom01" class="form-label ps-2 text-black" style="font-size: 17;">Nombre</label>
+                        <div class="input-group mb-3 w-100">
+                            <input type="text" class="form-control"
+                                name="nombre" id="id_nombres"
+                                aria-describedby="basic-addon3" required minlength="1"
+                                maxlength="50" id="validationCustom01" required value="{{producto.nombre}}">
+                                <div class="valid-feedback">
+                                    ¡Vamos bien!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Completa la información.
+                                </div>
+                        </div>
+                    </div>
+            
+
+            
+                    <div class="d-inline-block w-100">
+                        <label for="basic-url" for="validationCustom02" class="form-label ps-2 text-black" style="font-size: 17;">Especificaciones</label>
+                        <div class="input-group mb-3 w-100">
+                            <textarea type="text" class="form-control" name="especificaciones"
+                                id="id_numeroTelefono"
+                                aria-describedby="basic-addon3" id="validationCustom02" required minlength="1"
+                                maxlength="250" required>{{producto.especificaciones}}</textarea>
+                                <div class="valid-feedback">
+                                    ¡Vamos bien!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Ingresa un número de teléfono valido.
+                                </div>
+                        </div>
+                    </div>
+            
+                    <div class="d-inline-block w-100">
+                        <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom03" style="font-size: 17;">Cantidad</label>
+                        <div class="input-group mb-3 w-100">
+                            <input type="number" class="form-control" name="stock"
+                                id="id_correoElectronico"
+                                aria-describedby="basic-addon3" id="validationCustom03" required minlength="1"
+                                maxlength="100" required value="{{producto.stock}}">
+                                <div class="valid-feedback">
+                                    ¡Vamos bien!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Ingresa un correo electrónico valido.
+                                </div>
+                        </div>
+                    </div>
+            
+                
+            
+                    <div class="d-inline-block w-100">
+                        <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom04" style="font-size: 17;">Categoría</label>
+                        <div class="input-group mb-3 w-100">
+                            <select id="id_categoria" class="form-select" name="categoria"
+                                aria-label="tipo-activo" id="validationCustom04" required>
+                                
+                                <option class="text-black" selected value="{{producto.categoria.pk}}">{{producto.categoria}}</option>
+                                
+                                {% for categoria in categorias %}
+                                <option class="text-black" value="{{categoria.id}}">{{categoria.nombrecat}}</option>
+                                {% endfor %}
+
+                            </select>
+                            <div class="valid-feedback">
+                                ¡Vamos bien!
+                            </div>
+                            <div class="invalid-feedback">
+                                Selecciona una opción valida.
+                            </div>
+                        </div>
+                    </div> 
+                    
+                        
+
+                </div> 
+                    
                     
                     <div class="modal-footer">
-                        <!-- BOTÓN PARA GUARDAR LA INFORMACIÓN DIGITADA EN EL FORMULARIO DE PRODUCTO -->
-                        <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                        <input class="btn btn-success" type="submit"  value="Crear">
-                    </div>
-
+                            <!-- BOTÓN PARA GUARDAR LA INFORMACIÓN DIGITADA EN EL FORMULARIO DE CIUDAD -->
+                            <button type="reset" class="btn btn-secondary"
+                                data-bs-dismiss="modal" title="Cancelar">Cancelar</button>
+                            <input class="btn btn-success" type="submit" title="Crear" value="Crear">
+                        </div>
                 </form>
             </div>
-            
         </div>
     </div>
-</div>          
+</div>
+<script src="/static/js/funciones.js"></script>        
