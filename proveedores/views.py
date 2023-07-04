@@ -12,11 +12,12 @@ def proveedores(request):
     form = ProveedorForm()
     
     for proveedor in proveedores:
+        print(proveedor.ciudad)
         print(proveedor.nombreEmpresa)
     
     context={
         "proveedor":proveedores,
-        "ciudad":ciudades,
+        "ciudades":ciudades,
         'form': form,
     }
     return render(request,'proveedores/proveedores.html',context)

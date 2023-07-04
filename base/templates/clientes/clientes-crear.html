@@ -16,8 +16,6 @@
                 <form action="{% url 'clientes-crear' %}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
 
                     {% csrf_token %}
-                    
-                    <div class="modal-body text-start" id="form-nuevo-tecnico">
                                                     
                         <div class="d-inline-block w-100">
                             <label for="basic-url" for="validationCustom01"
@@ -115,9 +113,11 @@
                                     minlength="1"
                                     maxlength="100" id="validationCustom05"
                                     required value="{{cliente.email}}">
+                                    <div class="valid-feedback">
+                                        ¡Vamos bien!
+                                    </div>
                                     <div class="invalid-feedback">
                                         Ingresa un email valido.
-                                    </div>
                             </div>
                         </div>
 
@@ -143,11 +143,9 @@
                             </div>
                         </div>
 
-                                                    
-                    
                     
                         <div class="modal-footer">
-                            <!-- BOTÓN PARA GUARDAR LA INFORMACIÓN DIGITADA EN EL FORMULARIO DE CIUDAD -->
+                            <!-- BOTÓN PARA GUARDAR LA INFORMACIÓN DIGITADA EN EL FORMULARIO DE CLIENTE -->
                             <button type="reset" class="btn btn-secondary"
                                 data-bs-dismiss="modal" title="Cancelar">Cancelar</button>
                             <input class="btn btn-success" type="submit" title="Crear" value="Crear">
