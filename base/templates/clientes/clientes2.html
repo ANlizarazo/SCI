@@ -204,7 +204,7 @@
                                                                 <option class="text-black" select value="{{cliente.ciudad.pk}}" selected hidden>{{cliente.ciudad}}</option>
                                                             
                                                                 {% for ciudad in ciudades %}
-                                                                    <option class="text-black" value="{{ciudad.id}}">{{ciudad.nombre}}</option>
+                                                                    <option class="text-black" value="{{ciudad.id}}">{{ciudad.nombre}} - {{ciudad.departamento}}</option>
                                                                 {% endfor %}
                                                             
                                                             </select>
