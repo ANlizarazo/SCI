@@ -93,6 +93,9 @@
                                             <form action= "{% url 'clientes-modificar' cliente.pk %}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
                                                 
                                                 {% csrf_token %}
+                                                {% if form.errors %}
+                                                    <p>Datos inválidos, Por favor intentalo nuevamente.</p>
+                                                {% endif %}
                                                 <div class="modal-body text-start" id="form-nuevo-tecnico">
                                                     
                                                     <div class="d-inline-block w-100">
@@ -186,12 +189,9 @@
                                                                 minlength="1"
                                                                 maxlength="100" id="validationCustom05"
                                                                 required value="{{cliente.email}}">
-                                                            <div class="valid-feedback">
-                                                                ¡Vamos bien!
-                                                            </div>
-                                                            <div class="invalid-feedback">
-                                                                Ingresa un email valido.
-                                                            </div>
+                                                                <div class="invalid-feedback">
+                                                                    Ingresa un email valido.
+                                                                </div>
                                                         </div>
                                                     </div>
 
