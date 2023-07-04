@@ -2,6 +2,7 @@ from django.shortcuts import redirect, render
 from clientes.forms import ClienteForm, ClienteUpdateForm
 from clientes.models import Cliente, Ciudad
 from django.contrib import messages
+from django.forms import ValidationError
 
 #Lista de clientes
 def clientes(request):

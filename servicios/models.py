@@ -10,8 +10,8 @@ from tipodeservicio.models import TipoServicio
 
 class Servicio(models.Model):
     fecha= models.DateTimeField(verbose_name="Fecha", auto_now_add=True, editable=False, null=True)
-    observacion= models.CharField(max_length=200, verbose_name="Observación", null=True)
-    observacionFinal= models.CharField(max_length=250, verbose_name="Observación Final", null=True)
+    observacion= models.TextField(max_length=300, verbose_name="Observación", null=True)
+    observacionFinal= models.TextField(max_length=300, verbose_name="Observación Final", null=True)
     porcentajeIva=models.DecimalField(validators=[MinValueValidator(0.0)], decimal_places=1, max_digits=20, verbose_name="Porcentaje IVA", null=True)
     valorTotal= models.PositiveIntegerField(validators = [ MinValueValidator ( 0 )], verbose_name="Valor Total", null=True)
     class Estado(models.TextChoices):
