@@ -18,7 +18,39 @@
                 
                     {% csrf_token %}          
                     
-                    {{form|crispy}}
+                    <div class="d-inline-block w-100">
+                        <label for="basic-url" for="validationCustom01" class="form-label ps-2 text-black" style="font-size: 17;">Nombre Servicio</label>
+                        <div class="input-group mb-3 w-100">
+                            <input type="text" class="form-control"
+                                name="nombreServicio" id="id_nombreServicio"
+                                aria-describedby="basic-addon3" required minlength="1"
+                                maxlength="50" id="validationCustom01" required value="{{tipodeservicio.nombreServicio}}">
+                                <div class="valid-feedback">
+                                    ¡Vamos bien!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Completa la información.
+                                </div>
+                        </div>
+                    </div>
+            
+                    <div class="d-inline-block w-100">
+                        <label for="basic-url" for="validationCustom02" class="form-label ps-2 text-black" style="font-size: 17;">Descripción</label>
+                        <div class="input-group mb-3 w-100">
+                            <textarea type="text" class="form-control" name="descripcion"
+                                id="id_descripcion"
+                                aria-describedby="basic-addon3" id="validationCustom02" required minlength="1"
+                                maxlength="250" required>{{tipodeservicio.descripcion}}</textarea>
+                                <div class="valid-feedback">
+                                    ¡Vamos bien!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Ingresa un dato válido.
+                                </div>
+                        </div>
+                    </div>
+            
+                </div> 
 
                     <div class="modal-footer">
                         <!-- BOTÓN PARA GUARDAR LA INFORMACIÓN DIGITADA EN EL FORMULARIO DE CATEGORÍA -->
