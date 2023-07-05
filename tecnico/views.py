@@ -67,11 +67,12 @@ def tecnico_modificar(request, pk):
             return redirect('tecnico')
     else:
         form = TecnicoForm(instance = tecnico)
-    context={
-        'form': form
+    
+    context ={
+        'form': form,
     }
 
-    return render(request, 'tecnico/tecnico.html', context)
+    return render(request, 'tecnicos/tecnico.html', context)
 
 #Function to eliminar tecnico
 
