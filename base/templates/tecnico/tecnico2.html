@@ -74,17 +74,16 @@
                                     </td>
                                 </tr>
 
-                                <!-- Modal de modificar tecnico -->
-                            
+                                <!-- Modal de modificar cliente -->
 
-                                <div class="modal fade" id="modificartecnico{{tecnico.pk}}" data-bs-backdrop="static"
+                                <div class="modal fade" id="modificarTecnico{{tecnico.pk}}" data-bs-backdrop="static"
                                 data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
                                 aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h1 class="modal-title fs-3" id="staticBackdropLabel">
-                                            <b class="text-black">MODIFICAR TECNICO</b></h1>
+                                                <b class="text-black">MODIFICAR TÉCNICO</b></h1>
                                         </div>
                                         <div class="modal-body">
                                             <!-- Formulario -->
@@ -145,12 +144,17 @@
                                                         </div>
                                                         
                                                         <div class="d-inline-block w-100">
-                                                            <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom06" style="font-size: 17;">Tipo de Documento</label>
+                                                            <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom04" style="font-size: 17;">Tipo de Documento</label>
                                                             <div class="input-group mb-3 w-100">
                                                                 <select id="id_tipoDocumento" class="form-select" name="tipoDocumento"
+<<<<<<< Updated upstream
                                                                     aria-label="tipo-activo" id="validationCustom06" required value="{{tecnico.tipoDocumento}}">
                                                                     <option class="text-black" selected value hidden>{{tecnico.tipoDocumento}}</option> 
                                                                     <option class="text-black" disabled value>Seleccionar</option>
+=======
+                                                                    aria-label="tipo-activo" id="validationCustom04" required value="{{tecnico.tipoDocumento}}">
+                                                                    <option class="text-black" selected value hidden>{{tecnico.tipoDocumento}}</option>
+>>>>>>> Stashed changes
                                                                     <option class="text-black" value="CC">Cédula de Ciudadania</option>
                                                                     <option class="text-black" value="CE">Cédula de Extranjería</option>
                                                                     <option class="text-black" value="PP">Pasaporte</option>
@@ -166,12 +170,12 @@
                                                         </div>
                                                 
                                                         <div class="d-inline-block w-100">
-                                                            <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom07" style="font-size: 17;">Número de Documento</label>
+                                                            <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom05" style="font-size: 17;">Número de Documento</label>
                                                             <div class="input-group mb-3 w-100">
                                                                 <input type="number" class="form-control" name="numDocumento"
                                                                     id="id_numeroDocumento"
                                                                     aria-describedby="basic-addon3" required minlength="1"
-                                                                    maxlength="50" id="validationCustom07" required value="{{tecnico.numDocumento}}">
+                                                                    maxlength="50" id="validationCustom05" required value="{{tecnico.numDocumento}}">
                                                                     <div class="valid-feedback">
                                                                         ¡Vamos bien!
                                                                     </div>
@@ -182,12 +186,17 @@
                                                         </div>
                                                 
                                                         <div class="d-inline-block w-100">
-                                                            <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom08" style="font-size: 17;">Género</label>
+                                                            <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom06" style="font-size: 17;">Género</label>
                                                             <div class="input-group mb-3 w-100">
                                                                 <select id="id_genero" class="form-select" name="genero"
+<<<<<<< Updated upstream
                                                                     aria-label="tipo-activo" id="validationCustom08" required value="{{tecnico.genero}}">
                                                                     <option class="text-black" selected value hidden>{{tecnico.genero}}</option> 
                                                                     <option class="text-black" disabled value>Seleccionar</option>
+=======
+                                                                    aria-label="tipo-activo" id="validationCustom06" required value="{{tecnico.genero}}">
+                                                                    <option class="text-black" selected value hidden>{{tecnico.genero}}</option>
+>>>>>>> Stashed changes
                                                                     <option class="text-black" value="M">Masculino</option>
                                                                     <option class="text-black" value="F">Femenino</option>
                                                                     <option class="text-black" value="O">Otro</option>
@@ -207,11 +216,18 @@
                                                         <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Regresar</button>
                                                         <input class="btn btn-success" type="submit" value="Modificar">
                                                     </div>
+<<<<<<< Updated upstream
                                                 </div>   
                                                 </form>
                                             </div>
+=======
+
+                                            </form>
+>>>>>>> Stashed changes
                                         </div>
+                                            
                                     </div>
+                                </div>
                                 </div>      
 
 
