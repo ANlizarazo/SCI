@@ -7,11 +7,15 @@ from django.contrib import messages
 
 def tecnicos (request):
 
-    tecnico_list= Tecnico.objects.all()
+    tecnicos= Tecnico.objects.all()
     form = TecnicoForm()
 
+    for tecnico in tecnicos:
+        print(tecnico.nombres)
+        print(tecnico.apellidos)
+
     context= {
-        'tecnico_list': tecnico_list,
+        'tecnicos': tecnicos,
         'form': form,
     }
     return render(request,'tecnico/tecnico.html', context)
@@ -42,7 +46,7 @@ def tecnico_ver(request):
     if request.method == 'POST':
         form = TecnicoForm(request.POST)
         if form.is_valid():
-            return redirect('tecnicos')
+            return redirect('tecnico')
     else:
         form = TecnicoForm()
     context = {

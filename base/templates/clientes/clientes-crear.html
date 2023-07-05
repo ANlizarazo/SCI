@@ -127,8 +127,9 @@
                                 <select id="id_ciudad" class="form-select" name="ciudad"aria-label="tipo-activo"
                                     id="validationCustom06" required>
 
-                                    <option class="text-black" select value="{{cliente.ciudad.pk}}" selected hidden>{{cliente.ciudad}}</option>
-                                    <option value="" selected="">---------</option>
+                                <option class="text-black" select value="{{cliente.ciudad.pk}}" selected hidden>{{cliente.ciudad}}</option>
+                                
+                                <option class="text-black" disabled value>Seleccionar</option>
                                     {% for ciudad in ciudades %}
                                         <option class="text-black" value="{{ciudad.id}}">{{ciudad.nombre}} - {{ciudad.departamento}}</option>
                                     {% endfor %}

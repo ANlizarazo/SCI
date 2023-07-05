@@ -16,7 +16,7 @@
                                 href="http://127.0.0.1:8000/inicio/">
                                 <b class="text-success" title = "Inicio">Inicio </b></a></li>
                         <li class="breadcrumb-item-active"><a
-                                href="http://127.0.0.1:8000/clientes/"
+                                href="http://127.0.0.1:8000/compras/"
                                 class="text-success" title = "Compras">/ Compras</a></li>
                     </ol>
                 </div>
@@ -24,27 +24,27 @@
         </div>
         <!-- /.container-fluid -->
     </section>
-<!-- Main content -->
-<section class="content">
-    <div class="container-fluid ">
-        <div class="row">
-            <!-- Card -->
-            <div class="card">
-                <div class="card-header">
-                    <div class="d-flex justify-content-between">
-                        <div>
-                            <h3 class="card-title text-success"><tr><b
-                                class="text-success">Reporte de Compras</b></tr></h3>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid ">
+            <div class="row">
+                <!-- Card -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <h3 class="card-title text-success"><tr><b
+                                    class="text-success">Reporte de Compras</b></tr></h3>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <!-- /.card-body -->
-                <div class="card-body">
-                    <!-- Este botón llama el modal -->
-                    <a class="btn btn-success float-right mr-0 mb-3" data-bs-toggle="modal"
-                    data-bs-target="#crearDetalle" title="Crear"> Crear Detalle</a>
-                        <!-- Datatable de compras -->
-
+                    <!-- /.card-body -->
+                    <div class="card-body">
+                        <!-- Este botón llama el modal -->
+                        <a class="btn btn-success float-right mr-0 mb-3" data-bs-toggle="modal"
+                            data-bs-target="#crearDetalle" title="Crear"> Crear Compra</a>
+                        <!-- Datatable de clientes -->
                         <table id="tabla-compras" class="table table-bordered table-striped dataTable dtr-inline border-dark">
                             <thead class="bg-success">
                                 <tr>
@@ -61,7 +61,7 @@
                             <tbody>
                                 {% for detallecompra in detalleCompra %}
                                 {% if detallecompra.estado == '1' %}
-                                <tr>     
+                                <tr>
                                     <td class="border-dark text-black">{{detallecompra.id}}</td>      
                                     <td class="border-dark text-black">{{detallecompra.fecha}}</td>
                                     <td class="border-dark text-black">{{detallecompra.proveedor}}</td>
@@ -81,23 +81,21 @@
 
                                 <!-- Modal de modificar compra -->
 
-                                <div class="modal fade" id="modificarCompra{{compra.pk}}" data-bs-backdrop="static" 
-                                data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" 
-                                ria-hidden="true">
+                                <div class="modal fade" id="modificarCompra{{compra.pk}}" data-bs-backdrop="static"
+                                data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+                                aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h1 class="modal-title fs-3" id="staticBackdropLabel">
-                                                <b class="text-black" >MODIFICAR COMPRA</b>
-                                            </h1>
+                                                <b class="text-black">MODIFICAR COMPRA</b></h1>
                                         </div>
                                         <div class="modal-body">
                                             <!-- Formulario -->
-                                            <form action="{% url 'compras-modificar' detallecompra.pk %}" 
-                                                method="POST" enctype="multipart/form-data" 
-                                                class="needs-validation" novalidate>
+                                            <form action= "{% url 'compras-modificar' detallecompra.pk %}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
                                                 
-                                                {% csrf_token %}  
+                                                {% csrf_token %}
+                                                
                                                 <div class="modal-body text-start" id="form-nuevo-compra"> 
                                                 
                                                     <div class="d-inline-block w-100">
@@ -125,7 +123,9 @@
                                                             <select id="id_ciudad" class="form-select" name="proveedor"aria-label="tipo-activo"
                                                                 id="validationCustom02" required>
                                                             
-
+                                                                <option class="text-black" select value="{{detallecompra.proveedor.pk}}" selected hidden>{{detallecompra.proveedor}}</option>
+                                                                
+                                                                <option class="text-black" disabled value>Seleccionar</option>
                                                                 {% for proveedor in proveedores %}
                                                                     <option class="text-black" value="{{proveedor.id}}">{{proveedor.nombreEmpresa}}</option>
                                                                 {% endfor %}
@@ -146,10 +146,11 @@
                                                             <select id="id_producto" class="form-select" name="proveedor"aria-label="tipo-activo"
                                                                 id="validationCustom03" required>   
                                                                 
+                                                                <option class="text-black" select value="{{detallecompra.producto.pk}}" selected hidden>{{detallecompra.producto}}</option>
                                                                 
-                                                            
+                                                                <option class="text-black" disabled value>Seleccionar</option>
                                                                 {% for producto in productos %}
-                                                                    <option class="text-black" value="{{producto.id}}">{{producto.nombre}}</option>
+                                                                    <option class="text-black" value="{{producto.id}}">{{producto.nombre}} - {{producto.categoria}}</option>
                                                                 {% endfor %}
                                                             
                                                             </select>
@@ -209,125 +210,132 @@
                                                                 </div>
                                                         </div>
                                                     </div>
-                                                            
-                                                </div> 
-
-                                                <div class="modal-footer">
-                                                        <!-- BOTÓN PARA GUARDAR LA INFORMACIÓN DIGITADA EN EL FORMULARIO DE LA COMPRA -->
-                                                    <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                                    <input class="btn btn-success" type="submit" name="form-nuevo-compra" value="Modificar">
+                                                
+                                                    <div class="modal-footer">
+                                                        <!-- BOTÓN PARA GUARDAR LA INFORMACIÓN MODIFICADA EN EL FORMULARIO -->
+                                                        <button type="reset" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal">Cancelar</button>
+                                                        <input class="btn btn-success" type="submit"
+                                                            name="form-nuevo-cliente" value="Modificar">
+                                                    </div>
                                                 </div>
                                             </form>
                                         </div>
                                     </div>
-                                </div>  
+                                </div>
                                 </div>
 
+
                                 <!-- Modal de ver compra -->
-
-                                <div class="modal fade" id="verCompra{{compra.pk}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h1 class="modal-title fs-3" id="staticBackdropLabel"><b class="text-black" >Ver Compras</b></h1>
-                                            </div>
-                                            <div class="modal-body">
-                                                <!-- Formulario -->
-                                                    <form  action="{% url 'compras-ver' detallecompra.pk %}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
-                                                    
-                                                        {% csrf_token %}          
-                                                        <div class="modal-body text-start" id="form-nuevo-detalle" >
-
-                                                            <div class="d-inline-block w-100">
-                                                                <label for="basic-url" for="validationCustom01"
-                                                                    class="form-label ps-2 text-black"
-                                                                    style="font-size: 17;">Fecha</label>
-                                                                <div class="input-group mb-3 w-100">
-                                                                    <input type="text" class="form-control"
-                                                                        name="Fecha" id="id_fecha"
-                                                                        aria-describedby="basic-addon3" required
-                                                                        minlength="1"
-                                                                        maxlength="100" id="validationCustom01"
-                                                                        required disabled value="{{detallecompra.fecha}}">
-                                                                </div>
-                                                            </div>
-                                                            
-                                                            <div class="d-inline-block w-100">
-                                                                <label for="basic-url" class="form-label ps-2
-                                                                    text-black" for="validationCustom02"
-                                                                    style="font-size: 17;">Proveedor</label>
-                                                                <div class="input-group mb-3 w-100">
-                                                                    <input id="id_proveedor" class="form-control" name="proveedor" aria-describedby="basic-addon3"
-                                                                        id="validationCustom02" required class="text-black" required disabled value="{{detallecompra.proveedor.nombreEmpresa}}">
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="d-inline-block w-100">
-                                                                <label for="basic-url" class="form-label ps-2
-                                                                    text-black" for="validationCustom03"
-                                                                    style="font-size: 17;">Producto</label>
-                                                                <div class="input-group mb-3 w-100">
-                                                                    <input id="id_producto" class="form-control" name="producto" aria-describedby="basic-addon3"
-                                                                        id="validationCustom03" required class="text-black" required disabled value="{{detallecompra.producto.nombre}}">
-                                                                </div>
-                                                            </div>
-         
-                                                            <div class="d-inline-block w-100">
-                                                                <label for="basic-url" for="validationCustom04"
-                                                                    class="form-label ps-2 text-black"
-                                                                    style="font-size: 17;">Cantidad Producto</label>
-                                                                <div class="input-group mb-3 w-100">
-                                                                    <input type="number" class="form-control"
-                                                                        name="cantidadProducto" id="id_cantidadProducto"
-                                                                        aria-describedby="basic-addon3"
-                                                                        id="validationCustom04" required
-                                                                        minlength="1"
-                                                                        maxlength="20" required disabled value="{{detallecompra.cantidadProducto}}">
-                                                                </div>
-                                                            </div>
-        
-                                                            <div class="d-inline-block w-100">
-                                                                <label for="basic-url" for="validationCustom05"
-                                                                    class="form-label ps-2 text-black"
-                                                                    style="font-size: 17;">Valor Unidad</label>
-                                                                <div class="input-group mb-3 w-100">
-                                                                    <input type="number" class="form-control"
-                                                                        name="valorUnidad" id="id_valorUnidad"
-                                                                        aria-describedby="basic-addon3"
-                                                                        id="validationCustom05" required
-                                                                        minlength="1"
-                                                                        maxlength="20" required disabled value="{{detallecompra.valorUnidad}}">
-                                                                </div>
-                                                            </div>
-         
-                                                            <div class="d-inline-block w-100">
-                                                                <label for="basic-url" for="validationCustom05"
-                                                                    class="form-label ps-2 text-black"
-                                                                    style="font-size: 17;">Valor Total</label>
-                                                                <div class="input-group mb-3 w-100">
-                                                                    <input type="number" class="form-control"
-                                                                        name="totalCompra" id="id_totalCompra"
-                                                                        aria-describedby="basic-addon3"
-                                                                        id="validationCustom05" required
-                                                                        minlength="1"
-                                                                        maxlength="20" required disabled value="{{detallecompra.totalCompra}}">
-                                                                </div>
-                                                            </div>
-        
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <!-- BOTÓN PARA VER LA INFORMACIÓN DIGITADA EN EL FORMULARIO DEL DETALLE VENTA -->
-                                                            <button type="reset" class="btn btn-success" data-bs-dismiss="modal">Regresar</button>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
+                                <div class="modal fade" id="verCompra{{compra.pk}}" data-bs-backdrop="static"
+                                data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+                                aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-3" id="staticBackdropLabel"><b
+                                                    class="text-black">VER COMPRA</b></h1>
                                         </div>
-                                    </div>   
-                                <!-- Fin Modal -->
+                                        <div class="modal-body">
+                                            <!-- Formulario -->
+                                            <form action="{% url 'compras-ver' detallecompra.pk %}" method="POST"
+                                                enctype="multipart/form-data" class="needs-validation"
+                                                novalidate>
+
+                                                {% csrf_token %}
+                                                <div class="modal-body text-start" id="form-nuevo-detalle" >
+
+                                                    <div class="d-inline-block w-100">
+                                                        <label for="basic-url" for="validationCustom01"
+                                                            class="form-label ps-2 text-black"
+                                                            style="font-size: 17;">Fecha</label>
+                                                        <div class="input-group mb-3 w-100">
+                                                            <input type="text" class="form-control"
+                                                                name="Fecha" id="id_fecha"
+                                                                aria-describedby="basic-addon3" required
+                                                                minlength="1"
+                                                                maxlength="100" id="validationCustom01"
+                                                                required disabled value="{{detallecompra.fecha}}">
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="d-inline-block w-100">
+                                                        <label for="basic-url" class="form-label ps-2
+                                                            text-black" for="validationCustom02"
+                                                            style="font-size: 17;">Proveedor</label>
+                                                        <div class="input-group mb-3 w-100">
+                                                            <input id="id_proveedor" class="form-control" name="proveedor" aria-describedby="basic-addon3"
+                                                                id="validationCustom02" required class="text-black" required disabled value="{{detallecompra.proveedor.nombreEmpresa}}">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="d-inline-block w-100">
+                                                        <label for="basic-url" class="form-label ps-2
+                                                            text-black" for="validationCustom03"
+                                                            style="font-size: 17;">Producto</label>
+                                                        <div class="input-group mb-3 w-100">
+                                                            <input id="id_producto" class="form-control" name="producto" aria-describedby="basic-addon3"
+                                                                id="validationCustom03" required class="text-black" required disabled value="{{detallecompra.producto.nombre}}">
+                                                        </div>
+                                                    </div>
+ 
+                                                    <div class="d-inline-block w-100">
+                                                        <label for="basic-url" for="validationCustom04"
+                                                            class="form-label ps-2 text-black"
+                                                            style="font-size: 17;">Cantidad Producto</label>
+                                                        <div class="input-group mb-3 w-100">
+                                                            <input type="number" class="form-control"
+                                                                name="cantidadProducto" id="id_cantidadProducto"
+                                                                aria-describedby="basic-addon3"
+                                                                id="validationCustom04" required
+                                                                minlength="1"
+                                                                maxlength="20" required disabled value="{{detallecompra.cantidadProducto}}">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="d-inline-block w-100">
+                                                        <label for="basic-url" for="validationCustom05"
+                                                            class="form-label ps-2 text-black"
+                                                            style="font-size: 17;">Valor Unidad</label>
+                                                        <div class="input-group mb-3 w-100">
+                                                            <input type="number" class="form-control"
+                                                                name="valorUnidad" id="id_valorUnidad"
+                                                                aria-describedby="basic-addon3"
+                                                                id="validationCustom05" required
+                                                                minlength="1"
+                                                                maxlength="20" required disabled value="{{detallecompra.valorUnidad}}">
+                                                        </div>
+                                                    </div>
+ 
+                                                    <div class="d-inline-block w-100">
+                                                        <label for="basic-url" for="validationCustom05"
+                                                            class="form-label ps-2 text-black"
+                                                            style="font-size: 17;">Valor Total</label>
+                                                        <div class="input-group mb-3 w-100">
+                                                            <input type="number" class="form-control"
+                                                                name="totalCompra" id="id_totalCompra"
+                                                                aria-describedby="basic-addon3"
+                                                                id="validationCustom05" required
+                                                                minlength="1"
+                                                                maxlength="20" required disabled value="{{detallecompra.totalCompra}}">
+                                                        </div>
+                                                    </div>
 
 
-                                <!-- Modal delete confirmation -->
+                                                    <div class="modal-footer">
+                                                        <!-- BOTÓN PARA GUARDAR LA INFORMACIÓN DIGITADA EN EL FORMULARIO DEL USUARIO -->
+                                                        <button type="reset" class="btn btn-success"
+                                                            data-bs-dismiss="modal">Regresar</button>    
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+
+
+                                <!-- Modal delete client -->
                                 <div class="modal fade"
                                 id="deleteModal{{compra.pk}}"
                                 tabindex="-1"
@@ -349,7 +357,7 @@
                                                 text-danger">
                                                 <span class="">¿Estás seguro de que deseas eliminar esta compra?</span>
                                                 <div class="text-dark mt-3
-                                                    mb-2">Compra: <strong>{{detallecompra.id}}-{{detallecompra.fecha}}</strong></div>
+                                                    mb-2">Compra: <strong>{{detallecompra.id}} - {{detallecompra.fecha}}</strong></div>
                                             </div>
                                         </div>
 
@@ -366,26 +374,26 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> 
                                 {% endif %}
                                 {% endfor %}
                             </tbody>
                         </table>
-                    </div>                    
+                    </div>        
                     <a href="{% url 'recuperar_compras' %}" class="btn btn-warning float-right mr-1 mb-3" title="Papelera"><i class="fas fa-trash-restore"></i>&nbsp; Restaurar </a>
-                        <!-- /.card-body -->
+                        <!-- /.card-body -->  
                 </div>
-            </div>
+            </div>            
             <!-- /.card -->
-        </section>
-        <!-- /.content -->
-    </div>
-    <footer>{% include 'partials/footer.html' %}</footer>
-    <!-- /.content-wrapper -->
-    {% endblock contenido %}
+    </section>
+    <!-- /.content -->
+</div>
+<footer>{% include 'partials/footer.html' %}</footer>
+<!-- /.content-wrapper -->
+{% endblock contenido %}
 
 
-{% block javascript %}
+{% block javascript%}
 <!-- jQuery -->
 <script src="{% static 'AdminLTE/jquery/jquery.min.js' %}"></script>
 <!-- Bootstrap -->
@@ -397,31 +405,31 @@
 <!-- toastr alert -->
 <script type="application/json" src="{% static 'AdminLTE/toastr/toastr.js.map' %}"></script>
 <script type="text/javascript" src="{% static 'AdminLTE/toastr/toastr.min.js' %}"></script>
-                
+
 <!-- DataTables  & Plugins -->
-                <script src="{% static 'AdminLTE/datatables/jquery.dataTables.min.js' %}"></script>
-                <script src="{% static 'AdminLTE/datatables-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
-                <script src="{% static 'AdminLTE/datatables-responsive/js/dataTables.responsive.min.js' %}"></script>
-                <script src="{% static 'AdminLTE/datatables-responsive/js/responsive.bootstrap4.min.js' %}"></script>
-                <script src="{% static 'AdminLTE/datatables-buttons/js/dataTables.buttons.min.js' %}"></script>
-                <script src="{% static 'AdminLTE/datatables-buttons/js/buttons.bootstrap4.min.js' %}"></script>
-                <script src="{% static 'AdminLTE/jszip/jszip.min.js' %}"></script>
-                <script src="{% static 'AdminLTE/pdfmake/pdfmake.min.js' %}"></script>
-                <script src="{% static 'AdminLTE/pdfmake/vfs_fonts.js' %}"></script>
-                <script src="{% static 'AdminLTE/datatables-buttons/js/buttons.html5.min.js' %}"></script>
-                <script src="{% static 'AdminLTE/datatables-buttons/js/buttons.print.min.js' %}"></script>
-                <script src="{% static 'AdminLTE/datatables-buttons/js/buttons.colVis.min.js' %}"></script>
-                <script src="{% static 'AdminLTE/js/modal-status.js' %}"></script>
-    
-        <!--DataTable Compras-->
-        <script>
+<script src="{% static 'AdminLTE/datatables/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'AdminLTE/datatables-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+<script src="{% static 'AdminLTE/datatables-responsive/js/dataTables.responsive.min.js' %}"></script>
+<script src="{% static 'AdminLTE/datatables-responsive/js/responsive.bootstrap4.min.js' %}"></script>
+<script src="{% static 'AdminLTE/datatables-buttons/js/dataTables.buttons.min.js' %}"></script>
+<script src="{% static 'AdminLTE/datatables-buttons/js/buttons.bootstrap4.min.js' %}"></script>
+<script src="{% static 'AdminLTE/jszip/jszip.min.js' %}"></script>
+<script src="{% static 'AdminLTE/pdfmake/pdfmake.min.js' %}"></script>
+<script src="{% static 'AdminLTE/pdfmake/vfs_fonts.js' %}"></script>
+<script src="{% static 'AdminLTE/datatables-buttons/js/buttons.html5.min.js' %}"></script>
+<script src="{% static 'AdminLTE/datatables-buttons/js/buttons.print.min.js' %}"></script>
+<script src="{% static 'AdminLTE/datatables-buttons/js/buttons.colVis.min.js' %}"></script>
+<script src="{% static 'AdminLTE/js/modal-status.js' %}"></script>
+
+            <!--DataTable clientes-->
+            <script>
                 $(function () {
                     $("#tabla-compras").DataTable({
                         dom: 'Bfrtip',  
                             language:{
                                 url: "{% static 'AdminLTE/datatables/datatables.spanish.json' %}"
                             },
-                         //dataTable configurations
+                        //dataTable configurations
                         "responsive": true, "paging": true, "lengthChange": false,
                         "searching": true, "ordering": true, "info": true,
                         "autoWidth": false, "pageLength": 8,
@@ -432,4 +440,5 @@
                 });
             </script>
             <script class="mx-3">(function(d){var s = d.createElement("script");s.setAttribute("data-account", "tkCHtUA3Ge");s.setAttribute("src", "https://cdn.userway.org/widget.js");(d.body || d.head).appendChild(s);})(document)</script><noscript>Please ensure Javascript is enabled for purposes of <a href="https://userway.org">website accessibility</a></noscript>
-            {% endblock javascript %}
+        
+{% endblock javascript %}
