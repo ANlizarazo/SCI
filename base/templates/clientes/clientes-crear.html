@@ -127,7 +127,7 @@
                                 <select id="id_ciudad" class="form-select" name="ciudad"aria-label="tipo-activo"
                                     id="validationCustom06" required>
 
-                                <option class="text-black" select value="{{cliente.ciudad.pk}}" selected hidden>{{cliente.ciudad}}</option>
+                                    <option class="text-black" select value="{{cliente.ciudad.pk}}" selected hidden>{{cliente.ciudad}}</option>
                                 
                                 <option class="text-black" disabled value>Seleccionar</option>
                                     {% for ciudad in ciudades %}
@@ -144,7 +144,7 @@
                             </div>
                         </div>
 
-                    </div>
+                    
 
                         <div class="modal-footer">
                             <!-- BOTÓN PARA GUARDAR LA INFORMACIÓN DIGITADA EN EL FORMULARIO DE CIUDAD -->
@@ -152,6 +152,7 @@
                                 data-bs-dismiss="modal" title="Cancelar">Cancelar</button>
                             <input class="btn btn-success" type="submit" title="Crear" value="Crear">
                         </div>
+                    </div>
                 </form>
             </div>
         </div>
