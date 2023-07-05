@@ -17,8 +17,51 @@
 
                     {% csrf_token %}
                     
-                    {{form|crispy}}
                     
+                    <div class="modal-body text-start" id="form-nueva-ciudad">
+                    
+                        <div class="d-inline-block w-100">
+                            <label for="basic-url" for="validationCustom01"
+                                class="form-label ps-2 text-black"
+                                style="font-size: 17;">Nombre</label>
+                            <div class="input-group mb-3 w-100">
+                                <input type="text" class="form-control"
+                                    name="nombre" id="id_nombre"
+                                    aria-describedby="basic-addon3" required
+                                    minlength="1"
+                                    maxlength="100" id="validationCustom01"
+                                    required value="{{ciudad.nombre}}">
+                                <div class="valid-feedback">
+                                    ¡Vamos bien!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Completa la información.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="d-inline-block w-100">
+                            <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom06" style="font-size: 17;">Departamento</label>
+                            <div class="input-group mb-3 w-100">
+                                <select id="id_departamento" class="form-select" name="ciudad"aria-label="tipo-activo"
+                                    id="validationCustom06" required>
+
+                                    <option class="text-black" select value="{{ciudad.departamento.pk}}" selected hidden>{{ciudad.departamento}}</option>
+                                
+                                    {% for departamento in departamentos %}
+                                        <option class="text-black" value="{{departamento.id}}">{{departamento.nombre}}</option>
+                                    {% endfor %}
+                                
+                                </select>
+                                <div class="valid-feedback">
+                                    ¡Vamos bien!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Selecciona una opción valida.
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="modal-footer">
                             <!-- BOTÓN PARA GUARDAR LA INFORMACIÓN DIGITADA EN EL FORMULARIO DE CIUDAD -->
                             <button type="reset" class="btn btn-secondary"
