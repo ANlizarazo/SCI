@@ -30,7 +30,6 @@ class Venta(models.Model):
     porcentajeIva=models.CharField(max_length=3, choices=Iva.choices, default=Iva.GR, verbose_name="IVA")
     valorTotal= models.PositiveIntegerField(validators = [ MinValueValidator ( 0 )], verbose_name="Valor Total")
     
-
     def __str__(self)->str:
         return "%s %s %s %s" %(self.id,self.producto,self.id,self.fecha)  
     class Meta:
