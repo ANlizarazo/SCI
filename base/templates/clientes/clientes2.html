@@ -204,7 +204,7 @@
                                                                 <option class="text-black" select value="{{cliente.ciudad.pk}}" selected hidden>{{cliente.ciudad}}</option>
                                                             
                                                                 {% for ciudad in ciudades %}
-                                                                    <option class="text-black" value="{{ciudad.id}}">{{ciudad.nombre}}</option>
+                                                                    <option class="text-black" value="{{ciudad.id}}">{{ciudad.nombre}} - {{ciudad.departamento}}</option>
                                                                 {% endfor %}
                                                             
                                                             </select>
@@ -244,13 +244,13 @@
                                         </div>
                                         <div class="modal-body">
                                             <!-- Formulario -->
-                                            <form action="" method="POST"
+                                            <form action="{% url 'clientes-ver' cliente.pk %}" method="POST"
                                                 enctype="multipart/form-data" class="needs-validation"
                                                 novalidate>
 
                                                 {% csrf_token %}
                                                 <div class="modal-body text-start" id="form-nuevo-cliente">
- 
+
                                                     <div class="d-inline-block w-100">
                                                         <label for="basic-url" for="validationCustom01"
                                                             class="form-label ps-2 text-black"
@@ -262,12 +262,7 @@
                                                                 minlength="1"
                                                                 maxlength="100" id="validationCustom01"
                                                                 required disabled value="{{cliente.nombreEmpresa}}">
-                                                            <div class="valid-feedback">
-                                                                ¡Vamos bien!
-                                                            </div>
-                                                            <div class="invalid-feedback">
-                                                                Completa la información.
-                                                            </div>
+                                                            
                                                         </div>
                                                     </div>
  
@@ -282,12 +277,7 @@
                                                                 id="validationCustom02" required
                                                                 minlength="1"
                                                                 maxlength="20" required disabled value="{{cliente.nit}}">
-                                                            <div class="valid-feedback">
-                                                                ¡Vamos bien!
-                                                            </div>
-                                                            <div class="invalid-feedback">
-                                                                Completa la información.
-                                                            </div>
+                                                            
                                                         </div>
                                                     </div>
  
@@ -303,12 +293,7 @@
                                                                 id="validationCustom03" required
                                                                 minlength="1"
                                                                 maxlength="20" required disabled value="{{cliente.telefono}}">
-                                                            <div class="valid-feedback">
-                                                                ¡Vamos bien!
-                                                            </div>
-                                                            <div class="invalid-feedback">
-                                                                Ingresa un número de teléfono valido.
-                                                            </div>
+                                                            
                                                         </div>
                                                     </div>
 
@@ -324,12 +309,7 @@
                                                                 minlength="1"
                                                                 maxlength="50" id="validationCustom04"
                                                                 required disabled value="{{cliente.direccion}}">
-                                                            <div class="valid-feedback">
-                                                                ¡Vamos bien!
-                                                            </div>
-                                                            <div class="invalid-feedback">
-                                                                Ingresa una dirección valida.
-                                                            </div>
+                                                            
                                                         </div>
                                                     </div>
  
@@ -346,12 +326,7 @@
                                                                 minlength="1"
                                                                 maxlength="50" id="validationCustom05"
                                                                 required disabled value="{{cliente.email}}">
-                                                            <div class="valid-feedback">
-                                                                ¡Vamos bien!
-                                                            </div>
-                                                            <div class="invalid-feedback">
-                                                                Ingresa email valido.
-                                                            </div>
+                                                            
                                                         </div>
                                                     </div>
 
@@ -361,16 +336,12 @@
                                                             style="font-size: 17;">Ciudad</label>
                                                         <div class="input-group mb-3 w-100">
                                                             <input id="id_ciudad" class="form-control" name="ciudad" aria-describedby="basic-addon3"
-                                                                id="validationCustom06" required class="text-black" required disabled value="{{cliente.ciudad.nombre}}">
+                                                                id="validationCustom06" required class="text-black" required disabled value="{{cliente.ciudad.nombre}} - {{cliente.ciudad.departamento}}">
                                                         </div>
-                                                            <div class="valid-feedback">
-                                                                ¡Vamos bien!
-                                                            </div>
-                                                            <div class="invalid-feedback">
-                                                                Selecciona una opción valida.
-                                                            </div>
                                                         </div>
                                                     </div>
+
+                                                </div>
 
                                                     <div class="modal-footer">
                                                         <!-- BOTÓN PARA GUARDAR LA INFORMACIÓN DIGITADA EN EL FORMULARIO DEL USUARIO -->
@@ -443,6 +414,8 @@
 <!-- /.content-wrapper -->
 {% endblock contenido %}
 
+
+{% block javascript%}
 <!-- jQuery -->
 <script src="{% static 'AdminLTE/jquery/jquery.min.js' %}"></script>
 <!-- Bootstrap -->
@@ -489,5 +462,5 @@
                 });
             </script>
             <script class="mx-3">(function(d){var s = d.createElement("script");s.setAttribute("data-account", "tkCHtUA3Ge");s.setAttribute("src", "https://cdn.userway.org/widget.js");(d.body || d.head).appendChild(s);})(document)</script><noscript>Please ensure Javascript is enabled for purposes of <a href="https://userway.org">website accessibility</a></noscript>
-        {% block javascript%}
-        {% endblock javascript %}
+        
+{% endblock javascript %}
