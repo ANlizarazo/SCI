@@ -26,8 +26,6 @@ def servicios(request):
     }
     return render(request,'servicios/servicios.html',context)
 
-
-
 def servicios_crear(request):
     if request.method == "POST":
         form= ServicioForm(request.POST)
@@ -45,8 +43,6 @@ def servicios_crear(request):
     }
     return render(request,'servicios/servicios-crear.html',context)
 
-
-    
 def servicios_ver(request):
 
     titulo = "Servicios - Ver"
