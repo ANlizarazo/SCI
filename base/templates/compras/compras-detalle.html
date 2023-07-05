@@ -16,9 +16,7 @@
                     {% csrf_token %}  
 
                     <div class="modal-body text-start" id="form-nuevo-detalle">
-                    
-                        <input type="hidden" name="csrfmiddlewaretoken" value="iGXTWTzpznhfcDXBvuAFbloMmWnnYaI1BdjX1TwrpsMS2q5y2NLHZqYNZzBdT0hz">
-                        
+
                         <div class="d-inline-block w-100">
                             <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom02" style="font-size: 17;">Proveedor</label>
                             <div class="input-group mb-3 w-100">
@@ -26,7 +24,8 @@
                                     id="validationCustom02" required>
 
                                     <option class="text-black" select value="{{detallecompra.proveedor.pk}}" selected hidden>{{detallecompra.proveedor}}</option>
-                                    <option value="" selected="">---------</option>
+                                        
+                                    <option class="text-black" disabled value>Seleccionar</option>
                                     {% for proveedor in proveedores %}
                                         <option class="text-black" value="{{proveedor.id}}">{{proveedor.nombreEmpresa}}</option>
                                     {% endfor %}
@@ -48,7 +47,8 @@
                                     id="validationCustom03" required>   
                                     
                                     <option class="text-black" select value="{{detallecompra.producto.pk}}" selected hidden>{{detallecompra.producto}}</option>
-                                    <option value="" selected="">---------</option>
+                                        
+                                    <option class="text-black" disabled value>Seleccionar</option>
                                     {% for producto in productos %}
                                         <option class="text-black" value="{{producto.id}}">{{producto.nombre}}</option>
                                     {% endfor %}

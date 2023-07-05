@@ -114,10 +114,10 @@
                                                         <div class="d-inline-block w-100">
                                                             <label for="basic-url" for="validationCustom01" class="form-label ps-2 text-black" style="font-size: 17;">Observación</label>
                                                             <div class="input-group mb-3 w-100">
-                                                                <input type="text" class="form-control"
+                                                                <textarea type="text" class="form-control"
                                                                     name="observacion" id="id_observacion"
                                                                     aria-describedby="basic-addon3" required minlength="1"
-                                                                    maxlength="50" id="validationCustom01" required value="{{servicio.observacion}}">
+                                                                    maxlength="50" id="validationCustom01" required value="{{servicio.observacion}}"></textarea>
                                                                     <div class="valid-feedback">
                                                                         ¡Vamos bien!
                                                                     </div>
@@ -130,10 +130,10 @@
                                                         <div class="d-inline-block w-100">
                                                             <label for="basic-url"  for="validationCustom02" class="form-label ps-2 text-black" style="font-size: 17;">Observación Final</label>
                                                             <div class="input-group mb-3 w-100">
-                                                                <input type="text" class="form-control"
+                                                                <textarea type="text" class="form-control"
                                                                     name="observacionFinal" id="id_observacionFinal"
                                                                     aria-describedby="basic-addon3" id="validationCustom02" required minlength="1"
-                                                                    maxlength="50" required value="{{servicio.observacionFinal}}">
+                                                                    maxlength="50" required value="{{servicio.observacionFinal}}"></textarea>
                                                                     <div class="valid-feedback">
                                                                         ¡Vamos bien!
                                                                     </div>
@@ -168,11 +168,13 @@
                                                             <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom04" style="font-size: 17;">Ciudad</label>
                                                             <div class="input-group mb-3 w-100">
                                                                 <select id="id_ciudad" class="form-select" name="ciudad"
-                                                                    aria-label="tipo-activo" id="validationCustom04" required value="{{servicio.ciudad.pk}}">
+                                                                    aria-label="tipo-activo" id="validationCustom04" required >
                                                                     
+                                                                    <option class="text-black" select value="{{servicio.ciudad.pk}}" selected hidden>{{servicio.ciudad}}</option>
+
                                                                     <option class="text-black" disabled value>Seleccionar</option>
                                                                     {% for ciudad in ciudades %}
-                                                                    <option class="text-black" value="{{ciudad.id}}">{{ciudad.nombre}}</option>
+                                                                    <option class="text-black" value="{{ciudad.id}}">{{ciudad.nombre}} - {{ciudad.departamento}}</option>
                                                                     {% endfor %}
 
                                                                 </select>
@@ -190,10 +192,12 @@
                                                             <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom05" style="font-size: 17;">Ténico</label>
                                                             <div class="input-group mb-3 w-100">
                                                                 <select id="id_tecnico" class="form-select" name="tecnico"
-                                                                    aria-label="tipo-activo" id="validationCustom05" required value="{{servicio.tecnico.pk}}">
+                                                                    aria-label="tipo-activo" id="validationCustom05" required >
+
+                                                                    <option class="text-black" select value="{{servicio.tecnico.pk}}" selected hidden>{{servicio.tecnico}}</option>
                                                                     
                                                                     <option class="text-black" disabled value>Seleccionar</option>
-                                                                    {% for tecnico in tecnico_list %}
+                                                                    {% for tecnico in tecnicos %}
                                                                     <option class="text-black" value="{{tecnico.id}}">{{tecnico.nombres}} {{tecnico.apellidos}}</option>
                                                                     {% endfor %}
 
@@ -239,14 +243,14 @@
                                                             </div>
                                                         </div>
 
+                                                
+
+                                                        <div class="modal-footer">
+                                                            <!-- BOTÓN PARA GUARDAR LA INFORMACIÓN DIGITADA EN EL FORMULARIO DEL SERVICIO -->
+                                                            <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                                            <input class="btn btn-success" type="submit" name="form-nuevo-usuario" value="Modificar">
+                                                        </div>
                                                     </div> 
-
-                                                    <div class="modal-footer">
-                                                        <!-- BOTÓN PARA GUARDAR LA INFORMACIÓN DIGITADA EN EL FORMULARIO DEL SERVICIO -->
-                                                        <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                                        <input class="btn btn-success" type="submit" name="form-nuevo-usuario" value="Modificar">
-                                                    </div>
-
                                                 </form>
                                             </div>
                                             
