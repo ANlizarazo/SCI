@@ -25,8 +25,6 @@ def clientes(request):
 
 #Funcion para VER clientes
 def clientes_ver(request):
-
-    titulo = "Clientes - Ver"
     if request.method == 'POST':
         form = ClienteForm(request.POST)
         if form.is_valid():
@@ -34,10 +32,9 @@ def clientes_ver(request):
     else:
         form = ClienteForm()
     context = {
-        'titulo': titulo,
         "form": form
     }
-    return render(request, 'clientes/clientes-ver.html', context)
+    return render(request, 'clientes/clientes.html', context)
 
 
 #Función para CREAR clientes

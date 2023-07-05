@@ -13,9 +13,105 @@
                 <form  action="{% url 'detalle-crear' %}" method="POST" enctype="multipart/form-data" 
                 class="needs-validation" novalidate>
                 
-                    {% csrf_token %}          
+                    {% csrf_token %}  
+
+                    <div class="modal-body text-start" id="form-nuevo-detalle">
                     
-                    {{ form|crispy}}
+                        <input type="hidden" name="csrfmiddlewaretoken" value="iGXTWTzpznhfcDXBvuAFbloMmWnnYaI1BdjX1TwrpsMS2q5y2NLHZqYNZzBdT0hz">
+                        
+                        <div class="d-inline-block w-100">
+                            <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom02" style="font-size: 17;">Proveedor</label>
+                            <div class="input-group mb-3 w-100">
+                                <select id="id_proveedor" class="select form-select" name="proveedor"aria-label="tipo-activo"
+                                    id="validationCustom02" required>
+
+                                    <option class="text-black" select value="{{detallecompra.proveedor.pk}}" selected hidden>{{detallecompra.proveedor}}</option>
+                                    <option value="" selected="">---------</option>
+                                    {% for proveedor in proveedores %}
+                                        <option class="text-black" value="{{proveedor.id}}">{{proveedor.nombreEmpresa}}</option>
+                                    {% endfor %}
+                                
+                                </select>
+                                <div class="valid-feedback">
+                                    ¡Vamos bien!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Selecciona una opción valida.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="d-inline-block w-100">
+                            <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom03" style="font-size: 17;">Producto</label>
+                            <div class="input-group mb-3 w-100">
+                                <select id="id_producto" class="select form-select" name="producto"aria-label="tipo-activo"
+                                    id="validationCustom03" required>   
+                                    
+                                    <option class="text-black" select value="{{detallecompra.producto.pk}}" selected hidden>{{detallecompra.producto}}</option>
+                                    <option value="" selected="">---------</option>
+                                    {% for producto in productos %}
+                                        <option class="text-black" value="{{producto.id}}">{{producto.nombre}}</option>
+                                    {% endfor %}
+                                
+                                </select>
+                                <div class="valid-feedback">
+                                    ¡Vamos bien!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Selecciona una opción valida.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="d-inline-block w-100">
+                            <label for="basic-url"  for="validationCustom04" class="form-label ps-2 text-black" style="font-size: 17;">Cantidad Producto</label>
+                            <div class="input-group mb-3 w-100">
+                                <input type="number" class="form-control"
+                                    name="cantidadProducto" id="id_cantidadProducto"
+                                    aria-describedby="basic-addon3" id="validationCustom04" required minlength="1"
+                                    maxlength="50" required value="{{detallecompra.cantidadProducto}}">
+                                    <div class="valid-feedback">
+                                        ¡Vamos bien!
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        Completa la información.
+                                    </div>
+                            </div>
+                        </div>
+
+                        <div class="d-inline-block w-100">
+                            <label for="basic-url"  for="validationCustom05" class="form-label ps-2 text-black" style="font-size: 17;">Valor unidad</label>
+                            <div class="input-group mb-3 w-100">
+                                <input type="number" class="form-control"
+                                    name="valorUnidad" id="id_valorUnidad"
+                                    aria-describedby="basic-addon3" id="validationCustom05" required minlength="1"
+                                    maxlength="50" required value="{{detallecompra.valorUnidad}}">
+                                    <div class="valid-feedback">
+                                        ¡Vamos bien!
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        Completa la información.
+                                    </div>
+                            </div>
+                        </div>
+
+                        <div class="d-inline-block w-100">
+                            <label for="basic-url"  for="validationCustom06" class="form-label ps-2 text-black" style="font-size: 17;">Valor Total</label>
+                            <div class="input-group mb-3 w-100">
+                                <input type="number" class="form-control"
+                                    name="totalCompra" id="id_totalCompra"
+                                    aria-describedby="basic-addon3" id="validationCustom06" required minlength="1"
+                                    maxlength="50" required value="{{detallecompra.totalCompra}}">
+                                    <div class="valid-feedback">
+                                        ¡Vamos bien!
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        Completa la información.
+                                    </div>
+                            </div>
+                        </div>
+
+                    </div>
 
                     <div class="modal-footer">
                         <!-- BOTÓN PARA GUARDAR LA INFORMACIÓN DIGITADA EN EL FORMULARIO DE LA COMPRA-->

@@ -41,6 +41,10 @@ def venta_crear(request):
             return redirect('ventas')
         else:
             messages.error(request, "¡Error al crear venta!")
+            return redirect('ventas')
+    else:
+        form = VentaForm()
+        
     context = {
         'form': form,
     }
