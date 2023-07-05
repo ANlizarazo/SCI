@@ -5,7 +5,7 @@ class ProveedorForm(ModelForm):
     """Form definition for Proveedor."""
 
     class Meta:
-        """Meta definition for Proveedoreform."""
+        """Meta definition for Proveedorform."""
 
         model = Proveedor
         exclude=['estado']

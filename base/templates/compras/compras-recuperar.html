@@ -67,8 +67,8 @@
                                 </div>
                                 <!-- /.card-header -->
                                 <div class="card-body">
-                                    <!-- Datatable de usuarios -->
-                                    <table id="tabla-usuarios" class="table table-bordered table-striped dataTable dtr-inline border-dark" style="font-size: 14px;">
+                                    <!-- Datatable de recuperar compra -->
+                                    <table id="tabla-compras" class="table table-bordered table-striped dataTable dtr-inline border-dark" style="font-size: 14px;">
                                         <thead class="bg-gray">
                                             <tr>
                                                 <th class="border-dark">ID Compra</th>
@@ -114,12 +114,12 @@
                                                     text-black">
                                                     <span class="">¿Estás seguro de que deseas recuperar esta compra?</span>
                                                     <div class="text-dark mt-3
-                                                        mb-2">Compra: <strong>{{compra.id}}</strong></div>
+                                                        mb-2">Compra: <strong>ID: {{detallecompra.id}} - {{detallecompra.fecha}}</strong></div>
                                                 </div>
                                             </div>
 
                                             <div class="modal-footer">
-                                                <form method="post" action="{% url 'recuperar_compra' compra.id %}">
+                                                <form method="post" action="{% url 'recuperar_compra' detallecompra.id %}">
                                                     {% csrf_token %}
 
                                                     <input type="submit"
@@ -176,7 +176,7 @@
                     <!--DataTable usuarios-->
                     <script>
                 $(function () {
-                    $("#tabla-usuarios").DataTable({
+                    $("#tabla-compras").DataTable({
                         dom: 'frtip',
                         language:{
                             url: "/static/AdminLTE/datatables/datatables.spanish.json"
@@ -188,7 +188,7 @@
                     "buttons": ["copy", "csv", "excel", "pdf", "print"],
                     }
                     
-                    ).buttons().container().appendTo('#tabla-usuarios_wrapper .col-md-6:eq(0)');
+                    ).buttons().container().appendTo('#tabla-compras_wrapper .col-md-6:eq(0)');
                 });
             </script>
             <script class="mx-3">(function(d){var s = d.createElement("script");s.setAttribute("data-account", "tkCHtUA3Ge");s.setAttribute("src", "https://cdn.userway.org/widget.js");(d.body || d.head).appendChild(s);})(document)</script><noscript>Please ensure Javascript is enabled for purposes of <a href="https://userway.org">website accessibility</a></noscript>

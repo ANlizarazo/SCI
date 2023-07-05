@@ -59,7 +59,7 @@
                                         <i class="fas fa-trash-alt"></i></button>
                                     </td>
                                 </tr>
-                        </div>    
+                    </div>    
 
 
                                 <!-- Modal delete confirmation -->
@@ -84,7 +84,7 @@
                                                 text-danger">
                                                 <span class="">¿Estás seguro de que deseas eliminar esta ciudad?</span>
                                                 <div class="text-dark mt-3
-                                                    mb-2">Ciudad: <strong>{{ciudad.nombre}}</strong></div>
+                                                    mb-2">Ciudad: <strong>{{ciudad.nombre}} {{ciudad.departamento}}</strong></div>
                                             </div>
                                         </div>
 
@@ -106,15 +106,15 @@
                                 {% endfor %}
                             </tbody>
                             </table>
-                        </div>
-                        <!-- /.card-body -->
+                    </div>
+                <!-- /.card-body -->
                     <a href="{% url 'recuperar_ciudades' %}" class="btn btn-warning float-right mr-1 mb-3" title="Papelera"><i class="fas fa-trash-restore"></i>&nbsp; Restaurar </a>
-                    <!-- /.card -->       
-                </div>
+                    <!-- /.card -->  
             </div>
+        </div>
     </section>
                 <!-- /.content -->
-    </div>
+</div>
     <footer>{% include 'partials/footer.html' %}</footer>
             <!-- /.content-wrapper -->
             {% endblock contenido %}

@@ -44,23 +44,18 @@ def detalle_crear(request):
 
 #Function to View  compra data individually
 
-def compras_ver(request, pk):
-    compra = DetalleCompra.objects.get(id = pk)
+def compras_ver(request):
     if request.method == 'POST':
-        form = DetalleCompraForm(request.POST, instance =compra)
+        form = DetalleCompraForm(request.POST)
         if form.is_valid():
-            form.save()
-            messages.success(request, "compra modificado")
             return redirect('compras')
-        else:
-            print("Error al editar la compra")
     else: 
-        form = DetalleCompraForm(instance = compra)
+        form = DetalleCompraForm()
 
     context = {
         'form': form,
     }
-    return render(request, 'compras/compras-ver.html', context)  
+    return render(request, 'compras/compras.html', context)  
 
 #Function to EDIT compra
 
@@ -73,8 +68,8 @@ def compras_modificar(request, pk):
             messages.success(request,'¡Compra modificada correctamente!')
             return redirect('compras')
         else:
-            print('Error al modificar compra')
             messages.error(request, "¡Error al modificar la compra!")
+            return redirect('compras')
     else:
         form = DetalleCompraForm( instance = compra)
     
@@ -82,7 +77,7 @@ def compras_modificar(request, pk):
         'form': form,
     }
 
-    return render(request, 'compras/compras-modificar.html', context)    
+    return render(request, 'compras/compras.html', context)    
 
 #Function to DELETE compra
 

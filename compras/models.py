@@ -8,8 +8,8 @@ from proveedores.models import Proveedor
 #Modelos
 class DetalleCompra(models.Model):
     fecha= models.DateTimeField(verbose_name="Fecha", auto_now_add=True, editable=False, null=True)
-    cantidadProducto = models.BigIntegerField(validators = [ MinValueValidator ( 0 )],  verbose_name="Cantidad Producto") 
-    producto= models.ForeignKey(Producto, on_delete=models.CASCADE, verbose_name="Producto",blank=True, null=True)
+    cantidadProducto = models.PositiveIntegerField(validators = [ MinValueValidator ( 0 )],  verbose_name="Cantidad Producto") 
+    producto= models.ForeignKey(Producto, on_delete=models.CASCADE, verbose_name="Producto")
     class Iva(models.TextChoices):
         BYS='5', _('Bienes y Servicios')
         GR='19', _('General')    
@@ -18,7 +18,7 @@ class DetalleCompra(models.Model):
         ACTIVO='1', _('Activo')
         INACTIVO='0', _('Inactivo')    
     estado=models.CharField(max_length=1, choices=Estado.choices, default=Estado.ACTIVO, verbose_name="Estado")
-    totalCompra= models.PositiveIntegerField(validators = [ MinValueValidator ( 0 )], verbose_name="Valor Total", blank=True, null=True)
+    totalCompra= models.PositiveIntegerField(validators = [ MinValueValidator ( 0 )], verbose_name="Valor Total")
     valorUnidad = models.PositiveIntegerField(validators = [ MinValueValidator ( 0 )], verbose_name="Valor Unidad")
     proveedor = models.ForeignKey(Proveedor, on_delete=models.CASCADE, verbose_name="Proveedor",blank=True, null=True)
 

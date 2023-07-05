@@ -70,7 +70,7 @@
                                     <td class="border-dark text-black">
                                         <button class="btn btn-success" data-bs-toggle="modal" title = "Ver" data-bs-target="#verCliente{{cliente.pk}}">
                                             <i class="fas fa-eye"></i></button>
-                                        <button class="btn btn-primary" data-bs-toggle="modal" title = "Modificar" data-bs-target="#modificarCliente{{cliente.pk}}">
+                                        <button class="btn btn-primary" data-bs-toggle="modal" title = "Modificar" data-bs-target="#editar_cliente{{cliente.pk}}">
                                             <i class="fas fa-edit"></i></button>
                                         <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#borrar_cliente{{cliente.pk}}" title="Eliminar">
                                             <i class="fas fa-trash-alt"></i></button>
@@ -79,7 +79,7 @@
 
                                 <!-- Modal de modificar cliente -->
 
-                                <div class="modal fade" id="modificarcliente{{cliente.pk}}" data-bs-backdrop="static"
+                                <div class="modal fade" id="editar_cliente{{cliente.pk}}" data-bs-backdrop="static"
                                 data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
                                 aria-hidden="true">
                                 <div class="modal-dialog">
@@ -93,19 +93,17 @@
                                             <form action= "{% url 'clientes-modificar' cliente.pk %}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
                                                 
                                                 {% csrf_token %}
-                                                <div class="modal-body text-start" id="form-modificar-cliente">
-
+                                                {% if form.errors %}
+                                                    <p>Datos inválidos, Por favor intentalo nuevamente.</p>
+                                                {% endif %}
+                                                <div class="modal-body text-start" id="form-nuevo-tecnico">
+                                                    
                                                     <div class="d-inline-block w-100">
-                                                        <label for="basic-url" for="validationCustom01"
+                                                        <label for="basic-url" 
                                                             class="form-label ps-2 text-black"
-                                                            style="font-size: 17;">Nombre Empresa</label>
+                                                            style="font-size: 17;" for="validationDefault" >Nombre Empresa</label>
                                                         <div class="input-group mb-3 w-100">
-                                                            <input type="text" class="form-control"
-                                                                name="nombreEmpresa" id="id_nombres"
-                                                                aria-describedby="basic-addon3" required
-                                                                minlength="1"
-                                                                maxlength="100" id="validationCustom01"
-                                                                required value="{{cliente.nombreEmpresa}}">
+                                                            <input type="text" class="form-control" name="nombreEmpresa" id="id_nombres" aria-describedby="basic-addon3" minlength="1" maxlength="100" id="validationDefault" required value="{{cliente.nombreEmpresa}}">
                                                             <div class="valid-feedback">
                                                                 ¡Vamos bien!
                                                             </div>
@@ -114,7 +112,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                            
+
                                                     <div class="d-inline-block w-100">
                                                         <label for="basic-url" for="validationCustom02"
                                                             class="form-label ps-2 text-black"
@@ -134,7 +132,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                            
+
                                                     <div class="d-inline-block w-100">
                                                         <label for="basic-url" for="validationCustom03"
                                                             class="form-label ps-2 text-black"
@@ -155,8 +153,8 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                            
-                            
+
+
                                                     <div class="d-inline-block w-100">
                                                         <label for="basic-url" class="form-label ps-2
                                                             text-black" for="validationCustom04"
@@ -177,8 +175,8 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                            
-                            
+
+
                                                     <div class="d-inline-block w-100">
                                                         <label for="basic-url" class="form-label ps-2
                                                             text-black" for="validationCustom05"
@@ -192,17 +190,17 @@
                                                                 maxlength="100" id="validationCustom05"
                                                                 required value="{{cliente.email}}">
                                                                 <div class="invalid-feedback">
-                                                                    Ingresa un email invalido.
+                                                                    Ingresa un email valido. Ejemplo@gmail.com
                                                                 </div>
                                                         </div>
                                                     </div>
-                            
+
                                                     <div class="d-inline-block w-100">
                                                         <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom06" style="font-size: 17;">Ciudad</label>
                                                         <div class="input-group mb-3 w-100">
                                                             <select id="id_ciudad" class="form-select" name="ciudad"aria-label="tipo-activo"
                                                                 id="validationCustom06" required>
-                            
+
                                                                 <option class="text-black" select value="{{cliente.ciudad.pk}}" selected hidden>{{cliente.ciudad}}</option>
                                                             
                                                                 {% for ciudad in ciudades %}
@@ -218,6 +216,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
+
                                                     <div class="modal-footer">
                                                         <!-- BOTÓN PARA GUARDAR LA INFORMACIÓN MODIFICADA EN EL FORMULARIO -->
                                                         <button type="reset" class="btn btn-secondary"
@@ -245,13 +244,13 @@
                                         </div>
                                         <div class="modal-body">
                                             <!-- Formulario -->
-                                            <form action="" method="POST"
+                                            <form action="{% url 'clientes-ver' cliente.pk %}" method="POST"
                                                 enctype="multipart/form-data" class="needs-validation"
                                                 novalidate>
 
                                                 {% csrf_token %}
                                                 <div class="modal-body text-start" id="form-nuevo-cliente">
- 
+
                                                     <div class="d-inline-block w-100">
                                                         <label for="basic-url" for="validationCustom01"
                                                             class="form-label ps-2 text-black"
@@ -263,12 +262,7 @@
                                                                 minlength="1"
                                                                 maxlength="100" id="validationCustom01"
                                                                 required disabled value="{{cliente.nombreEmpresa}}">
-                                                            <div class="valid-feedback">
-                                                                ¡Vamos bien!
-                                                            </div>
-                                                            <div class="invalid-feedback">
-                                                                Completa la información.
-                                                            </div>
+                                                            
                                                         </div>
                                                     </div>
  
@@ -283,12 +277,7 @@
                                                                 id="validationCustom02" required
                                                                 minlength="1"
                                                                 maxlength="20" required disabled value="{{cliente.nit}}">
-                                                            <div class="valid-feedback">
-                                                                ¡Vamos bien!
-                                                            </div>
-                                                            <div class="invalid-feedback">
-                                                                Completa la información.
-                                                            </div>
+                                                            
                                                         </div>
                                                     </div>
  
@@ -304,12 +293,7 @@
                                                                 id="validationCustom03" required
                                                                 minlength="1"
                                                                 maxlength="20" required disabled value="{{cliente.telefono}}">
-                                                            <div class="valid-feedback">
-                                                                ¡Vamos bien!
-                                                            </div>
-                                                            <div class="invalid-feedback">
-                                                                Ingresa un número de teléfono valido.
-                                                            </div>
+                                                            
                                                         </div>
                                                     </div>
 
@@ -325,12 +309,7 @@
                                                                 minlength="1"
                                                                 maxlength="50" id="validationCustom04"
                                                                 required disabled value="{{cliente.direccion}}">
-                                                            <div class="valid-feedback">
-                                                                ¡Vamos bien!
-                                                            </div>
-                                                            <div class="invalid-feedback">
-                                                                Ingresa una dirección valida.
-                                                            </div>
+                                                            
                                                         </div>
                                                     </div>
  
@@ -347,12 +326,7 @@
                                                                 minlength="1"
                                                                 maxlength="50" id="validationCustom05"
                                                                 required disabled value="{{cliente.email}}">
-                                                            <div class="valid-feedback">
-                                                                ¡Vamos bien!
-                                                            </div>
-                                                            <div class="invalid-feedback">
-                                                                Ingresa email valido.
-                                                            </div>
+                                                            
                                                         </div>
                                                     </div>
 
@@ -364,14 +338,10 @@
                                                             <input id="id_ciudad" class="form-control" name="ciudad" aria-describedby="basic-addon3"
                                                                 id="validationCustom06" required class="text-black" required disabled value="{{cliente.ciudad.nombre}} - {{cliente.ciudad.departamento}}">
                                                         </div>
-                                                            <div class="valid-feedback">
-                                                                ¡Vamos bien!
-                                                            </div>
-                                                            <div class="invalid-feedback">
-                                                                Selecciona una opción valida.
-                                                            </div>
                                                         </div>
                                                     </div>
+
+                                                </div>
 
                                                     <div class="modal-footer">
                                                         <!-- BOTÓN PARA GUARDAR LA INFORMACIÓN DIGITADA EN EL FORMULARIO DEL USUARIO -->
@@ -444,6 +414,8 @@
 <!-- /.content-wrapper -->
 {% endblock contenido %}
 
+
+{% block javascript%}
 <!-- jQuery -->
 <script src="{% static 'AdminLTE/jquery/jquery.min.js' %}"></script>
 <!-- Bootstrap -->
@@ -490,5 +462,5 @@
                 });
             </script>
             <script class="mx-3">(function(d){var s = d.createElement("script");s.setAttribute("data-account", "tkCHtUA3Ge");s.setAttribute("src", "https://cdn.userway.org/widget.js");(d.body || d.head).appendChild(s);})(document)</script><noscript>Please ensure Javascript is enabled for purposes of <a href="https://userway.org">website accessibility</a></noscript>
-        {% block javascript%}
-        {% endblock javascript %}
+        
+{% endblock javascript %}

@@ -1,26 +1,30 @@
 from django.shortcuts import redirect, render
 from servicios.forms import ServicioForm
 from django.contrib import messages
-from servicios.models import Servicio, TipoServicio
+from servicios.models import Servicio, TipoServicio, Ciudad, Tecnico
 
 # Create your views here.
 def servicios(request):
 
     servicios= Servicio.objects.all()
     tiposdeservicios= TipoServicio.objects.all()
+    ciudades=Ciudad.objects.all()
+    tecnicos = Tecnico.objects.all()
     form = ServicioForm()
 
     for servicio in servicios:
         print(servicio.tipoServicio)
+        print(servicio.ciudad)
+        print(servicio.tecnico)
 
     context={
         "servicios": servicios,
         "tiposdeservicios": tiposdeservicios,
+        'ciudades':ciudades,
+        'tecnicos':tecnicos,
         "form": form,
     }
     return render(request,'servicios/servicios.html',context)
-
-
 
 def servicios_crear(request):
     if request.method == "POST":
@@ -30,7 +34,6 @@ def servicios_crear(request):
             messages.success(request,'¡Servicio creado correctamente!')
             return redirect('servicios')
         else:
-            print("El servicio NO se guardó")
             messages.error(request,'¡Error al crear servicio!')
             return redirect('servicios')
     else:
@@ -40,8 +43,6 @@ def servicios_crear(request):
     }
     return render(request,'servicios/servicios-crear.html',context)
 
-
-    
 def servicios_ver(request):
 
     titulo = "Servicios - Ver"
