@@ -14,8 +14,134 @@
                 
                     {% csrf_token %}          
                     
-                    <div class="modal-body text-start" id="form-nuevo-servicio"> 
-                        
+                    <div class="d-inline-block w-100">
+                        <label for="basic-url" for="validationCustom01"
+                            class="form-label ps-2 text-black"
+                            style="font-size: 17;">Observación</label>
+                        <div class="input-group mb-3 w-100">
+                            <input type="text" class="form-control"
+                                name="observacion" id="id_observacion"
+                                aria-describedby="basic-addon3" required
+                                minlength="1"
+                                maxlength="300" id="validationCustom01"
+                                required value="{{servicio.observacion}}">
+                            <div class="valid-feedback">
+                                ¡Vamos bien!
+                            </div>
+                            <div class="invalid-feedback">
+                                Completa la información.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-inline-block w-100">
+                        <label for="basic-url" for="validationCustom02"
+                            class="form-label ps-2 text-black"
+                            style="font-size: 17;">NIT</label>
+                        <div class="input-group mb-3 w-100">
+                            <input type="number" class="form-control"
+                                name="nit" id="id_nit"
+                                aria-describedby="basic-addon3"
+                                id="validationCustom02" required
+                                minlength="1"
+                                maxlength="20" required value="{{cliente.nit}}">
+                            <div class="valid-feedback">
+                                ¡Vamos bien!
+                            </div>
+                            <div class="invalid-feedback">
+                                Completa la información.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-inline-block w-100">
+                        <label for="basic-url" for="validationCustom03"
+                            class="form-label ps-2 text-black"
+                            style="font-size: 17;">Número de Teléfono</label>
+                        <div class="input-group mb-3 w-100">
+                            <input type="number" class="form-control"
+                                name="telefono"
+                                id="id_numeroTelefono"
+                                aria-describedby="basic-addon3"
+                                id="validationCustom03" required
+                                minlength="1"
+                                maxlength="20" required value="{{cliente.telefono}}">
+                            <div class="valid-feedback">
+                                ¡Vamos bien!
+                            </div>
+                            <div class="invalid-feedback">
+                                Ingresa un número de teléfono valido.
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="d-inline-block w-100">
+                        <label for="basic-url" class="form-label ps-2
+                            text-black" for="validationCustom04"
+                            style="font-size: 17;">Dirección</label>
+                        <div class="input-group mb-3 w-100">
+                            <input type="text" class="form-control"
+                                name="direccion"
+                                id="id_direccion"
+                                aria-describedby="basic-addon3" required
+                                minlength="1"
+                                maxlength="50" id="validationCustom04"
+                                required value="{{cliente.direccion}}">
+                            <div class="valid-feedback">
+                                ¡Vamos bien!
+                            </div>
+                            <div class="invalid-feedback">
+                                Ingresa una dirección valida.
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="d-inline-block w-100">
+                        <label for="basic-url" class="form-label ps-2
+                            text-black" for="validationCustom05"
+                            style="font-size: 17;">Email</label>
+                        <div class="input-group mb-3 w-100">
+                            <input type="email" class="form-control"
+                                name="email"
+                                id="id_email"
+                                aria-describedby="basic-addon3" required
+                                minlength="1"
+                                maxlength="100" id="validationCustom05"
+                                required value="{{cliente.email}}">
+                                <div class="valid-feedback">
+                                    ¡Vamos bien!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Ingresa un email valido. Ejemplo@gmail.com
+                        </div>
+                    </div>
+
+                    <div class="d-inline-block w-100">
+                        <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom06" style="font-size: 17;">Ciudad</label>
+                        <div class="input-group mb-3 w-100">
+                            <select id="id_ciudad" class="form-select" name="ciudad"aria-label="tipo-activo"
+                                id="validationCustom06" required>
+
+                                <option class="text-black" select value="{{cliente.ciudad.pk}}" selected hidden>Seleccionar</option> 
+                                {% for ciudad in ciudades %}
+                                {% if ciudad.estado == '1' %}
+                                <option class="text-black" value="{{ciudad.id}}">{{ciudad.nombre}} - {{ciudad.departamento}}</option>
+                                {% endif %}
+                                {% endfor %}
+                            
+                            </select>
+                            <div class="valid-feedback">
+                                ¡Vamos bien!
+                            </div>
+                            <div class="invalid-feedback">
+                                Selecciona una opción valida.
+                            </div>
+                        </div>
+                    </div>
+
+
                         <div class="d-inline-block w-100">
                             <label for="basic-url" for="validationCustom01" class="form-label ps-2 text-black" style="font-size: 17;">Observación</label>
                             <div class="input-group mb-3 w-100">
@@ -126,7 +252,6 @@
                                 aria-label="tipo-activo" id="validationCustom08" required value="{{servicio.porcentajeIva}}">
                                 <option class="text-black" selected value hidden>Seleccionar</option> 
                                 <option class="text-black" value="5">Bienes y Servicios</option>
-                                <option class="text-black" value="19">General</option>
                                 <option class="text-black" value="0">Exento</option>                                    
                                 </select>
                                 <div class="valid-feedback">
