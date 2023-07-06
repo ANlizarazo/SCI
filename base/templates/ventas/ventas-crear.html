@@ -24,7 +24,7 @@
                             <select id="id_usuario" class="form-select" name="usuario"aria-label="tipo-activo"
                                 id="validationCustom02" required>
                             
-                                <option class="text-black" select value="{{venta.usuario.pk}}">{{venta.usuario}}</option>
+                                <option class="text-black" select value="{{venta.usuario.pk}}">Seleccionar</option>
 
                                 {% for usuario in usuarios %}
                                     <option class="text-black" value="{{usuario.id}}">{{usuario.nombres}} {{usuario.apellidos}}</option>
@@ -46,7 +46,7 @@
                             <select id="id_cliente" class="select form-select" name="cliente"aria-label="tipo-activo"
                                 id="validationCustom03" required>
                             
-                                <option class="text-black" select value="{{venta.cliente.pk}}">{{venta.cliente}}</option>
+                                <option class="text-black" select value="{{venta.cliente.pk}}">Seleccionar</option>
 
                                 {% for cliente in clientes %}
                                     <option class="text-black" value="{{cliente.id}}">{{cliente.nombreEmpresa}}</option>
@@ -68,7 +68,7 @@
                             <select id="id_producto" class="form-select" name="producto"aria-label="tipo-activo"
                                 id="validationCustom04" required>
                             
-                                <option class="text-black" select value="{{venta.producto.pk}}">{{venta.producto}}</option>
+                                <option class="text-black" select value="{{venta.producto.pk}}">Seleccionar</option>
 
                                 {% for producto in productos %}
                                     <option class="text-black" value="{{producto.id}}">{{producto.nombre}}</option>
@@ -121,7 +121,7 @@
                         <div class="input-group mb-3 w-100">
                             <select id="id_modoPago" class="form-select" name="modoPago"
                             aria-label="tipo-activo" id="validationCustom07" required>
-                            <option class="text-black" selected value="{{venta.modoPago}}">{{venta.modoPago}}</option>      
+                            <option class="text-black" selected value hidden="{{venta.modoPago}}">Seleccionar</option>      
                             <option class="text-black" value="EF">Efectivo</option>
                             <option class="text-black" value="PV">Pago Virtual</option>
                             <option class="text-black" value="PT">Pago con Tarjeta</option>                                    
@@ -140,7 +140,7 @@
                         <div class="input-group mb-3 w-100">
                             <select id="id_porcentajeIva" class="form-select" name="porcentajeIva"
                             aria-label="tipo-activo" id="validationCustom08" required>
-                            <option class="text-black" selected value="{{venta.porcentajeIva}}">{{venta.porcentajeIva}}</option>      
+                            <option class="text-black" selected value hidden="{{venta.porcentajeIva}}">Seleccionar</option>      
                             <option class="text-black" value="5">Bienes y Servicios</option>
                             <option class="text-black" value="19">General</option>
                             <option class="text-black" value="0">Exento</option>                                    
