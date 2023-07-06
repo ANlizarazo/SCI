@@ -41,8 +41,6 @@ def tecnico_crear(request):
 
 #Function to View tecnico data individually
 def tecnico_ver(request):
-
-    titulo = "Técnico - Ver"
     if request.method == 'POST':
         form = TecnicoForm(request.POST)
         if form.is_valid():
@@ -50,7 +48,6 @@ def tecnico_ver(request):
     else:
         form = TecnicoForm()
     context = {
-        'titulo': titulo,
         "form": form
     }
     return render(request, 'tecnico/tecnico.html', context)
