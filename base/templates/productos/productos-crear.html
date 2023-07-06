@@ -75,6 +75,8 @@
                                 
                                 <option class="text-black" selected value="{{producto.categoria.pk}}">{{producto.categoria}}</option>
                                 
+                                <option class="text-black" disabled value>Seleccionar</option>
+
                                 {% for categoria in categorias %}
                                 {% if categoria.estado == '1' %}
                                 <option class="text-black" value="{{categoria.id}}">{{categoria.nombrecat}}</option>
@@ -90,8 +92,6 @@
                             </div>
                         </div>
                     </div> 
-                    
-                        
 
                 </div> 
                     
