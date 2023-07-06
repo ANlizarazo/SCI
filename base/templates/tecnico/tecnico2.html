@@ -93,7 +93,7 @@
                                                 {% if form.errors %}
                                                     <p>Datos inválidos, Por favor intentalo nuevamente.</p>
                                                 {% endif %}
-                                                <div class="modal-body text-start" id="form-nuevo-tecnico">
+                                                <div class="modal-body text-start" >
                                 
                                                         <div class="d-inline-block w-100">
                                                             <label for="basic-url" for="validationCustom01" class="form-label ps-2 text-black" style="font-size: 17;">Nombres</label>
@@ -204,10 +204,9 @@
                                                         <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Regresar</button>
                                                         <input class="btn btn-success" type="submit" value="Modificar">
                                                     </div>
-
+                                                </div>
                                             </form>
                                         </div>
-                                            
                                     </div>
                                 </div>
                                 </div>      
@@ -226,7 +225,7 @@
                                                 <form  action="{% url 'tecnico_ver' tecnico.pk %}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
                                                 
                                                     {% csrf_token %}          
-                                                    <div class="modal-body text-start" id="form-nuevo-tecnico"> 
+                                                    <div class="modal-body text-start" > 
 
                                                         <div class="d-inline-block w-100">
                                                             <label for="basic-url" for="validationCustom01" class="form-label ps-2 text-black" style="font-size: 17;">Nombres</label>
@@ -248,41 +247,41 @@
                                                             </div>
                                                         </div>
                                                 
-                                                            <div class="d-inline-block w-100">
-                                                                <label for="basic-url" for="validationCustom03" class="form-label ps-2 text-black" style="font-size: 17;">Número de Télefono</label>
-                                                                <div class="input-group mb-3 w-100">
-                                                                    <input type="number" class="form-control"
-                                                                        name="telefono" id="id_telefono"
-                                                                        aria-describedby="basic-addon3" required minlength="1"
-                                                                        maxlength="50" id="validationCustom03" required disabled value="{{tecnico.telefono}}">
-                                                                </div>
+                                                        <div class="d-inline-block w-100">
+                                                            <label for="basic-url" for="validationCustom03" class="form-label ps-2 text-black" style="font-size: 17;">Número de Télefono</label>
+                                                            <div class="input-group mb-3 w-100">
+                                                                <input type="number" class="form-control"
+                                                                    name="telefono" id="id_telefono"
+                                                                    aria-describedby="basic-addon3" required minlength="1"
+                                                                    maxlength="50" id="validationCustom03" required disabled value="{{tecnico.telefono}}">
                                                             </div>
-                                                            
-                                                            <div class="d-inline-block w-100">
-                                                                <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom06" style="font-size: 17;">Tipo de Documento</label>
-                                                                <div class="input-group mb-3 w-100">
-                                                                    <input id="id_tipoDocumento" class="form-control" name="tipoDocumento"
-                                                                        aria-label="tipo-activo" id="validationCustom06" required disabled value="{{tecnico.tipoDocumento}}">
-                                                                </div>
+                                                        </div>
+                                                        
+                                                        <div class="d-inline-block w-100">
+                                                            <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom06" style="font-size: 17;">Tipo de Documento</label>
+                                                            <div class="input-group mb-3 w-100">
+                                                                <input id="id_tipoDocumento" class="form-control" name="tipoDocumento"
+                                                                    aria-label="tipo-activo" id="validationCustom06" required disabled value="{{tecnico.tipoDocumento}}">
                                                             </div>
-                                                    
-                                                            <div class="d-inline-block w-100">
-                                                                <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom07" style="font-size: 17;">Número de Documento</label>
-                                                                <div class="input-group mb-3 w-100">
-                                                                    <input type="number" class="form-control" name="numDocumento"
-                                                                        id="id_numeroDocumento"
-                                                                        aria-describedby="basic-addon3" required minlength="1"
-                                                                        maxlength="50" id="validationCustom07" required disabled value="{{tecnico.numDocumento}}">
-                                                                </div>
+                                                        </div>
+                                                
+                                                        <div class="d-inline-block w-100">
+                                                            <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom07" style="font-size: 17;">Número de Documento</label>
+                                                            <div class="input-group mb-3 w-100">
+                                                                <input type="number" class="form-control" name="numDocumento"
+                                                                    id="id_numeroDocumento"
+                                                                    aria-describedby="basic-addon3" required minlength="1"
+                                                                    maxlength="50" id="validationCustom07" required disabled value="{{tecnico.numDocumento}}">
                                                             </div>
-                                                    
-                                                            <div class="d-inline-block w-100">
-                                                                <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom08" style="font-size: 17;">Género</label>
-                                                                <div class="input-group mb-3 w-100">
-                                                                    <input id="id_genero" class="form-control" name="genero"
-                                                                        aria-label="tipo-activo" id="validationCustom08" required disabled value="{{tecnico.genero}}">
-                                                                </div>
+                                                        </div>
+                                                
+                                                        <div class="d-inline-block w-100">
+                                                            <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom08" style="font-size: 17;">Género</label>
+                                                            <div class="input-group mb-3 w-100">
+                                                                <input id="id_genero" class="form-control" name="genero"
+                                                                    aria-label="tipo-activo" id="validationCustom08" required disabled value="{{tecnico.genero}}">
                                                             </div>
+                                                        </div>
 
                                                         <div class="modal-footer">
                                                             
