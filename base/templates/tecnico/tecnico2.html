@@ -148,7 +148,8 @@
                                                             <div class="input-group mb-3 w-100">
                                                                 <select id="id_tipoDocumento" class="form-select" name="tipoDocumento"
                                                                     aria-label="tipo-activo" id="validationCustom04" required value="{{tecnico.tipoDocumento}}">
-                                                                    <option class="text-black" selected value hidden>{{tecnico.tipoDocumento}}</option>
+                                                                    <option class="text-black" selected value hidden>{{tecnico.tipoDocumento}}</option> 
+                                                                    <option class="text-black" disabled value>Seleccionar</option>
                                                                     <option class="text-black" value="CC">Cédula de Ciudadania</option>
                                                                     <option class="text-black" value="CE">Cédula de Extranjería</option>
                                                                     <option class="text-black" value="PP">Pasaporte</option>
@@ -183,8 +184,9 @@
                                                             <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom06" style="font-size: 17;">Género</label>
                                                             <div class="input-group mb-3 w-100">
                                                                 <select id="id_genero" class="form-select" name="genero"
-                                                                    aria-label="tipo-activo" id="validationCustom06" required value="{{tecnico.genero}}">
-                                                                    <option class="text-black" selected value hidden>{{tecnico.genero}}</option>
+                                                                    aria-label="tipo-activo" id="validationCustom08" required value="{{tecnico.genero}}">
+                                                                    <option class="text-black" selected value hidden>{{tecnico.genero}}</option> 
+                                                                    <option class="text-black" disabled value>Seleccionar</option>
                                                                     <option class="text-black" value="M">Masculino</option>
                                                                     <option class="text-black" value="F">Femenino</option>
                                                                     <option class="text-black" value="O">Otro</option>
@@ -201,16 +203,22 @@
                                             
                                                     <div class="modal-footer">
                                                         <!-- BOTÓN PARA GUARDAR LA INFORMACIÓN DIGITADA EN EL FORMULARIO DEL TECNICO -->
-                                                        <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Regresar</button>
-                                                        <input class="btn btn-success" type="submit" value="Modificar">
+                                                        <button type="reset" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal">Cancelar</button>
+                                                        <input class="btn btn-success" type="submit"
+                                                            name="form-nuevo-cliente" value="Modificar">
                                                     </div>
+<<<<<<< Updated upstream
+                                                </div>   
+                                                </form>
+                                            </div>
+=======
 
                                             </form>
                                         </div>
-                                            
                                     </div>
                                 </div>
-                                </div>      
+                                </div>    
 
 
                                 <!-- Modal de ver tecnico -->
@@ -354,6 +362,8 @@
         <footer>{% include 'partials/footer.html' %}</footer>
         <!-- /.content-wrapper -->
         {% endblock contenido %}
+
+        
 
             <!-- jQuery -->
             <script src="{% static 'AdminLTE/jquery/jquery.min.js' %}"></script>
