@@ -131,7 +131,9 @@
                                 
                                 <option class="text-black" disabled value>Seleccionar</option>
                                     {% for ciudad in ciudades %}
+                                    {% if ciudad.estado == '1' %}
                                         <option class="text-black" value="{{ciudad.id}}">{{ciudad.nombre}} - {{ciudad.departamento}}</option>
+                                    {% endif %}
                                     {% endfor %}
                                 
                                 </select>

@@ -45,7 +45,9 @@
                                     
                                     <option class="text-black" disabled value>Seleccionar</option>
                                     {% for departamento in departamentos %}
+                                    {% if departamento.estado == '1' %}
                                         <option class="text-black" value="{{departamento.id}}">{{departamento.nombre}} </option>
+                                    {% endif %}
                                     {% endfor %}
                                 
                                 </select>
