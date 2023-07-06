@@ -97,12 +97,11 @@
                                                 <div class="modal-body text-start" id="form-nuevo-tecnico">
                                 
                                                     <div class="d-inline-block w-100">
-                                                        <label for="basic-url" for="validationCustom01" class="form-label ps-2 text-black" style="font-size: 17;">Nombres</label>
+                                                        <label for="basic-url" 
+                                                            class="form-label ps-2 text-black"
+                                                            style="font-size: 17;" for="validationDefault" >Nombres</label>
                                                         <div class="input-group mb-3 w-100">
-                                                            <input type="text" class="form-control"
-                                                                name="nombres" id="id_nombres"
-                                                                aria-describedby="basic-addon3" required minlength="1"
-                                                                maxlength="50" id="validationCustom01" required value="{{tecnico.nombres}}">
+                                                            <input type="text" class="form-control" name="nombres" id="id_nombres" aria-describedby="basic-addon3" minlength="1" maxlength="100" id="validationDefault" required value="{{tecnico.nombres}}">
                                                             <div class="valid-feedback">
                                                                 ¡Vamos bien!
                                                             </div>
