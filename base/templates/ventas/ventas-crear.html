@@ -23,11 +23,12 @@
                         <div class="input-group mb-3 w-100">
                             <select id="id_usuario" class="form-select" name="usuario"aria-label="tipo-activo"
                                 id="validationCustom02" required>
-                            
-                                <option class="text-black" select value="{{venta.usuario.pk}}">Seleccionar</option>
+                                <option class="text-black" selected value hidden="{{venta.usuario.pk}}">Seleccionar</option>
 
                                 {% for usuario in usuarios %}
+                                {% if usuario.estado == '1' %}
                                     <option class="text-black" value="{{usuario.id}}">{{usuario.nombres}} {{usuario.apellidos}}</option>
+                                {% endif %}
                                 {% endfor %}
                             
                             </select>
@@ -46,10 +47,12 @@
                             <select id="id_cliente" class="select form-select" name="cliente"aria-label="tipo-activo"
                                 id="validationCustom03" required>
                             
-                                <option class="text-black" select value="{{venta.cliente.pk}}">Seleccionar</option>
+                                <option class="text-black" selected value hidden="{{venta.cliente.pk}}">Seleccionar</option>
 
                                 {% for cliente in clientes %}
+                                {% if cliente.estado == '1' %}
                                     <option class="text-black" value="{{cliente.id}}">{{cliente.nombreEmpresa}}</option>
+                                {% endif %}
                                 {% endfor %}
                             
                             </select>
@@ -68,11 +71,13 @@
                             <select id="id_producto" class="form-select" name="producto"aria-label="tipo-activo"
                                 id="validationCustom04" required>
                             
-                                <option class="text-black" select value="{{venta.producto.pk}}">Seleccionar</option>
+                                <option class="text-black" selected value hidden="{{venta.producto.pk}}">Seleccionar</option>
 
                                 {% for producto in productos %}
+                                {% if producto.estado == '1' %}
                                     <option class="text-black" value="{{producto.id}}">{{producto.nombre}}</option>
-                                {% endfor %}
+                                    {% endif %}
+                                    {% endfor %}
                             
                             </select>
                             <div class="valid-feedback">
