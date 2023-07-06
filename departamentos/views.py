@@ -41,6 +41,7 @@ def departamento_eliminar(request, pk):
     messages.success(request, "¡Departamento eliminado satisfactoriamente!")
     return redirect('departamentos') 
 
+
 #Function to RECUPERAR servicios
 def recuperar_departamentos(request):
     

@@ -17,8 +17,8 @@
 
                     {% csrf_token %}
                     
-                    <div class="modal-body text-start" id="form-nuevo-tecnico">
-                        
+                    <div class="modal-body text-start" id="form-nuevo-cliente">
+                                                    
                         <div class="d-inline-block w-100">
                             <label for="basic-url" for="validationCustom01"
                                 class="form-label ps-2 text-black"
@@ -131,7 +131,9 @@
                                 
                                 <option class="text-black" disabled value>Seleccionar</option>
                                     {% for ciudad in ciudades %}
+                                    {% if ciudad.estado == '1' %}
                                         <option class="text-black" value="{{ciudad.id}}">{{ciudad.nombre}} - {{ciudad.departamento}}</option>
+                                    {% endif %}
                                     {% endfor %}
                                 
                                 </select>
