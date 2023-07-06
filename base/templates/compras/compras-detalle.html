@@ -49,7 +49,7 @@
                                     <option class="text-black" select value="{{detallecompra.producto.pk}}" selected hidden>Seleccionar</option>
                                     {% for producto in productos %}
                                     {% if producto.estado == '1' %}
-                                        <option class="text-black" value="{{producto.id}}">{{producto.nombre}}</option>
+                                        <option class="text-black" value="{{producto.id}}">{{producto.nombre}} - {{producto.categoria}}</option>
                                     {% endif %}
                                     {% endfor %}
                                 
