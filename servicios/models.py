@@ -17,12 +17,12 @@ class Servicio(models.Model):
         GR='19', _('General')    
         EX='0', _('Exento')
     porcentajeIva=models.DecimalField(validators=[MinValueValidator(0.0)], decimal_places=1, max_digits=20,max_length=3, choices=Iva.choices, default=Iva.GR, verbose_name="IVA")
-    valorTotal= models.PositiveIntegerField(validators = [ MinValueValidator ( 0 )], verbose_name="Valor Total")
+    valorTotal= models.PositiveBigIntegerField(validators = [ MinValueValidator ( 0 )], verbose_name="Valor Total")
     class Estado(models.TextChoices):
         ACTIVO='1', _('Activo')
         INACTIVO='0', _('Inactivo')   
-    tipoServicio= models.ForeignKey(TipoServicio, on_delete=models.CASCADE, verbose_name="Tipo de Servicio",null=True)
     estado= models.CharField(max_length=1, choices=Estado.choices, default=Estado.ACTIVO, verbose_name="Estado")
+    tipoServicio= models.ForeignKey(TipoServicio, on_delete=models.CASCADE, verbose_name="Tipo de Servicio",null=True)
     ciudad= models.ForeignKey(Ciudad, on_delete=models.CASCADE, verbose_name="Ciudad")
     tecnico= models.ForeignKey(Tecnico, on_delete=models.CASCADE, verbose_name="Técnico", blank=True, null=True)
     
