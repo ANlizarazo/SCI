@@ -64,25 +64,20 @@
                                 </div>
                         </div>
                     </div>
-            
-                
-            
+
                     <div class="d-inline-block w-100">
                         <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom04" style="font-size: 17;">Categoría</label>
                         <div class="input-group mb-3 w-100">
-                            <select id="id_categoria" class="form-select" name="categoria"
-                                aria-label="tipo-activo" id="validationCustom04" required>
+                            <select id="id_categoria" class="select form-select" name="categoria"aria-label="tipo-activo"
+                                id="validationCustom04" required>   
                                 
-                                <option class="text-black" selected value="{{producto.categoria.pk}}">{{producto.categoria}}</option>
-                                
-                                <option class="text-black" disabled value>Seleccionar</option>
-
+                                <option class="text-black" select value="{{producto.categoria.pk}}" selected hidden>Seleccionar</option>
                                 {% for categoria in categorias %}
-                                {% if categoria.estado == '1' %}
-                                <option class="text-black" value="{{categoria.id}}">{{categoria.nombrecat}}</option>
+                                {% if categoria.estadocat == '1' %}
+                                    <option class="text-black" value="{{categoria.id}}">{{categoria.nombrecat}}</option>
                                 {% endif %}
                                 {% endfor %}
-
+                            
                             </select>
                             <div class="valid-feedback">
                                 ¡Vamos bien!
@@ -91,7 +86,7 @@
                                 Selecciona una opción valida.
                             </div>
                         </div>
-                    </div> 
+                    </div>
 
                 </div> 
                     

@@ -23,9 +23,7 @@
                                 <select id="id_proveedor" class="select form-select" name="proveedor"aria-label="tipo-activo"
                                     id="validationCustom02" required>
 
-                                    <option class="text-black" select value="{{detallecompra.proveedor.pk}}" selected hidden>{{detallecompra.proveedor}}</option>
-                                        
-                                    <option class="text-black" disabled value>Seleccionar</option>
+                                    <option class="text-black" select value="{{detallecompra.proveedor.pk}}" selected hidden>Seleccionar</option>
                                     {% for proveedor in proveedores %}
                                     {% if proveedor.estado == '1' %}
                                         <option class="text-black" value="{{proveedor.id}}">{{proveedor.nombreEmpresa}}</option>
@@ -48,9 +46,7 @@
                                 <select id="id_producto" class="select form-select" name="producto"aria-label="tipo-activo"
                                     id="validationCustom03" required>   
                                     
-                                    <option class="text-black" select value="{{detallecompra.producto.pk}}" selected hidden>{{detallecompra.producto}}</option>
-                                        
-                                    <option class="text-black" disabled value>Seleccionar</option>
+                                    <option class="text-black" select value="{{detallecompra.producto.pk}}" selected hidden>Seleccionar</option>
                                     {% for producto in productos %}
                                     {% if producto.estado == '1' %}
                                         <option class="text-black" value="{{producto.id}}">{{producto.nombre}}</option>
