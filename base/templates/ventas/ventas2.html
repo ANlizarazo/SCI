@@ -74,9 +74,9 @@
                                     <td class="border-dark text-black">{{venta.porcentajeIva}}</td>
                                     <td class="border-dark text-black">{{venta.valorTotal}}</td>
                                     <td class="border-dark text-black">
-                                        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#verVenta{{venta.id}}" title="Ver">
+                                        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#verVenta{{venta.pk}}" title="Ver">
                                             <i class="fas fa-eye"></i></button>       
-                                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modificar_Venta" title="Modificar">
+                                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modificar_Venta{{venta.pk}}" title="Modificar">
                                             <i class="fas fa-edit"></i></button>
                                         <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal{{venta.pk}}" title="Eliminar">
                                             <i class="fas fa-trash-alt"></i></button>
@@ -85,7 +85,7 @@
 
                                 
                                     <!-- Modal ver venta -->
-                                    <div class="modal fade" id="verVenta{{venta.id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                    <div class="modal fade" id="verVenta{{venta.pk}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
@@ -93,7 +93,7 @@
                                                 </div>
                                                 <div class="modal-body">
                                                     <!-- Formulario -->
-                                                    <form  action="{% url 'venta_ver' venta.id %}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
+                                                    <form  action="{% url 'venta_ver' venta.pk %}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
                                                     
                                                         {% csrf_token %}          
                                                         <div class="modal-body text-start" id="form-ver-venta"> 
@@ -146,7 +146,7 @@
                                     
                                     <!-- Modal de modificar Detalle -->
 
-                                    <div class="modal fade" id="modificar_Venta" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                    <div class="modal fade" id="modificar_Venta{{venta.pk}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
@@ -167,12 +167,14 @@
                                                                     <select id="id_usuario" class="form-select" name="usuario"aria-label="tipo-activo"
                                                                         id="validationCustom02" required>
                                                                     
-                                                                        <option class="text-black" select value="{{venta.usuario.pk}}">{{venta.usuario}}</option>
-            
+                                                                        <option class="text-black" selected value hidden="{{venta.usuario.pk}}">{{venta.usuario}}</option>
+                                                                        
                                                                         {% for usuario in usuarios %}
+                                                                        {% if usuario.estado == '1' %}
                                                                             <option class="text-black" value="{{usuario.id}}">{{usuario.nombres}} {{usuario.apellidos}}</option>
+                                                                        {% endif %}
                                                                         {% endfor %}
-                                                                    
+
                                                                     </select>
                                                                     <div class="valid-feedback">
                                                                         ¡Vamos bien!
@@ -189,10 +191,12 @@
                                                                     <select id="id_cliente" class="select form-select" name="cliente"aria-label="tipo-activo"
                                                                         id="validationCustom03" required>
                                                                     
-                                                                        <option class="text-black" select value="{{venta.cliente.pk}}">{{venta.cliente}}</option>
+                                                                        <option class="text-black" selected value hidden="{{venta.cliente.pk}}">{{venta.cliente}}</option>
             
                                                                         {% for cliente in clientes %}
+                                                                        {% if cliente.estado == '1' %}
                                                                             <option class="text-black" value="{{cliente.id}}">{{cliente.nombreEmpresa}}</option>
+                                                                        {% endif %}
                                                                         {% endfor %}
                                                                     
                                                                     </select>
@@ -211,11 +215,13 @@
                                                                     <select id="id_producto" class="form-select" name="producto"aria-label="tipo-activo"
                                                                         id="validationCustom04" required>
                                                                     
-                                                                        <option class="text-black" select value="{{venta.producto.pk}}">{{venta.producto}}</option>
+                                                                        <option class="text-black" selected value hidden="{{venta.producto.pk}}">{{venta.producto}}</option>
             
                                                                         {% for producto in productos %}
+                                                                        {% if producto.estado == '1' %}
                                                                             <option class="text-black" value="{{producto.id}}">{{producto.nombre}}</option>
-                                                                        {% endfor %}
+                                                                            {% endif %}
+                                                                            {% endfor %}
                                                                     
                                                                     </select>
                                                                     <div class="valid-feedback">
@@ -264,7 +270,7 @@
                                                                 <div class="input-group mb-3 w-100">
                                                                     <select id="id_modoPago" class="form-select" name="modoPago"
                                                                     aria-label="tipo-activo" id="validationCustom07" required>
-                                                                    <option class="text-black" selected value="{{venta.modoPago}}">{{venta.modoPago}}</option>      
+                                                                    <option class="text-black" selected value hidden="{{venta.modoPago}}">{{venta.modoPago}}</option>      
                                                                     <option class="text-black" value="EF">Efectivo</option>
                                                                     <option class="text-black" value="PV">Pago Virtual</option>
                                                                     <option class="text-black" value="PT">Pago con Tarjeta</option>                                    
@@ -283,7 +289,7 @@
                                                                 <div class="input-group mb-3 w-100">
                                                                     <select id="id_porcentajeIva" class="form-select" name="porcentajeIva"
                                                                     aria-label="tipo-activo" id="validationCustom08" required>
-                                                                    <option class="text-black" selected value="{{venta.porcentajeIva}}">{{venta.porcentajeIva}}</option>      
+                                                                    <option class="text-black" selected value hidden="{{venta.porcentajeIva}}">{{venta.porcentajeIva}}</option>      
                                                                     <option class="text-black" value="5">Bienes y Servicios</option>
                                                                     <option class="text-black" value="19">General</option>
                                                                     <option class="text-black" value="0">Exento</option>                                    
