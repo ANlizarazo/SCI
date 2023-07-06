@@ -1,4 +1,6 @@
+{% load static %}
 {% load crispy_forms_tags %}
+
 
 <!-- Modal de crear tecnico -->
 
@@ -49,40 +51,76 @@
                                 </div>
                         </div>
                     </div>
-            
-                        <div class="d-inline-block w-100">
-                            <label for="basic-url" for="validationCustom03" class="form-label ps-2 text-black" style="font-size: 17;">Número de Télefono</label>
-                            <div class="input-group mb-3 w-100">
-                                <input type="number" class="form-control"
-                                    name="telefono" id="id_telefono"
-                                    aria-describedby="basic-addon3" required minlength="1"
-                                    maxlength="50" id="validationCustom03" required value="{{tecnico.telefono}}">
-                                    <div class="valid-feedback">
-                                        ¡Vamos bien!
-                                    </div>
-                                    <div class="invalid-feedback">
-                                        Ingresa un número de télefono valido.
-                                    </div>
-                            </div>
-                        </div>
-
-
-                        <div class="d-inline-block w-100">
-                            <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom08" style="font-size: 17;">Género</label>
-                            <div class="input-group mb-3 w-100">
-                                <select id="id_genero" class="form-select" name="genero"
-                                    aria-label="tipo-activo" id="validationCustom08" required value="{{tecnico.genero}}">
-                                    <option class="text-black" selected value hidden>{{tecnico.genero}}</option>
-                                    <option class="text-black" value="M">Masculino</option>
-                                    <option class="text-black" value="F">Femenino</option>
-                                    <option class="text-black" value="O">Otro</option>
-                                </select>
+        
+                    <div class="d-inline-block w-100">
+                        <label for="basic-url" for="validationCustom03" class="form-label ps-2 text-black" style="font-size: 17;">Número de Télefono</label>
+                        <div class="input-group mb-3 w-100">
+                            <input type="number" class="form-control"
+                                name="telefono" id="id_telefono"
+                                aria-describedby="basic-addon3" required minlength="1"
+                                maxlength="50" id="validationCustom03" required value="{{tecnico.telefono}}">
                                 <div class="valid-feedback">
                                     ¡Vamos bien!
                                 </div>
                                 <div class="invalid-feedback">
-                                    Selecciona una opción valida.
+                                    Ingresa un número de télefono valido.
                                 </div>
+                        </div>
+                    </div>
+                    
+                    <div class="d-inline-block w-100">
+                        <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom04" style="font-size: 17;">Tipo de Documento</label>
+                        <div class="input-group mb-3 w-100">
+                            <select id="id_tipoDocumento" class="form-select" name="tipoDocumento"
+                                aria-label="tipo-activo" id="validationCustom04" required value="{{tecnico.tipoDocumento}}">
+                                <option class="text-black" selected value hidden>{{tecnico.tipoDocumento}}</option> 
+                                <option class="text-black" disabled value>Seleccionar</option>
+                                <option class="text-black" value="CC">Cédula de Ciudadania</option>
+                                <option class="text-black" value="CE">Cédula de Extranjería</option>
+                                <option class="text-black" value="PP">Pasaporte</option>
+                                <option class="text-black" value="OT">Otro</option>
+                            </select>
+                            <div class="valid-feedback">
+                                ¡Vamos bien!
+                            </div>
+                            <div class="invalid-feedback">
+                                Selecciona una opción valida.
+                            </div>
+                        </div>
+                    </div>
+            
+                    <div class="d-inline-block w-100">
+                        <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom05" style="font-size: 17;">Número de Documento</label>
+                        <div class="input-group mb-3 w-100">
+                            <input type="number" class="form-control" name="numDocumento"
+                                id="id_numeroDocumento"
+                                aria-describedby="basic-addon3" required minlength="1"
+                                maxlength="50" id="validationCustom05" required value="{{tecnico.numDocumento}}">
+                                <div class="valid-feedback">
+                                    ¡Vamos bien!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Ingresa un número de documento valido.
+                                </div>
+                        </div>
+                    </div>
+            
+                    <div class="d-inline-block w-100">
+                        <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom06" style="font-size: 17;">Género</label>
+                        <div class="input-group mb-3 w-100">
+                            <select id="id_genero" class="form-select" name="genero"
+                                aria-label="tipo-activo" id="validationCustom06" required value="{{tecnico.genero}}">
+                                <option class="text-black" selected value hidden>{{tecnico.genero}}</option> 
+                                <option class="text-black" disabled value>Seleccionar</option>
+                                <option class="text-black" value="M">Masculino</option>
+                                <option class="text-black" value="F">Femenino</option>
+                                <option class="text-black" value="O">Otro</option>
+                            </select>
+                            <div class="valid-feedback">
+                                ¡Vamos bien!
+                            </div>
+                            <div class="invalid-feedback">
+                                Selecciona una opción valida.
                             </div>
                         </div>
                         
