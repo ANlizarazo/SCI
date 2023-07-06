@@ -71,7 +71,7 @@
                                     <td class="border-dark text-black">{{venta.cantidadProducto}}</td>
                                     <td class="border-dark text-black">{{venta.valorUnidad}}</td>
                                     <td class="border-dark text-black">{{venta.modoPago}}</td>
-                                    <td class="border-dark text-black">{{venta.porcentajeIva}}</td>
+                                    <td class="border-dark text-black">{{venta.porcentajeIva}}%</td>
                                     <td class="border-dark text-black">{{venta.valorTotal}}</td>
                                     <td class="border-dark text-black">
                                         <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#verVenta{{venta.pk}}" title="Ver">
@@ -83,256 +83,254 @@
                                     </td>
                                 </tr>
 
-                                
-                                    <!-- Modal ver venta -->
-                                    <div class="modal fade" id="verVenta{{venta.pk}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h1 class="modal-title fs-3" id="staticBackdropLabel"><b class="text-black">&nbsp;&nbsp;VER DETALLE</b></h1>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <!-- Formulario -->
-                                                    <form  action="{% url 'venta_ver' venta.pk %}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
-                                                    
-                                                        {% csrf_token %}          
-                                                        <div class="modal-body text-start" id="form-ver-venta"> 
-
-                                                            <div class="d-inline-block w-100">                                                            
-                                                                <label class="form-label ps-2 text-black" style="font-size: 17;">Fecha</label>
-                                                                <input type="datetime" name="fecha" class="form-control input-group mb-3 w-100" value="{{venta.fecha}}" required disabled/>
-                                                            </div>
-                                                            <div class="d-inline-block w-100">
-                                                                <label class="form-label ps-2 text-black" style="font-size: 17;">Usuario</label>
-                                                                <input type="text" name="usuario" class="form-control input-group mb-3 w-100" value="{{venta.usuario}}" required disabled/>
-                                                            </div>
-                                                            <div class="d-inline-block w-100">
-                                                                <label class="form-label ps-2 text-black" style="font-size: 17;">Cliente</label>
-                                                                <input type="text" name="cliente" class="form-control input-group mb-3 w-100" value="{{venta.cliente}}" required disabled/>
-                                                            </div>
-                                                            <div class="d-inline-block w-100">
-                                                                <label class="form-label ps-2 text-black" style="font-size: 17;">Producto</label>
-                                                                <input type="text" name="producto" class="form-control input-group mb-3 w-100" value="{{venta.producto}}" required disabled/>
-                                                            </div>
-                                                            <div class="d-inline-block w-100">
-                                                                <label class="form-label ps-2 text-black" style="font-size: 17;">Cantidad Producto</label>
-                                                                <input type="number" name="cantidadProducto" class="form-control input-group mb-3 w-100" value="{{venta.cantidadProducto}}" required disabled/>
-                                                            </div>
-                                                            <div class="d-inline-block w-100">
-                                                                <label class="form-label ps-2 text-black" style="font-size: 17;">Modo Pago</label>
-                                                                <input type="text" name="modoPago" class="form-control input-group mb-3 w-100" value="{{venta.modoPago}}" required disabled/>
-                                                            </div>
-                                                            <div class="d-inline-block w-100">
-                                                                <label class="form-label ps-2 text-black" style="font-size: 17;">Porcentaje IVA</label>
-                                                                <input type="text" name="porcentajeIva" class="form-control input-group mb-3 w-100" value="{{venta.porcentajeIva}}" required disabled/>
-                                                            </div>
-                                                            <div class="d-inline-block w-100">
-                                                                <label class="form-label ps-2 text-black" style="font-size: 17;">Valor Total</label>
-                                                                <input type="number" name="totalVenta" class="form-control input-group mb-3 w-100" value="{{venta.valorTotal}}" required disabled/>
-                                                            </div>
-                                                            
-                                                        </div>
-
-                                                        <div class="modal-footer">
-                                                            <!-- BOTÓN PARA VER LA INFORMACIÓN DIGITADA EN EL FORMULARIO DEL DETALLE VENTA -->
-                                                            <button type="reset" class="btn btn-success" data-bs-dismiss="modal">Regresar</button>
-                                                        </div>
-                                                    </form>
-                                                </div>
+                                <!-- Modal de modificar Detalle -->
+                                <div class="modal fade" id="modificar_Venta{{venta.pk}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-3" id="staticBackdropLabel"><b class="text-black" >MODIFICAR DETALLE</b></h1>
                                             </div>
-                                        </div>
-                                    </div>   
-                                <!-- Fin Modal -->
+                                            <div class="modal-body">
+                                                <!-- Formulario -->
+                                                <form  action="{% url 'venta_modificar' venta.pk %}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
+                                                
+                                                    {% csrf_token %}
+                                                    {% if form.errors %}
+                                                    <p>Datos inválidos, Por favor intentalo nuevamente.</p>
+                                                    {% endif %}        
+                                                    <div class="modal-body text-start" >
+                                                
+                                                        <div class="d-inline-block w-100">
+                                                            <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom02" style="font-size: 17;">Usuario</label>
+                                                            <div class="input-group mb-3 w-100">
+                                                                <select id="id_usuario" class="form-select" name="usuario"aria-label="tipo-activo"
+                                                                    id="validationCustom02" required>
+                                                                
+                                                                    <option class="text-black" selected value hidden="{{venta.usuario.pk}}">{{venta.usuario}}</option>
+                                                                    
+                                                                    {% for usuario in usuarios %}
+                                                                    {% if usuario.estado == '1' %}
+                                                                        <option class="text-black" value="{{usuario.id}}">{{usuario.nombres}} {{usuario.apellidos}}</option>
+                                                                    {% endif %}
+                                                                    {% endfor %}
+
+                                                                </select>
+                                                                <div class="valid-feedback">
+                                                                    ¡Vamos bien!
+                                                                </div>
+                                                                <div class="invalid-feedback">
+                                                                    Selecciona una opción valida.
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="d-inline-block w-100">
+                                                            <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom03" style="font-size: 17;">Ciente</label>
+                                                            <div class="input-group mb-3 w-100">
+                                                                <select id="id_cliente" class="select form-select" name="cliente"aria-label="tipo-activo"
+                                                                    id="validationCustom03" required>
+                                                                
+                                                                    <option class="text-black" selected value hidden="{{venta.cliente.pk}}">{{venta.cliente}}</option>
+        
+                                                                    {% for cliente in clientes %}
+                                                                    {% if cliente.estado == '1' %}
+                                                                        <option class="text-black" value="{{cliente.id}}">{{cliente.nombreEmpresa}}</option>
+                                                                    {% endif %}
+                                                                    {% endfor %}
+                                                                
+                                                                </select>
+                                                                <div class="valid-feedback">
+                                                                    ¡Vamos bien!
+                                                                </div>
+                                                                <div class="invalid-feedback">
+                                                                    Selecciona una opción valida.
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        <div class="d-inline-block w-100">
+                                                            <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom04" style="font-size: 17;">Producto</label>
+                                                            <div class="input-group mb-3 w-100">
+                                                                <select id="id_producto" class="form-select" name="producto"aria-label="tipo-activo"
+                                                                    id="validationCustom04" required>
+                                                                
+                                                                    <option class="text-black" selected value hidden="{{venta.producto.pk}}">{{venta.producto}}</option>
+        
+                                                                    {% for producto in productos %}
+                                                                    {% if producto.estado == '1' %}
+                                                                        <option class="text-black" value="{{producto.id}}">{{producto.nombre}}</option>
+                                                                        {% endif %}
+                                                                        {% endfor %}
+                                                                
+                                                                </select>
+                                                                <div class="valid-feedback">
+                                                                    ¡Vamos bien!
+                                                                </div>
+                                                                <div class="invalid-feedback">
+                                                                    Selecciona una opción valida.
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="d-inline-block w-100">
+                                                            <label for="basic-url"  for="validationCustom05" class="form-label ps-2 text-black" style="font-size: 17;">Cantidad Producto</label>
+                                                            <div class="input-group mb-3 w-100">
+                                                                <input type="number" class="form-control"
+                                                                    name="cantidadProducto" id="id_cantidadProducto"
+                                                                    aria-describedby="basic-addon3" id="validationCustom05" required minlength="1"
+                                                                    maxlength="50" required value="{{venta.cantidadProducto}}">
+                                                                    <div class="valid-feedback">
+                                                                        ¡Vamos bien!
+                                                                    </div>
+                                                                    <div class="invalid-feedback">
+                                                                        Completa la información.
+                                                                    </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="d-inline-block w-100">
+                                                            <label for="basic-url"  for="validationCustom06" class="form-label ps-2 text-black" style="font-size: 17;">Valor Unidad</label>
+                                                            <div class="input-group mb-3 w-100">
+                                                                <input type="number" class="form-control"
+                                                                    name="valorUnidad" id="id_valorUnidad"
+                                                                    aria-describedby="basic-addon3" id="validationCustom06" required minlength="1"
+                                                                    maxlength="50" required value="{{venta.valorUnidad}}">
+                                                                    <div class="valid-feedback">
+                                                                        ¡Vamos bien!
+                                                                    </div>
+                                                                    <div class="invalid-feedback">
+                                                                        Completa la información.
+                                                                    </div>
+                                                            </div>
+                                                        </div>
                                     
-                                    <!-- Modal de modificar Detalle -->
-
-                                    <div class="modal fade" id="modificar_Venta{{venta.pk}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h1 class="modal-title fs-3" id="staticBackdropLabel"><b class="text-black" >MODIFICAR DETALLE</b></h1>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <!-- Formulario -->
-                                                    <form  action="{% url 'venta_modificar' venta.pk %}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
-                                                    
-                                                        {% csrf_token %}          
-                                                        <div class="modal-body text-start" id="form-nuevo-usuario"> 
-                                                    
-                                                            
-                                                    
-                                                            <div class="d-inline-block w-100">
-                                                                <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom02" style="font-size: 17;">Usuario</label>
-                                                                <div class="input-group mb-3 w-100">
-                                                                    <select id="id_usuario" class="form-select" name="usuario"aria-label="tipo-activo"
-                                                                        id="validationCustom02" required>
-                                                                    
-                                                                        <option class="text-black" selected value hidden="{{venta.usuario.pk}}">{{venta.usuario}}</option>
-                                                                        
-                                                                        {% for usuario in usuarios %}
-                                                                        {% if usuario.estado == '1' %}
-                                                                            <option class="text-black" value="{{usuario.id}}">{{usuario.nombres}} {{usuario.apellidos}}</option>
-                                                                        {% endif %}
-                                                                        {% endfor %}
-
-                                                                    </select>
+                                                        <div class="d-inline-block w-100">
+                                                            <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom07" style="font-size: 17;">Modo Pago</label>
+                                                            <div class="input-group mb-3 w-100">
+                                                                <select id="id_modoPago" class="form-select" name="modoPago"
+                                                                aria-label="tipo-activo" id="validationCustom07" required>
+                                                                <option class="text-black" selected value hidden="{{venta.modoPago}}">{{venta.modoPago}}</option>      
+                                                                <option class="text-black" value="EF">Efectivo</option>
+                                                                <option class="text-black" value="PV">Pago Virtual</option>
+                                                                <option class="text-black" value="PT">Pago con Tarjeta</option>                                    
+                                                                </select>
+                                                                <div class="valid-feedback">
+                                                                    ¡Vamos bien!
+                                                                </div>
+                                                                <div class="invalid-feedback">
+                                                                    Selecciona una opción valida.
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                    
+                                                        <div class="d-inline-block w-100">
+                                                            <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom08" style="font-size: 17;">IVA</label>
+                                                            <div class="input-group mb-3 w-100">
+                                                                <select id="id_porcentajeIva" class="form-select" name="porcentajeIva"
+                                                                aria-label="tipo-activo" id="validationCustom08" required>
+                                                                <option class="text-black" selected value hidden="{{venta.porcentajeIva}}">{{venta.porcentajeIva}}</option>      
+                                                                <option class="text-black" value="5">Bienes y Servicios</option>
+                                                                <option class="text-black" value="19">General</option>
+                                                                <option class="text-black" value="0">Exento</option>                                    
+                                                                </select>
+                                                                <div class="valid-feedback">
+                                                                    ¡Vamos bien!
+                                                                </div>
+                                                                <div class="invalid-feedback">
+                                                                    Selecciona una opción valida.
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                    
+                                                        <div class="d-inline-block w-100">
+                                                            <label for="basic-url"  for="validationCustom09" class="form-label ps-2 text-black" style="font-size: 17;">Valor Total</label>
+                                                            <div class="input-group mb-3 w-100">
+                                                                <input type="number" class="form-control"
+                                                                    name="valorTotal" id="id_valorTotal"
+                                                                    aria-describedby="basic-addon3" id="validationCustom09" required minlength="1"
+                                                                    maxlength="50" required value="{{venta.valorTotal}}">
                                                                     <div class="valid-feedback">
                                                                         ¡Vamos bien!
                                                                     </div>
                                                                     <div class="invalid-feedback">
-                                                                        Selecciona una opción valida.
+                                                                        Completa la información.
                                                                     </div>
-                                                                </div>
                                                             </div>
-
-                                                            <div class="d-inline-block w-100">
-                                                                <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom03" style="font-size: 17;">Ciente</label>
-                                                                <div class="input-group mb-3 w-100">
-                                                                    <select id="id_cliente" class="select form-select" name="cliente"aria-label="tipo-activo"
-                                                                        id="validationCustom03" required>
-                                                                    
-                                                                        <option class="text-black" selected value hidden="{{venta.cliente.pk}}">{{venta.cliente}}</option>
-            
-                                                                        {% for cliente in clientes %}
-                                                                        {% if cliente.estado == '1' %}
-                                                                            <option class="text-black" value="{{cliente.id}}">{{cliente.nombreEmpresa}}</option>
-                                                                        {% endif %}
-                                                                        {% endfor %}
-                                                                    
-                                                                    </select>
-                                                                    <div class="valid-feedback">
-                                                                        ¡Vamos bien!
-                                                                    </div>
-                                                                    <div class="invalid-feedback">
-                                                                        Selecciona una opción valida.
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            
-                                                            <div class="d-inline-block w-100">
-                                                                <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom04" style="font-size: 17;">Producto</label>
-                                                                <div class="input-group mb-3 w-100">
-                                                                    <select id="id_producto" class="form-select" name="producto"aria-label="tipo-activo"
-                                                                        id="validationCustom04" required>
-                                                                    
-                                                                        <option class="text-black" selected value hidden="{{venta.producto.pk}}">{{venta.producto}}</option>
-            
-                                                                        {% for producto in productos %}
-                                                                        {% if producto.estado == '1' %}
-                                                                            <option class="text-black" value="{{producto.id}}">{{producto.nombre}}</option>
-                                                                            {% endif %}
-                                                                            {% endfor %}
-                                                                    
-                                                                    </select>
-                                                                    <div class="valid-feedback">
-                                                                        ¡Vamos bien!
-                                                                    </div>
-                                                                    <div class="invalid-feedback">
-                                                                        Selecciona una opción valida.
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="d-inline-block w-100">
-                                                                <label for="basic-url"  for="validationCustom05" class="form-label ps-2 text-black" style="font-size: 17;">Cantidad Producto</label>
-                                                                <div class="input-group mb-3 w-100">
-                                                                    <input type="number" class="form-control"
-                                                                        name="cantidadProducto" id="id_cantidadProducto"
-                                                                        aria-describedby="basic-addon3" id="validationCustom05" required minlength="1"
-                                                                        maxlength="50" required value="{{venta.cantidadProducto}}">
-                                                                        <div class="valid-feedback">
-                                                                            ¡Vamos bien!
-                                                                        </div>
-                                                                        <div class="invalid-feedback">
-                                                                            Completa la información.
-                                                                        </div>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="d-inline-block w-100">
-                                                                <label for="basic-url"  for="validationCustom06" class="form-label ps-2 text-black" style="font-size: 17;">Valor Unidad</label>
-                                                                <div class="input-group mb-3 w-100">
-                                                                    <input type="number" class="form-control"
-                                                                        name="valorUnidad" id="id_valorUnidad"
-                                                                        aria-describedby="basic-addon3" id="validationCustom06" required minlength="1"
-                                                                        maxlength="50" required value="{{venta.valorUnidad}}">
-                                                                        <div class="valid-feedback">
-                                                                            ¡Vamos bien!
-                                                                        </div>
-                                                                        <div class="invalid-feedback">
-                                                                            Completa la información.
-                                                                        </div>
-                                                                </div>
-                                                            </div>
-                                        
-                                                            <div class="d-inline-block w-100">
-                                                                <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom07" style="font-size: 17;">Modo Pago</label>
-                                                                <div class="input-group mb-3 w-100">
-                                                                    <select id="id_modoPago" class="form-select" name="modoPago"
-                                                                    aria-label="tipo-activo" id="validationCustom07" required>
-                                                                    <option class="text-black" selected value hidden="{{venta.modoPago}}">{{venta.modoPago}}</option>      
-                                                                    <option class="text-black" value="EF">Efectivo</option>
-                                                                    <option class="text-black" value="PV">Pago Virtual</option>
-                                                                    <option class="text-black" value="PT">Pago con Tarjeta</option>                                    
-                                                                    </select>
-                                                                    <div class="valid-feedback">
-                                                                        ¡Vamos bien!
-                                                                    </div>
-                                                                    <div class="invalid-feedback">
-                                                                        Selecciona una opción valida.
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                        
-                                                            <div class="d-inline-block w-100">
-                                                                <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom08" style="font-size: 17;">IVA</label>
-                                                                <div class="input-group mb-3 w-100">
-                                                                    <select id="id_porcentajeIva" class="form-select" name="porcentajeIva"
-                                                                    aria-label="tipo-activo" id="validationCustom08" required>
-                                                                    <option class="text-black" selected value hidden="{{venta.porcentajeIva}}">{{venta.porcentajeIva}}</option>      
-                                                                    <option class="text-black" value="5">Bienes y Servicios</option>
-                                                                    <option class="text-black" value="19">General</option>
-                                                                    <option class="text-black" value="0">Exento</option>                                    
-                                                                    </select>
-                                                                    <div class="valid-feedback">
-                                                                        ¡Vamos bien!
-                                                                    </div>
-                                                                    <div class="invalid-feedback">
-                                                                        Selecciona una opción valida.
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                        
-                                                            <div class="d-inline-block w-100">
-                                                                <label for="basic-url"  for="validationCustom09" class="form-label ps-2 text-black" style="font-size: 17;">Valor Total</label>
-                                                                <div class="input-group mb-3 w-100">
-                                                                    <input type="number" class="form-control"
-                                                                        name="valorTotal" id="id_valorTotal"
-                                                                        aria-describedby="basic-addon3" id="validationCustom09" required minlength="1"
-                                                                        maxlength="50" required value="{{venta.valorTotal}}">
-                                                                        <div class="valid-feedback">
-                                                                            ¡Vamos bien!
-                                                                        </div>
-                                                                        <div class="invalid-feedback">
-                                                                            Completa la información.
-                                                                        </div>
-                                                                </div>
-                                                            </div>
-                                        
-
-                                                        </div> 
+                                                        </div>
 
                                                         <div class="modal-footer">
                                                             <!-- BOTÓN PARA GUARDAR LA INFORMACIÓN DIGITADA EN EL FORMULARIO DE LA VENTA -->
                                                             <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                                                             <input class="btn btn-success" type="submit" name="form-nuevo-usuario" value="Modificar">
                                                         </div>
-                                                    </form>
-                                                </div>
+                                                    </div>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                                <!-- Fin Modal -->
+                                
+                                <!-- Modal ver venta -->
+                                <div class="modal fade" id="verVenta{{venta.pk}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-3" id="staticBackdropLabel"><b class="text-black">&nbsp;&nbsp;VER DETALLE</b></h1>
+                                            </div>
+                                            <div class="modal-body">
+                                                <!-- Formulario -->
+                                                <form  action="{% url 'venta_ver' venta.pk %}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
+                                                
+                                                    {% csrf_token %}          
+                                                    <div class="modal-body text-start" id="form-ver-venta"> 
 
+                                                        <div class="d-inline-block w-100">                                                            
+                                                            <label class="form-label ps-2 text-black" style="font-size: 17;">Fecha</label>
+                                                            <input type="datetime" name="fecha" class="form-control input-group mb-3 w-100" value="{{venta.fecha}}" required disabled/>
+                                                        </div>
+                                                        <div class="d-inline-block w-100">
+                                                            <label class="form-label ps-2 text-black" style="font-size: 17;">Usuario</label>
+                                                            <input type="text" name="usuario" class="form-control input-group mb-3 w-100" value="{{venta.usuario}}" required disabled/>
+                                                        </div>
+                                                        <div class="d-inline-block w-100">
+                                                            <label class="form-label ps-2 text-black" style="font-size: 17;">Cliente</label>
+                                                            <input type="text" name="cliente" class="form-control input-group mb-3 w-100" value="{{venta.cliente}}" required disabled/>
+                                                        </div>
+                                                        <div class="d-inline-block w-100">
+                                                            <label class="form-label ps-2 text-black" style="font-size: 17;">Producto</label>
+                                                            <input type="text" name="producto" class="form-control input-group mb-3 w-100" value="{{venta.producto}}" required disabled/>
+                                                        </div>
+                                                        <div class="d-inline-block w-100">
+                                                            <label class="form-label ps-2 text-black" style="font-size: 17;">Cantidad Producto</label>
+                                                            <input type="number" name="cantidadProducto" class="form-control input-group mb-3 w-100" value="{{venta.cantidadProducto}}" required disabled/>
+                                                        </div>
+                                                        <div class="d-inline-block w-100">
+                                                            <label class="form-label ps-2 text-black" style="font-size: 17;">Modo Pago</label>
+                                                            <input type="text" name="modoPago" class="form-control input-group mb-3 w-100" value="{{venta.modoPago}}" required disabled/>
+                                                        </div>
+                                                        <div class="d-inline-block w-100">
+                                                            <label class="form-label ps-2 text-black" style="font-size: 17;">Porcentaje IVA</label>
+                                                            <input type="text" name="porcentajeIva" class="form-control input-group mb-3 w-100" value="{{venta.porcentajeIva}}" required disabled/>
+                                                        </div>
+                                                        <div class="d-inline-block w-100">
+                                                            <label class="form-label ps-2 text-black" style="font-size: 17;">Valor Total</label>
+                                                            <input type="number" name="totalVenta" class="form-control input-group mb-3 w-100" value="{{venta.valorTotal}}" required disabled/>
+                                                        </div>
+                                                        
+                                                    </div>
+
+                                                    <div class="modal-footer">
+                                                        <!-- BOTÓN PARA VER LA INFORMACIÓN DIGITADA EN EL FORMULARIO DEL DETALLE VENTA -->
+                                                        <button type="reset" class="btn btn-success" data-bs-dismiss="modal">Regresar</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>   
+                                <!-- Fin Modal -->
+                                
                                 <!-- Modal delete confirmation -->
                                 <div class="modal fade"
                                     id="deleteModal{{venta.pk}}"
@@ -381,10 +379,12 @@
                     <a href="{% url 'recuperar_ventas' %}" class="btn btn-warning float-right mr-1 mb-3" title="Papelera"><i class="fas fa-trash-restore"></i>&nbsp; Restaurar </a>
                     <!-- /.card-body -->
                 </div>
-                <!-- /.card -->
-            </section>
-            <!-- /.content -->
-        </div>
+            </div>
+            <!-- /.card -->
+            
+    </section>
+    <!-- /.content -->
+    </div>
         <footer>{% include 'partials/footer.html' %}</footer>
         <!-- /.content-wrapper -->
         {% endblock contenido %}
