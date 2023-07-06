@@ -48,8 +48,6 @@ def ciudad_eliminar(request, pk):
     messages.success(request, "¡Ciudad eliminada satisfactoriamente!")
     return redirect('ciudades') 
 
-
-
 #Function to RECUPERAR categorias
 def recuperar_ciudades(request):
     

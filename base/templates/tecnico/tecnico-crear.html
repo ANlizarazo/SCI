@@ -4,14 +4,16 @@
 
 <!-- Modal de crear tecnico -->
 
-<div class="modal fade" id="crearTecnico" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="crearTecnico" data-bs-backdrop="static"
+    data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+    aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-3" id="staticBackdropLabel"><b class="text-black">CREAR  TÉCNICO</b></h1>
+                <h1 class="modal-title fs-3" id="staticBackdropLabel"><b
+                        class="text-black">CREAR TÉCNICO</b></h1>
             </div>
             <div class="modal-body">
-                
                 <!-- Formulario -->
                 <form action="{% url 'tecnico_crear' %}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
 
@@ -87,10 +89,10 @@
                         </div>
                         
                         <div class="d-inline-block w-100">
-                            <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom06" style="font-size: 17;">Tipo de Documento</label>
+                            <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom04" style="font-size: 17;">Tipo de Documento</label>
                             <div class="input-group mb-3 w-100">
                                 <select id="id_tipoDocumento" class="form-select" name="tipoDocumento"
-                                    aria-label="tipo-activo" id="validationCustom06" required value="{{tecnico.tipoDocumento}}">
+                                    aria-label="tipo-activo" id="validationCustom04" required value="{{tecnico.tipoDocumento}}">
                                     <option class="text-black" selected value hidden>{{tecnico.tipoDocumento}}</option>
                                     <option class="text-black" value="CC">Cédula de Ciudadania</option>
                                     <option class="text-black" value="CE">Cédula de Extranjería</option>
@@ -107,12 +109,12 @@
                         </div>
                 
                         <div class="d-inline-block w-100">
-                            <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom07" style="font-size: 17;">Número de Documento</label>
+                            <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom05" style="font-size: 17;">Número de Documento</label>
                             <div class="input-group mb-3 w-100">
                                 <input type="number" class="form-control" name="numDocumento"
                                     id="id_numeroDocumento"
                                     aria-describedby="basic-addon3" required minlength="1"
-                                    maxlength="50" id="validationCustom07" required value="{{tecnico.numDocumento}}">
+                                    maxlength="50" id="validationCustom05" required value="{{tecnico.numDocumento}}">
                                     <div class="valid-feedback">
                                         ¡Vamos bien!
                                     </div>
@@ -122,17 +124,16 @@
                             </div>
                         </div>
                 
-                        
-
-                </div>         
                     
                         <div class="modal-footer">
-                            <!-- BOTÓN PARA GUARDAR LA INFORMACIÓN DIGITADA EN EL FORMULARIO DE TECNICO -->
+                            <!-- BOTÓN PARA GUARDAR LA INFORMACIÓN DIGITADA EN EL FORMULARIO DE CLIENTE -->
                             <button type="reset" class="btn btn-secondary"
                                 data-bs-dismiss="modal" title="Cancelar">Cancelar</button>
                             <input class="btn btn-success" type="submit" title="Crear" value="Crear">
                         </div>
-                    </div>
-                </div>
+                </form>
             </div>
+        </div>
+    </div>
+</div>
 <script src="/static/js/funciones.js"></script>

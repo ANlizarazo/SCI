@@ -68,8 +68,8 @@ def compras_modificar(request, pk):
             messages.success(request,'¡Compra modificada correctamente!')
             return redirect('compras')
         else:
-            print('Error al modificar compra')
             messages.error(request, "¡Error al modificar la compra!")
+            return redirect('compras')
     else:
         form = DetalleCompraForm( instance = compra)
     
@@ -77,7 +77,7 @@ def compras_modificar(request, pk):
         'form': form,
     }
 
-    return render(request, 'compras/compras-modificar.html', context)    
+    return render(request, 'compras/compras.html', context)    
 
 #Function to DELETE compra
 

@@ -2,8 +2,6 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.core.validators import MinValueValidator
 
-from ciudad.models import Ciudad
-
 # Create your models here.
 
 
@@ -27,8 +25,7 @@ class Tecnico(models.Model):
     tipoDocumento=models.CharField(max_length=4, choices=TipoDocumento.choices, verbose_name="Tipo de Documento")
     numDocumento=models.CharField(max_length=20, unique=True, verbose_name="Número de Documento")
     estado=models.CharField(max_length=1, choices=Estado.choices, default=Estado.ACTIVO, verbose_name="Estado")
-    ciudad = models.ForeignKey(Ciudad, on_delete=models.CASCADE, verbose_name="Ciudad",null=True)
-    
+
     def __str__(self)->str:
         return "%s %s" %(self.nombres, self.apellidos)  
     

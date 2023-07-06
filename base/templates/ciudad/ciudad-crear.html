@@ -42,9 +42,12 @@
                                     id="validationCustom02" required>
 
                                     <option class="text-black" select value="{{ciudad.departamento.pk}}" selected hidden>{{ciudad.departamento}}</option>
-                                
+                                    
+                                    <option class="text-black" disabled value>Seleccionar</option>
                                     {% for departamento in departamentos %}
+                                    {% if departamento.estado == '1' %}
                                         <option class="text-black" value="{{departamento.id}}">{{departamento.nombre}} </option>
+                                    {% endif %}
                                     {% endfor %}
                                 
                                 </select>
