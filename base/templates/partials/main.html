@@ -1,4 +1,4 @@
-
+{% load static %}
 {% block contenido %}
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -129,20 +129,28 @@
 
 <!-- /.content-wrapper -->
 
-<!-- jQuery -->
-<script src="/static/AdminLTE/jquery/jquery.min.js"></script>
 <!-- Bootstrap -->
-<script src="/static/AdminLTE/js-copy/bootstrap.bundle.min.js"></script>
+<script src="{% static 'AdminLTE/js-copy/bootstrap.bundle.min.js' %}"></script>
 <!-- jQuery UI -->
-<script src="/static/AdminLTE/jquery-ui/jquery-ui.min.js"></script>
+<script src="{% static 'AdminLTE/jquery-ui/jquery-ui.min.js' %}"></script>
+<!-- jQuery -->
+<script src="{% static 'AdminLTE/jquery/jquery.min.js' %}"></script>
 <!-- AdminLTE App -->
-<script src="/static/AdminLTE/js/adminlte.min.js"></script>
+<script src="{% static 'AdminLTE/js/adminlte.min.js' %}"></script>
+<!-- Toast -->
+<script src="{% static 'AdminLTE/js/jquery.toast.js' %}"></script>
+
+
+<!-- ChartJS -->
+<script src="{% static 'AdminLTE/chart.js/Chart.min.js' %}"></script>
 
 {% endblock contenido %}
 
-
 {% block javascript %}
+
 <script src="charts/chart-stock.js"></script>
+
 <script class="mx-2">(function(d){var s = d.createElement("script");s.setAttribute("data-account", "tkCHtUA3Ge");s.setAttribute("src", "https://cdn.userway.org/widget.js");(d.body || d.head).appendChild(s);})(document)</script><noscript>Please ensure Javascript is enabled for purposes of <a href="https://userway.org">website accessibility</a></noscript>
+
 {% endblock javascript %}
     
