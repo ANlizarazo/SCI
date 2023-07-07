@@ -9,7 +9,7 @@ from proveedores.models import Proveedor
 class DetalleCompra(models.Model):
     fecha= models.DateTimeField(verbose_name="Fecha", auto_now_add=True, editable=False, null=True)
     cantidadProducto = models.PositiveIntegerField(validators = [ MinValueValidator ( 0 )],  verbose_name="Cantidad Producto") 
-    producto= models.ForeignKey(Producto, on_delete=models.CASCADE, verbose_name="Producto")
+    producto= models.ForeignKey(Producto, on_delete=models.CASCADE, verbose_name="Producto",null=True)
     class Iva(models.TextChoices):
         BYS='5', _('Bienes y Servicios')
         GR='19', _('General')    
