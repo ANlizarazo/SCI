@@ -142,6 +142,40 @@
                                                             </div>
                                                         </div>
                                                         
+
+
+                                                        <div class="d-inline-block w-100">
+                                                            <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom06" style="font-size: 17;">Género</label>
+                                                            <div class="input-group mb-3 w-100">
+                                                                <select id="id_genero" class="form-select" name="genero"
+                                                                    aria-label="tipo-activo" id="validationCustom06" required>
+                                                                    <option 
+                                                                        class="text-black" 
+                                                                        value="M"
+                                                                        {% if tecnico.genero == 'M' %} selected {% endif %}
+                                                                        >Masculino</option>
+                                                                    <option 
+                                                                        class="text-black" 
+                                                                        value="F"
+                                                                        {% if tecnico.genero == 'F' %} selected {% endif %}
+                                                                        >Femenino</option>
+                                                                    <option 
+                                                                        class="text-black" 
+                                                                        value="O"
+                                                                        {% if tecnico.genero == 'O' %} selected {% endif %}
+                                                                        >Otro</option>
+                                                                </select>
+                                                                <div class="valid-feedback">
+                                                                    ¡Vamos bien!
+                                                                </div>
+                                                                <div class="invalid-feedback">
+                                                                    Selecciona una opción valida.
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+
                                                         <div class="d-inline-block w-100">
                                                             <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom04" style="font-size: 17;">Tipo de Documento</label>
                                                             <div class="input-group mb-3 w-100">
@@ -194,35 +228,6 @@
                                                             </div>
                                                         </div>
                                                 
-                                                        <div class="d-inline-block w-100">
-                                                            <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom06" style="font-size: 17;">Género</label>
-                                                            <div class="input-group mb-3 w-100">
-                                                                <select id="id_genero" class="form-select" name="genero"
-                                                                    aria-label="tipo-activo" id="validationCustom06" required>
-                                                                    <option 
-                                                                        class="text-black" 
-                                                                        value="M"
-                                                                        {% if tecnico.genero == 'M' %} selected {% endif %}
-                                                                        >Masculino</option>
-                                                                    <option 
-                                                                        class="text-black" 
-                                                                        value="F"
-                                                                        {% if tecnico.genero == 'F' %} selected {% endif %}
-                                                                        >Femenino</option>
-                                                                    <option 
-                                                                        class="text-black" 
-                                                                        value="O"
-                                                                        {% if tecnico.genero == 'O' %} selected {% endif %}
-                                                                        >Otro</option>
-                                                                </select>
-                                                                <div class="valid-feedback">
-                                                                    ¡Vamos bien!
-                                                                </div>
-                                                                <div class="invalid-feedback">
-                                                                    Selecciona una opción valida.
-                                                                </div>
-                                                            </div>
-                                                        </div>
                                 
                                             
                                                     <div class="modal-footer">
@@ -287,6 +292,17 @@
                                                             </div>
                                                         </div>
                                                         
+
+                                                        <div class="d-inline-block w-100">
+                                                            <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom08" style="font-size: 17;">Género</label>
+                                                            <div class="input-group mb-3 w-100">
+                                                                <input id="id_genero" class="form-control" name="genero"
+                                                                    aria-label="tipo-activo" id="validationCustom08" required disabled value="{{tecnico.genero}}">
+                                                                </div>
+                                                                </div>
+                                                        </div>
+
+                                                        
                                                         <div class="d-inline-block w-100">
                                                             <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom06" style="font-size: 17;">Tipo de Documento</label>
                                                             <div class="input-group mb-3 w-100">
@@ -305,14 +321,7 @@
                                                             </div>
                                                         </div>
                                                 
-                                                        <div class="d-inline-block w-100">
-                                                            <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom08" style="font-size: 17;">Género</label>
-                                                            <div class="input-group mb-3 w-100">
-                                                                <input id="id_genero" class="form-control" name="genero"
-                                                                    aria-label="tipo-activo" id="validationCustom08" required disabled value="{{tecnico.genero}}">
-                                                                </div>
-                                                                </div>
-                                                        </div>
+                                                        
     
                                                     </div>
     
