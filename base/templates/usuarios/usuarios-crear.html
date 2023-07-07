@@ -101,7 +101,7 @@
                         <div class="input-group mb-3 w-100">
                             <select id="id_tipoDocumento" class="form-select" name="tipoDocumento"
                             aria-label="tipo-activo" id="validationCustom09" required value="{{usuario.tipoDocumento}}">
-                            <option class="text-black" disabled value>Seleccionar</option>
+                            <option class="text-black" select hidden>Seleccionar</option>
                                 <option class="text-black" value="CC" {% if usuario.tipoDocumento == 'CC' %} selected {% endif %}>Cédula de Ciudadania</option>
                                 <option class="text-black" value="CE" {% if usuario.tipoDocumento == 'CE' %} selected {% endif %}>Cédula de Extranjería</option>
                                 <option class="text-black" value="PP" {% if usuario.tipoDocumento == 'PP' %} selected {% endif %}>Pasaporte</option>
@@ -138,7 +138,7 @@
                         <div class="input-group mb-3 w-100">
                             <select id="id_genero" class="form-select" name="genero"
                                 aria-label="tipo-activo" id="validationCustom08" required value="{{usuario.genero}}">
-                                <option class="text-black" disabled value>Seleccionar</option>
+                                <option class="text-black" select hidden>Seleccionar</option>
                                 <option class="text-black" value="M" {% if usuario.genero == 'M' %} selected {% endif %}>Masculino</option>
                                 <option class="text-black" value="F" {% if usuario.genero == 'F' %} selected {% endif %}>Femenino</option>
                                 <option class="text-black" value="O" {% if usuario.genero == 'O' %} selected {% endif %}>Otro</option>
@@ -157,7 +157,7 @@
                         <div class="input-group mb-3 w-100">
                             <select id="id_rol" class="form-select" name="rol"
                                 aria-label="tipo-activo" id="validationCustom09" required value="{{usuario.rol}}">
-                                <option class="text-black" disabled value>Seleccionar</option>
+                                <option class="text-black" select hidden>Seleccionar</option>
                                 <option class="text-black" value="Admin" {% if usuario.rol == 'Admin' %} selected {% endif %}>Administrador</option>
                                 <option class="text-black" value="Empl" {% if usuario.rol == 'Empl' %} selected {% endif %}>Empleado</option>
                             </select>   
