@@ -87,13 +87,12 @@
                                         </div>
                                         <div class="modal-body">
                                             <!-- Formulario -->
-                                            <form action= "{% url 'tecnico_modificar' tecnico.pk %}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
-                                                
+                                            <form action="{% url 'tecnico_modificar' tecnico.pk %}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
                                                 {% csrf_token %}
                                                 {% if form.errors %}
                                                     <p>Datos inválidos, Por favor intentalo nuevamente.</p>
                                                 {% endif %}
-                                                <div class="modal-body text-start" id="form-nuevo-tecnico">
+                                                <div class="modal-body text-start" >
                                 
                                                         <div class="d-inline-block w-100">
                                                             <label for="basic-url" for="validationCustom01" class="form-label ps-2 text-black" style="font-size: 17;">Nombres</label>
@@ -146,14 +145,29 @@
                                                         <div class="d-inline-block w-100">
                                                             <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom04" style="font-size: 17;">Tipo de Documento</label>
                                                             <div class="input-group mb-3 w-100">
+                                                                
                                                                 <select id="id_tipoDocumento" class="form-select" name="tipoDocumento"
-                                                                    aria-label="tipo-activo" id="validationCustom04" required value="{{tecnico.tipoDocumento}}">
-                                                                    <option class="text-black" selected value hidden>{{tecnico.tipoDocumento}}</option> 
-                                                                    <option class="text-black" disabled value>Seleccionar</option>
-                                                                    <option class="text-black" value="CC">Cédula de Ciudadania</option>
-                                                                    <option class="text-black" value="CE">Cédula de Extranjería</option>
-                                                                    <option class="text-black" value="PP">Pasaporte</option>
-                                                                    <option class="text-black" value="OT">Otro</option>
+                                                                    aria-label="tipo-activo" id="validationCustom04" required>
+                                                                    <option 
+                                                                        class="text-black" 
+                                                                        value="CC"
+                                                                        {% if tecnico.tipoDocumento == 'CC' %} selected {% endif %}
+                                                                        >Cédula de Ciudadania</option>
+                                                                    <option 
+                                                                        class="text-black" 
+                                                                        value="CE"
+                                                                        {% if tecnico.tipoDocumento == 'CE' %} selected {% endif %}
+                                                                        >Cédula de Extranjería</option>
+                                                                    <option 
+                                                                        class="text-black" 
+                                                                        value="PP"
+                                                                        {% if tecnico.tipoDocumento == 'PP' %} selected {% endif %}
+                                                                        >Pasaporte</option>
+                                                                    <option 
+                                                                        class="text-black" 
+                                                                        value="OT"
+                                                                        {% if tecnico.tipoDocumento == 'OT' %} selected {% endif %}
+                                                                        >Otro</option>
                                                                 </select>
                                                                 <div class="valid-feedback">
                                                                     ¡Vamos bien!
@@ -184,12 +198,22 @@
                                                             <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom06" style="font-size: 17;">Género</label>
                                                             <div class="input-group mb-3 w-100">
                                                                 <select id="id_genero" class="form-select" name="genero"
-                                                                    aria-label="tipo-activo" id="validationCustom08" required value="{{tecnico.genero}}">
-                                                                    <option class="text-black" selected value hidden>{{tecnico.genero}}</option> 
-                                                                    <option class="text-black" disabled value>Seleccionar</option>
-                                                                    <option class="text-black" value="M">Masculino</option>
-                                                                    <option class="text-black" value="F">Femenino</option>
-                                                                    <option class="text-black" value="O">Otro</option>
+                                                                    aria-label="tipo-activo" id="validationCustom06" required>
+                                                                    <option 
+                                                                        class="text-black" 
+                                                                        value="M"
+                                                                        {% if tecnico.genero == 'M' %} selected {% endif %}
+                                                                        >Masculino</option>
+                                                                    <option 
+                                                                        class="text-black" 
+                                                                        value="F"
+                                                                        {% if tecnico.genero == 'F' %} selected {% endif %}
+                                                                        >Femenino</option>
+                                                                    <option 
+                                                                        class="text-black" 
+                                                                        value="O"
+                                                                        {% if tecnico.genero == 'O' %} selected {% endif %}
+                                                                        >Otro</option>
                                                                 </select>
                                                                 <div class="valid-feedback">
                                                                     ¡Vamos bien!
@@ -203,22 +227,23 @@
                                             
                                                     <div class="modal-footer">
                                                         <!-- BOTÓN PARA GUARDAR LA INFORMACIÓN DIGITADA EN EL FORMULARIO DEL TECNICO -->
-                                                        <button type="reset" class="btn btn-secondary"
-                                                            data-bs-dismiss="modal">Cancelar</button>
-                                                        <input class="btn btn-success" type="submit"
-                                                            name="form-nuevo-cliente" value="Modificar">
+                                                        <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                                        <input class="btn btn-success" type="submit" value="Modificar">
                                                     </div>
 <<<<<<< Updated upstream
-                                                </div>   
-                                                </form>
-                                            </div>
-=======
 
+                                                </div>
+
+                                                </div>   
+
+=======
+                                                </div>
+>>>>>>> Stashed changes
                                             </form>
                                         </div>
                                     </div>
                                 </div>
-                                </div>    
+                                </div>      
 
 
                                 <!-- Modal de ver tecnico -->
@@ -234,7 +259,7 @@
                                                 <form  action="{% url 'tecnico_ver' tecnico.pk %}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
                                                 
                                                     {% csrf_token %}          
-                                                    <div class="modal-body text-start" id="form-nuevo-tecnico"> 
+                                                    <div class="modal-body text-start" > 
 
                                                         <div class="d-inline-block w-100">
                                                             <label for="basic-url" for="validationCustom01" class="form-label ps-2 text-black" style="font-size: 17;">Nombres</label>
@@ -256,53 +281,56 @@
                                                             </div>
                                                         </div>
                                                 
-                                                            <div class="d-inline-block w-100">
-                                                                <label for="basic-url" for="validationCustom03" class="form-label ps-2 text-black" style="font-size: 17;">Número de Télefono</label>
-                                                                <div class="input-group mb-3 w-100">
-                                                                    <input type="number" class="form-control"
-                                                                        name="telefono" id="id_telefono"
-                                                                        aria-describedby="basic-addon3" required minlength="1"
-                                                                        maxlength="50" id="validationCustom03" required disabled value="{{tecnico.telefono}}">
-                                                                </div>
+                                                        <div class="d-inline-block w-100">
+                                                            <label for="basic-url" for="validationCustom03" class="form-label ps-2 text-black" style="font-size: 17;">Número de Télefono</label>
+                                                            <div class="input-group mb-3 w-100">
+                                                                <input type="number" class="form-control"
+                                                                    name="telefono" id="id_telefono"
+                                                                    aria-describedby="basic-addon3" required minlength="1"
+                                                                    maxlength="50" id="validationCustom03" required disabled value="{{tecnico.telefono}}">
                                                             </div>
-                                                            
-                                                            <div class="d-inline-block w-100">
-                                                                <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom06" style="font-size: 17;">Tipo de Documento</label>
-                                                                <div class="input-group mb-3 w-100">
-                                                                    <input id="id_tipoDocumento" class="form-control" name="tipoDocumento"
-                                                                        aria-label="tipo-activo" id="validationCustom06" required disabled value="{{tecnico.tipoDocumento}}">
-                                                                </div>
-                                                            </div>
-                                                    
-                                                            <div class="d-inline-block w-100">
-                                                                <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom07" style="font-size: 17;">Número de Documento</label>
-                                                                <div class="input-group mb-3 w-100">
-                                                                    <input type="number" class="form-control" name="numDocumento"
-                                                                        id="id_numeroDocumento"
-                                                                        aria-describedby="basic-addon3" required minlength="1"
-                                                                        maxlength="50" id="validationCustom07" required disabled value="{{tecnico.numDocumento}}">
-                                                                </div>
-                                                            </div>
-                                                    
-                                                            <div class="d-inline-block w-100">
-                                                                <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom08" style="font-size: 17;">Género</label>
-                                                                <div class="input-group mb-3 w-100">
-                                                                    <input id="id_genero" class="form-control" name="genero"
-                                                                        aria-label="tipo-activo" id="validationCustom08" required disabled value="{{tecnico.genero}}">
-                                                                </div>
-                                                            </div>
-
-                                                        <div class="modal-footer">
-                                                            
-                                                            <button type="reset" class="btn btn-success" data-bs-dismiss="modal">Regresar</button>
-                                                        
                                                         </div>
+                                                        
+                                                        <div class="d-inline-block w-100">
+                                                            <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom06" style="font-size: 17;">Tipo de Documento</label>
+                                                            <div class="input-group mb-3 w-100">
+                                                                <input id="id_tipoDocumento" class="form-control" name="tipoDocumento"
+                                                                    aria-label="tipo-activo" id="validationCustom06" required disabled value="{{tecnico.tipoDocumento}}">
+                                                            </div>
+                                                        </div>
+                                                
+                                                        <div class="d-inline-block w-100">
+                                                            <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom07" style="font-size: 17;">Número de Documento</label>
+                                                            <div class="input-group mb-3 w-100">
+                                                                <input type="number" class="form-control" name="numDocumento"
+                                                                    id="id_numeroDocumento"
+                                                                    aria-describedby="basic-addon3" required minlength="1"
+                                                                    maxlength="50" id="validationCustom07" required disabled value="{{tecnico.numDocumento}}">
+                                                            </div>
+                                                        </div>
+                                                
+                                                        <div class="d-inline-block w-100">
+                                                            <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom08" style="font-size: 17;">Género</label>
+                                                            <div class="input-group mb-3 w-100">
+                                                                <input id="id_genero" class="form-control" name="genero"
+                                                                    aria-label="tipo-activo" id="validationCustom08" required disabled value="{{tecnico.genero}}">
+                                                                </div>
+                                                                </div>
+                                                        </div>
+    
+                                                    </div>
+    
+                                                    <div class="modal-footer">
+                                                        <!-- BOTÓN PARA GUARDAR LA INFORMACIÓN DIGITADA EN EL FORMULARIO DEL TÉCNICO -->
+                                                        <button type="reset" class="btn btn-success"
+                                                            data-bs-dismiss="modal">Regresar</button>    
                                                     </div>
                                                 </form>
                                             </div>
-                                        </div>
                                     </div>
-                                </div>      
+                                </div>
+                            </div>
+                            </div>
 
 
 
@@ -362,8 +390,6 @@
         <footer>{% include 'partials/footer.html' %}</footer>
         <!-- /.content-wrapper -->
         {% endblock contenido %}
-
-        
 
             <!-- jQuery -->
             <script src="{% static 'AdminLTE/jquery/jquery.min.js' %}"></script>

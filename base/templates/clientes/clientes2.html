@@ -249,7 +249,7 @@
                                                 novalidate>
 
                                                 {% csrf_token %}
-                                                <div class="modal-body text-start" id="form-nuevo-cliente">
+                                                <div class="modal-body text-start" >
 
                                                     <div class="d-inline-block w-100">
                                                         <label for="basic-url" for="validationCustom01"
@@ -397,16 +397,16 @@
                                     </div>
                                 </div>
                             </div> 
-                                {% endif %}
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>        
-                    <a href="{% url 'recuperar_clientes' %}" class="btn btn-warning float-right mr-1 mb-3" title="Papelera"><i class="fas fa-trash-restore"></i>&nbsp; Restaurar </a>
-                        <!-- /.card-body -->  
-                </div>
-            </div>            
-            <!-- /.card -->
+                            {% endif %}
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>        
+                <a href="{% url 'recuperar_clientes' %}" class="btn btn-warning float-right mr-1 mb-3" title="Papelera"><i class="fas fa-trash-restore"></i>&nbsp; Restaurar </a>
+                <!-- /.card-body -->  
+            </div>
+        </div>            
+        <!-- /.card -->
     </section>
     <!-- /.content -->
 </div>
