@@ -28,7 +28,8 @@ class Venta(models.Model):
     modoPago=models.CharField(max_length=3, choices=ModoPago.choices, default=ModoPago.EF, verbose_name="Modo de Pago")
     estado=models.CharField(max_length=1, choices=Estado.choices, default=Estado.ACTIVO, verbose_name="Estado")
     porcentajeIva=models.CharField(max_length=3, choices=Iva.choices, default=Iva.GR, verbose_name="IVA")
-    valorTotal= models.PositiveIntegerField(validators = [ MinValueValidator ( 0 )], verbose_name="Valor Total")
+    valorTotal= models.PositiveIntegerField(validators = [ MinValueValidator ( 0 )], blank=True, null=True, verbose_name="Valor Total")
+    subTotal= models.PositiveIntegerField(validators = [ MinValueValidator ( 0 )], blank=True, null=True, verbose_name="Subtotal")
     
     def __str__(self)->str:
         return "%s %s %s %s" %(self.id,self.producto,self.id,self.fecha)  
