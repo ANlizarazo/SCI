@@ -8,7 +8,7 @@ urlpatterns = [
     #Path to EDIT Venta
     path('venta_modificar/<int:pk>', venta_modificar,name="venta_modificar"),
     #Path to View Venta data individually
-    path('ventas/venta_ver/<str:venta_id>',venta_ver,name="venta_ver"),
+    path('venta_ver/<str:venta_id>',venta_ver,name="venta_ver"),
     #Path to DELETE Venta
     path('ventas_eliminar/<int:pk>/', ventas_eliminar, name="ventas_eliminar"),
     #Path to Recuperar Ventas
