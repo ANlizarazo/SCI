@@ -8,24 +8,23 @@ from proveedores.models import Proveedor
 #Modelos
 class DetalleCompra(models.Model):
     fecha= models.DateTimeField(verbose_name="Fecha", auto_now_add=True, editable=False, null=True)
+    proveedor=models.ForeignKey(Proveedor, on_delete=models.CASCADE, verbose_name="Proveedor", blank=True, null=True)
+    producto= models.ForeignKey(Producto, on_delete=models.CASCADE, verbose_name="Producto")
     cantidadProducto = models.PositiveIntegerField(validators = [ MinValueValidator ( 0 )],  verbose_name="Cantidad Producto") 
-    producto= models.ForeignKey(Producto, on_delete=models.CASCADE, verbose_name="Producto",null=True)
-    class Iva(models.TextChoices):
-        BYS='5', _('Bienes y Servicios')
-        GR='19', _('General')    
-        EX='0', _('Exento')
+    valorUnidad = models.PositiveIntegerField(validators = [ MinValueValidator ( 0 )], verbose_name="Valor Unidad")
+    
     class Estado(models.TextChoices):
         ACTIVO='1', _('Activo')
         INACTIVO='0', _('Inactivo')    
-    estado=models.CharField(max_length=1, choices=Estado.choices, default=Estado.ACTIVO, verbose_name="Estado")
-    totalCompra= models.PositiveIntegerField(validators = [ MinValueValidator ( 0 )], verbose_name="Valor Total")
-    valorUnidad = models.PositiveIntegerField(validators = [ MinValueValidator ( 0 )], verbose_name="Valor Unidad")
-    proveedor = models.ForeignKey(Proveedor, on_delete=models.CASCADE, verbose_name="Proveedor",blank=True, null=True)
 
+    estado=models.CharField(max_length=1, choices=Estado.choices, default=Estado.ACTIVO, verbose_name="Estado")
+    valorTotal= models.PositiveIntegerField(validators = [ MinValueValidator ( 0 )], blank=True, null=True, verbose_name="Valor Total")
+    
     def __str__(self)->str:
-        return "%s %s %s" %(self.id,self.producto,self.fecha)  
+        return "%s %s %s %s" %(self.id,self.producto,self.id,self.fecha)    
+    
     class Meta:
-        ordering = ['id']
+        ordering = ['fecha']
         verbose_name = 'Detalle Compra'
         verbose_name_plural = 'Detalles de Compras'
 
