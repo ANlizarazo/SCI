@@ -1,4 +1,6 @@
+
 {% load static %}
+
 {% block contenido %}
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -148,7 +150,7 @@
 
 {% block javascript %}
 
-<script src="charts/chart-stock.js"></script>
+<script src="{% static 'AdminLTE/charts/chart-stock.js' %}"></script>
 
 <script class="mx-2">(function(d){var s = d.createElement("script");s.setAttribute("data-account", "tkCHtUA3Ge");s.setAttribute("src", "https://cdn.userway.org/widget.js");(d.body || d.head).appendChild(s);})(document)</script><noscript>Please ensure Javascript is enabled for purposes of <a href="https://userway.org">website accessibility</a></noscript>
 
