@@ -97,9 +97,7 @@
                                                 <form  action="{% url 'venta_modificar' venta.pk %}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
                                                 
                                                     {% csrf_token %}
-                                                        {% if form.errors %}
-                                                        <p>Datos inválidos, Por favor intentalo nuevamente.</p>
-                                                        {% endif %}
+                                                    
                                                     <div class="modal-body text-start" >
                                                 
                                                         <div class="d-inline-block w-100">
@@ -211,10 +209,23 @@
                                                             <div class="input-group mb-3 w-100">
                                                                 <select id="id_modoPago" class="form-select" name="modoPago"
                                                                 aria-label="tipo-activo" id="validationCustom07" required>
-                                                                <option class="text-black" selected value hidden="{{venta.modoPago}}">{{venta.modoPago}}</option>      
-                                                                <option class="text-black" value="EF">Efectivo</option>
-                                                                <option class="text-black" value="PV">Pago Virtual</option>
-                                                                <option class="text-black" value="PT">Pago con Tarjeta</option>                                    
+                                                                    <option 
+                                                                        class="text-black" select value="{{venta.modoPago}}">Seleccionar</option>      
+                                                                    <option 
+                                                                        class="text-black" 
+                                                                        value="EF"
+                                                                        {% if venta.modoPago == 'EF' %} selected {% endif %}
+                                                                        >Efectivo</option>
+                                                                    <option 
+                                                                        class="text-black" 
+                                                                        value="PV"
+                                                                        {% if venta.modoPago == 'PV' %} selected {% endif %}
+                                                                        >Pago Virtual</option>
+                                                                    <option 
+                                                                        class="text-black" 
+                                                                        value="PT"
+                                                                        {% if venta.modoPago == 'PT' %} selected {% endif %}
+                                                                        >Pago con Tarjeta</option>                                    
                                                                 </select>
                                                                 <div class="valid-feedback">
                                                                     ¡Vamos bien!
@@ -230,8 +241,12 @@
                                                             <div class="input-group mb-3 w-100">
                                                                 <select id="id_porcentajeIva" class="form-select" name="porcentajeIva"
                                                                 aria-label="tipo-activo" id="validationCustom08" required>
-                                                                <option class="text-black" selected value hidden="{{venta.porcentajeIva}}">{{venta.porcentajeIva}}</option>      
-                                                                <option class="text-black" value="5">Bienes y Servicios</option>
+                                                                <option class="text-black" selected value="{{venta.porcentajeIva}}">Valor Total</option>      
+                                                                <option 
+                                                                    class="text-black" 
+                                                                    value="5"
+                                                                    {% if venta.porcentajeIva == '5' %} selected {% endif %}
+                                                                    >Bienes y Servicios</option>
                                                                 <option class="text-black" value="19">General</option>
                                                                 <option class="text-black" value="0">Exento</option>                                    
                                                                 </select>
