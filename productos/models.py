@@ -19,7 +19,7 @@ class Producto(models.Model):
         ACTIVO='1', _('Activo')
         INACTIVO='0', _('Inactivo')
     estado=models.CharField(max_length=1, choices=Estado.choices, default=Estado.ACTIVO, verbose_name="Estado")
-    stock = models.BigIntegerField(validators = [ MinValueValidator ( 0 )], verbose_name="Cantidad")
+    stock = models.PositiveBigIntegerField(validators = [ MinValueValidator ( 0 )], verbose_name="Cantidad")
     #stockMinimo = models.PositiveSmallIntegerField(validators = [ MinValueValidator ( 5 )], verbose_name="Cantidad Mínima") 
     #porcentajeIva=models.DecimalField(validators=[MinValueValidator(0.0)],decimal_places=1,max_digits=2, verbose_name="Porcentaje IVA")
     

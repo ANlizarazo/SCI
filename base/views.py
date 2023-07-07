@@ -25,9 +25,11 @@ def inicio(request):
     labels_stock=[]
     data_stock=[]
     productos= Producto.objects.all().order_by('stock')
+
     for producto in productos:
         labels_stock.append(producto.nombre)
         data_stock.append(producto.stock)
+        
     context={
         'titulo':titulo,
         'cantidad_productos':cantidad_productos,
