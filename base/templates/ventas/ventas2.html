@@ -250,7 +250,7 @@
                                                                 <input type="number" class="form-control"
                                                                     name="subTotal" id="id_subTotal"
                                                                     aria-describedby="basic-addon3" id="validationCustom10" required minlength="1"
-                                                                    maxlength="50" required value="{{venta.subTotal}}">
+                                                                    maxlength="50" required disabled value="{{venta.subTotal}}">
                                                                     <div class="valid-feedback">
                                                                         ¡Vamos bien!
                                                                     </div>
@@ -263,10 +263,10 @@
                                                         <div class="d-inline-block w-100">
                                                             <label for="basic-url"  for="validationCustom09" class="form-label ps-2 text-black" style="font-size: 17;">Valor Total</label>
                                                             <div class="input-group mb-3 w-100">
-                                                                <input type="number" class="form-control"
+                                                                <input type="decimal" class="form-control"
                                                                     name="valorTotal" id="id_valorTotal"
                                                                     aria-describedby="basic-addon3" id="validationCustom09" required minlength="1"
-                                                                    maxlength="50" required value="{{venta.valorTotal}}">
+                                                                    maxlength="50" required disabled value="{{venta.valorTotal}}">
                                                                     <div class="valid-feedback">
                                                                         ¡Vamos bien!
                                                                     </div>
@@ -329,7 +329,7 @@
                                                         </div>
                                                         <div class="d-inline-block w-100">
                                                             <label class="form-label ps-2 text-black" style="font-size: 17;">Porcentaje IVA</label>
-                                                            <input type="text" name="porcentajeIva" class="form-control input-group mb-3 w-100" value="{{venta.porcentajeIva}}" required disabled/>
+                                                            <input type="text" name="porcentajeIva" class="form-control input-group mb-3 w-100" value="{{venta.porcentajeIva}}%" required disabled/>
                                                         </div>
                                                         <div class="d-inline-block w-100">
                                                             <label class="form-label ps-2 text-black" style="font-size: 17;">Subtotal</label>
@@ -337,7 +337,7 @@
                                                         </div>
                                                         <div class="d-inline-block w-100">
                                                             <label class="form-label ps-2 text-black" style="font-size: 17;">Valor Total</label>
-                                                            <input type="number" name="valorTotal" class="form-control input-group mb-3 w-100" value="{{venta.valorTotal}}" required disabled/>
+                                                            <input type="decimal" name="valorTotal" class="form-control input-group mb-3 w-100" value="{{venta.valorTotal}}" required disabled/>
                                                         </div>
                                                         
                                                     </div>

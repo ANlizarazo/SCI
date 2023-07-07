@@ -73,13 +73,16 @@
                                         <thead class="bg-gray">
                                             <tr>
                                                 <th class="border-dark">ID Venta</th>
-                                                <th class="border-dark">Subtotal Venta</th>
-                                                <th class="border-dark">Fecha Venta</th>
-                                                <th class="border-dark">Porcentaje IVA</th>
-                                                <th class="border-dark">Total Venta</th>
-                                                <th class="border-dark">Detalle Venta</th>
-                                                <th class="border-dark">Cliente</th>
+                                                <th class="border-dark">Fecha</th>
                                                 <th class="border-dark">Usuario</th>
+                                                <th class="border-dark">Cliente</th>
+                                                <th class="border-dark">Producto</th>
+                                                <th class="border-dark">Cantidad</th>
+                                                <th class="border-dark">Valor Unidad</th>
+                                                <th class="border-dark">Modo Pago</th>
+                                                <th class="border-dark">IVA</th>
+                                                <th class="border-dark">Subtotal</th>
+                                                <th class="border-dark">Valor Total</th>
                                                 <th class="border-dark">Restaurar</th>
                                             </tr>
                                         </thead>
@@ -87,13 +90,16 @@
                                             {% for venta in ventas %}
                                             <tr>
                                                 <td class="border-dark text-black">{{venta.id}}</td>
-                                                <td class="border-dark text-black">{{venta.subtotalVenta}}</td>
                                                 <td class="border-dark text-black">{{venta.fecha}}</td>
-                                                <td class="border-dark text-black">{{venta.porcentajeIva}}</td>
-                                                <td class="border-dark text-black">{{venta.totalVenta}}</td>
-                                                <td class="border-dark text-black">{{venta.detalleVenta}}</td>
-                                                <td class="border-dark text-black">{{venta.cliente}}</td>
-                                                <td class="border-dark text-black">{{venta.usuario}}</td>
+                                                <td class="border-dark text-black">{{venta.usuario.nombres}}</td>
+                                                <td class="border-dark text-black">{{venta.cliente.nombreEmpresa}}</td>
+                                                <td class="border-dark text-black">{{venta.producto.nombre}}</td>
+                                                <td class="border-dark text-black">{{venta.cantidadProducto}}</td>
+                                                <td class="border-dark text-black">{{venta.valorUnidad}}</td>
+                                                <td class="border-dark text-black">{{venta.modoPago}}</td>
+                                                <td class="border-dark text-black">{{venta.porcentajeIva}}%</td>
+                                                <td class="border-dark text-black">{{venta.subTotal}}</td>
+                                                <td class="border-dark text-black">{{venta.valorTotal}}</td>
                                                 <td class="border-dark text-black">
                                                     <a href="{% url 'recuperar-venta' venta.id %}" class="btn btn-warning" title="Restaurar"><i Class="fas fa-trash-restore"></i></a>
                                                 </td>
