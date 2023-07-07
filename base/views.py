@@ -2,6 +2,10 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from django.views.defaults import page_not_found
+from clientes.models import Cliente
+from compras.models import DetalleCompra
+from productos.models import Producto
+from ventas.models import Venta
 
 def login_view(request):
     titulo="Inicio de Sesión"
@@ -13,9 +17,27 @@ def login_view(request):
 @login_required
 def inicio(request):
     titulo="Página Principal"
+    cantidad_productos= Producto.objects.all().count()
+    cantidad_ventas= Venta.objects.all().count()
+    cantidad_clientes= Cliente.objects.all().count()
+    cantidad_compras= DetalleCompra.objects.all().count()
+
+    labels_stock=[]
+    data_stock=[]
+    productos= Producto.objects.all().order_by('stock')
+    for producto in productos:
+        labels_stock.append(producto.nombre)
+        data_stock.append(producto.stock)
     context={
-        'titulo':titulo
+        'titulo':titulo,
+        'cantidad_productos':cantidad_productos,
+        'cantidad_ventas':cantidad_ventas,
+        'cantidad_clientes':cantidad_clientes,
+        'cantidad_compras':cantidad_compras,
+        'labels_stock': labels_stock,
+        'data_stock':data_stock,
     }
+
     return render(request,'index2.html',context)    
 """
 def inicio(request):
