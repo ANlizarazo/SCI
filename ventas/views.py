@@ -126,13 +126,18 @@ def recuperar_ventas(request):
     
     ventas= Venta.objects.all()
     ventas_recuperables = []
+    ventaoperacion = []
 
     for venta in ventas:
         if venta.estado == '0':
+            venta.subTotal = (int(venta.cantidadProducto)*int(venta.valorUnidad))
+            venta.valorTotal = (venta.subTotal * int(venta.porcentajeIva) / 100) + venta.subTotal
             ventas_recuperables.append(venta)
+            ventaoperacion.append(venta)
 
     context={
-        "ventas":ventas_recuperables
+        "ventas":ventas_recuperables,
+        'ventaoperacion':ventaoperacion,
     }
     return render(request,'ventas/ventas-recuperar.html',context)
 
