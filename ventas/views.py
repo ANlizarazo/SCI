@@ -15,18 +15,23 @@ def ventas (request):
     clientes = Cliente.objects.all()
     productos = Producto.objects.all()
     form = VentaForm()
-    
+    ventaoperacion = []
+
     for venta in ventas:
         print(venta.usuario)
         print(venta.cliente)
         print(venta.producto)
-
+        venta.subTotal = (int(venta.cantidadProducto)*int(venta.valorUnidad))
+        venta.valorTotal = (venta.subTotal * int(venta.porcentajeIva) / 100) + venta.subTotal
+        ventaoperacion.append(venta)
+        
     context = {
         'ventas': ventas,
         'usuarios': usuarios,
         'clientes': clientes,
         'productos': productos,
         'form': form,
+        'ventaoperacion': ventaoperacion,
     }
 
     return render(request,'ventas/ventas.html', context)
