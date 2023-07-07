@@ -101,9 +101,48 @@
                                                 <td class="border-dark text-black">{{venta.subTotal}}</td>
                                                 <td class="border-dark text-black">{{venta.valorTotal}}</td>
                                                 <td class="border-dark text-black">
-                                                    <a href="{% url 'recuperar-venta' venta.id %}" class="btn btn-warning" title="Restaurar"><i Class="fas fa-trash-restore"></i></a>
+                                                    <buttom data-bs-toggle="modal" data-bs-target="#recuperarModal{{venta.pk}}" class="btn btn-warning" title="Restaurar"><i Class="fas fa-trash-restore"></i></buttom>
                                                 </td>
                                             </tr>
+                                            
+                                    <!-- Modal recuperar confirmation -->
+                                    <div class="modal fade"
+                                    id="recuperarModal{{venta.pk}}"
+                                    tabindex="-1"
+                                    aria-labelledby="deleteModalLabel"
+                                    aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header bg-warning">
+                                                <h5 class="modal-title "
+                                                    id="deleteModalLabel"><i
+                                                        class="fas fa-trash-restore"></i>&nbsp;&nbsp; <b>RESTAURAR VENTA</b></h5>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="text-center
+                                                    text-black">
+                                                    <span class="">¿Estás seguro de que deseas recuperar esta venta?</span>
+                                                    <div class="text-dark mt-3
+                                                        mb-2">Venta: <strong>{{venta.id}} ID {{venta.fecha}} </strong></div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="modal-footer">
+                                                <form method="post" action="{% url 'recuperar_venta' venta.id %}">
+                                                    {% csrf_token %}
+
+                                                    <input type="submit"
+                                                        class="btn btn-warning"
+                                                        value="Recuperar">
+                                                </form>
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Cancelar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--Fin del modal-->
                                             {% endfor %}
                                         </tbody>
                                     </table>

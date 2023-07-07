@@ -141,7 +141,7 @@ def recuperar_ventas(request):
     }
     return render(request,'ventas/ventas-recuperar.html',context)
 
-def recuperar(request, pk):
+def recuperar_venta(request, pk):
     titulo = 'Recuperar Venta'
     Venta.objects.filter(id = pk).update(
         estado = '1'
