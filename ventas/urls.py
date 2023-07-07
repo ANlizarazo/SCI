@@ -1,5 +1,5 @@
 from django.urls import path
-from ventas.views import  recuperar, recuperar_ventas, venta_crear, venta_modificar, venta_ver, ventas, ventas_eliminar 
+from ventas.views import  recuperar_venta, recuperar_ventas, venta_crear, venta_modificar, venta_ver, ventas, ventas_eliminar 
 
 urlpatterns = [
     path('',ventas,name="ventas"),
@@ -13,5 +13,5 @@ urlpatterns = [
     path('ventas_eliminar/<int:pk>/', ventas_eliminar, name="ventas_eliminar"),
     #Path to Recuperar Ventas
     path('ventas_recuperar/', recuperar_ventas, name="recuperar_ventas"),
-    path('recuperar-venta/<int:pk>/', recuperar, name='recuperar-venta'),
+    path('recuperar_venta/<int:pk>/', recuperar_venta, name='recuperar_venta'),
 ]
