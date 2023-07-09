@@ -73,7 +73,7 @@
 
                                     {% for ciudad in ciudades %}
                                     {% if ciudad.estado == '1' %}
-                                        <option class="text-black" value="{{ciudad.id}}">{{ciudad.nombre}}</option>
+                                        <option class="text-black" value="{{ciudad.id}}">{{ciudad.nombre}} - {{ciudad.departamento}}</option>
                                         {% endif %}
                                         {% endfor %}
                                 
