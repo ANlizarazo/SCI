@@ -1,28 +1,34 @@
 from django.shortcuts import redirect, render
-from servicios.forms import ServicioForm
-from django.contrib import messages
 from servicios.models import Servicio, TipoServicio, Ciudad, Tecnico
+from django.contrib import messages
+
+# se incluyen las siguientes importaciones
+from servicios.forms import ServicioForm
 
 # Create your views here.
 def servicios(request):
 
     servicios= Servicio.objects.all()
     tiposdeservicios= TipoServicio.objects.all()
-    ciudades=Ciudad.objects.all()
+    ciudades= Ciudad.objects.all()
     tecnicos = Tecnico.objects.all()
     form = ServicioForm()
+    servicioOperacion = []
 
     for servicio in servicios:
         print(servicio.tipoServicio)
         print(servicio.ciudad)
         print(servicio.tecnico)
-
+        servicio.valorTotal = (int(servicio.valorServicio)*int(servicio.porcentajeIva)/100)
+        servicioOperacion.append(servicio)
+    
     context={
-        "servicios": servicios,
-        "tiposdeservicios": tiposdeservicios,
-        'ciudades':ciudades,
-        'tecnicos':tecnicos,
-        "form": form,
+        'servicios': servicios,
+        'tiposdeservicios': tiposdeservicios,
+        'ciudades': ciudades,
+        'tecnicos': tecnicos,
+        'form': form,
+        'servicioOperacion': servicioOperacion,
     }
     return render(request,'servicios/servicios.html',context)
 
@@ -96,13 +102,18 @@ def recuperar_servicios(request):
     
     servicios= Servicio.objects.all()
     servicios_recuperables = []
+    servicioOperacion = []
 
     for servicio in servicios:
         if servicio.estado == '0':
+            servicio.valorTotal = (int(servicio.valorServicio)*int(servicio.porcentajeIva)/100)
             servicios_recuperables.append(servicio)
+            servicioOperacion.append(servicio)
+        
 
     context={
-        "servicios":servicios_recuperables
+        'servicios':servicios_recuperables, 
+        'servicioOperacion': servicioOperacion,
     }
     return render(request,'servicios/servicios-recuperar.html',context)
 

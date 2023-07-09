@@ -14,4 +14,4 @@ class ServicioForm(ModelForm):
 class ServicioUpdateForm(ModelForm):
     class Meta:
         model= Servicio
-        exclude=['estado']
+        exclude=['ciudad']
