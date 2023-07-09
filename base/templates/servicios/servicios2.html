@@ -52,7 +52,6 @@
                                     <th class="border-dark">IVA</th>
                                     <th class="border-dark">Valor Total</th>
                                     <th class="border-dark">Observación</th>
-                                    <th class="border-dark">Observación Final</th>
                                     <th class="border-dark">Acciones</th>
                                 </tr>
                             </thead>
@@ -68,7 +67,6 @@
                                     <td class="border-dark text-black">{{servicio.porcentajeIva}}%</td>
                                     <td class="border-dark text-black">{{servicio.valorTotal}}</td>
                                     <td class="border-dark text-black">{{servicio.observacion}}</td>
-                                    <td class="border-dark text-black">{{servicio.observacionFinal}}</td>
                                     <td class="border-dark">
                                     
                                     <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#verServicio{{servicio.pk}}" title="Ver">
@@ -209,22 +207,6 @@
                                                                     id="id_observacion"
                                                                     aria-describedby="basic-addon3" id="validationCustom07" required minlength="1"
                                                                     maxlength="250" required>{{servicio.observacion}}</textarea>
-                                                                    <div class="valid-feedback">
-                                                                        ¡Vamos bien!
-                                                                    </div>
-                                                                    <div class="invalid-feedback">
-                                                                        Ingresa un dato válido.
-                                                                    </div>
-                                                            </div>
-                                                        </div>
-                                
-                                                        <div class="d-inline-block w-100">
-                                                            <label for="basic-url" for="validationCustom08" class="form-label ps-2 text-black" style="font-size: 17;">Observación Final</label>
-                                                            <div class="input-group mb-3 w-100">
-                                                                <textarea type="text" class="form-control" name="observacionFinal"
-                                                                    id="id_observacionFinal"
-                                                                    aria-describedby="basic-addon3" id="validationCustom08" required minlength="1"
-                                                                    maxlength="250" required>{{servicio.observacionFinal}}</textarea>
                                                                     <div class="valid-feedback">
                                                                         ¡Vamos bien!
                                                                     </div>
@@ -378,22 +360,6 @@
                                                                     id="id_observacion"
                                                                     aria-describedby="basic-addon3" id="validationCustom07" required minlength="1"
                                                                     maxlength="250" required disabled>{{servicio.observacion}}</textarea>
-                                                                    <div class="valid-feedback">
-                                                                        ¡Vamos bien!
-                                                                    </div>
-                                                                    <div class="invalid-feedback">
-                                                                        Ingresa un dato válido.
-                                                                    </div>
-                                                            </div>
-                                                        </div>
-                                
-                                                        <div class="d-inline-block w-100">
-                                                            <label for="basic-url" for="validationCustom08" class="form-label ps-2 text-black" style="font-size: 17;">Observación Final</label>
-                                                            <div class="input-group mb-3 w-100">
-                                                                <textarea type="text" class="form-control" name="observacionFinal"
-                                                                    id="id_observacionFinal"
-                                                                    aria-describedby="basic-addon3" id="validationCustom08" required minlength="1"
-                                                                    maxlength="250" required disabled>{{servicio.observacionFinal}}</textarea>
                                                                     <div class="valid-feedback">
                                                                         ¡Vamos bien!
                                                                     </div>

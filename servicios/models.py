@@ -24,7 +24,6 @@ class Servicio(models.Model):
     valorTotal= models.PositiveBigIntegerField(validators = [ MinValueValidator ( 0 )], blank=True, null=True, verbose_name="Valor Total")
     estado= models.CharField(max_length=1, choices=Estado.choices, default=Estado.ACTIVO, verbose_name="Estado",null=True)
     observacion= models.CharField(max_length=300, verbose_name="Observación", null=True)
-    observacionFinal= models.CharField(max_length=300, verbose_name="Observación Final", null=True)
 
     def __str__(self)->str:
         return "%s %s" %(self.id, self.tipoServicio)  
