@@ -7,7 +7,7 @@ from usuarios.models import Usuario
 
 # Create your models here.
 class Venta(models.Model):
-    fecha= models.DateTimeField(verbose_name="Fecha", auto_now_add=True, editable=False)
+    fecha= models.DateTimeField(verbose_name="Fecha", auto_now_add=True, editable=False, null=True)
     usuario=models.ForeignKey(Usuario, on_delete=models.CASCADE, verbose_name="Usuario")
     cliente=models.ForeignKey(Cliente, on_delete=models.CASCADE, verbose_name="Cliente", blank=True, null=True)
     producto = models.ForeignKey(Producto, on_delete=models.CASCADE, verbose_name="Producto")

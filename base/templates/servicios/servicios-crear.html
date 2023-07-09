@@ -6,189 +6,29 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-3" id="staticBackdropLabel"><b
-                        class="text-black">CREAR SERVICIO</b></h1>
+                <h1 class="modal-title fs-3" id="staticBackdropLabel"><b class="text-black">&nbsp;&nbsp; CREAR SERVICIO</b></h1>
             </div>
             <div class="modal-body">
                 <!-- Formulario -->
-                <form action="{% url 'servicios-crear' %}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
+                <form action="{% url 'servicios_crear' %}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
 
                     {% csrf_token %}          
                     
-                    <div class="d-inline-block w-100">
-                        <label for="basic-url" for="validationCustom01"
-                            class="form-label ps-2 text-black"
-                            style="font-size: 17;">Observación</label>
-                        <div class="input-group mb-3 w-100">
-                            <input type="text" class="form-control"
-                                name="observacion" id="id_observacion"
-                                aria-describedby="basic-addon3" required
-                                minlength="1"
-                                maxlength="300" id="validationCustom01"
-                                required value="{{servicio.observacion}}">
-                            <div class="valid-feedback">
-                                ¡Vamos bien!
-                            </div>
-                            <div class="invalid-feedback">
-                                Completa la información.
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="d-inline-block w-100">
-                        <label for="basic-url" for="validationCustom02"
-                            class="form-label ps-2 text-black"
-                            style="font-size: 17;">NIT</label>
-                        <div class="input-group mb-3 w-100">
-                            <input type="number" class="form-control"
-                                name="nit" id="id_nit"
-                                aria-describedby="basic-addon3"
-                                id="validationCustom02" required
-                                minlength="1"
-                                maxlength="20" required value="{{cliente.nit}}">
-                            <div class="valid-feedback">
-                                ¡Vamos bien!
-                            </div>
-                            <div class="invalid-feedback">
-                                Completa la información.
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="d-inline-block w-100">
-                        <label for="basic-url" for="validationCustom03"
-                            class="form-label ps-2 text-black"
-                            style="font-size: 17;">Número de Teléfono</label>
-                        <div class="input-group mb-3 w-100">
-                            <input type="number" class="form-control"
-                                name="telefono"
-                                id="id_numeroTelefono"
-                                aria-describedby="basic-addon3"
-                                id="validationCustom03" required
-                                minlength="1"
-                                maxlength="20" required value="{{cliente.telefono}}">
-                            <div class="valid-feedback">
-                                ¡Vamos bien!
-                            </div>
-                            <div class="invalid-feedback">
-                                Ingresa un número de teléfono valido.
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="d-inline-block w-100">
-                        <label for="basic-url" class="form-label ps-2
-                            text-black" for="validationCustom04"
-                            style="font-size: 17;">Dirección</label>
-                        <div class="input-group mb-3 w-100">
-                            <input type="text" class="form-control"
-                                name="direccion"
-                                id="id_direccion"
-                                aria-describedby="basic-addon3" required
-                                minlength="1"
-                                maxlength="50" id="validationCustom04"
-                                required value="{{cliente.direccion}}">
-                            <div class="valid-feedback">
-                                ¡Vamos bien!
-                            </div>
-                            <div class="invalid-feedback">
-                                Ingresa una dirección valida.
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="d-inline-block w-100">
-                        <label for="basic-url" class="form-label ps-2
-                            text-black" for="validationCustom05"
-                            style="font-size: 17;">Email</label>
-                        <div class="input-group mb-3 w-100">
-                            <input type="email" class="form-control"
-                                name="email"
-                                id="id_email"
-                                aria-describedby="basic-addon3" required
-                                minlength="1"
-                                maxlength="100" id="validationCustom05"
-                                required value="{{cliente.email}}">
-                                <div class="valid-feedback">
-                                    ¡Vamos bien!
-                                </div>
-                                <div class="invalid-feedback">
-                                    Ingresa un email valido. Ejemplo@gmail.com
-                        </div>
-                    </div>
-
-                    <div class="d-inline-block w-100">
-                        <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom06" style="font-size: 17;">Ciudad</label>
-                        <div class="input-group mb-3 w-100">
-                            <select id="id_ciudad" class="form-select" name="ciudad"aria-label="tipo-activo"
-                                id="validationCustom06" required>
-
-                                <option class="text-black" select value="{{cliente.ciudad.pk}}" selected hidden>Seleccionar</option> 
-                                {% for ciudad in ciudades %}
-                                {% if ciudad.estado == '1' %}
-                                <option class="text-black" value="{{ciudad.id}}">{{ciudad.nombre}} - {{ciudad.departamento}}</option>
-                                {% endif %}
-                                {% endfor %}
-                            
-                            </select>
-                            <div class="valid-feedback">
-                                ¡Vamos bien!
-                            </div>
-                            <div class="invalid-feedback">
-                                Selecciona una opción valida.
-                            </div>
-                        </div>
-                    </div>
-
-
+                    <div class="modal-body text-start" > 
+                                                        
                         <div class="d-inline-block w-100">
-                            <label for="basic-url" for="validationCustom01" class="form-label ps-2 text-black" style="font-size: 17;">Observación</label>
+                            <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom02" style="font-size: 17;">Tipo de Servicio</label>
                             <div class="input-group mb-3 w-100">
-                                <textarea type="text" class="form-control"
-                                    name="observacion" id="id_observacion"
-                                    aria-describedby="basic-addon3" required minlength="1"
-                                    maxlength="300" id="validationCustom01" required value="{{servicio.observacion}}"></textarea>
-                                    <div class="valid-feedback">
-                                        ¡Vamos bien!
-                                    </div>
-                                    <div class="invalid-feedback">
-                                        Completa la información.
-                                    </div>
-                            </div>
-                        </div>
-                
-                        <div class="d-inline-block w-100">
-                            <label for="basic-url"  for="validationCustom02" class="form-label ps-2 text-black" style="font-size: 17;">Observación Final</label>
-                            <div class="input-group mb-3 w-100">
-                                <textarea type="text" class="form-control"
-                                    name="observacionFinal" id="id_observacionFinal"
-                                    aria-describedby="basic-addon3" id="validationCustom02" required minlength="1"
-                                    maxlength="300" required value="{{servicio.observacionFinal}}"></textarea>
-                                    <div class="valid-feedback">
-                                        ¡Vamos bien!
-                                    </div>
-                                    <div class="invalid-feedback">
-                                        Completa la información.
-                                    </div>
-                            </div>
-                        </div>
-                
-                        <div class="d-inline-block w-100">
-                            <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom03" style="font-size: 17;">Tipo de Servicio</label>
-                            <div class="input-group mb-3 w-100">
-                                <select id="id_tipoServicio" class="form-select" name="tipoServicio"
-                                    aria-label="tipo-activo" id="validationCustom03" required value="{{servicio.tipodeservicio.pk}}">
-                                    
-                                    <option class="text-black" select value="{{servicio.tipodeservicio.pk}}" selected hidden>Seleccionar</option>
-                                    
+                                <select id="id_tipoServicio" class="form-select" name="tipoServicio" aria-label="tipo-activo"
+                                    id="validationCustom02" required>
+                                    <option class="text-black" selected value hidden="{{servicio.tipodeservicio.pk}}">Seleccionar</option>
+
                                     {% for tipodeservicio in tiposdeservicios %}
                                     {% if tipodeservicio.estado == '1' %}
                                         <option class="text-black" value="{{tipodeservicio.id}}">{{tipodeservicio.nombreServicio}}</option>
                                     {% endif %}
                                     {% endfor %}
-
+                                
                                 </select>
                                 <div class="valid-feedback">
                                     ¡Vamos bien!
@@ -197,21 +37,46 @@
                                     Selecciona una opción valida.
                                 </div>
                             </div>
-                        </div> 
+                        </div>
 
+                        <div class="d-inline-block w-100">
+                            <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom03" style="font-size: 17;">Técnico</label>
+                            <div class="input-group mb-3 w-100">
+                                <select id="id_tecnico" class="select form-select" name="tecnico" aria-label="tipo-activo"
+                                    id="validationCustom03" required>
+                                
+                                    <option class="text-black" selected value hidden="{{servicio.tecnico.pk}}">Seleccionar</option>
+
+                                    {% for tecnico in tecnicos %}
+                                    {% if tecnico.estado == '1' %}
+                                        <option class="text-black" value="{{tecnico.id}}">{{tecnico.nombres}} {{tecnico.apellidos}}</option>
+                                    {% endif %}
+                                    {% endfor %}
+                                
+                                </select>
+                                <div class="valid-feedback">
+                                    ¡Vamos bien!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Selecciona una opción valida.
+                                </div>
+                            </div>
+                        </div>
+                        
                         <div class="d-inline-block w-100">
                             <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom04" style="font-size: 17;">Ciudad</label>
                             <div class="input-group mb-3 w-100">
-                                <select id="id_ciudad" class="form-select" name="ciudad"
-                                    aria-label="tipo-activo" id="validationCustom04" required value="{{servicio.ciudad.pk}}">
-                                    
-                                    <option class="text-black" select value="{{servicio.ciudad.pk}}" selected hidden>Seleccionar</option>
+                                <select id="id_ciudad" class="form-select" name="ciudad" aria-label="tipo-activo"
+                                    id="validationCustom04" required>
+                                
+                                    <option class="text-black" selected value hidden="{{servicio.ciudad.pk}}">Seleccionar</option>
+
                                     {% for ciudad in ciudades %}
                                     {% if ciudad.estado == '1' %}
-                                        <option class="text-black" value="{{ciudad.id}}">{{ciudad.nombre}} - {{ciudad.departamento}}</option>
-                                    {% endif %}
-                                    {% endfor %}
-
+                                        <option class="text-black" value="{{ciudad.id}}">{{ciudad.nombre}}</option>
+                                        {% endif %}
+                                        {% endfor %}
+                                
                                 </select>
                                 <div class="valid-feedback">
                                     ¡Vamos bien!
@@ -220,38 +85,30 @@
                                     Selecciona una opción valida.
                                 </div>
                             </div>
-                        </div> 
-
+                        </div>
 
                         <div class="d-inline-block w-100">
-                            <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom05" style="font-size: 17;">Técnico</label>
+                            <label for="basic-url"  for="validationCustom05" class="form-label ps-2 text-black" style="font-size: 17;">Valor Servicio</label>
                             <div class="input-group mb-3 w-100">
-                                <select id="id_tecnico" class="form-select" name="tecnico"
-                                    aria-label="tipo-activo" id="validationCustom05" required value="{{servicio.tecnico.pk}}">
-
-                                    <option class="text-black" select value="{{servicio.tecnico.pk}}" selected hidden>Seleccionar</option>
-                                    {% for tecnico in tecnicos %}
-                                    {% if tecnico.estado == '1' %}
-                                    <option class="text-black" value="{{tecnico.id}}">{{tecnico.nombres}} {{tecnico.apellidos}}</option>
-                                    {% endif %}
-                                    {% endfor %}
-
-                                </select>
-                                <div class="valid-feedback">
-                                    ¡Vamos bien!
-                                </div>
-                                <div class="invalid-feedback">
-                                    Selecciona una opción valida.
-                                </div>
+                                <input type="number" class="form-control"
+                                    name="valorServicio" id="id_valorServicio"
+                                    aria-describedby="basic-addon3" id="validationCustom05" required minlength="1"
+                                    maxlength="50" required value="{{servicio.valorServicio}}">
+                                    <div class="valid-feedback">
+                                        ¡Vamos bien!
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        Completa la información.
+                                    </div>
                             </div>
-                        </div> 
+                        </div>
 
                         <div class="d-inline-block w-100">
                             <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom06" style="font-size: 17;">IVA</label>
                             <div class="input-group mb-3 w-100">
                                 <select id="id_porcentajeIva" class="form-select" name="porcentajeIva"
-                                aria-label="tipo-activo" id="validationCustom06" required value="{{servicio.porcentajeIva}}">
-                                <option class="text-black" selected value hidden>Seleccionar</option> 
+                                aria-label="tipo-activo" id="validationCustom06" required>
+                                <option class="text-black" selected value hidden="{{servicio.porcentajeIva}}">Seleccionar</option>      
                                 <option class="text-black" value="5">Bienes y Servicios</option>
                                 <option class="text-black" value="0">Exento</option>                                    
                                 </select>
@@ -263,28 +120,43 @@
                                 </div>
                             </div>
                         </div>
-                
+
                         <div class="d-inline-block w-100">
-                            <label for="basic-url"  for="validationCustom07" class="form-label ps-2 text-black" style="font-size: 17;">Valor Total</label>
+                            <label for="basic-url" for="validationCustom07" class="form-label ps-2 text-black" style="font-size: 17;">Observación</label>
                             <div class="input-group mb-3 w-100">
-                                <input type="number" class="form-control"
-                                    name="valorTotal" id="id_valorTotal"
+                                <textarea type="text" class="form-control" name="observacion"
+                                    id="id_observacion"
                                     aria-describedby="basic-addon3" id="validationCustom07" required minlength="1"
-                                    maxlength="50" required value="{{servicio.valorTotal}}">
+                                    maxlength="250" required>{{servicio.observacion}}</textarea>
                                     <div class="valid-feedback">
                                         ¡Vamos bien!
                                     </div>
                                     <div class="invalid-feedback">
-                                        Completa la información.
+                                        Ingresa un dato válido.
+                                    </div>
+                            </div>
+                        </div>
+
+                        <div class="d-inline-block w-100">
+                            <label for="basic-url" for="validationCustom08" class="form-label ps-2 text-black" style="font-size: 17;">Observación Final</label>
+                            <div class="input-group mb-3 w-100">
+                                <textarea type="text" class="form-control" name="observacionFinal"
+                                    id="id_observacionFinal"
+                                    aria-describedby="basic-addon3" id="validationCustom08" required minlength="1"
+                                    maxlength="250" required>{{servicio.observacionFinal}}</textarea>
+                                    <div class="valid-feedback">
+                                        ¡Vamos bien!
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        Ingresa un dato válido.
                                     </div>
                             </div>
                         </div>
 
                         <div class="modal-footer">
                             <!-- BOTÓN PARA GUARDAR LA INFORMACIÓN DIGITADA EN EL FORMULARIO DE CIUDAD -->
-                            <button type="reset" class="btn btn-secondary"
-                                data-bs-dismiss="modal" title="Cancelar">Cancelar</button>
-                            <input class="btn btn-success" type="submit" title="Crear" value="Crear">
+                            <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal" title="Cancelar">Cancelar</button>
+                            <input class="btn btn-success" type="submit" title="Crear" name="form-nueva-servicio" value="Crear">
                         </div>
                     </div>
                 </form>
