@@ -65,30 +65,6 @@ def compras_ver(request):
         'form': form,
     }
     return render(request, 'compras/compras.html', context)
-
-#Function to EDIT compra
-def compras_modificar(request, pk):
-    compra = DetalleCompra.objects.get(id = pk)
-    if request.method == "POST":
-        form = DetalleCompraForm(request.POST, instance = compra)
-        if form.is_valid():
-            form.save()
-            messages.success(request, "¡Compra modificada correctamente!")
-            return redirect('compras')
-        else:
-            messages.error(request, "¡Error al modificar compra!")
-            return redirect('compras')
-
-    else:
-        form = DetalleCompraForm(instance = compra)
-
-    context ={
-        'form': form
-    }
-
-    return render(request, 'compras/compras.html', context)
-
-
         
 def compras_eliminar(request, pk):
     compra = DetalleCompra.objects.filter(id = pk).update(

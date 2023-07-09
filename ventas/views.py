@@ -55,18 +55,8 @@ def venta_crear(request):
     }
 
     return render(request, 'ventas/ventas-crear.html', context)
-        
-
 
 #Function to View Venta data individually
-"""def venta_ver(request, venta_id):
-    venta = Venta.objects.get( id = venta_id) 
-    if venta != None:
-        return render(request, "ventas/ventas-modificar.html", {'venta':venta} )
-    else:
-        return redirect('proveedores/proveedores-ver.html')
-"""
-
 def venta_ver(request, pk):
     venta = Venta.objects.get(id = pk)
     if request.method == 'POST':
@@ -84,36 +74,7 @@ def venta_ver(request, pk):
     return render(request)
 
 
-#Function to EDIT Venta
-def venta_modificar(request, pk):
-    venta = Venta.objects.get(id = pk)
-    if request.method == "POST":
-        form = VentaForm(request.POST, instance = venta)
-        if form.is_valid():
-            form.save()
-            messages.success(request, "¡Venta modificada correctamente!")
-            return redirect('ventas')
-        else:
-            messages.error(request, "¡Error al modificar venta!")
-            return redirect('ventas')
-
-    else:
-        form = VentaForm(instance = venta)
-
-    context ={
-        'form': form
-    }
-
-    return render(request, 'ventas/ventas.html', context)
-
 #Function to DELETE Venta
-"""def delete_venta(request, venta_id):
-    if request.method == "POST":
-        venta = Venta.objects.get(id= venta_id)
-        venta.delete()
-        messages.success(request, "Venta eliminada satisfactoriamente!")
-        return redirect('ventas')"""
-        
 def ventas_eliminar(request, pk):
     venta = Venta.objects.filter(id = pk).update(
         estado = '0'
