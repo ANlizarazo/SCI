@@ -207,10 +207,12 @@
                                                             <select id="id_ciudad" class="form-select" name="ciudad"aria-label="tipo-activo"
                                                                 id="validationCustom06" required>
 
-                                                                <option class="text-black" select value="{{proveedor.ciudad.pk}}">{{proveedor.ciudad}}</option>
+                                                                <option class="text-black" select value hidden="{{proveedor.ciudad.pk}}">{{proveedor.ciudad}}</option>
                                                             
                                                                 {% for ciudad in ciudades %}
-                                                                    <option class="text-black" value="{{ciudad.id}}">{{ciudad.nombre}}</option>
+                                                                {% if ciudad.estado == '1' %}
+                                                                    <option class="text-black" value="{{ciudad.id}}">{{ciudad.nombre}}</option>                                                  
+                                                                {% endif %}
                                                                 {% endfor %}
                                                             
                                                             </select>

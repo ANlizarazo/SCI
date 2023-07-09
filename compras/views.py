@@ -1,6 +1,5 @@
 from django.shortcuts import redirect, render
-from django.http import HttpResponseRedirect
-from compras.models import DetalleCompra,Proveedor, Producto
+from compras.models import DetalleCompra, Proveedor, Producto
 from django.contrib import messages
 
 # se incluyen las siguientes importaciones
