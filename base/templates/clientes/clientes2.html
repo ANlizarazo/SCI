@@ -93,9 +93,6 @@
                                             <form action= "{% url 'clientes-modificar' cliente.pk %}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
                                                 
                                                 {% csrf_token %}
-                                                {% if form.errors %}
-                                                    <p>Datos inválidos, Por favor intentalo nuevamente.</p>
-                                                {% endif %}
                                                 <div class="modal-body text-start" id="form-nuevo-tecnico">
                                                     
                                                     <div class="d-inline-block w-100">
@@ -204,7 +201,9 @@
                                                                 <option class="text-black" select value="{{cliente.ciudad.pk}}" selected hidden>{{cliente.ciudad}}</option>
                                                             
                                                                 {% for ciudad in ciudades %}
+                                                                {% if ciudad.estado == '1' %}
                                                                     <option class="text-black" value="{{ciudad.id}}">{{ciudad.nombre}} - {{ciudad.departamento}}</option>
+                                                                {% endif %}
                                                                 {% endfor %}
                                                             
                                                             </select>
