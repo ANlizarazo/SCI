@@ -86,7 +86,7 @@
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h1 class="modal-title fs-3" id="staticBackdropLabel"><b class="text-black" >MODIFICAR SERVICIO</b></h1>
+                                                <h1 class="modal-title fs-3" id="staticBackdropLabel"><b class="text-black" >&nbsp;&nbsp; MODIFICAR SERVICIO</b></h1>
                                             </div>
                                             <div class="modal-body">
                                                 <!-- Formulario -->
@@ -201,13 +201,29 @@
                                                                 </div>
                                                             </div>
                                                         </div>
+
+                                                        <div class="d-inline-block w-100">
+                                                            <label for="basic-url"  for="validationCustom07" class="form-label ps-2 text-black" style="font-size: 17;">Valor Total</label>
+                                                            <div class="input-group mb-3 w-100">
+                                                                <input type="decimal" class="form-control"
+                                                                    name="valorTotal" id="id_valorTotal"
+                                                                    aria-describedby="basic-addon3" id="validationCustom07" required minlength="1"
+                                                                    maxlength="50" required value="{{servicio.valorTotal}}" disabled>
+                                                                    <div class="valid-feedback">
+                                                                        ¡Vamos bien!
+                                                                    </div>
+                                                                    <div class="invalid-feedback">
+                                                                        Completa la información.
+                                                                    </div>
+                                                            </div>
+                                                        </div>
                                 
                                                         <div class="d-inline-block w-100">
-                                                            <label for="basic-url" for="validationCustom07" class="form-label ps-2 text-black" style="font-size: 17;">Observación</label>
+                                                            <label for="basic-url" for="validationCustom08" class="form-label ps-2 text-black" style="font-size: 17;">Observación</label>
                                                             <div class="input-group mb-3 w-100">
                                                                 <textarea type="text" class="form-control" name="observacion"
                                                                     id="id_observacion"
-                                                                    aria-describedby="basic-addon3" id="validationCustom07" required minlength="1"
+                                                                    aria-describedby="basic-addon3" id="validationCustom08" required minlength="1"
                                                                     maxlength="250" required>{{servicio.observacion}}</textarea>
                                                                     <div class="valid-feedback">
                                                                         ¡Vamos bien!
@@ -239,7 +255,7 @@
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h1 class="modal-title fs-3" id="staticBackdropLabel"><b class="text-black" >VER SERVICIO</b></h1>
+                                                <h1 class="modal-title fs-3" id="staticBackdropLabel"><b class="text-black" >&nbsp;&nbsp; VER SERVICIO</b></h1>
                                             </div>
                                             <div class="modal-body">
                                                 <!-- Formulario -->
@@ -354,13 +370,30 @@
                                                                 </div>
                                                             </div>
                                                         </div>
+
+                                                        
+                                                        <div class="d-inline-block w-100">
+                                                            <label for="basic-url"  for="validationCustom07" class="form-label ps-2 text-black" style="font-size: 17;">Valor Total</label>
+                                                            <div class="input-group mb-3 w-100">
+                                                                <input type="decimal" class="form-control"
+                                                                    name="valorTotal" id="id_valorTotal"
+                                                                    aria-describedby="basic-addon3" id="validationCustom07" required minlength="1"
+                                                                    maxlength="50" required value="{{servicio.valorTotal}}" disabled>
+                                                                    <div class="valid-feedback">
+                                                                        ¡Vamos bien!
+                                                                    </div>
+                                                                    <div class="invalid-feedback">
+                                                                        Completa la información.
+                                                                    </div>
+                                                            </div>
+                                                        </div>
                                 
                                                         <div class="d-inline-block w-100">
-                                                            <label for="basic-url" for="validationCustom07" class="form-label ps-2 text-black" style="font-size: 17;">Observación</label>
+                                                            <label for="basic-url" for="validationCustom08" class="form-label ps-2 text-black" style="font-size: 17;">Observación</label>
                                                             <div class="input-group mb-3 w-100">
                                                                 <textarea type="text" class="form-control" name="observacion"
                                                                     id="id_observacion"
-                                                                    aria-describedby="basic-addon3" id="validationCustom07" required minlength="1"
+                                                                    aria-describedby="basic-addon3" id="validationCustom08" required minlength="1"
                                                                     maxlength="250" required disabled>{{servicio.observacion}}</textarea>
                                                                     <div class="valid-feedback">
                                                                         ¡Vamos bien!

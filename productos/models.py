@@ -26,7 +26,7 @@ class Producto(models.Model):
     #foto=models.ImageField(upload_to='images/productos', blank=True)
 
     def __str__(self)->str:
-        return "%s - %s" %(self.nombre, self.categoria)  
+        return "%s(%s)- %s" %(self.nombre, self.stock, self.categoria)  
     
     class Meta:
         ordering = ['nombre']

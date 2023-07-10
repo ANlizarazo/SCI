@@ -19,7 +19,7 @@ def servicios(request):
         print(servicio.tipoServicio)
         print(servicio.ciudad)
         print(servicio.tecnico)
-        servicio.valorTotal = (int(servicio.valorServicio)*int(servicio.porcentajeIva)/100)
+        servicio.valorTotal = (int(servicio.valorServicio)*int(servicio.porcentajeIva)/100) + servicio.valorServicio
         servicioOperacion.append(servicio)
     
     context={
