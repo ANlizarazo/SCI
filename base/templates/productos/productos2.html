@@ -154,7 +154,7 @@
                                                                 <select id="id_categoria" class="form-select" name="categoria"
                                                                     aria-label="tipo-activo" id="validationCustom04" required>
                                                                     
-                                                                    <option class="text-black" selected value hidden="{{producto.categoria.pk}}">{{producto.categoria}}</option>
+                                                                    <option class="text-black" select value hidden="{{producto.categoria.pk}}">{{producto.categoria}}</option>
                                                                     
                                                                     {% for categoria in categorias %}
                                                                     {% if categoria.estadocat == '1' %}
