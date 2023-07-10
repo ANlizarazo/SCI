@@ -44,7 +44,7 @@
                             <table id="tabla-usuarios" class="table table-bordered table-striped dataTable dtr-inline border-dark">
                                 <thead class="bg-success">
                                     <tr>
-                                        <th class="border-dark">Foto</th>
+                                        <th class="border-dark text-center">Foto</th>
                                         <th class="border-dark">Nombres</th>
                                         <th class="border-dark">Apellidos</th>
                                         <th class="border-dark">Teléfono</th>
@@ -61,7 +61,7 @@
                                     {% for usuario in usuarios %}
                                     {% if usuario.estado == '1' %}
                                     <tr>
-                                        <td class="border-dark align middle text-center"><img class="rounded-circle" src="../static/img/perfil.jpg"  alt="" width="50" height="50"></td>
+                                        <td class="border-dark align middle text-center"><img class="rounded-circle" src="{{ MEDIA_URL }}{{usuario.foto.url}}"  alt="" width="50" height="50"></td>
                                         <td class="border-dark text-black">{{usuario.nombres}}</td>
                                         <td class="border-dark text-black">{{usuario.apellidos}}</td>
                                         <td class="border-dark text-black">{{usuario.telefono}}</td>
@@ -131,6 +131,10 @@
                                                             <div class="d-inline-block w-100">
                                                                 <label class="form-label ps-2 text-black" style="font-size: 17;">Rol</label>
                                                                 <input type="text" name="rol" class="form-control input-group mb-3 w-100" value="{{usuario.rol}}" required disabled>
+                                                            </div>
+                                                            <div class="d-inline-block w-100">
+                                                                <label class="form-label ps-2 text-black" style="font-size: 17;">Rol</label>
+                                                                <input type="file" name="rol" class="form-control input-group mb-3 w-100" value="{{usuario.foto}}" required disabled>
                                                             </div>
                                                         </div>
 
@@ -316,22 +320,16 @@
                                                                 </div>
                                                             </div>
 
-                                                        </div> 
 
-                                                        <div class="modal-footer">
-                                                            <!-- BOTÓN PARA GUARDAR LA INFORMACIÓN DIGITADA EN EL FORMULARIO DEL USUARIO -->
-                                                            <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                                            <input class="btn btn-success" type="submit" name="form-modificar-usuario" value="Modificar">
+                                                            <div class="modal-footer">
+                                                                <!-- BOTÓN PARA GUARDAR LA INFORMACIÓN DIGITADA EN EL FORMULARIO DEL USUARIO -->
+                                                                <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                                                <input class="btn btn-success" type="submit" name="form-modificar-usuario" value="Modificar">
+                                                            </div>
                                                         </div>
-
                                                     </form>
-
-                                                    
-
                                                 </div>
-
                                             </div>
-                                            
                                         </div>
                                     </div>   
 

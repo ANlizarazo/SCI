@@ -28,7 +28,7 @@ def usuarios (request):
 #Function to ADD usuario
 def usuario_crear(request):
     if request.method == 'POST':
-        form = UsuarioForm(request.POST)
+        form = UsuarioForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             user = User.objects.create_user(request.POST['email'], request.POST['email'], '123')
