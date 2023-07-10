@@ -26,7 +26,7 @@
 <section class="content">
     <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
-        <div class="row">
+        <div class="row bg-white">
             {% if request.user.is_authenticated %}
             <h4 class="text-black">
                 {{user.username | upper}}, Bienvenido al Sistema Control de Inventario MME.
@@ -97,6 +97,7 @@
             </div>
             <!-- ./col -->
         </div>
+        <hr>
         <!-- /.row -->
         <!-- Main row -->
         <div class="row">
@@ -117,9 +118,9 @@
                         <div class="tab-content p-0">
                             <!-- Morris chart - Sales -->
                             <div class="chart" id="stock-chart" style="position:
-                                relative; height: 300px;">
-                                <canvas id="stock-chart-canvas" height="300"
-                                    style="height: 300px;"></canvas>
+                                relative; height: 400px;">
+                                <canvas id="stock-chart-canvas" height="200"
+                                    style="height: 500px;"></canvas>
                             </div>
                         </div>   
                     </div>  
@@ -150,7 +151,9 @@
 
 {% block javascript %}
 
-<script src="{% static 'AdminLTE/charts/chart-stock.js' %}"></script>
+<script>
+    {% include 'charts/chart-stock.js' %}
+</script>
 
 <script class="mx-2">(function(d){var s = d.createElement("script");s.setAttribute("data-account", "tkCHtUA3Ge");s.setAttribute("src", "https://cdn.userway.org/widget.js");(d.body || d.head).appendChild(s);})(document)</script><noscript>Please ensure Javascript is enabled for purposes of <a href="https://userway.org">website accessibility</a></noscript>
 

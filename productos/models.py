@@ -19,14 +19,14 @@ class Producto(models.Model):
         ACTIVO='1', _('Activo')
         INACTIVO='0', _('Inactivo')
     estado=models.CharField(max_length=1, choices=Estado.choices, default=Estado.ACTIVO, verbose_name="Estado")
-    stock = models.PositiveBigIntegerField(validators = [ MinValueValidator ( 0 )], verbose_name="Cantidad")
+    stock = models.PositiveBigIntegerField(validators = [ MinValueValidator ( 0 )], verbose_name="Stock")
     #stockMinimo = models.PositiveSmallIntegerField(validators = [ MinValueValidator ( 5 )], verbose_name="Cantidad Mínima") 
     #porcentajeIva=models.DecimalField(validators=[MinValueValidator(0.0)],decimal_places=1,max_digits=2, verbose_name="Porcentaje IVA")
     
     #foto=models.ImageField(upload_to='images/productos', blank=True)
 
     def __str__(self)->str:
-        return "%s - %s" %(self.nombre, self.categoria)  
+        return "%s(%s)- %s" %(self.nombre, self.stock, self.categoria)  
     
     class Meta:
         ordering = ['nombre']
