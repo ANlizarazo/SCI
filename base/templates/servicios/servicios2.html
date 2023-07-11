@@ -88,14 +88,16 @@
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h1 class="modal-title fs-3" id="staticBackdropLabel">
-                                                <b class="text-black">MODIFICAR SERVICIO</b></h1>
+                                            <h1 class="modal-title fs-3" id="staticBackdropLabel"><b
+                                                    class="text-black">MODIFICAR SERVICIO</b></h1>
                                         </div>
                                         <div class="modal-body">
                                             <!-- Formulario -->
-                                            <form action="{% url 'servicios_modificar' servicio.pk %}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
-                                                {% csrf_token %}
+                                            <form action= "{% url 'servicios_modificar' servicio.pk %}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
+                                                
+                                                
                                                 <div class="modal-body text-start" >
+                                                {% csrf_token %}
                                                         
                                                         <div class="d-inline-block w-100">
                                                             <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom01" style="font-size: 17;">Tipo de Servicio</label>
@@ -187,22 +189,13 @@
                                                         </div>
                                 
                                                         <div class="d-inline-block w-100">
-                                                            <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom04" style="font-size: 17;">IVA</label>
+                                                            <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom06" style="font-size: 17;">IVA</label>
                                                             <div class="input-group mb-3 w-100">
-                                                                
-                                                                <select id="id_porcetanjeIva" class="form-select" name="porcentajeIva"
-                                                                    aria-label="tipo-activo" id="validationCustom04" required>
-                                                                    <option 
-                                                                        class="text-black" 
-                                                                        value="Bienes y servicios"
-                                                                        {% if tecnico.porcentajeIva == 'Bienes y servicios' %} selected {% endif %}
-                                                                        >Bienes y servicios</option>
-                                                                    <option 
-                                                                        class="text-black" 
-                                                                        value="Execto"
-                                                                        {% if tecnico.porcentajeIva == 'Execto' %} selected {% endif %}
-                                                                        >Execto</option>
-                                                                    
+                                                                <select id="id_porcentajeIva" class="form-select" name="porcentajeIva"
+                                                                aria-label="tipo-activo" id="validationCustom06" required>
+                                                                <option class="text-black" selected value hidden="{{servicio.porcentajeIva}}">{{servicio.porcentajeIva}}</option>      
+                                                                <option class="text-black" value="5">Bienes y Servicios</option>
+                                                                <option class="text-black" value="0">Exento</option>                                    
                                                                 </select>
                                                                 <div class="valid-feedback">
                                                                     ¡Vamos bien!
@@ -247,15 +240,17 @@
 
                                                         <div class="modal-footer">
                                                             <!-- BOTÓN PARA GUARDAR LA INFORMACIÓN DIGITADA EN EL FORMULARIO DEL TECNICO -->
-                                                            <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                                            <input class="btn btn-success" type="submit" value="Modificar">
+                                                            <button type="reset" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal">Cancelar</button>
+                                                        <input class="btn btn-success" type="submit"
+                                                            name="form-nuevo-servicio" value="Modificar">
                                                         </div>
                                                 </div>
                                             </form>
                                         </div>
                                     </div>
                                 </div>
-                                </div>     
+                                </div>   
 
 
 
