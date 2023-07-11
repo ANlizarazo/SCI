@@ -42,6 +42,7 @@ def usuario_crear(request):
                 user.save()
             else:
                 messages.error(request, "¡Error 1!")
+                user=User.objects.get(username=request.POST['numDocumento'])
                 return redirect(usuarios)
             
             usuario = Usuario.objects.create(
