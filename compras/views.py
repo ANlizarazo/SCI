@@ -66,7 +66,7 @@ def compras_ver(request):
     return render(request, 'compras/compras.html', context)
         
 def compras_eliminar(request, pk):
-    compra = DetalleCompra.objects.filter(id = pk).update(
+    detallecompra = DetalleCompra.objects.filter(id = pk).update(
         estado = '0'
     )
     messages.success(request, "Compra eliminada satisfactoriamente!")
@@ -75,7 +75,7 @@ def compras_eliminar(request, pk):
 #Function to RECUPERAR compras
 def recuperar_compras(request):
     
-    compras= DetalleCompra.objects.all()
+    detallecompra= DetalleCompra.objects.all()
     compras_recuperables = []
     compraoperacion = []
 
