@@ -88,6 +88,8 @@ def perfil(request):
     }
     return render(request,'perfil.html',context)   
 
+
+
 def logout_user(request):
     logout(request)
     return redirect('login')

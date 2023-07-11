@@ -7,8 +7,10 @@ from django.contrib.auth.hashers import make_password
 # se incluyen las siguientes importaciones
 from django.contrib.auth.models import User
 from usuarios.forms import UsuarioForm
+from django.contrib.auth.decorators import login_required
 
 # List to Usuario
+@login_required(login_url='inicio')
 def usuarios (request):
     
     #importar los usuarios desde el modulo admin
@@ -30,15 +32,38 @@ def usuario_crear(request):
     if request.method == 'POST':
         form = UsuarioForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
-            user = User.objects.create_user(request.POST['email'], request.POST['email'], '123')
-            user.save()
+            if not User.objects.filter(username=request.POST['numDocumento']):
+                user = User.objects.create_user('nombre','email@email','pass')
+                user.username = request.POST['numDocumento']
+                user.first_name= request.POST['nombres']
+                user.last_name= request.POST['apellidos']
+                user.email= request.POST['email']
+                user.password=make_password("@"+request.POST['numDocumento'])
+                user.save()
+            else:
+                messages.error(request, "¡Error 1!")
+                return redirect(usuarios)
+            
+            usuario = Usuario.objects.create(
+                nombres= request.POST('nombres'),
+                apellidos= request.POST('apellidos'),
+                telefono= request.POST('telefono'),
+                email= request.POST('email'),
+                direccion= request.POST('direccion'),
+                tipoDocumento= request.POST('tipoDocumento'),
+                numDocumento= request.POST('numDocumento'),
+                genero= request.POST('genero'),
+                rol= request.POST('rol'),
+                foto = form.cleaned_data.get('foto'),
+                user= user
+            )
             messages.success(request,'¡Usuario creado correctamente!')
             return redirect('usuarios')
         else:
-            messages.error(request, "¡Error al crear usuario!")
+            messages.error(request, "¡Error 2!")
             return redirect('usuarios')
     else:
+        messages.error(request, "¡Error 3!")
         form = UsuarioForm()
 
     context={
