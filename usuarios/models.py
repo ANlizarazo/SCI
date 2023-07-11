@@ -32,8 +32,8 @@ class Usuario(models.Model):
     genero=models.CharField(max_length=3, choices=Genero.choices, verbose_name="Género")
     rol=models.CharField(max_length=5, choices=Rol.choices, verbose_name="Rol")
     estado=models.CharField(max_length=1, choices=Estado.choices, default=Estado.ACTIVO, verbose_name="Estado")
-    #foto=models.ImageField(upload_to='images/usuarios', blank=True, default='/static/img/perfil.jpg')
-
+    foto=models.ImageField(upload_to='images/usuarios', blank=True, null= True, default='media/images/usuarios/perfil.jpg')
+    user=models.ForeignKey(User, on_delete= models.CASCADE)
 
     def __str__(self)->str:
         return "%s %s %s" %(self.nombres, self.apellidos, self.rol)  
