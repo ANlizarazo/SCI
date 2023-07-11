@@ -70,7 +70,7 @@ def servicios_ver(request):
 def servicios_modificar(request, pk):
     servicio = Servicio.objects.get(id = pk)
     if request.method == "POST":
-        form = Servicio.Form(request.POST, instance = servicio)
+        form = ServicioForm(request.POST, instance = servicio)
         if form.is_valid():
             form.save()
             messages.success(request, "¡Servicio modificado correctamente!")
