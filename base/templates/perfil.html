@@ -64,10 +64,10 @@
                         text-center p-3 py-5"><img
                             class="rounded-circle
                             mt-5" width="150px"
-                            src="/static/img/perfil.jpg">
+                            src="{{MEDIA_URL}}{{image_user}}">
                         <span class="font-weight-bold
-                            text-black">{{user.username}}</span><span
-                            class="text-black">{{user.email}}</span><span>
+                            text-black">{{usuario_actual.first_name}} {{usuario_actual.last_name}}</span><span
+                            class="text-black">{{usuario_actual.email}}</span><span>
                         </span></div>
                 </div>
                 <div class="col-md-5 border-right bg-gray-dark">
@@ -80,7 +80,7 @@
                         <div class="row mt-2">
                             <div class="col-md-6"><label class="labels text-white">Nombres</label><select
                                 type="text" class="form-control text-black" placeholder="Nombres" 
-                                value="" disabled><option>{{user.nombres}}</option></select></div>
+                                value="" disabled><option>{{usuario_actual.first_name}}</option></select></div>
                             <div class="col-md-6"><label
                                     class="labels
                                     text-white">Apellidos</label><select
@@ -88,7 +88,7 @@
                                     class="form-control
                                     text-black"
                                     placeholder="Apellidos"
-                                    value="" disabled><option>{{user.apellidos}}</option></select></div>
+                                    value="" disabled><option>{{usuario_actual.last_name}}</option></select></div>
                         </div>
                         <div class="row mt-3">
                             <div class="col-md-12"><label
