@@ -76,14 +76,15 @@ def servicios_modificar(request, pk):
             messages.success(request, "¡Servicio modificado correctamente!")
             return redirect('servicios')
         else:
-            messages.error(request, "¡Error al modificar el servicio!")
+            messages.error(request, "¡Error al modificar servicio!")
             return redirect('servicios')
     else:
         form = ServicioForm(instance = servicio)
     context={
-        "form": form
+        'form': form
     }
-    return render(request, 'servicios/servicios.html', context) 
+
+    return render(request, 'servicios/servicios.html', context)
 
 
 #Function to eliminar servicios
