@@ -41,9 +41,7 @@ def usuario_crear(request):
                 user.password=make_password("@"+request.POST['numDocumento'])
                 user.save()
             else:
-                messages.error(request, "¡Error 1!")
                 user=User.objects.get(username=request.POST['numDocumento'])
-                return redirect(usuarios)
             
             usuario = Usuario.objects.create(
                 nombres= request.POST('nombres'),
@@ -57,14 +55,12 @@ def usuario_crear(request):
                 rol= request.POST('rol'),
                 foto = form.cleaned_data.get('foto'),
                 user= user
-            )
-            messages.success(request,'¡Usuario creado correctamente!')
+            ) 
             return redirect('usuarios')
         else:
-            messages.error(request, "¡Error 2!")
-            return redirect('usuarios')
+            form = UsuarioForm(request.POST,request.FILES)
     else:
-        messages.error(request, "¡Error 3!")
+        
         form = UsuarioForm()
 
     context={
