@@ -117,7 +117,11 @@ def usuario_modificar(request, pk):
     else:
         form = UsuarioForm(instance = usuario)
 
-    return render(request, 'usuarios/usuarios.html', {'form': form})
+    context={
+        'form':form
+    }
+
+    return render(request, 'usuarios/usuarios.html', context)
 
 
 #Function to DELETE usuario
