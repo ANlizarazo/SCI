@@ -10,7 +10,7 @@ from usuarios.forms import UsuarioForm
 from django.contrib.auth.decorators import login_required
 
 # List to Usuario
-@login_required(login_url='inicio')
+#@login_required(login_url='inicio')
 def usuarios (request):
     
     #importar los usuarios desde el modulo admin
@@ -41,26 +41,25 @@ def usuario_crear(request):
                 user.password=make_password("@"+request.POST['numDocumento'])
                 user.save()
             else:
-                user=User.objects.get(username=request.POST['numDocumento'])
+                user= User.objects.get(username=request.POST['numDocumento'])
             
             usuario = Usuario.objects.create(
-                nombres= request.POST('nombres'),
-                apellidos= request.POST('apellidos'),
-                telefono= request.POST('telefono'),
-                email= request.POST('email'),
-                direccion= request.POST('direccion'),
-                tipoDocumento= request.POST('tipoDocumento'),
-                numDocumento= request.POST('numDocumento'),
-                genero= request.POST('genero'),
-                rol= request.POST('rol'),
+                nombres= request.POST['nombres'],
+                apellidos= request.POST['apellidos'],
+                telefono= request.POST['telefono'],
+                email= request.POST['email'],
+                direccion= request.POST['direccion'],
+                tipoDocumento= request.POST['tipoDocumento'],
+                numDocumento= request.POST['numDocumento'],
+                genero= request.POST['genero'],
+                rol= request.POST['rol'],
                 foto = form.cleaned_data.get('foto'),
                 user= user
-            ) 
+            )
             return redirect('usuarios')
         else:
             form = UsuarioForm(request.POST,request.FILES)
     else:
-        
         form = UsuarioForm()
 
     context={
