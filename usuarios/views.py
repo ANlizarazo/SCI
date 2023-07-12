@@ -77,7 +77,7 @@ def usuario_ver(request, pk):
             form.save()
             return redirect('usuarios')
         else:
-            messages.error(request,'¡Error al ver usuario!')
+            messages.error(request,'¡Error al ver usuario!')   
             print("Error al editar usuario")
     else: 
         form = UsuarioForm(instance = usuario)
