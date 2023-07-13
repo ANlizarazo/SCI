@@ -71,6 +71,7 @@
                                     <table id="tabla-usuarios" class="table table-bordered table-striped dataTable dtr-inline border-dark" style="font-size: 14px;">
                                         <thead class="bg-gray">
                                             <tr>
+                                                <th class="border-dark text-center">Foto</th>
                                                 <th class="border-dark">Nombres</th>
                                                 <th class="border-dark">Apellidos</th>
                                                 <th class="border-dark">Teléfono</th>
@@ -86,6 +87,7 @@
                                         <tbody>
                                             {% for usuario in usuarios %}
                                             <tr>
+                                                <td class="border-dark align middle text-center"><img class="rounded-circle" src="{{ MEDIA_URL }}{{ usuario.foto.url }}"  alt="" width="50" height="50"></td>
                                                 <td class="border-dark text-black">{{usuario.nombres}}</td>
                                                 <td class="border-dark text-black">{{usuario.apellidos}}</td>
                                                 <td class="border-dark text-black">{{usuario.telefono}}</td>
