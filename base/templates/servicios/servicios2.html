@@ -82,21 +82,18 @@
 
                                 <!-- Modal de modificar servicios -->
 
-                                <div class="modal fade" id="modificarServicio{{servicio.pk}}" data-bs-backdrop="static"
-                                data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
-                                aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h1 class="modal-title fs-3" id="staticBackdropLabel"><b
-                                                    class="text-black">MODIFICAR SERVICIO</b></h1>
-                                        </div>
-                                        <div class="modal-body">
-                                            <!-- Formulario -->
-                                            <form action= "{% url 'servicios_modificar' servicio.pk %}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
+                                <div class="modal fade" id="modificarServicio{{servicio.pk}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-3" id="staticBackdropLabel"><b class="text-black" >MODIFICAR  SERVICIO</b></h1>
+                                            </div>
+                                            <div class="modal-body">
+                                                <!-- Formulario -->
+                                                <form  action="{% url 'servicios_modificar' servicio.pk %}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
                                                 
-                                                {% csrf_token %}
-                                                <div class="modal-body text-start" name="form-nuevo-servicio">
+                                                    {% csrf_token %}          
+                                                    <div class="modal-body text-start" id="form-nuevo-servicio">
                                                 
                                                         
                                                         <div class="d-inline-block w-100">
@@ -240,17 +237,16 @@
 
                                                         <div class="modal-footer">
                                                             <!-- BOTÓN PARA GUARDAR LA INFORMACIÓN DIGITADA EN EL FORMULARIO DEL TECNICO -->
-                                                            <button type="reset" class="btn btn-secondary"
-                                                            data-bs-dismiss="modal">Cancelar</button>
-                                                        <input class="btn btn-success" type="submit"
-                                                            name="form-nuevo-servicio" value="Modificar">
+                                                            <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                                            <input class="btn btn-success" type="submit" name="form-nuevo-usuario" value="Modificar">
                                                         </div>
-                                                </div>
-                                            </form>
+
+                                                </form>
+                                            </div>
+                                            
                                         </div>
                                     </div>
                                 </div>
-                                </div>   
 
 
 
