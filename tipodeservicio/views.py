@@ -31,7 +31,7 @@ def tipodeservicio_crear(request):
             messages.success(request,'¡Tipo de servicio creado correctamente!')
             return redirect('tiposdeservicios')
         else:
-            messages.error(request, "¡Error al crear el tipo de servicio!")
+            messages.error(request, "¡Error ya existe el tipo de servicio!")
             return redirect('tiposdeservicios')
     else:
         form=TipoServicioForm()

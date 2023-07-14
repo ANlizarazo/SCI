@@ -25,7 +25,7 @@ def departamento_crear(request):
             messages.success(request,'¡Departamento creado correctamente!')
             return redirect(to='departamentos')
         else:
-            messages.error(request, "¡Error al crear departamento!")
+            messages.error(request, "¡Error ya existe el departamento!")
             return redirect(to='departamentos')
     else:
         form = DepartamentoForm()

@@ -93,9 +93,8 @@
                                                 <form  action="{% url 'servicios_modificar' servicio.pk %}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
                                                 
                                                     {% csrf_token %}          
-                                                    <div class="modal-body text-start" id="form-nuevo-servicio">
+                                                    <div class="modal-body text-start" >
                                                 
-                                                        
                                                         <div class="d-inline-block w-100">
                                                             <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom01" style="font-size: 17;">Tipo de Servicio</label>
                                                             <div class="input-group mb-3 w-100">
@@ -120,7 +119,6 @@
                                                             </div>
                                                         </div>
     
-                                
                                                         <div class="d-inline-block w-100">
                                                             <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom02" style="font-size: 17;">Técnico</label>
                                                             <div class="input-group mb-3 w-100">
@@ -240,7 +238,7 @@
                                                             <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                                                             <input class="btn btn-success" type="submit" name="form-nuevo-usuario" value="Modificar">
                                                         </div>
-
+                                                    </div>
                                                 </form>
                                             </div>
                                             
@@ -266,16 +264,15 @@
                                                     <div class="modal-body text-start"> 
                                             
                                                         <div class="d-inline-block w-100">
-                                                            <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom02" style="font-size: 17;">Tipo de Servicio</label>
+                                                            <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom01" style="font-size: 17;">Tipo de Servicio</label>
                                                             <div class="input-group mb-3 w-100">
-                                                                <select id="id_tipodeservicio" class="form-select" name="tipodeservicio" aria-label="tipo-activo"
-                                                                    id="validationCustom02" required disabled>
-    
+                                                                <select id="id_tipodeservicio" class="form-control" name="tipodeservicio" aria-label="tipo-activo"
+                                                                    id="validationCustom01" required disabled>
                                                                     <option class="text-black" select value hidden="{{servicio.tipodeservicio.pk}}">{{servicio.tipoServicio}}</option>
                                                                 
                                                                     {% for tipodeservicio in tiposdeservicios %}
                                                                     {% if tipodeservicio.estado == '1' %}
-                                                                        <option class="text-black" value="{{tipodeservicio.id}}">{{tipodeservicio.nombreServicio}}</option>                                                  
+                                                                    <option class="text-black" value="{{tipodeservicio.id}}">{{tipodeservicio.nombreServicio}}</option>                                                  
                                                                     {% endif %}
                                                                     {% endfor %}
                                                                 
@@ -293,7 +290,7 @@
                                                         <div class="d-inline-block w-100">
                                                             <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom03" style="font-size: 17;">Técnico</label>
                                                             <div class="input-group mb-3 w-100">
-                                                                <select id="id_tecnico" class="select form-select" name="tecnico" aria-label="tipo-activo"
+                                                                <select id="id_tecnico" class="form-control" name="tecnico" aria-label="tipo-activo"
                                                                     id="validationCustom03" required disabled>
                                                                 
                                                                     <option class="text-black" select value hidden="{{servicio.tecnico.pk}}">{{servicio.tecnico}}</option>
@@ -317,7 +314,7 @@
                                                         <div class="d-inline-block w-100">
                                                             <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom04" style="font-size: 17;">Ciudad</label>
                                                             <div class="input-group mb-3 w-100">
-                                                                <select id="id_ciudad" class="form-select" name="ciudad" aria-label="tipo-activo"
+                                                                <select id="id_ciudad" class="form-control" name="ciudad" aria-label="tipo-activo"
                                                                     id="validationCustom04" required disabled>
                                                                 
                                                                     <option class="text-black" select value hidden="{{servicio.ciudad.pk}}">{{servicio.ciudad}}</option>
@@ -357,7 +354,7 @@
                                                         <div class="d-inline-block w-100">
                                                             <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom06" style="font-size: 17;">IVA</label>
                                                             <div class="input-group mb-3 w-100">
-                                                                <select id="id_porcentajeIva" class="form-select" name="porcentajeIva"
+                                                                <select id="id_porcentajeIva" class="form-control" name="porcentajeIva"
                                                                 aria-label="tipo-activo" id="validationCustom06" required disabled>
                                                                 <option class="text-black" selected value hidden="{{servicio.porcentajeIva}}">{{servicio.porcentajeIva}}</option>      
                                                                 <option class="text-black" value="5">Bienes y Servicios</option>
@@ -405,18 +402,12 @@
                                                             </div>
                                                         </div>
 
-                                                        
+                                                        <div class="modal-footer">
+                                                            <button type="reset" class="btn btn-success" data-bs-dismiss="modal">Regresar</button>
+                                                        </div>
                                                     </div> 
-
-                                                    <div class="modal-footer">
-                                                        
-                                                        <button type="reset" class="btn btn-success" data-bs-dismiss="modal">Regresar</button>
-                                                    
-                                                    </div>
-
                                                 </form>
                                             </div>
-                                            
                                         </div>
                                     </div>
                                 </div>      
@@ -461,7 +452,8 @@
                                         </div>
                                     </div>
                                 </div>
-<!--Fin del modal-->
+                                <!--Fin del modal-->
+
                                 {% endif %}
                                 {% endfor %}
                             </tbody>
@@ -469,13 +461,14 @@
                     </div>  
                     <a href="{% url 'recuperar_servicios' %}" class="btn btn-warning float-right mr-1 mb-3" title="Papelera"><i class="fas fa-trash-restore"></i>&nbsp; Restaurar </a>
                         <!-- /.card-body -->  
-                    </div>
-                </div>            
-                <!-- /.card -->
-        </section>
+                </div>
+            </div>            
+            <!-- /.card -->
+        </div>
+    </section>
         <!-- /.content -->
-    </div>
-    <footer>{% include 'partials/footer.html' %}</footer>
+</div>
+<footer>{% include 'partials/footer.html' %}</footer>
     <!-- /.content-wrapper -->
 
             {% endblock contenido %}
