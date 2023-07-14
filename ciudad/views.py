@@ -30,7 +30,7 @@ def ciudad_crear(request):
             messages.success(request,'¡Ciudad creada correctamente!')
             return redirect('ciudades')
         else:
-            messages.error(request, "¡Error al crear ciudad!")
+            messages.error(request, "¡Error ya existe la ciudad!")
             return redirect('ciudades')
     else:
         form = CiudadForm()
