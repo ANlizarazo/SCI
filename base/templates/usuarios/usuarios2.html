@@ -320,20 +320,6 @@
                                                                 </div>
                                                             </div>
 
-                                                            <div class="d-inline-block w-100">
-                                                                <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom10" style="font-size: 17;">Foto</label>
-                                                                <div class="input-group mb-3 w-100">
-                                                                    <input type="file" class="form-control" name="foto"
-                                                                        id="id_foto" accept="image/*" id="validationCustom10"  value="{{usuario.foto}}">
-                                                                        <div class="valid-feedback">
-                                                                            ¡Vamos bien!
-                                                                        </div>
-                                                                        <div class="invalid-feedback">
-                                                                            Ingresa una imagen.
-                                                                        </div>
-                                                                </div>
-                                                            </div>
-
                                                             <div class="modal-footer">
                                                                 <!-- BOTÓN PARA GUARDAR LA INFORMACIÓN DIGITADA EN EL FORMULARIO DEL USUARIO -->
                                                                 <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
@@ -345,8 +331,7 @@
                                             </div>
                                         </div>
                                     </div>   
-
-<!-- Fin Modal -->
+                                    <!-- Fin Modal -->
 
                                     <!-- Modal delete confirmation -->
                                     <div class="modal fade"
@@ -389,23 +374,6 @@
                                         </div>
                                     </div>
 <!--Fin del modal-->
-                                    {% endif %}
-                                    {% endfor %}
-                                </tbody>
-                            </table>
-                        </div>
-                        <a href="{% url 'recuperar_usuarios' %}" class="btn btn-warning float-right mr-1 mb-3" title="Papelera"><i class="fas fa-trash-restore"></i>&nbsp; Restaurar </a>
-                        <!-- /.card-body -->
-                    </div>
-                </div>
-                <!-- /.card -->
-            </section>
-            <!-- /.content -->
-        </div>
-        <footer>{% include 'partials/footer.html' %}</footer>
-        <!-- /.content-wrapper -->
-
-
             <!-- Modal crear Usuario -->
 
     <div class="modal fade" id="#">
@@ -486,6 +454,19 @@
     </div>
 
     <!-- Fin Modal -->
+                                    {% endif %}
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        <a href="{% url 'recuperar_usuarios' %}" class="btn btn-warning float-right mr-1 mb-3" title="Papelera"><i class="fas fa-trash-restore"></i>&nbsp; Restaurar </a>
+                        <!-- /.card-body -->
+                    </div>
+                </div>
+                <!-- /.card -->
+            </section>
+            <!-- /.content -->
+        <!-- /.content-wrapper -->
 
 
         {% endblock contenido %}

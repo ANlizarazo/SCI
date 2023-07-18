@@ -89,9 +89,7 @@
                                             <!-- Formulario -->
                                             <form action="{% url 'tecnico_modificar' tecnico.pk %}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
                                                 {% csrf_token %}
-                                                {% if form.errors %}
-                                                    <p>Datos inválidos, Por favor intentalo nuevamente.</p>
-                                                {% endif %}
+                                                
                                                 <div class="modal-body text-start" >
                                 
                                                         <div class="d-inline-block w-100">
@@ -388,7 +386,6 @@
             </section>
             <!-- /.content -->
         </div>
-        <footer>{% include 'partials/footer.html' %}</footer>
         <!-- /.content-wrapper -->
         {% endblock contenido %}
 
