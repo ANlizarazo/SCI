@@ -5,7 +5,7 @@ from django.core.validators import MinValueValidator
 # Create your models here.
 
 class TipoServicio(models.Model):
-    nombreServicio = models.CharField(max_length=50, verbose_name="Nombre de Servicio")
+    nombreServicio = models.CharField(max_length=50,unique=True ,verbose_name="Nombre de Servicio")
     descripcion = models.CharField(max_length=300, verbose_name="Descripción del Servicio")
     class Estado(models.TextChoices):
         ACTIVO='1', _('Activo')
@@ -17,5 +17,5 @@ class TipoServicio(models.Model):
     
     class Meta:
         ordering = ['nombreServicio']
-        verbose_name = 'TipodeServicio'
-        verbose_name_plural = 'TiposdeServicios'
+        verbose_name = 'Tipo de Servicio'
+        verbose_name_plural = 'Tipos de Servicios'
