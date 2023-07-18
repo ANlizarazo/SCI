@@ -374,23 +374,6 @@
                                         </div>
                                     </div>
 <!--Fin del modal-->
-                                    {% endif %}
-                                    {% endfor %}
-                                </tbody>
-                            </table>
-                        </div>
-                        <a href="{% url 'recuperar_usuarios' %}" class="btn btn-warning float-right mr-1 mb-3" title="Papelera"><i class="fas fa-trash-restore"></i>&nbsp; Restaurar </a>
-                        <!-- /.card-body -->
-                    </div>
-                </div>
-                <!-- /.card -->
-            </section>
-            <!-- /.content -->
-        </div>
-        <footer>{% include 'partials/footer.html' %}</footer>
-        <!-- /.content-wrapper -->
-
-
             <!-- Modal crear Usuario -->
 
     <div class="modal fade" id="#">
@@ -471,6 +454,19 @@
     </div>
 
     <!-- Fin Modal -->
+                                    {% endif %}
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        <a href="{% url 'recuperar_usuarios' %}" class="btn btn-warning float-right mr-1 mb-3" title="Papelera"><i class="fas fa-trash-restore"></i>&nbsp; Restaurar </a>
+                        <!-- /.card-body -->
+                    </div>
+                </div>
+                <!-- /.card -->
+            </section>
+            <!-- /.content -->
+        <!-- /.content-wrapper -->
 
 
         {% endblock contenido %}
