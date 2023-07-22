@@ -5,7 +5,7 @@ from django.core.validators import MinValueValidator
 # Create your models here.
 
 class Categoria(models.Model):
-    nombrecat = models.CharField(max_length=60, verbose_name="Nombre Categoría", null=True, blank=True) 
+    nombrecat = models.CharField(max_length=60, unique= True,verbose_name="Nombre Categoría") 
     descripcioncat = models.TextField(max_length=300, verbose_name="Descripción")
     class Estado(models.TextChoices):
         ACTIVO='1', _('Activo')

@@ -6,16 +6,14 @@ from django.contrib import messages
 from ventas.forms import VentaForm
 
 # Create your views here.   
-
 def ventas (request):
-    #importar las ventas desde el modulo admin
     ventas=Venta.objects.all()
     usuarios = Usuario.objects.all()
     clientes = Cliente.objects.all()
     productos = Producto.objects.all()
     form = VentaForm()
     ventaoperacion = []
-
+    
     for venta in ventas:
         print(venta.usuario)
         print(venta.cliente)

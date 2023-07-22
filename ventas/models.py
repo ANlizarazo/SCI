@@ -4,6 +4,7 @@ from django.core.validators import MinValueValidator
 from clientes.models import Cliente
 from productos.models import Producto
 from usuarios.models import Usuario
+from django.db.models import F
 
 # Create your models here.
 class Venta(models.Model):
@@ -11,7 +12,7 @@ class Venta(models.Model):
     usuario=models.ForeignKey(Usuario, on_delete=models.CASCADE, verbose_name="Usuario")
     cliente=models.ForeignKey(Cliente, on_delete=models.CASCADE, verbose_name="Cliente", blank=True, null=True)
     producto = models.ForeignKey(Producto, on_delete=models.CASCADE, verbose_name="Producto")
-    cantidadProducto = models.BigIntegerField(validators = [ MinValueValidator ( 0 )], verbose_name="Cantidad Producto") 
+    cantidadProducto = models.PositiveIntegerField(validators = [ MinValueValidator ( 0 )], verbose_name="Cantidad Producto") 
     valorUnidad = models.PositiveIntegerField(validators = [ MinValueValidator ( 0 )], verbose_name="Valor Unidad")
     
     class ModoPago(models.TextChoices):
@@ -30,11 +31,11 @@ class Venta(models.Model):
     porcentajeIva=models.CharField(max_length=3, choices=Iva.choices, default=Iva.GR, verbose_name="IVA")
     valorTotal= models.PositiveIntegerField(validators = [ MinValueValidator ( 0 )], blank=True, null=True, verbose_name="Valor Total")
     subTotal= models.PositiveIntegerField(validators = [ MinValueValidator ( 0 )], blank=True, null=True, verbose_name="Subtotal")
-    
+
     def __str__(self)->str:
         return "%s %s %s %s" %(self.id,self.producto,self.id,self.fecha)  
     class Meta:
         ordering = ['fecha']
         verbose_name = 'Detalle Venta'
         verbose_name_plural = 'Detalles de Ventas'
-
+    
