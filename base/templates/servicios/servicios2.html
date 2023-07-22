@@ -98,7 +98,7 @@
                                                         <div class="d-inline-block w-100">
                                                             <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom01" style="font-size: 17;">Tipo de Servicio</label>
                                                             <div class="input-group mb-3 w-100">
-                                                                <select id="id_tipodeservicio" class="form-select" name="tipodeservicio" aria-label="tipo-activo"
+                                                                <select id="id_tipoServicio" class="form-select" name="tipoServicio" aria-label="tipo-activo"
                                                                     id="validationCustom01" required>
     
                                                                     <option class="text-black" select value hidden="{{servicio.tipodeservicio.pk}}">{{servicio.tipoServicio}}</option>
@@ -123,7 +123,7 @@
                                                             <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom02" style="font-size: 17;">Técnico</label>
                                                             <div class="input-group mb-3 w-100">
                                                                 <select id="id_tecnico" class="select form-select" name="tecnico" aria-label="tipo-activo"
-                                                                    id="validationCustom02" >
+                                                                    id="validationCustom02" required>
                                                                 
                                                                     <option class="text-black" select value hidden="{{servicio.tecnico.pk}}">{{servicio.tecnico}}</option>
                                 
@@ -184,10 +184,10 @@
                                                         </div>
                                 
                                                         <div class="d-inline-block w-100">
-                                                            <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom06" style="font-size: 17;">IVA</label>
+                                                            <label for="basic-url" class="form-label ps-2 text-black" for="validationCustom05" style="font-size: 17;">IVA</label>
                                                             <div class="input-group mb-3 w-100">
                                                                 <select id="id_porcentajeIva" class="form-select" name="porcentajeIva"
-                                                                aria-label="tipo-activo" id="validationCustom06" required>
+                                                                aria-label="tipo-activo" id="validationCustom05" required>
                                                                 <option class="text-black" selected value hidden="{{servicio.porcentajeIva}}">{{servicio.porcentajeIva}}</option>      
                                                                 <option class="text-black" value="5">Bienes y Servicios</option>
                                                                 <option class="text-black" value="0">Exento</option>                                    
@@ -202,12 +202,12 @@
                                                         </div>
 
                                                         <div class="d-inline-block w-100">
-                                                            <label for="basic-url"  for="validationCustom06" class="form-label ps-2 text-black" style="font-size: 17;">Valor Total</label>
+                                                            <label for="basic-url" for="validationCustom06" class="form-label ps-2 text-black" style="font-size: 17;">Observación</label>
                                                             <div class="input-group mb-3 w-100">
-                                                                <input type="decimal" class="form-control"
-                                                                    name="valorTotal" id="id_valorTotal"
+                                                                <textarea type="text" class="form-control" name="observacion"
+                                                                    id="id_observacion"
                                                                     aria-describedby="basic-addon3" id="validationCustom06" required minlength="1"
-                                                                    maxlength="50" required value="{{servicio.valorTotal}}" disabled>
+                                                                    maxlength="250" required>{{servicio.observacion}}</textarea>
                                                                     <div class="valid-feedback">
                                                                         ¡Vamos bien!
                                                                     </div>
@@ -216,22 +216,7 @@
                                                                     </div>
                                                             </div>
                                                         </div>
-                                
-                                                        <div class="d-inline-block w-100">
-                                                            <label for="basic-url" for="validationCustom07" class="form-label ps-2 text-black" style="font-size: 17;">Observación</label>
-                                                            <div class="input-group mb-3 w-100">
-                                                                <textarea type="text" class="form-control" name="observacion"
-                                                                    id="id_observacion"
-                                                                    aria-describedby="basic-addon3" id="validationCustom07" required minlength="1"
-                                                                    maxlength="250" required>{{servicio.observacion}}</textarea>
-                                                                    <div class="valid-feedback">
-                                                                        ¡Vamos bien!
-                                                                    </div>
-                                                                    <div class="invalid-feedback">
-                                                                        Ingresa un dato válido.
-                                                                    </div>
-                                                            </div>
-                                                        </div>
+                            
 
                                                         <div class="modal-footer">
                                                             <!-- BOTÓN PARA GUARDAR LA INFORMACIÓN DIGITADA EN EL FORMULARIO DEL TECNICO -->
