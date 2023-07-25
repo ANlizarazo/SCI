@@ -14,10 +14,10 @@
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a
                                 href="http://127.0.0.1:8000/inicio/">
-                                <b class="text-success">Inicio </b></a></li>
+                                <b class="text-success" title="Inicio">Inicio </b></a></li>
                         <li class="breadcrumb-item-active"><a
                                 href="http://127.0.0.1:8000/tiposdeservicios/"
-                                class="text-success">/ Tipos de Servicios</a></li>
+                                class="text-success" title="Tipos de Servicios">/ Tipos de Servicios</a></li>
                     </ol>
                 </div>
             </div>
@@ -40,7 +40,7 @@
                     <div class="card-body">
                         <!-- Este botón llama el modal -->
                         <a class="btn btn-success float-right mr-1 mb-3" data-bs-toggle="modal"
-                            data-bs-target="#crearTipoServicio"> Crear Tipo de Servicio</a>    
+                            data-bs-target="#crearTipoServicio" title="Crear"> Crear Tipo de Servicio</a>    
 
                         <!-- Datatable de tipos de servicios -->
                         <table id="tabla-tiposdeservicios" class="table table-bordered table-striped dataTable dtr-inline border-dark">
@@ -120,8 +120,8 @@
 
                                                     <div class="modal-footer">
                                                         <!-- BOTÓN PARA GUARDAR LA INFORMACIÓN DIGITADA EN EL FORMULARIO DE LA CATEGORÍA -->
-                                                        <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                                        <input class="btn btn-success" type="submit" name="form-nuevo-usuario" value="Modificar">
+                                                        <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal" title="Cancelar" >Cancelar</button>
+                                                        <input class="btn btn-success" type="submit" name="form-nuevo-usuario" title="Modificar" value="Modificar">
                                                     </div>
 
                                                 </form>
@@ -133,7 +133,7 @@
 
 
 
-                                <!-- Modal de ver categoría -->
+                                <!-- Modal de ver tipo servicio -->
 
                                 <div class="modal fade" id="verTipoServicio{{tipodeservicio.pk}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                     <div class="modal-dialog">
@@ -183,7 +183,7 @@
 
                                                     <div class="modal-footer">
                                                         
-                                                        <button type="reset" class="btn btn-success" data-bs-dismiss="modal">Regresar</button>
+                                                        <button type="reset" class="btn btn-success" data-bs-dismiss="modal" title="Regresar">Regresar</button>
                                                     
                                                     </div>
 
@@ -227,11 +227,11 @@
                                                 {% csrf_token %}
 
                                                 <input type="submit"
-                                                    class="btn btn-danger"
+                                                    class="btn btn-danger" title="Eliminar"
                                                     value="Eliminar">
                                             </form>
                                             <button type="button" class="btn btn-secondary"
-                                                data-bs-dismiss="modal">Cancelar</button>
+                                                data-bs-dismiss="modal" title="Cancelar">Cancelar</button>
                                         </div>
                                     </div>
                                 </div>
