@@ -26,7 +26,7 @@ class Servicio(models.Model):
     observacion= models.CharField(max_length=300, verbose_name="Observación", null=True)
 
     def __str__(self)->str:
-        return "%s %s" %(self.id, self.tipoServicio)  
+        return "%s %s %s" %(self.id, self.tipoServicio, self.tecnico)  
     
     class Meta:
         ordering = ['tipoServicio']
