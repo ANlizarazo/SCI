@@ -14,9 +14,9 @@ class Producto(models.Model):
         INACTIVO='0', _('Inactivo')
     estado=models.CharField(max_length=1, choices=Estado.choices, default=Estado.ACTIVO, verbose_name="Estado")
     stock = models.PositiveBigIntegerField(validators = [ MinValueValidator ( 0 )], verbose_name="Stock")
-    """def __str__(self)->str:
+    def __str__(self)->str:
         return "%s - %s" %(self.nombre, self.categoria)  
-    
+    """
     @property
     def stock(self):
         from django.db.models import Sum

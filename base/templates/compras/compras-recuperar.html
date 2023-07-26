@@ -1,5 +1,6 @@
 {% block contenido %}
 {% load static %}
+{% load humanize %}
 {% load bootstrap5 %}
 {% bootstrap_css %}
 {% bootstrap_javascript %}
@@ -89,8 +90,8 @@
                                                 <td class="border-dark text-black">{{detallecompra.proveedor}}</td>
                                                 <td class="border-dark text-black">{{detallecompra.producto}}</td>
                                                 <td class="border-dark text-black">{{detallecompra.cantidadProducto}}</td>                                    
-                                                <td class="border-dark text-black">{{detallecompra.valorUnidad}}</td>
-                                                <td class="border-dark text-black">{{detallecompra.totalCompra}}</td>
+                                                <td class="border-dark text-black">{{detallecompra.valorUnidad | intcomma}}</td>
+                                                <td class="border-dark text-black">{{detallecompra.valorTotal | intcomma}}</td>
                                                 <td class="border-dark text-black">
                                                     <buttom data-bs-toggle="modal" data-bs-target="#recuperarModal{{compra.pk}}" class="btn btn-warning" title="Restaurar"><i Class="fas fa-trash-restore"></i></buttom>
                                                 </td>
