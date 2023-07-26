@@ -1,4 +1,5 @@
 {% load static %}
+{% load humanize %}
 {% block contenido %}
 
 <!-- Content Wrapper. Contains page content -->
@@ -67,8 +68,8 @@
                                     <td class="border-dark text-black">{{detallecompra.proveedor}}</td>
                                     <td class="border-dark text-black">{{detallecompra.producto}}</td>
                                     <td class="border-dark text-black">{{detallecompra.cantidadProducto}}</td>                                    
-                                    <td class="border-dark text-black">{{detallecompra.valorUnidad}}</td>
-                                    <td class="border-dark text-black">{{detallecompra.valorTotal}}</td>
+                                    <td class="border-dark text-black">{{detallecompra.valorUnidad | intcomma}}</td>
+                                    <td class="border-dark text-black">{{detallecompra.valorTotal | intcomma}}</td>
                                     <td class="border-dark text-black">
                                         <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#verCompra{{detallecompra.pk}}" title="Ver">
                                             <i class="fas fa-eye"></i></button> 
@@ -149,12 +150,12 @@
                                                             class="form-label ps-2 text-black"
                                                             style="font-size: 17;">Valor Unidad</label>
                                                         <div class="input-group mb-3 w-100">
-                                                            <input type="number" class="form-control"
+                                                            <input type="decimal" class="form-control"
                                                                 name="valorUnidad" id="id_valorUnidad"
                                                                 aria-describedby="basic-addon3"
                                                                 id="validationCustom05" required
                                                                 minlength="1"
-                                                                maxlength="20" required disabled value="{{detallecompra.valorUnidad}}">
+                                                                maxlength="20" required disabled value="{{detallecompra.valorUnidad | intcomma}}">
                                                         </div>
                                                     </div>
  
@@ -166,7 +167,7 @@
                                                             <input type="decimal" class="form-control"
                                                                 name="valorTotal" id="id_valorTotal"
                                                                 aria-describedby="basic-addon3"
-                                                                id="validationCustom05" required disabled value="{{detallecompra.valorTotal}}">
+                                                                id="validationCustom05" required disabled value="{{detallecompra.valorTotal | intcomma}}">
                                                         </div>
                                                     </div>
 

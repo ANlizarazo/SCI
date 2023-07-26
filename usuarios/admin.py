@@ -3,7 +3,7 @@ from .models import Usuario
 # Register your models here.
 class UsuarioAdmin (admin.ModelAdmin):
     list_display=("id", "nombres","apellidos","telefono","email")
-    search_fields=("rol", "nombres", "apellidos")
+    search_fields=("rol", "nombres", "apellidos", "numDocumento")
     list_filter=("rol")
     list_per_page =8
 

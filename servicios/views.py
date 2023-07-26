@@ -67,7 +67,7 @@ def servicios_ver(request):
 
 
 #Function to modificar servicios
-def servicios_modificar(request, pk):
+"""def servicios_modificar(request, pk):
     servicio = Servicio.objects.get(id = pk)
     if request.method == "POST":
         form = ServicioForm(request.POST, instance = servicio)
@@ -85,7 +85,7 @@ def servicios_modificar(request, pk):
     context={
         'form': form
     }
-    return render(request, 'servicios/servicios.html', context)
+    return render(request, 'servicios/servicios.html', context)"""
 
 
 #Function to eliminar servicios

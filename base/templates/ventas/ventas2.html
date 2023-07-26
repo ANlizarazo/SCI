@@ -1,4 +1,5 @@
 {% load static %}
+{% load humanize %}
 {% block contenido %}
 
 <!-- Content Wrapper. Contains page content -->
@@ -70,11 +71,11 @@
                                     <td class="border-dark text-black">{{venta.cliente.nombreEmpresa}}</td>
                                     <td class="border-dark text-black">{{venta.producto.nombre}}</td>
                                     <td class="border-dark text-black">{{venta.cantidadProducto}}</td>
-                                    <td class="border-dark text-black">{{venta.valorUnidad}}</td>
+                                    <td class="border-dark text-black">{{venta.valorUnidad | intcomma }}</td>
                                     <td class="border-dark text-black">{{venta.modoPago}}</td>
                                     <td class="border-dark text-black">{{venta.porcentajeIva}}%</td>
-                                    <td class="border-dark text-black">{{venta.subTotal}}</td>
-                                    <td class="border-dark text-black">{{venta.valorTotal}}</td>
+                                    <td class="border-dark text-black">{{venta.subTotal | intcomma}}</td>
+                                    <td class="border-dark text-black">{{venta.valorTotal | intcomma}}</td>
                                     <td class="border-dark text-black">
                                         <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#verVenta{{venta.pk}}" title="Ver">
                                             <i class="fas fa-eye"></i></button>
@@ -118,6 +119,10 @@
                                                             <input type="number" name="cantidadProducto" class="form-control input-group mb-3 w-100" value="{{venta.cantidadProducto}}" required disabled/>
                                                         </div>
                                                         <div class="d-inline-block w-100">
+                                                            <label class="form-label ps-2 text-black" style="font-size: 17;">Valor Unidad</label>
+                                                            <input type="decimal" name="valorUnidad" class="form-control input-group mb-3 w-100" value="$ {{venta.valorUnidad | intcomma}}" required disabled/>
+                                                        </div>
+                                                        <div class="d-inline-block w-100">
                                                             <label class="form-label ps-2 text-black" style="font-size: 17;">Modo Pago</label>
                                                             <input type="text" name="modoPago" class="form-control input-group mb-3 w-100" value="{{venta.modoPago}}" required disabled/>
                                                         </div>
@@ -127,11 +132,11 @@
                                                         </div>
                                                         <div class="d-inline-block w-100">
                                                             <label class="form-label ps-2 text-black" style="font-size: 17;">Subtotal</label>
-                                                            <input type="number" name="subTotal" class="form-control input-group mb-3 w-100" value="{{venta.subTotal}}" required disabled/>
+                                                            <input type="decimal" name="subTotal" class="form-control input-group mb-3 w-100" value="{{venta.subTotal | intcomma}}" required disabled/>
                                                         </div>
                                                         <div class="d-inline-block w-100">
                                                             <label class="form-label ps-2 text-black" style="font-size: 17;">Valor Total</label>
-                                                            <input type="decimal" name="valorTotal" class="form-control input-group mb-3 w-100" value="{{venta.valorTotal}}" required disabled/>
+                                                            <input type="decimal" name="valorTotal" class="form-control input-group mb-3 w-100" value="{{venta.valorTotal | intcomma}}" required disabled/>
                                                         </div>
                                                         
                                                     </div>
