@@ -14,10 +14,10 @@
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a
                                 href="http://127.0.0.1:8000/inicio/">
-                                <b class="text-success">Inicio </b></a></li>
+                                <b class="text-success" title="Inicio">Inicio </b></a></li>
                         <li class="breadcrumb-item-active"><a
                                 href="http://127.0.0.1:8000/ciudades/"
-                                class="text-success">/ Ciudades</a></li>
+                                class="text-success" title="Ciudades">/ Ciudades</a></li>
                     </ol>
                 </div>
             </div>
@@ -37,7 +37,7 @@
                     <!-- /.card-header -->
                     <div class="card-body">
                         <!-- Este botón llama el modal -->
-                        <a class="btn btn-success float-right mr-1 mb-3" data-bs-toggle="modal" data-bs-target="#crearCiudad"> Crear Ciudad</a>    
+                        <a class="btn btn-success float-right mr-1 mb-3" data-bs-toggle="modal" data-bs-target="#crearCiudad" title="Crear"> Crear Ciudad</a>    
 
                         <!-- Datatable de ciudades -->
                         <table id="tabla-ciudades" class="table table-bordered table-striped dataTable dtr-inline border-dark">
@@ -84,7 +84,7 @@
                                                 text-danger">
                                                 <span class="">¿Estás seguro de que deseas eliminar esta ciudad?</span>
                                                 <div class="text-dark mt-3
-                                                    mb-2">Ciudad: <strong>{{ciudad.nombre}} - {{ciudad.departamento}}</strong></div>
+                                                    mb-2">Ciudad: <strong>{{ciudad.nombre}}</strong></div>
                                             </div>
                                         </div>
 
@@ -94,10 +94,10 @@
 
                                                 <input type="submit"
                                                     class="btn btn-danger"
-                                                    value="Eliminar">
+                                                    value="Eliminar" title="Eliminar">
                                             </form>
                                             <button type="button" class="btn btn-secondary"
-                                                data-bs-dismiss="modal">Cancelar</button>
+                                                data-bs-dismiss="modal" title="Cancelar">Cancelar</button>
                                         </div>
                                     </div>
                                 </div>

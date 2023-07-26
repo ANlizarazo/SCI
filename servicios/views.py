@@ -67,7 +67,7 @@ def servicios_ver(request):
 
 
 #Function to modificar servicios
-def servicios_modificar(request, pk):
+"""def servicios_modificar(request, pk):
     servicio = Servicio.objects.get(id = pk)
     if request.method == "POST":
         form = ServicioForm(request.POST, instance = servicio)
@@ -78,13 +78,14 @@ def servicios_modificar(request, pk):
         else:
             messages.error(request, "¡Error al modificar servicio!")
             return redirect('servicios')
+        
     else:
         form = ServicioForm(instance = servicio)
+
     context={
         'form': form
     }
-
-    return render(request, 'servicios/servicios.html', context)
+    return render(request, 'servicios/servicios.html', context)"""
 
 
 #Function to eliminar servicios
@@ -107,7 +108,7 @@ def recuperar_servicios(request):
 
     for servicio in servicios:
         if servicio.estado == '0':
-            servicio.valorTotal = (int(servicio.valorServicio)*int(servicio.porcentajeIva)/100)
+            servicio.valorTotal = (int(servicio.valorServicio)*int(servicio.porcentajeIva)/100) + servicio.valorServicio
             servicios_recuperables.append(servicio)
             servicioOperacion.append(servicio)
         

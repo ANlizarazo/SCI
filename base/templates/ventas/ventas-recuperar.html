@@ -1,5 +1,6 @@
 {% block contenido %}
 {% load static %}
+{% load humanize %}
 {% load bootstrap5 %}
 {% bootstrap_css %}
 {% bootstrap_javascript %}
@@ -95,11 +96,11 @@
                                                 <td class="border-dark text-black">{{venta.cliente.nombreEmpresa}}</td>
                                                 <td class="border-dark text-black">{{venta.producto.nombre}}</td>
                                                 <td class="border-dark text-black">{{venta.cantidadProducto}}</td>
-                                                <td class="border-dark text-black">{{venta.valorUnidad}}</td>
+                                                <td class="border-dark text-black">{{venta.valorUnidad | intcomma}}</td>
                                                 <td class="border-dark text-black">{{venta.modoPago}}</td>
                                                 <td class="border-dark text-black">{{venta.porcentajeIva}}%</td>
-                                                <td class="border-dark text-black">{{venta.subTotal}}</td>
-                                                <td class="border-dark text-black">{{venta.valorTotal}}</td>
+                                                <td class="border-dark text-black">{{venta.subTotal | intcomma}}</td>
+                                                <td class="border-dark text-black">{{venta.valorTotal | intcomma}}</td>
                                                 <td class="border-dark text-black">
                                                     <buttom data-bs-toggle="modal" data-bs-target="#recuperarModal{{venta.pk}}" class="btn btn-warning" title="Restaurar"><i Class="fas fa-trash-restore"></i></buttom>
                                                 </td>

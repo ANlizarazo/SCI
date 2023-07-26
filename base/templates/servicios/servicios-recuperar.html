@@ -1,5 +1,6 @@
 {% block contenido %}
 {% load static %}
+{% load humanize %}
 {% load bootstrap5 %}
 {% bootstrap_css %}
 {% bootstrap_javascript %}
@@ -91,9 +92,9 @@
                                                 <td class="border-dark text-black">{{servicio.tipoServicio}}</td>
                                                 <td class="border-dark text-black">{{servicio.tecnico}}</td>
                                                 <td class="border-dark text-black">{{servicio.ciudad}}</td>
-                                                <td class="border-dark text-black">{{servicio.valorServicio}}</td>
+                                                <td class="border-dark text-black">{{servicio.valorServicio | intcomma}}</td>
                                                 <td class="border-dark text-black">{{servicio.porcentajeIva}}%</td>
-                                                <td class="border-dark text-black">{{servicio.valorTotal}}</td>
+                                                <td class="border-dark text-black">{{servicio.valorTotal | intcomma}}</td>
                                                 <td class="border-dark text-black">{{servicio.observacion}}</td>
                                                 <td class="border-dark text-black">
                                                     <buttom data-bs-toggle="modal" data-bs-target="#recuperarModal{{servicio.pk}}" class="btn btn-warning" title="Restaurar"><i Class="fas fa-trash-restore"></i></buttom>

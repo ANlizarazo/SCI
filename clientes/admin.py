@@ -1,6 +1,5 @@
 from django.contrib import admin
-from clientes.models import Cliente, Ciudad
+from clientes.models import Cliente
 # Register your models here.
 
 admin.site.register(Cliente)
-admin.site.register(Ciudad)
