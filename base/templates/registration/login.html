@@ -62,6 +62,8 @@
                                                 {% if form.errors %}
                                                     <p>Datos inválidos, Por favor intentalo nuevamente.</p>
                                                 {% endif %}
+                                                
+                                            <h5>Usuario</h5>
                                             <div class="input-group form-group
                                                 mt-3">
                                                 <div class="bg-dark
@@ -70,13 +72,15 @@
                                                             class="fas
                                                             fa-user mt-2"></i></span>
                                                 </div>
-                                                <label for="usuario">
+                                                <label for="usuario"> 
                                                     {{form.username}}
                                                 <div class="invalid-feedback">
                                                     Usuario no registrado.
                                                 </div>
                                                 </label>
                                             </div>
+                                            <hr>
+                                            <h5>Contraseña</h5>
                                             <div class="input-group
                                                     form-group
                                                     mt-3">

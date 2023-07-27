@@ -2,9 +2,11 @@ from django.shortcuts import render, redirect
 from categoria.models import Categoria
 from categoria.forms import CategoriaForm
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required, permission_required
 
 # Create your views here.
-
+@login_required
+@permission_required('categoria.views_categoria')
 def categorias(request):
 
     categorias = Categoria.objects.all()
