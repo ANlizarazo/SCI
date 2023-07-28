@@ -4,7 +4,10 @@ from django.contrib import messages
 
 # se incluyen las siguientes importaciones
 from servicios.forms import ServicioForm
+from django.contrib.auth.decorators import login_required, permission_required
 
+@login_required
+@permission_required('servicios.view_servicio')
 # Create your views here.
 def servicios(request):
 

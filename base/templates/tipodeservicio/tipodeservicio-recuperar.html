@@ -73,8 +73,10 @@
                                             <tr>
                                                 <th class="border-dark">ID Tipo de Servicio</th>
                                                 <th class="border-dark">Nombre Servicio</th>
-                                                <th class="border-dark">Descripción</th>                          
+                                                <th class="border-dark">Descripción</th>    
+                                                {% if perms.tipodeservicio.change_tiposervicio %}                      
                                                 <th class="border-dark">Restaurar</th>
+                                                {% endif %}
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -83,9 +85,11 @@
                                                 <td class="border-dark text-black">{{tipodeservicio.id}}</td>
                                                 <td class="border-dark text-black">{{tipodeservicio.nombreServicio}}</td>
                                                 <td class="border-dark text-black">{{tipodeservicio.descripcion}}</td>
+                                                {% if perms.tipodeservicio.change_tiposervicio %}
                                                 <td class="border-dark text-black">
                                                     <buttom data-bs-toggle="modal" data-bs-target="#recuperarModal{{tipodeservicio.pk}}" class="btn btn-warning" title="Restaurar"><i Class="fas fa-trash-restore"></i></buttom>
                                                 </td>
+                                                {% endif %}
                                             </tr>
                                             
                                     <!-- Modal recuperar confirmation -->

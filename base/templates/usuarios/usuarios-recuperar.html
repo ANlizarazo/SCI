@@ -81,7 +81,9 @@
                                                 <th class="border-dark">Número de Documento</th>
                                                 <th class="border-dark">Genero</th>
                                                 <th class="border-dark">Rol</th>
+                                                {% if perms.usuarios.change_usuario %}
                                                 <th class="border-dark">Restaurar</th>
+                                                {% endif %}
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -97,9 +99,11 @@
                                                 <td class="border-dark text-black">{{usuario.numDocumento}}</td>
                                                 <td class="border-dark text-black">{{usuario.genero}}</td>
                                                 <td class="border-dark text-black">{{usuario.rol}}</td>
+                                                {% if perms.usuarios.change_usuario %}
                                                 <td class="border-dark text-black">
                                                     <buttom data-bs-toggle="modal" data-bs-target="#recuperarModal{{usuario.pk}}" class="btn btn-warning" title="Restaurar"><i Class="fas fa-trash-restore"></i></buttom>
                                                 </td>
+                                                {% endif %}
                                             </tr>
                                             
                                     <!-- Modal recuperar confirmation -->

@@ -42,8 +42,10 @@
                     <!-- /.card-body -->
                     <div class="card-body">
                         <!-- Este botón llama el modal -->
+                        {% if perms.clientes.add_cliente %}
                         <a class="btn btn-success float-right mr-0 mb-3" data-bs-toggle="modal"
                             data-bs-target="#crear_cliente" title="Crear"> Crear Cliente</a>
+                        {% endif %}
                         <!-- Datatable de clientes -->
                         <table id="tabla-clientes" class="table table-bordered table-striped dataTable dtr-inline border-dark">
                             <thead class="bg-success">
@@ -54,7 +56,9 @@
                                     <th class="border-dark">Dirección</th>
                                     <th class="border-dark">Email</th>
                                     <th class="border-dark">Ciudad</th>
+                                    {% if perms.clientes.change_cliente or perms.clientes.delete_cliente or perms.clientes.view_cliente %}
                                     <th class="border-dark">Acciones</th>
+                                    {% endif %}
                                 </tr>
                             </thead>
                             <tbody>
@@ -68,12 +72,20 @@
                                     <td class="border-dark text-black">{{cliente.email}}</td>
                                     <td class="border-dark text-black">{{cliente.ciudad}}</td>
                                     <td class="border-dark text-black">
+                                        {% if perms.clientes.view_cliente %}
                                         <button class="btn btn-success" data-bs-toggle="modal" title = "Ver" data-bs-target="#verCliente{{cliente.pk}}">
                                             <i class="fas fa-eye"></i></button>
+                                        {% endif %}
+
+                                        {% if perms.clientes.change_cliente %}
                                         <button class="btn btn-primary" data-bs-toggle="modal" title = "Modificar" data-bs-target="#editar_cliente{{cliente.pk}}">
                                             <i class="fas fa-edit"></i></button>
+                                        {% endif %}
+
+                                        {% if perms.clientes.delete_cliente %}
                                         <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#borrar_cliente{{cliente.pk}}" title="Eliminar">
                                             <i class="fas fa-trash-alt"></i></button>
+                                        {% endif %}
                                     </td>
                                 </tr>
 
@@ -397,8 +409,10 @@
                             {% endfor %}
                         </tbody>
                     </table>
-                </div>        
+                </div>  
+                {% if perms.clientes.view_cliente %}
                 <a href="{% url 'recuperar_clientes' %}" class="btn btn-warning float-right mr-1 mb-3" title="Papelera"><i class="fas fa-trash-restore"></i>&nbsp; Restaurar </a>
+                {% endif %}
                 <!-- /.card-body -->  
             </div>
         </div>            

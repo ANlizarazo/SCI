@@ -38,9 +38,11 @@
                     <!-- /.card-header -->
                     <div class="card-body">
                         <!-- Este botón llama el modal -->
+                        {% if perms.usuarios.add_usuario %}
                         <a class="btn btn-success float-right mr-0 mb-3" name="form-crear-usuario" 
                             data-bs-toggle="modal" data-bs-target="#crear_Usuario" title="Crear"> Crear Usuario</a>
-                        <!-- Datatable de usuarios -->
+                        {% endif %}
+                            <!-- Datatable de usuarios -->
                             <table id="tabla-usuarios" class="table table-bordered table-striped dataTable dtr-inline border-dark">
                                 <thead class="bg-success">
                                     <tr>
@@ -54,7 +56,9 @@
                                         <th class="border-dark"># de Documento</th>
                                         <th class="border-dark">Genero</th>
                                         <th class="border-dark">Rol</th>
+                                        {% if perms.usuarios.view_usuario or perms.usuarios.delete_usuario or perms.usuarios.change_usuario%}
                                         <th class="border-dark">Acciones</th>
+                                        {% endif %}
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -72,12 +76,20 @@
                                         <td class="border-dark text-black">{{usuario.genero}}</td>
                                         <td class="border-dark text-black">{{usuario.rol}}</td>
                                         <td class="border-dark text-black">
+                                            {% if perms.usuarios.view_usuario %}
                                             <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#verUsuario{{usuario.id}}" title="Ver">
-                                                <i class="fas fa-eye"></i></button>   
+                                                <i class="fas fa-eye"></i></button>
+                                            {% endif %}  
+
+                                            {% if perms.usuarios.change_usuario %}
                                             <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modificar_Usuario{{usuario.pk}}" title="Modificar">
                                                 <i class="fas fa-edit"></i></button>
+                                            {% endif %}
+
+                                            {% if perms.usuarios.delete_usuario %}
                                             <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal{{usuario.pk}}" title="Eliminar">
                                                 <i class="fas fa-trash-alt"></i></button>
+                                            {% endif %}
                                         </td>
                                     </tr>
 
@@ -373,93 +385,15 @@
                                             </div>
                                         </div>
                                     </div>
-<!--Fin del modal-->
-            <!-- Modal crear Usuario -->
-
-    <div class="modal fade" id="#">
-        <div class="modal-dialog">
-            <div class="modal-content">
-
-                <form action="{% url 'usuario_crear' %}" method="POST">
-                    
-                    {% csrf_token %} 
-                    <div class="modal-header">
-                        <h5 class="modal-title">Crear Usuario</h5>
-                    </div>
-
-                    <div class="modal-body w-auto">
-                        <div class="form-group">
-                            <label>Nombre</label>
-                            <input type="text" name="nombres" class="form-control" required />
-                        </div>
-                        <div class="form-group">
-                            <label>Apellido</label>
-                            <input type="text" name="apellidos" class="form-control" required />
-                        </div>
-                        <div class="form-group">
-                            <label>Teléfono</label>
-                            <input type="number" name="telefono" class="form-control" required />
-                        </div>
-                        <div class="form-group">
-                            <label>Email</label>
-                            <input type="email" name="email" class="form-control" required />
-                        </div>
-                        <div class="form-group">
-                            <label>Dirección</label>
-                            <input type="text" name="direccion" class="form-control" required />
-                        </div>
-                        <div class="form-group">
-                            <label>Tipo Documento</label>
-                            <select class="form-select" name="tipoDocumento" required>
-                                <option class="text-black" selected disabled value>Seleccionar</option>
-                                <option class="text-black" value="CC">Cédula de Ciudadania</option>
-                                <option class="text-black" value="CE">Cédula de Extranjería</option>
-                                <option class="text-black" value="PP">Pasaporte</option>
-                                <option class="text-black" value="OT">Otro</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Número Documento</label>
-                            <input type="number" name="numDocumento" class="form-control" required />
-                        </div>
-                        <div class="form-group">
-                            <label>Género</label>
-                            <select class="form-select" name="genero" required>
-                                <option class="text-black" selected disabled value>Seleccionar</option>
-                                <option class="text-black" value="M"{% if usuario.genero == 'M' %} selected {% endif %}>Masculino</option>
-                                <option class="text-black" value="F"{% if usuario.genero == 'M' %} selected {% endif %}>Femenino</option>
-                                <option class="text-black" value="O"{% if usuario.genero == 'M' %} selected {% endif %}>Otro</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Rol</label>
-                            <select class="form-select" name="rol" required>
-                                <option class="text-black" selected disabled value>Seleccionar</option>
-                                <option class="text-black" value="Admin">Administrador</option>
-                                <option class="text-black" value="Empl">Empleado</option>
-                            </select>   
-                        </div>
-                    </div>
-
-                    <div class="modal-footer">
-                        <input type="button" class="btn btn-secondary" data-bs-dismiss="modal" value="Cancelar" />
-                        <input type="submit" class="btn btn-success" value="Crear Usuario" />
-                    </div>
-
-                </form>
-
-
-            </div>
-        </div>
-    </div>
-
-    <!-- Fin Modal -->
+                                    <!--Fin del modal-->
                                     {% endif %}
                                     {% endfor %}
                                 </tbody>
                             </table>
                         </div>
+                        {% if perms.usuarios.view_usuario %}
                         <a href="{% url 'recuperar_usuarios' %}" class="btn btn-warning float-right mr-1 mb-3" title="Papelera"><i class="fas fa-trash-restore"></i>&nbsp; Restaurar </a>
+                        {% endif %}
                         <!-- /.card-body -->
                     </div>
                 </div>

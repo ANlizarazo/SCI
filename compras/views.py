@@ -1,12 +1,14 @@
 from django.shortcuts import redirect, render
 from compras.models import DetalleCompra, Proveedor, Producto
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required, permission_required
 
 # se incluyen las siguientes importaciones
 from compras.forms import DetalleCompraForm
 
+@login_required
+@permission_required('compras.view_detallecompra')
 # Create your views here.   
-
 def compras (request):
     #importar las compras desde el modulo admin
     detalleCompra= DetalleCompra.objects.all()

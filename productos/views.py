@@ -2,7 +2,10 @@ from django.shortcuts import redirect, render
 from productos.forms import ProductoForm
 from django.contrib import messages
 from productos.models import Producto, Categoria
+from django.contrib.auth.decorators import login_required, permission_required
 
+@login_required
+@permission_required('productos.view_producto')
 # Create your views here.
 def productos(request):
     productos = Producto.objects.all()

@@ -2,8 +2,10 @@ from django.shortcuts import redirect, render
 from clientes.forms import ClienteForm, ClienteUpdateForm
 from clientes.models import Cliente, Ciudad
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required, permission_required
 
-
+@login_required
+@permission_required('clientes.view_cliente')
 #Lista de clientes
 def clientes(request):
     
@@ -46,7 +48,7 @@ def clientes_crear(request):
             messages.success(request,'¡Cliente creado correctamente!')
             return redirect('clientes')
         else:
-            messages.error(request, "¡Error al crear cliente!")
+            messages.error(request, "¡Error! Ya existe el Nit")
             return redirect('clientes')
     else:
         form = ClienteForm()

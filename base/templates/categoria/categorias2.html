@@ -39,19 +39,22 @@
                     <!-- /.card-header -->
                     <div class="card-body">
                         <!-- Este botón llama el modal -->
-
+                        {% if perms.categoria.add_categoria %}
 
                         <a class="btn btn-success float-right mr-1 mb-3" data-bs-toggle="modal"
-                            data-bs-target="#crearCategoria"> Crear Categoría</a>    
-
+                            data-bs-target="#crearCategoria"> Crear Categoría</a> 
+                        
+                        {% endif %}
                         <!-- Datatable de categorias -->
                         <table id="tabla-categorias" class="table table-bordered table-striped dataTable dtr-inline border-dark">
                             <thead class="bg-success">
                                 <tr>
                                     <th class="border-dark">ID Categoría</th>
                                     <th class="border-dark">Nombre</th>
-                                    <th class="border-dark">Descripción</th>                
+                                    <th class="border-dark">Descripción</th>   
+                                    {% if perms.categoria.change_categoria or perms.categoria.delete_categoria or perms.categoria.view_categoria %}
                                     <th class="border-dark">Acciones</th>
+                                    {% endif %}
                                 </tr>
                             </thead>
                             <tbody>
@@ -63,15 +66,23 @@
                                     <td class="border-dark text-black">{{categoria.descripcioncat}}</td>
                                     <td class="border-dark">
                                     
+                                    {% if perms.categoria.view_categoria %}
                                     <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#verCategoria{{categoria.pk}}" title="Ver">
-                                        <i class="fas fa-eye"></i></button>      
+                                        <i class="fas fa-eye"></i></button>  
+                                    {% endif %}    
+
+                                    {% if perms.categoria.change_categoria %}
                                     <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modificarCategoria{{categoria.pk}}" title="Modificar">
                                         <i class="fas fa-edit"></i></button>
+                                    {% endif %}
+
+                                    {% if perms.categoria.delete_categoria %}
                                     <button class="btn btn-danger"
                                         data-bs-toggle="modal"
                                         data-bs-target="#deleteModal{{categoria.pk}}" title="Eliminar">
                                         <i class="fas fa-trash-alt"></i></button>
                                     </td>
+                                    {% endif %}
                                 </tr>
 
                                 <!-- Modal de modificar categoría -->
@@ -255,7 +266,9 @@
                             </tbody>
                         </table>
                     </div>
+                    {% if perms.categoria.view_categoria %}
                     <a href="{% url 'recuperar_categoria' %}" class="btn btn-warning float-right mr-1 mb-3" title="Papelera"><i class="fas fa-trash-restore"></i>&nbsp; Restaurar </a>
+                    {% endif %}
                     <!-- /.card -->
                 </div>
             </div>            
