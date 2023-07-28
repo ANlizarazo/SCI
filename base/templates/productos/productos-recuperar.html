@@ -75,8 +75,10 @@
                                                 <th class="border-dark">Nombre</th>
                                                 <th class="border-dark">Especificaciones</th>
                                                 <th class="border-dark">Stock</th>
-                                                <th class="border-dark">Categoría</th>                             
+                                                <th class="border-dark">Categoría</th>  
+                                                {% if perms.productos.change_producto%}
                                                 <th class="border-dark">Restaurar</th>
+                                                {% endif %}
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -87,9 +89,11 @@
                                                 <td class="border-dark text-black">{{producto.especificaciones}}</td>
                                                 <td class="border-dark text-black">{{producto.stock}}</td>
                                                 <td class="border-dark text-black">{{producto.categoria}}</td>
+                                                {% if perms.productos.change_producto%}
                                                 <td class="border-dark text-black">
                                                     <buttom data-bs-toggle="modal" data-bs-target="#recuperarModal{{producto.pk}}" class="btn btn-warning" title="Restaurar"><i Class="fas fa-trash-restore"></i></buttom>
                                                 </td>
+                                                {% endif %}
                                             </tr>
                                             
                                     <!-- Modal recuperar confirmation -->

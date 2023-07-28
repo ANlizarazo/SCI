@@ -28,7 +28,7 @@ class Usuario(models.Model):
         ACTIVO='1', _('Activo')
         INACTIVO='0', _('Inactivo')
     tipoDocumento=models.CharField(max_length=4, choices=TipoDocumento.choices, verbose_name="Tipo de Documento")
-    numDocumento=models.CharField(max_length=20, verbose_name="Número de Documento")
+    numDocumento=models.CharField(max_length=20,verbose_name="Número de Documento")
     genero=models.CharField(max_length=3, choices=Genero.choices, verbose_name="Género")
     rol=models.CharField(max_length=5, choices=Rol.choices, verbose_name="Rol")
     estado=models.CharField(max_length=1, choices=Estado.choices, default=Estado.ACTIVO, verbose_name="Estado")

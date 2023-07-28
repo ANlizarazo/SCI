@@ -4,7 +4,10 @@ from django.contrib import messages
 
 # se incluyen las siguientes importaciones
 from ventas.forms import VentaForm
+from django.contrib.auth.decorators import login_required, permission_required
 
+@login_required
+@permission_required('ventas.view_venta')
 # Create your views here.   
 def ventas (request):
     ventas=Venta.objects.all()

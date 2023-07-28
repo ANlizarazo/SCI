@@ -79,7 +79,9 @@
                                                 <th class="border-dark">Genero</th>
                                                 <th class="border-dark">Tipo de Documento</th>
                                                 <th class="border-dark">Número de Documento</th>
-                                                <th class="border-dark">Acciones</th>
+                                                {% if perms.tecnico.change_tecnico %}
+                                                <th class="border-dark">Restaurar</th>
+                                                {% endif %}
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -91,9 +93,11 @@
                                                 <td class="border-dark text-black">{{tecnico.genero}}</td>
                                                 <td class="border-dark text-black">{{tecnico.tipoDocumento}}</td>
                                                 <td class="border-dark text-black">{{tecnico.numDocumento}}</td>
+                                                {% if perms.tecnico.chage_tecnico %}
                                                 <td class="border-dark text-black">
                                                     <buttom data-bs-toggle="modal" data-bs-target="#recuperarModal{{tecnico.pk}}" class="btn btn-warning" title="Restaurar"><i Class="fas fa-trash-restore"></i></buttom>
                                                 </td>
+                                                {% endif %}
                                             </tr>
                                             
                                     <!-- Modal recuperar confirmation -->

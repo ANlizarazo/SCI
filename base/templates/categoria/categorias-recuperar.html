@@ -76,7 +76,9 @@
                                                 <th class="border-dark">ID Categoría</th>
                                                 <th class="border-dark">Nombre</th>
                                                 <th class="border-dark">Descripción</th>
-                                                <th class="border-dark">Acciones</th>
+                                                {% if perms.categoria.change_categoria %}
+                                                <th class="border-dark">Restaurar</th>
+                                                {% endif %}
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -85,46 +87,48 @@
                                                 <td class="border-dark text-black">{{categoria.id}}</td>
                                                 <td class="border-dark text-black">{{categoria.nombrecat}}</td>
                                                 <td class="border-dark text-black">{{categoria.descripcioncat}}</td>  
+                                                {% if perms.categoria.change_categoria %}
                                                 <td class="border-dark text-black">
                                                     <buttom data-bs-toggle="modal" data-bs-target="#recuperarModal{{categoria.pk}}" class="btn btn-warning" title="Restaurar"><i Class="fas fa-trash-restore"></i></buttom>
                                                 </td>
+                                            {% endif %}
                                             </tr>
-                                                                                <!-- Modal recuperar confirmation -->
-                                    <div class="modal fade"
-                                    id="recuperarModal{{categoria.pk}}"
-                                    tabindex="-1"
-                                    aria-labelledby="deleteModalLabel"
-                                    aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header bg-warning">
-                                                <h5 class="modal-title "
-                                                    id="deleteModalLabel"><i
-                                                        class="fas fa-trash-restore"></i>&nbsp;&nbsp; <b>RESTAURAR CATEGORIA</b></h5>
-                                            </div>
-                                            <div class="modal-body">
-                                                <div class="text-center
-                                                    text-black">
-                                                    <span class="">¿Estás seguro de que deseas recuperar esta categoría?</span>
-                                                    <div class="text-dark mt-3
-                                                        mb-2">Categoría: <strong>ID: {{categoria.id}} - {{categoria.nombrecat}}</strong></div>
+                                                <!-- Modal recuperar confirmation -->
+                                                <div class="modal fade"
+                                                id="recuperarModal{{categoria.pk}}"
+                                                tabindex="-1"
+                                                aria-labelledby="deleteModalLabel"
+                                                aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header bg-warning">
+                                                            <h5 class="modal-title "
+                                                                id="deleteModalLabel"><i
+                                                                    class="fas fa-trash-restore"></i>&nbsp;&nbsp; <b>RESTAURAR CATEGORIA</b></h5>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="text-center
+                                                                text-black">
+                                                                <span class="">¿Estás seguro de que deseas recuperar esta categoría?</span>
+                                                                <div class="text-dark mt-3
+                                                                    mb-2">Categoría: <strong>ID: {{categoria.id}} - {{categoria.nombrecat}}</strong></div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="modal-footer">
+                                                            <form method="post" action="{% url 'recuperar_cat' categoria.id %}">
+                                                                {% csrf_token %}
+
+                                                                <input type="submit"
+                                                                    class="btn btn-warning"
+                                                                    value="Recuperar">
+                                                            </form>
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-bs-dismiss="modal">Cancelar</button>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-
-                                            <div class="modal-footer">
-                                                <form method="post" action="{% url 'recuperar_cat' categoria.id %}">
-                                                    {% csrf_token %}
-
-                                                    <input type="submit"
-                                                        class="btn btn-warning"
-                                                        value="Recuperar">
-                                                </form>
-                                                <button type="button" class="btn btn-secondary"
-                                                    data-bs-dismiss="modal">Cancelar</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
 <!--Fin del modal-->
                                             {% endfor %}
                                         </tbody>

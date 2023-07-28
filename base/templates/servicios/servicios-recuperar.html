@@ -81,7 +81,9 @@
                                                 <th class="border-dark">IVA</th>
                                                 <th class="border-dark">Valor Total</th>
                                                 <th class="border-dark">Observación</th>
+                                                {% if perms.servicios.change_servicio %}
                                                 <th class="border-dark">Restaurar</th>
+                                                {% endif %}
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -96,9 +98,11 @@
                                                 <td class="border-dark text-black">{{servicio.porcentajeIva}}%</td>
                                                 <td class="border-dark text-black">{{servicio.valorTotal | intcomma}}</td>
                                                 <td class="border-dark text-black">{{servicio.observacion}}</td>
+                                                {% if perms.servicios.change_servicio %}
                                                 <td class="border-dark text-black">
                                                     <buttom data-bs-toggle="modal" data-bs-target="#recuperarModal{{servicio.pk}}" class="btn btn-warning" title="Restaurar"><i Class="fas fa-trash-restore"></i></buttom>
                                                 </td>
+                                                {% endif %}
                                             </tr>
                                             
                                     <!-- Modal recuperar confirmation -->

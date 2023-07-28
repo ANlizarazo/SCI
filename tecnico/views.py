@@ -2,9 +2,11 @@ from django.shortcuts import redirect, render
 from tecnico.models import Tecnico
 from tecnico.forms import TecnicoForm
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required, permission_required
 
+@login_required
+@permission_required('tecnico.view_tecnico')
 # Create your views here.
-
 def tecnicos (request):
 
     tecnicos= Tecnico.objects.all()
