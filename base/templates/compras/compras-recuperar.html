@@ -78,8 +78,10 @@
                                                 <th class="border-dark">Producto</th>
                                                 <th class="border-dark">Cantidad producto</th>
                                                 <th class="border-dark">Valor unidad</th>
-                                                <th class="border-dark">Valor Total</th>                                   
-                                                <th class="border-dark">Acciones</th>
+                                                <th class="border-dark">Valor Total</th>
+                                                {% if perms.compras.change_detallecompra%}
+                                                <th class="border-dark">Restaurar</th>
+                                                {% endif %}
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -92,9 +94,11 @@
                                                 <td class="border-dark text-black">{{detallecompra.cantidadProducto}}</td>                                    
                                                 <td class="border-dark text-black">{{detallecompra.valorUnidad | intcomma}}</td>
                                                 <td class="border-dark text-black">{{detallecompra.valorTotal | intcomma}}</td>
+                                                {% if perms.compras.change_detallecompra%}
                                                 <td class="border-dark text-black">
                                                     <buttom data-bs-toggle="modal" data-bs-target="#recuperarModal{{compra.pk}}" class="btn btn-warning" title="Restaurar"><i Class="fas fa-trash-restore"></i></buttom>
                                                 </td>
+                                                {% endif %}
                                             </tr>
                                             
                                     <!-- Modal recuperar confirmation -->

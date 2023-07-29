@@ -5,8 +5,8 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required, permission_required
 
 # Create your views here.
-#@login_required
-#@permission_required('categoria.views_categoria')
+@login_required
+@permission_required('categoria.view_categoria')
 def categorias(request):
 
     categorias = Categoria.objects.all()

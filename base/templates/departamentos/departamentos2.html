@@ -39,15 +39,18 @@
                     <!-- /.card-header -->
                     <div class="card-body">
                         <!-- Este botón llama el modal -->
+                        {% if perms.departamentos.add_departamento %}
                         <a class="btn btn-success float-right mr-1 mb-3" data-bs-toggle="modal"
                             data-bs-target="#crearDepartamento" title="Crear"> Crear Departamento</a>    
-
+                        {% endif %}
                         <!-- Datatable de Departamentos -->
                         <table id="tabla-departamentos" class="table table-bordered table-striped dataTable dtr-inline border-dark">
                             <thead class="bg-success">
                                 <tr>
-                                    <th class="border-dark">Nombre</th>                                 
+                                    <th class="border-dark">Nombre</th>       
+                                    {% if perms.departamentos.delete_departamento %}                       
                                     <th class="border-dark">Acciones</th>
+                                    {% endif %}
                                 </tr>
                             </thead>
                             <tbody>
@@ -55,12 +58,13 @@
                                 {% if departamento.estado == '1' %}
                                 <tr>
                                     <td class="border-dark text-black">{{departamento.nombre}}</td>
+                                    {% if perms.departamentos.delete_departamento %}
                                     <td class="border-dark">
-                                    
                                     <button class="btn btn-danger"
                                         data-bs-toggle="modal"
                                         data-bs-target="#deleteModal{{departamento.pk}}" title="Eliminar">
                                         <i class="fas fa-trash-alt"></i></button>
+                                    {% endif %}
                                     </td>
                                 </tr>
 
@@ -110,7 +114,9 @@
                             </table>
                         </div>
                         <!-- /.card-body -->
+                    {% if perms.departamentos.view_departamento %}
                     <a href="{% url 'recuperar_departamentos' %}" class="btn btn-warning float-right mr-1 mb-3" title="Papelera"><i class="fas fa-trash-restore"></i>&nbsp; Restaurar </a>
+                    {% endif %}
                     <!-- /.card -->
                 </div>
             </div>

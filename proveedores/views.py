@@ -2,8 +2,10 @@ from django.shortcuts import redirect, render
 from proveedores.models import Proveedor, Ciudad
 from proveedores.forms import ProveedorForm
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required, permission_required
 
-
+@login_required
+@permission_required('proveedores.view_proveedor')
 #List of proveedor
 def proveedores(request):
     

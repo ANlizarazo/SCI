@@ -37,15 +37,18 @@
                     <!-- /.card-header -->
                     <div class="card-body">
                         <!-- Este botón llama el modal -->
+                        {% if perms.ciudad.add_ciudad %}
                         <a class="btn btn-success float-right mr-1 mb-3" data-bs-toggle="modal" data-bs-target="#crearCiudad" title="Crear"> Crear Ciudad</a>    
-
+                        {% endif %}
                         <!-- Datatable de ciudades -->
                         <table id="tabla-ciudades" class="table table-bordered table-striped dataTable dtr-inline border-dark">
                             <thead class="bg-success">
                                 <tr>
                                     <th class="border-dark">Nombre</th>
-                                    <th class="border-dark">Departamento</th>                                  
+                                    <th class="border-dark">Departamento</th>   
+                                    {% if perms.ciudad.delete_ciudad %}                               
                                     <th class="border-dark">Acciones</th>
+                                    {% endif %}
                                 </tr>
                             </thead>
                             <tbody>
@@ -54,10 +57,12 @@
                                 <tr>
                                     <td class="border-dark text-black">{{ciudad.nombre}}</td>
                                     <td class="border-dark text-black">{{ciudad.departamento}}</td>
+                                    {% if perms.ciudad.delete_ciudad %}
                                     <td class="border-dark">
                                     <button class="btn btn-danger"data-bs-toggle="modal" data-bs-target="#deleteModal{{ciudad.pk}}" title="Eliminar">
                                         <i class="fas fa-trash-alt"></i></button>
                                     </td>
+                                    {% endif %}
                                 </tr>
                     </div>    
 
@@ -108,7 +113,9 @@
                             </table>
                     </div>
                 <!-- /.card-body -->
+                    {% if perms.ciudad.view_ciudad %}
                     <a href="{% url 'recuperar_ciudades' %}" class="btn btn-warning float-right mr-1 mb-3" title="Papelera"><i class="fas fa-trash-restore"></i>&nbsp; Restaurar </a>
+                    {% endif %}
                     <!-- /.card -->  
             </div>
         </div>

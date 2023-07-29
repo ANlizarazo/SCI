@@ -2,9 +2,11 @@ from django.shortcuts import render, redirect
 from tipodeservicio.models import TipoServicio
 from tipodeservicio.forms import TipoServicioForm
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required, permission_required
 
+@login_required
+@permission_required('tipodeservicio.view_tiposervicio')
 # Create your views here.
-
 def tiposdeservicios(request):
 
     tiposdeservicios = TipoServicio.objects.all()

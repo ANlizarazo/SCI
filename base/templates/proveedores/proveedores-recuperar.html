@@ -78,7 +78,9 @@
                                                 <th class="border-dark">Dirección</th>
                                                 <th class="border-dark">Email</th>
                                                 <th class="border-dark">Ciudad</th>
+                                                {% if perms.proveedores.change_proveedor %}
                                                 <th class="border-dark">Restaurar</th>
+                                                {% endif %}
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -90,9 +92,11 @@
                                                 <td class="border-dark text-black">{{proveedor.direccion}}</td>
                                                 <td class="border-dark text-black">{{proveedor.email}}</td>
                                                 <td class="border-dark text-black">{{proveedor.ciudad}}</td>
+                                                {% if perms.proveedores.change_proveedor %}
                                                 <td class="border-dark text-black">
                                                     <buttom data-bs-toggle="modal" data-bs-target="#recuperarModal{{proveedor.pk}}" class="btn btn-warning" title="Restaurar"><i Class="fas fa-trash-restore"></i></buttom>
                                                 </td>
+                                                {% endif %}
                                             </tr>
 
                                     <!-- Modal recuperar confirmation -->

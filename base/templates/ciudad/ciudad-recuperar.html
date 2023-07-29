@@ -72,8 +72,10 @@
                                         <thead class="bg-gray">
                                             <tr>
                                                 <th class="border-dark">Nombre</th>
-                                                <th class="border-dark">Departamento</th>                                  
+                                                <th class="border-dark">Departamento</th>  
+                                                {% if perms.ciudad.add_ciudad %}                                
                                                 <th class="border-dark">Restaurar</th>
+                                                {% endif %}
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -81,9 +83,11 @@
                                             <tr>
                                                 <td class="border-dark text-black">{{ciudad.nombre}}</td>
                                                 <td class="border-dark text-black">{{ciudad.departamento}}</td>
+                                                {% if perms.ciudad.add_ciudad %}
                                                 <td class="border-dark text-black">
                                                     <buttom data-bs-toggle="modal" data-bs-target="#recuperarModal{{ciudad.pk}}" class="btn btn-warning" title="Restaurar"><i Class="fas fa-trash-restore"></i></buttom>
                                                 </td>
+                                                {% endif %}
                                             </tr>
                                             
                                     <!-- Modal recuperar confirmation -->

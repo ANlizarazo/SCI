@@ -73,17 +73,21 @@
                                     <table id="tabla-departamentos" class="table table-bordered table-striped dataTable dtr-inline border-dark">
                                         <thead class="bg-gray">
                                             <tr>
-                                                <th class="border-dark">Nombre</th>                                 
+                                                <th class="border-dark">Nombre</th>   
+                                                {% if perms.departamentos.add_departamento %}                         
                                                 <th class="border-dark">Restaurar</th>
+                                                {% endif %}
                                             </tr>
                                         </thead>
                                         <tbody>
                                             {% for departamento in departamentos %}
                                             <tr>
                                                 <td class="border-dark text-black">{{departamento.nombre}}</td>
+                                                {% if perms.departamentos.add_departamento %}
                                                 <td class="border-dark text-black">
                                                     <buttom data-bs-toggle="modal" data-bs-target="#recuperarModal{{departamento.pk}}" class="btn btn-warning" title="Restaurar"><i Class="fas fa-trash-restore"></i></buttom>
                                                 </td>
+                                                {% endif %}
                                             </tr>
 
                                     <!-- Modal recuperar confirmation -->

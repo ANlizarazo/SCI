@@ -84,7 +84,9 @@
                                                 <th class="border-dark">IVA</th>
                                                 <th class="border-dark">Subtotal</th>
                                                 <th class="border-dark">Valor Total</th>
+                                                {% if perms.ventas.change_venta %}
                                                 <th class="border-dark">Restaurar</th>
+                                                {% endif %}
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -101,9 +103,11 @@
                                                 <td class="border-dark text-black">{{venta.porcentajeIva}}%</td>
                                                 <td class="border-dark text-black">{{venta.subTotal | intcomma}}</td>
                                                 <td class="border-dark text-black">{{venta.valorTotal | intcomma}}</td>
+                                                {% if perms.ventas.change_venta %}
                                                 <td class="border-dark text-black">
                                                     <buttom data-bs-toggle="modal" data-bs-target="#recuperarModal{{venta.pk}}" class="btn btn-warning" title="Restaurar"><i Class="fas fa-trash-restore"></i></buttom>
                                                 </td>
+                                                {% endif %}
                                             </tr>
                                             
                                     <!-- Modal recuperar confirmation -->

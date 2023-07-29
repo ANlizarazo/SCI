@@ -38,7 +38,9 @@
                     <!-- /.card-header -->
                     <div class="card-body">
                         <!-- Este botón llama el modal -->
+                        {% if perms.tecnico.add_tecnico %}
                         <button type="button" class="btn btn-success float-right mr-0 mb-3" data-bs-toggle="modal" data-bs-target="#crearTecnico" title="Crear"> Crear Técnico</button>
+                        {% endif %}
                         <!-- Datatable de tecnicos -->
                         <table id="tabla-tecnicos" class="table table-bordered table-striped dataTable dtr-inline border-dark">
                             <thead class="bg-success">
@@ -49,7 +51,9 @@
                                     <th class="border-dark">Genero</th>
                                     <th class="border-dark">Tipo de Documento</th>
                                     <th class="border-dark">Número de Documento</th>
+                                    {% if perms.tecnico.delete_tecnico or perms.tecnico.view_tecnico or perms.tecnico.change_tecnico %}
                                     <th class="border-dark">Acciones</th>
+                                    {% endif %}
                                 </tr>
                             </thead>
                             <tbody>
@@ -63,14 +67,22 @@
                                     <td class="border-dark text-black">{{tecnico.tipoDocumento}}</td>
                                     <td class="border-dark text-black">{{tecnico.numDocumento}}</td>
                                     <td class="border-dark text-black">
+                                        {% if perms.tecnico.view_tecnico %}
                                         <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#verTecnico{{tecnico.pk}}" title="Ver">
-                                            <i class="fas fa-eye"></i></button>        
+                                            <i class="fas fa-eye"></i></button> 
+                                        {% endif %} 
+                                        
+                                        {% if perms.tecnico.change_tecnico %}
                                         <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modificarTecnico{{tecnico.pk}}" title="Modificar">
                                             <i class="fas fa-edit"></i></button>
+                                        {% endif %}
+
+                                        {% if perms.tecnico.delete_tecnico %}
                                             <button class="btn btn-danger"
                                             data-bs-toggle="modal"
                                             data-bs-target="#deleteModal{{tecnico.pk}}" title="Eliminar">
                                             <i class="fas fa-trash-alt"></i></button>
+                                        {% endif %}
                                     </td>
                                 </tr>
 
@@ -372,7 +384,9 @@
                             </tbody>
                         </table>
                     </div>
+                    {% if perms.tecnico.view_tecnico %}
                     <a href="{% url 'recuperar_tecnicos' %}" class="btn btn-warning float-right mr-1 mb-3" title="Papelera"><i class="fas fa-trash-restore"></i>&nbsp; Restaurar </a>
+                    {% endif %}
                     <!-- /.card-body -->
                 </div>
                 <!-- /.card -->

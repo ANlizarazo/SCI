@@ -2,7 +2,10 @@ from django.shortcuts import render, redirect
 from departamentos.models import Departamento
 from departamentos.forms import DepartamentoForm
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required, permission_required
 
+@login_required
+@permission_required('departamentos.view_departamento')
 # Create your views here.
 def departamento(request):
     departamentos = Departamento.objects.all()
